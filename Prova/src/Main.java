@@ -6,6 +6,7 @@ public class Main {
 		System.out.println("ok");
 		System.out.println("ok123");
 		System.out.println("arcamadonna");
+		System.out.println("nagg dio");
 	}
 
 }
