@@ -37,7 +37,7 @@ public class loginFrame extends JFrame {
 		contentPane.add(textUser);
 		textUser.setColumns(10);
 		
-		JLabel lblUser = new JLabel("User");
+		JLabel lblUser = new JLabel("USER");
 		lblUser.setHorizontalAlignment(SwingConstants.CENTER);
 		lblUser.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblUser.setBounds(54, 79, 73, 26);
