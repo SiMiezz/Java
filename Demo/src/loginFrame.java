@@ -13,6 +13,8 @@ import javax.swing.JComboBox;
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class loginFrame extends JFrame {
 
@@ -58,6 +60,16 @@ public class loginFrame extends JFrame {
 		contentPane.add(btnStud);
 		
 		JButton btnGo = new JButton("Login");
+		btnGo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String user = textUser.getText();
+				String pwd = String.valueOf(pwdField.getPassword());
+				
+				if(c.checkUser(user, pwd)==true) {
+					System.out.println("login effettuato");
+				}
+			}
+		});
 		btnGo.setBounds(335, 102, 89, 23);
 		contentPane.add(btnGo);
 		
