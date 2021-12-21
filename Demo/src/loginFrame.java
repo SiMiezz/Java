@@ -15,12 +15,14 @@ import javax.swing.JButton;
 import javax.swing.JPasswordField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.DefaultComboBoxModel;
 
 public class loginFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textUser;
 	private JPasswordField pwdField;
+	private JComboBox BoxSceltaLogin;
 	
 	Controller theController;
 
@@ -51,14 +53,6 @@ public class loginFrame extends JFrame {
 		lblPwd.setBounds(54, 120, 73, 26);
 		contentPane.add(lblPwd);
 		
-		JRadioButton btnOp = new JRadioButton("Operatore");
-		btnOp.setBounds(197, 196, 109, 23);
-		contentPane.add(btnOp);
-		
-		JRadioButton btnStud = new JRadioButton("Studente");
-		btnStud.setBounds(197, 170, 109, 23);
-		contentPane.add(btnStud);
-		
 		JButton btnGo = new JButton("Login");
 		btnGo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -66,8 +60,26 @@ public class loginFrame extends JFrame {
 				String pwd = String.valueOf(pwdField.getPassword());
 				
 				if(c.checkUser(user, pwd)==true) {
-					System.out.println("login effettuato");
+					
+					
+					if(BoxSceltaLogin.getSelectedItem().equals("Studente"))
+					{
+						c.hps.setVisible(true);
+						//System.out.println("finestra studente");
+					}
+					
+					else if (BoxSceltaLogin.getSelectedItem().equals("Operatore"))
+					{
+						c.hpo.setVisible(true);
+						//System.out.println("finestra operatore");
+					}
+					System.out.println("login effettuato" +BoxSceltaLogin.getSelectedItem());
 				}
+				
+				
+				
+				
+				
 			}
 		});
 		btnGo.setBounds(335, 102, 89, 23);
@@ -76,5 +88,12 @@ public class loginFrame extends JFrame {
 		pwdField = new JPasswordField();
 		pwdField.setBounds(158, 122, 148, 26);
 		contentPane.add(pwdField);
+		
+		BoxSceltaLogin = new JComboBox();
+		BoxSceltaLogin.setModel(new DefaultComboBoxModel(new String[] {"Studente", "Operatore"}));
+		BoxSceltaLogin.setToolTipText("");
+		BoxSceltaLogin.setEditable(true);
+		BoxSceltaLogin.setBounds(180, 159, 106, 22);
+		contentPane.add(BoxSceltaLogin);
 	}
 }

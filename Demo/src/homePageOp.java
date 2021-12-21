@@ -10,8 +10,13 @@ import javax.swing.JButton;
 public class homePageOp extends JFrame {
 
 	private JPanel contentPane;
+	Controller TheController;
 
-	public homePageOp() {
+	public homePageOp(Controller c) {
+		setTitle("OPERATORE");
+		
+		TheController= c;
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -19,7 +24,7 @@ public class homePageOp extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnNewButton = new JButton("kuki");
+		JButton btnNewButton = new JButton("");
 		btnNewButton.setBounds(186, 112, 89, 23);
 		contentPane.add(btnNewButton);
 	}

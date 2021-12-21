@@ -3,13 +3,17 @@ import java.sql.*;
 public class Controller {
 
 	loginFrame lf;
+	
 	registrationFrame rf;
+	homePageStud hps= new homePageStud(this);
+	homePageOp hpo= new homePageOp(this);
 	
 	public static void main(String[] args) {
 		Controller c= new Controller();
 	}
 	
 	public Controller() {
+		
 		lf = new loginFrame(this);
 		rf = new registrationFrame(this);
 		lf.setVisible(true);
@@ -40,5 +44,6 @@ public class Controller {
 		
 		return check;
 	}
+	
 
 }

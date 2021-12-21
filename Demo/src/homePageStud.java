@@ -12,7 +12,12 @@ public class homePageStud extends JFrame {
 
 	private JPanel contentPane;
 	
-	public homePageStud() {
+	Controller TheController;
+	
+	public homePageStud(Controller c) {
+		setTitle("STUDENTE");
+		TheController=c;
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -21,10 +26,7 @@ public class homePageStud extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btnNewButton = new JButton("aa");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		
 		btnNewButton.setBounds(161, 117, 89, 23);
 		contentPane.add(btnNewButton);
 	}
