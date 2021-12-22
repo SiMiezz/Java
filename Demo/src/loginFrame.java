@@ -7,6 +7,8 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Window.Type;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
@@ -24,7 +26,15 @@ public class loginFrame extends JFrame {
 	private JPasswordField pwdField;
 	private JComboBox BoxSceltaLogin;
 	
-	Controller theController;
+	public JComboBox getBoxSceltaLogin() {
+		return BoxSceltaLogin;
+	}
+
+	public void setBoxSceltaLogin(JComboBox boxSceltaLogin) {
+		BoxSceltaLogin = boxSceltaLogin;
+	}
+
+	private Controller theController;
 
 	public loginFrame(Controller c) {
 		theController=c;
@@ -59,26 +69,12 @@ public class loginFrame extends JFrame {
 				String user = textUser.getText();
 				String pwd = String.valueOf(pwdField.getPassword());
 				
-				if(c.checkUser(user, pwd)==true) {
-					
-					
-					if(BoxSceltaLogin.getSelectedItem().equals("Studente"))
-					{
-						c.hps.setVisible(true);
-						//System.out.println("finestra studente");
-					}
-					
-					else if (BoxSceltaLogin.getSelectedItem().equals("Operatore"))
-					{
-						c.hpo.setVisible(true);
-						//System.out.println("finestra operatore");
-					}
-					System.out.println("login effettuato" +BoxSceltaLogin.getSelectedItem());
+				if(c.checkUser(user, pwd)) {
+					System.out.println("login effettuato" + " come " + BoxSceltaLogin.getSelectedItem());
 				}
-				
-				
-				
-				
+				else {
+					System.out.println("Credenziali errate");
+				}
 				
 			}
 		});
@@ -93,7 +89,7 @@ public class loginFrame extends JFrame {
 		BoxSceltaLogin.setModel(new DefaultComboBoxModel(new String[] {"Studente", "Operatore"}));
 		BoxSceltaLogin.setToolTipText("");
 		BoxSceltaLogin.setEditable(true);
-		BoxSceltaLogin.setBounds(180, 159, 106, 22);
+		BoxSceltaLogin.setBounds(177, 190, 106, 22);
 		contentPane.add(BoxSceltaLogin);
 	}
 }

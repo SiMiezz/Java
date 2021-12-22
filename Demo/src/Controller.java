@@ -2,47 +2,51 @@ import java.sql.*;
 
 public class Controller {
 
-	loginFrame lf;
+	private loginFrame lf;
+	private registrationFrame rf;
+	private homePageStud hps;
+	private homePageOp hpo;
 	
-	registrationFrame rf;
-	homePageStud hps= new homePageStud(this);
-	homePageOp hpo= new homePageOp(this);
+	private StudenteDAO stdao = new StudenteDAO();
+	private OperatoreDAO opdao = new OperatoreDAO();
 	
 	public static void main(String[] args) {
 		Controller c= new Controller();
 	}
 	
 	public Controller() {
-		
 		lf = new loginFrame(this);
 		rf = new registrationFrame(this);
+		hps = new homePageStud(this);
+		hpo = new homePageOp(this);
 		lf.setVisible(true);
 //		rf.setVisible(true);
 	}
 	
-	public boolean checkUser(String user,String pwd) {
-		boolean check = false;
-		
+	public boolean checkUser(String user,String pwd){
 		try {
-			Connection conn = DataBaseConnection.getInstance().getConnection();
-			Statement st= conn.createStatement();
-			ResultSet rs = st.executeQuery("SELECT * FROM studente");
-			
-			while(rs.next() && (check == false)) {
-				if(rs.getString(1).equals(user) && rs.getString(2).equals(pwd)) {
-					check = true;
+			if(lf.getBoxSceltaLogin().getSelectedItem().equals("Studente")) {
+				if(stdao.checkStud(user,pwd)) {
+					hps.setVisible(true);
+					return true;
+				}
+				else {
+					return false;
+				}
+			}else if (lf.getBoxSceltaLogin().getSelectedItem().equals("Operatore")){
+				if(opdao.checkOp(user,pwd)) {
+					hpo.setVisible(true);
+					return true;
+				}
+				else {
+					return false;
 				}
 			}
-			
-			rs.close();
-			st.close();
-			conn.close();
-		}
-		catch(SQLException e){
+			return false;
+		} catch (Exception e) {
 			e.printStackTrace();
+			return false;
 		}
-		
-		return check;
 	}
 	
 
