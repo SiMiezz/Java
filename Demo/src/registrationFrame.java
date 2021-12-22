@@ -24,6 +24,8 @@ public class registrationFrame extends JFrame {
 	private JTextField txtNome;
 	private JTextField txtCognome;
 	private JTextField txtID;
+	private JTextField txtDataN;
+	private JTextField txtCF;
 
 	public registrationFrame(Controller c) {
 		
@@ -43,13 +45,13 @@ public class registrationFrame extends JFrame {
 		JLabel pwdLbl = new JLabel("Password");
 		pwdLbl.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		pwdLbl.setHorizontalAlignment(SwingConstants.CENTER);
-		pwdLbl.setBounds(35, 122, 85, 25);
+		pwdLbl.setBounds(35, 198, 85, 25);
 		contentPane.add(pwdLbl);
 		
 		
 		
 		pwdField = new JPasswordField();
-		pwdField.setBounds(130, 126, 174, 20);
+		pwdField.setBounds(130, 202, 174, 20);
 		contentPane.add(pwdField);
 		
 		
@@ -85,14 +87,14 @@ public class registrationFrame extends JFrame {
 		contentPane.add(cognomeLbl);
 		
 		txtID = new JTextField();
-		txtID.setBounds(130, 94, 174, 20);
+		txtID.setBounds(130, 171, 174, 20);
 		contentPane.add(txtID);
 		txtID.setColumns(10);
 		
 		JLabel idLbl = new JLabel("ID o Matricola");
 		idLbl.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		idLbl.setHorizontalAlignment(SwingConstants.CENTER);
-		idLbl.setBounds(10, 94, 110, 17);
+		idLbl.setBounds(10, 170, 110, 17);
 		contentPane.add(idLbl);
 		
 		JButton btnRegistration = new JButton("Registrati");
@@ -103,11 +105,42 @@ public class registrationFrame extends JFrame {
 				String strCognome = txtCognome.getText();
 				String id = txtID.getText();
 				String Password = String.valueOf(pwdField.getPassword());
+				String CF = txtCF.getText();
+				String DataN = txtDataN.getText();
 				
-				
+				if (boxSceltaRegistration.getSelectedItem().equals("Operatore"))
+				{
+					c.RegistrazioneOP(strNome, strCognome, id, Password, CF, DataN);
+				}
+				else
+				{
+					//c.RegistrazioneSTUD(strNome, strCognome, id, Password, CF, DataN);
+					
+				}
+					
 			}
 		});
 		btnRegistration.setBounds(384, 76, 127, 25);
 		contentPane.add(btnRegistration);
+		
+		txtDataN = new JTextField();
+		txtDataN.setBounds(130, 95, 174, 20);
+		contentPane.add(txtDataN);
+		txtDataN.setColumns(10);
+		
+		txtCF = new JTextField();
+		txtCF.setBounds(130, 126, 174, 20);
+		contentPane.add(txtCF);
+		txtCF.setColumns(10);
+		
+		JLabel lblDataN = new JLabel("Data di nascita");
+		lblDataN.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblDataN.setBounds(10, 95, 110, 17);
+		contentPane.add(lblDataN);
+		
+		JLabel lblCF = new JLabel("Codice Fiscale");
+		lblCF.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblCF.setBounds(10, 127, 110, 14);
+		contentPane.add(lblCF);
 	}
 }

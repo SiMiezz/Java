@@ -57,6 +57,21 @@ public class Controller {
 	{
 		JOptionPane.showMessageDialog(lf,"Credenziali Errate o non inserite");
 	}
+
+	public void RegistrazioneOP(String strNome, String strCognome, String id, String password, String cf, String dataN) 
+	{
+		
+		try {
+			if(opdao.Registrazione(strNome, strCognome, id, password, cf, dataN))
+			{
+				System.out.println("registrazione avvenuta");
+				lf.setVisible(true);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
 	
 	
 
