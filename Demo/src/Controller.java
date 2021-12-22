@@ -1,6 +1,4 @@
-import java.sql.*;
-
-import javax.swing.JOptionPane;
+import java.sql.Date;
 
 public class Controller {
 
@@ -50,11 +48,11 @@ public class Controller {
 		}
 	}
 
-	public boolean registrazione(String nome, String cognome, String id, String password, String cf) 
+	public boolean registrazione(String nome, String cognome, String id, String password, String cf,Date data) 
 	{
 		try {
 			if(rf.getBoxSceltaRegistration().getSelectedItem().equals("Operatore")) {
-				if(opdao.registrazioneOP(nome, cognome, id, password, cf))
+				if(opdao.registrazioneOP(nome, cognome, id, password, cf, data))
 				{
 					lf.setVisible(true);
 					rf.setVisible(false);
@@ -65,7 +63,7 @@ public class Controller {
 				}
 			}
 			else {
-				if(stdao.registrazioneStud(nome, cognome, id, password, cf))
+				if(stdao.registrazioneStud(nome, cognome, id, password, cf, data))
 				{
 					lf.setVisible(true);
 					rf.setVisible(false);
@@ -76,7 +74,7 @@ public class Controller {
 				}
 			}
 			
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			//e.printStackTrace();
 			return false;
 		}

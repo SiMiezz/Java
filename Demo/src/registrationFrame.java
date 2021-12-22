@@ -18,8 +18,9 @@ import java.awt.event.ActionEvent;
 import javax.swing.JFormattedTextField;
 import javax.swing.text.*;
 
-import java.util.Date;
+import java.sql.Date;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 public class registrationFrame extends JFrame {
@@ -42,6 +43,8 @@ public class registrationFrame extends JFrame {
 	}
 
 	Controller theController;
+	private JTextField txtData;
+	private JLabel lblNewLabel;
 
 	public registrationFrame(Controller c) {
 		theController=c;
@@ -71,25 +74,25 @@ public class registrationFrame extends JFrame {
 		contentPane.add(boxSceltaRegistration);
 		
 		txtNome = new JTextField();
-		txtNome.setBounds(130, 26, 174, 20);
+		txtNome.setBounds(130, 11, 174, 20);
 		contentPane.add(txtNome);
 		txtNome.setColumns(10);
 		
 		txtCognome = new JTextField();
-		txtCognome.setBounds(130, 57, 174, 20);
+		txtCognome.setBounds(130, 42, 174, 20);
 		contentPane.add(txtCognome);
 		txtCognome.setColumns(10);
 		
 		JLabel nomeLbl = new JLabel("Nome");
 		nomeLbl.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		nomeLbl.setHorizontalAlignment(SwingConstants.CENTER);
-		nomeLbl.setBounds(35, 24, 85, 20);
+		nomeLbl.setBounds(35, 9, 85, 20);
 		contentPane.add(nomeLbl);
 		
 		JLabel cognomeLbl = new JLabel("Cognome");
 		cognomeLbl.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		cognomeLbl.setHorizontalAlignment(SwingConstants.CENTER);
-		cognomeLbl.setBounds(35, 57, 85, 17);
+		cognomeLbl.setBounds(35, 42, 85, 17);
 		contentPane.add(cognomeLbl);
 		
 		txtID = new JTextField();
@@ -112,8 +115,9 @@ public class registrationFrame extends JFrame {
 				String id = txtID.getText();
 				String password = String.valueOf(pwdField.getPassword());
 				String cf = txtCF.getText();
+				Date data = Date.valueOf(txtData.getText());
 				
-				if(c.registrazione(nome, cognome, id, password, cf)) {
+				if(c.registrazione(nome, cognome, id, password, cf, data)) {
 					confirmRegistration();
 				}
 				else {
@@ -138,6 +142,17 @@ public class registrationFrame extends JFrame {
 		lblCF.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblCF.setBounds(10, 127, 110, 14);
 		contentPane.add(lblCF);
+		
+		txtData = new JTextField();
+		txtData.setBounds(130, 95, 174, 20);
+		contentPane.add(txtData);
+		txtData.setColumns(10);
+		
+		lblNewLabel = new JLabel("yyyy-mm-dd");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(130, 73, 174, 17);
+		contentPane.add(lblNewLabel);
 	}
 	
 	public void confirmRegistration() {

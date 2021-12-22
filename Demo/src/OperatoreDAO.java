@@ -27,28 +27,33 @@ public class OperatoreDAO {
 		return check;
 	}
 
-	public boolean registrazioneOP(String nome, String cognome, String id, String password, String cf) throws SQLException {
+	public boolean registrazioneOP(String nome, String cognome, String id, String password, String cf, Date data) throws SQLException {
 		try {
-			Connection conn = DataBaseConnection.getInstance().getConnection();
-			Statement st= conn.createStatement();
-			String query ="INSERT INTO operatore (nome,cognome,id,cf,password) VALUES(?,?,?,?,?)";
-			
-			PreparedStatement statement = conn.prepareStatement(query);
-			statement.setString(1, nome);
-			statement.setString(2, cognome);
-			//statement.setDate(3,);
-			statement.setString(3, id);
-			statement.setString(4, cf);
-			statement.setString(5, password);
-			
-			statement.executeUpdate();
-			
-			st.close();
-			conn.close();
-			return true;
+			if(nome !=null && cognome !=null && id!=null && password !=null && cf!=null) {
+				Connection conn = DataBaseConnection.getInstance().getConnection();
+				Statement st= conn.createStatement();
+				String query ="INSERT INTO operatore (nome,cognome,data,id,cf,password) VALUES(?,?,?,?,?,?)";
+				
+				PreparedStatement statement = conn.prepareStatement(query);
+				statement.setString(1, nome);
+				statement.setString(2, cognome);
+				statement.setDate(3, data);
+				statement.setString(4, id);
+				statement.setString(5, cf);
+				statement.setString(6, password);
+				
+				statement.executeUpdate();
+				
+				st.close();
+				conn.close();
+				return true;
+			}
+			else {
+				return false;
+			}
 		}
 		catch(SQLException e){
-			//e.printStackTrace();
+			e.printStackTrace();
 			return false;
 		}
 		
