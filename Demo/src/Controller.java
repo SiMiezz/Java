@@ -1,5 +1,7 @@
 import java.sql.*;
 
+import javax.swing.JOptionPane;
+
 public class Controller {
 
 	private loginFrame lf;
@@ -11,16 +13,18 @@ public class Controller {
 	private OperatoreDAO opdao = new OperatoreDAO();
 	
 	public static void main(String[] args) {
+		
 		Controller c= new Controller();
 	}
 	
 	public Controller() {
+		
 		lf = new loginFrame(this);
 		rf = new registrationFrame(this);
 		hps = new homePageStud(this);
 		hpo = new homePageOp(this);
 		lf.setVisible(true);
-//		rf.setVisible(true);
+
 	}
 	
 	public boolean checkUser(String user,String pwd){
@@ -48,6 +52,12 @@ public class Controller {
 			return false;
 		}
 	}
+	
+	public void AlertLogin()
+	{
+		JOptionPane.showMessageDialog(lf,"Credenziali Errate o non inserite");
+	}
+	
 	
 
 }

@@ -73,7 +73,7 @@ public class loginFrame extends JFrame {
 					System.out.println("login effettuato" + " come " + BoxSceltaLogin.getSelectedItem());
 				}
 				else {
-					System.out.println("Credenziali errate");
+					c.AlertLogin();
 				}
 				
 			}
