@@ -2,7 +2,7 @@ import java.sql.*;
 
 public class StudenteDAO {
 	
-	public boolean checkStud(String user,String pwd) throws SQLException{
+	public boolean checkStud(String id,String pwd) throws SQLException{
 		boolean check = false;
 		
 		try {
@@ -11,7 +11,7 @@ public class StudenteDAO {
 			ResultSet rs = st.executeQuery("SELECT * FROM studente");
 			
 			while(rs.next() && (check == false)) {
-				if(rs.getString(1).equals(user) && rs.getString(2).equals(pwd)) {
+				if(rs.getString(5).equals(id) && rs.getString(6).equals(pwd)) {
 					check = true;
 				}
 			}
@@ -21,11 +21,35 @@ public class StudenteDAO {
 			conn.close();
 		}
 		catch(SQLException e){
-			System.out.println("Connessione fallita");
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		
 		return check;
 	}
-
+	
+	public boolean registrazioneStud(String nome, String cognome, String matricola, String password, String cf) throws SQLException {
+		try {
+			Connection conn = DataBaseConnection.getInstance().getConnection();
+			Statement st= conn.createStatement();
+			String query ="INSERT INTO studente (nome,cognome,matricola,cf,password) VALUES(?,?,?,?,?)";
+			
+			PreparedStatement statement = conn.prepareStatement(query);
+			statement.setString(1, nome);
+			statement.setString(2, cognome);
+			//statement.setDate(3,);
+			statement.setString(3, matricola);
+			statement.setString(4, cf);
+			statement.setString(5, password);
+			
+			statement.executeUpdate();
+			
+			st.close();
+			conn.close();
+			return true;
+		}
+		catch(SQLException e){
+			//e.printStackTrace();
+			return false;
+		}
+	}
 }

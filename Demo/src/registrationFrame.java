@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.SwingConstants;
@@ -14,33 +15,44 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JFormattedTextField;
+import javax.swing.text.*;
+
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 public class registrationFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JPasswordField pwdField;
 	
-	Controller theController;
 	private JTextField txtNome;
 	private JTextField txtCognome;
 	private JTextField txtID;
-	private JTextField txtDataN;
 	private JTextField txtCF;
+	private JComboBox boxSceltaRegistration;
+	
+	public JComboBox getBoxSceltaRegistration() {
+		return boxSceltaRegistration;
+	}
+
+	public void setBoxSceltaRegistration(JComboBox boxSceltaRegistration) {
+		this.boxSceltaRegistration = boxSceltaRegistration;
+	}
+
+	Controller theController;
 
 	public registrationFrame(Controller c) {
-		
 		theController=c;
-		
 		
 		setTitle("REGISTRATION");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 600, 272);
+		setBounds(100, 100, 600, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		
 		
 		JLabel pwdLbl = new JLabel("Password");
 		pwdLbl.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -48,21 +60,15 @@ public class registrationFrame extends JFrame {
 		pwdLbl.setBounds(35, 198, 85, 25);
 		contentPane.add(pwdLbl);
 		
-		
-		
 		pwdField = new JPasswordField();
 		pwdField.setBounds(130, 202, 174, 20);
 		contentPane.add(pwdField);
 		
-		
-		
-		JComboBox boxSceltaRegistration = new JComboBox();
+		boxSceltaRegistration = new JComboBox();
 		boxSceltaRegistration.setModel(new DefaultComboBoxModel(new String[] {"Studente", "Operatore"}));
 		boxSceltaRegistration.setSelectedIndex(1);
-		boxSceltaRegistration.setBounds(390, 26, 111, 20);
+		boxSceltaRegistration.setBounds(430, 159, 111, 20);
 		contentPane.add(boxSceltaRegistration);
-		
-		
 		
 		txtNome = new JTextField();
 		txtNome.setBounds(130, 26, 174, 20);
@@ -97,36 +103,26 @@ public class registrationFrame extends JFrame {
 		idLbl.setBounds(10, 170, 110, 17);
 		contentPane.add(idLbl);
 		
-		JButton btnRegistration = new JButton("Registrati");
+		JButton btnRegistration = new JButton("REGISTRATI");
+		btnRegistration.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnRegistration.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				String strNome = txtNome.getText();
-				String strCognome = txtCognome.getText();
+				String nome = txtNome.getText();
+				String cognome = txtCognome.getText();
 				String id = txtID.getText();
-				String Password = String.valueOf(pwdField.getPassword());
-				String CF = txtCF.getText();
-				String DataN = txtDataN.getText();
+				String password = String.valueOf(pwdField.getPassword());
+				String cf = txtCF.getText();
 				
-				if (boxSceltaRegistration.getSelectedItem().equals("Operatore"))
-				{
-					c.RegistrazioneOP(strNome, strCognome, id, Password, CF, DataN);
+				if(c.registrazione(nome, cognome, id, password, cf)) {
+					confirmRegistration();
 				}
-				else
-				{
-					//c.RegistrazioneSTUD(strNome, strCognome, id, Password, CF, DataN);
-					
+				else {
+					alertRegistration();
 				}
-					
 			}
 		});
-		btnRegistration.setBounds(384, 76, 127, 25);
+		btnRegistration.setBounds(416, 198, 141, 33);
 		contentPane.add(btnRegistration);
-		
-		txtDataN = new JTextField();
-		txtDataN.setBounds(130, 95, 174, 20);
-		contentPane.add(txtDataN);
-		txtDataN.setColumns(10);
 		
 		txtCF = new JTextField();
 		txtCF.setBounds(130, 126, 174, 20);
@@ -142,5 +138,13 @@ public class registrationFrame extends JFrame {
 		lblCF.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblCF.setBounds(10, 127, 110, 14);
 		contentPane.add(lblCF);
+	}
+	
+	public void confirmRegistration() {
+		JOptionPane.showMessageDialog(this, "Registrazione effettuata : " + boxSceltaRegistration.getSelectedItem());
+	}
+	
+	public void alertRegistration() {
+		JOptionPane.showMessageDialog(this, "Errore registrazione");
 	}
 }

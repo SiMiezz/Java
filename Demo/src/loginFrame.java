@@ -18,11 +18,12 @@ import javax.swing.JPasswordField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.Color;
 
 public class loginFrame extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textUser;
+	private JTextField textID;
 	private JPasswordField pwdField;
 	private JComboBox BoxSceltaLogin;
 	
@@ -38,47 +39,49 @@ public class loginFrame extends JFrame {
 
 	public loginFrame(Controller c) {
 		theController=c;
+		
 		setTitle("LOGIN");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 500, 350);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		textUser = new JTextField();
-		textUser.setBounds(158, 81, 148, 26);
-		contentPane.add(textUser);
-		textUser.setColumns(10);
+		textID = new JTextField();
+		textID.setBounds(158, 81, 148, 26);
+		contentPane.add(textID);
+		textID.setColumns(10);
 		
-		JLabel lblUser = new JLabel("USER");
-		lblUser.setHorizontalAlignment(SwingConstants.CENTER);
-		lblUser.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblUser.setBounds(54, 79, 73, 26);
-		contentPane.add(lblUser);
+		JLabel lblID = new JLabel("ID/MATRICOLA");
+		lblID.setHorizontalAlignment(SwingConstants.CENTER);
+		lblID.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblID.setBounds(31, 79, 117, 26);
+		contentPane.add(lblID);
 		
-		JLabel lblPwd = new JLabel("Password");
+		JLabel lblPwd = new JLabel("PASSWORD");
 		lblPwd.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPwd.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblPwd.setBounds(54, 120, 73, 26);
+		lblPwd.setBounds(41, 120, 107, 26);
 		contentPane.add(lblPwd);
 		
-		JButton btnGo = new JButton("Login");
+		JButton btnGo = new JButton("LOGIN");
+		btnGo.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnGo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String user = textUser.getText();
+				String id = textID.getText();
 				String pwd = String.valueOf(pwdField.getPassword());
 				
-				if(c.checkUser(user, pwd)) {
-					System.out.println("login effettuato" + " come " + BoxSceltaLogin.getSelectedItem());
+				if(c.checkUser(id, pwd)) {
+					confirmLogin();
 				}
 				else {
-					c.AlertLogin();
+					alertLogin();
 				}
 				
 			}
 		});
-		btnGo.setBounds(335, 102, 89, 23);
+		btnGo.setBounds(354, 259, 106, 26);
 		contentPane.add(btnGo);
 		
 		pwdField = new JPasswordField();
@@ -86,10 +89,20 @@ public class loginFrame extends JFrame {
 		contentPane.add(pwdField);
 		
 		BoxSceltaLogin = new JComboBox();
+		BoxSceltaLogin.setBackground(Color.WHITE);
 		BoxSceltaLogin.setModel(new DefaultComboBoxModel(new String[] {"Studente", "Operatore"}));
 		BoxSceltaLogin.setToolTipText("");
 		BoxSceltaLogin.setEditable(true);
-		BoxSceltaLogin.setBounds(177, 190, 106, 22);
+		BoxSceltaLogin.setBounds(354, 226, 106, 22);
 		contentPane.add(BoxSceltaLogin);
 	}
+	
+	public void alertLogin()
+	{
+		JOptionPane.showMessageDialog(this,"Credenziali Errate o non inserite");
+	}
+	
+	public void confirmLogin() {
+		JOptionPane.showMessageDialog(this,"Login effettuato come " + BoxSceltaLogin.getSelectedItem());
+	}	
 }

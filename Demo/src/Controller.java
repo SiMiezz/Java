@@ -13,32 +13,30 @@ public class Controller {
 	private OperatoreDAO opdao = new OperatoreDAO();
 	
 	public static void main(String[] args) {
-		
 		Controller c= new Controller();
 	}
 	
 	public Controller() {
-		
 		lf = new loginFrame(this);
 		rf = new registrationFrame(this);
 		hps = new homePageStud(this);
 		hpo = new homePageOp(this);
-		lf.setVisible(true);
-
+		//lf.setVisible(true);
+		rf.setVisible(true);
 	}
 	
-	public boolean checkUser(String user,String pwd){
+	public boolean checkUser(String id,String pwd){
 		try {
 			if(lf.getBoxSceltaLogin().getSelectedItem().equals("Studente")) {
-				if(stdao.checkStud(user,pwd)) {
+				if(stdao.checkStud(id,pwd)) {
 					hps.setVisible(true);
 					return true;
 				}
 				else {
 					return false;
 				}
-			}else if (lf.getBoxSceltaLogin().getSelectedItem().equals("Operatore")){
-				if(opdao.checkOp(user,pwd)) {
+			}else{
+				if(opdao.checkOp(id,pwd)) {
 					hpo.setVisible(true);
 					return true;
 				}
@@ -46,33 +44,41 @@ public class Controller {
 					return false;
 				}
 			}
-			return false;
 		} catch (Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			return false;
 		}
 	}
-	
-	public void AlertLogin()
-	{
-		JOptionPane.showMessageDialog(lf,"Credenziali Errate o non inserite");
-	}
 
-	public void RegistrazioneOP(String strNome, String strCognome, String id, String password, String cf, String dataN) 
+	public boolean registrazione(String nome, String cognome, String id, String password, String cf) 
 	{
-		
 		try {
-			if(opdao.Registrazione(strNome, strCognome, id, password, cf, dataN))
-			{
-				System.out.println("registrazione avvenuta");
-				lf.setVisible(true);
+			if(rf.getBoxSceltaRegistration().getSelectedItem().equals("Operatore")) {
+				if(opdao.registrazioneOP(nome, cognome, id, password, cf))
+				{
+					lf.setVisible(true);
+					rf.setVisible(false);
+					return true;
+				}
+				else {
+					return false;
+				}
 			}
+			else {
+				if(stdao.registrazioneStud(nome, cognome, id, password, cf))
+				{
+					lf.setVisible(true);
+					rf.setVisible(false);
+					return true;
+				}
+				else {
+					return false;
+				}
+			}
+			
 		} catch (SQLException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			return false;
 		}
-		
 	}
-	
-	
-
 }
