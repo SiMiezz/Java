@@ -89,7 +89,8 @@ public class Controller {
 			return false;
 		}
 	}
-	
+		
+		
 	public Studente getStud(String matricola) {
 		try {
 			return stdao.getStud(matricola);
@@ -106,7 +107,47 @@ public class Controller {
 			//e.printStackTrace();
 			return null;
 		}
+}
+
+	public void goRegistrazioneFrame() {
+		lf.setVisible(false);
+		rf.setVisible(true);
+		
 	}
 
+	public void backLogin() {
+		rf.setVisible(false);
+		lf.setVisible(true);
+		
+	}
 
-}
+	public void confirmRegistration() {
+		
+		
+		JOptionPane.showMessageDialog(rf,"Registrazione avvenuta con successo:" +rf.getBoxSceltaRegistration().getSelectedItem() +" verrete riportati alla pagina di Login");
+		
+		rf.setVisible(false);
+		lf.setVisible(true);
+	}
+
+	public void alertRegistration() {
+		
+		JOptionPane.showMessageDialog(rf,"Registrazione errata. Riprova");
+		
+	}
+	
+	public void alertLogin()
+	{
+		JOptionPane.showMessageDialog(lf,"Credenziali Errate o non inserite");			
+	}
+	
+	
+	public void confirmLogin() {
+		JOptionPane.showMessageDialog(lf,"Login effettuato come " + lf.getBoxSceltaLogin().getSelectedItem());
+	}	
+	
+	
+	
+	
+	}
+

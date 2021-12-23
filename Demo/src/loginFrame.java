@@ -73,10 +73,10 @@ public class loginFrame extends JFrame {
 				String pwd = String.valueOf(pwdField.getPassword());
 				
 				if(c.checkUser(id, pwd)) {
-					confirmLogin();
+					c.confirmLogin();
 				}
 				else {
-					alertLogin();
+					c.alertLogin();
 				}
 				
 			}
@@ -107,12 +107,5 @@ public class loginFrame extends JFrame {
 		contentPane.add(btnRegistrati);
 	}
 	
-	public void alertLogin()
-	{
-		JOptionPane.showMessageDialog(this,"Credenziali Errate o non inserite");
-	}
 	
-	public void confirmLogin() {
-		JOptionPane.showMessageDialog(this,"Login effettuato come " + BoxSceltaLogin.getSelectedItem());
-	}	
 }
