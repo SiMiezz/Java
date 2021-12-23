@@ -26,6 +26,39 @@ public class OperatoreDAO {
 		
 		return check;
 	}
+	
+	public Operatore getOp(String id) throws SQLException{
+		Operatore op = new Operatore();
+		
+		try {
+			Connection conn = DataBaseConnection.getInstance().getConnection();
+			Statement st= conn.createStatement();
+			String query = "SELECT * FROM operatore WHERE id = ?";
+			
+			PreparedStatement statement = conn.prepareStatement(query);
+			statement.setString(1, id);
+			
+			ResultSet rs = statement.executeQuery();
+			
+			while(rs.next()) {
+				op.setNome(rs.getString(1));
+				op.setCognome(rs.getString(2));
+				op.setData(rs.getDate(3));
+				op.setId(id);
+				op.setCf(rs.getString(5));
+				op.setPassword(rs.getString(6));
+			}
+			
+			rs.close();
+			st.close();
+			conn.close();
+		}
+		catch (SQLException e) {
+			//e.printStackTrace();
+		}
+		
+		return op;
+	}
 
 	public boolean registrazioneOP(String nome, String cognome, String id, String password, String cf, Date data) throws SQLException {
 		try {

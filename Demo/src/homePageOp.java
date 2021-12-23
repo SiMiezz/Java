@@ -9,6 +9,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.sql.Date;
+
 import javax.swing.JTextPane;
 import javax.swing.JTextField;
 
@@ -94,5 +96,17 @@ public class homePageOp extends JFrame {
 		lblID.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblID.setBounds(10, 189, 98, 22);
 		contentPane.add(lblID);
+		
+		String id = Controller.op.getId();
+		
+		txtNome.setText(c.getOp(id).getNome());
+		txtCognome.setText(c.getOp(id).getCognome());
+		
+		Date data = c.getOp(id).getData();
+		String strdata = data.toString();
+		
+		txtData.setText(strdata);
+		txtCf.setText(c.getOp(id).getCf());
+		txtID.setText(c.getOp(id).getId());
 	}
 }

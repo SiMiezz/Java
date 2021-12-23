@@ -12,6 +12,8 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JTextField;
 
+import java.sql.Date;
+
 public class homePageStud extends JFrame {
 
 	private JPanel contentPane;
@@ -94,5 +96,17 @@ public class homePageStud extends JFrame {
 		lblMatricola.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblMatricola.setBounds(10, 186, 94, 17);
 		contentPane.add(lblMatricola);
+		
+		String matricola = Controller.stud.getMatricola();
+		
+		txtNome.setText(c.getStud(matricola).getNome());
+		txtCognome.setText(c.getStud(matricola).getCognome());
+		
+		Date data = c.getStud(matricola).getData();
+		String strdata = data.toString();
+		
+		txtData.setText(strdata);
+		txtCf.setText(c.getStud(matricola).getCf());
+		txtMatricola.setText(c.getStud(matricola).getMatricola());
 	}
 }

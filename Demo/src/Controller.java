@@ -1,4 +1,5 @@
 import java.sql.Date;
+import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
@@ -12,6 +13,9 @@ public class Controller {
 	private StudenteDAO stdao = new StudenteDAO();
 	private OperatoreDAO opdao = new OperatoreDAO();
 	
+	static Studente stud = new Studente();
+	static Operatore op = new Operatore();
+	
 	public static void main(String[] args) {
 		Controller c= new Controller();
 	}
@@ -19,8 +23,6 @@ public class Controller {
 	public Controller() {
 		lf = new loginFrame(this);
 		rf = new registrationFrame(this);
-		hps = new homePageStud(this);
-		hpo = new homePageOp(this);
 		lf.setVisible(true);
 		//rf.setVisible(true);
 	}
@@ -29,6 +31,9 @@ public class Controller {
 		try {
 			if(lf.getBoxSceltaLogin().getSelectedItem().equals("Studente")) {
 				if(stdao.checkStud(id,pwd)) {
+					Controller.stud.setMatricola(id);
+					Controller.stud.setPassword(pwd);
+					hps = new homePageStud(this);
 					hps.setVisible(true);
 					return true;
 				}
@@ -37,6 +42,9 @@ public class Controller {
 				}
 			}else{
 				if(opdao.checkOp(id,pwd)) {
+					Controller.op.setId(id);
+					Controller.op.setPassword(pwd);
+					hpo = new homePageOp(this);
 					hpo.setVisible(true);
 					return true;
 				}
@@ -81,5 +89,27 @@ public class Controller {
 			return false;
 		}
 	}
+<<<<<<< HEAD
 
+=======
+	
+	public Studente getStud(String matricola) {
+		try {
+			return stdao.getStud(matricola);
+		} catch (SQLException e) {
+			//e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public Operatore getOp(String id) {
+		try {
+			return opdao.getOp(id);
+		} catch (SQLException e) {
+			//e.printStackTrace();
+			return null;
+		}
+	}
+	
+>>>>>>> branch 'main' of file:///C:\Users\Giuseppe\Documents\GitHub\Java
 }
