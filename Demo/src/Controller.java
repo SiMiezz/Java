@@ -9,9 +9,15 @@ public class Controller {
 	private registrationFrame rf;
 	private homePageStud hps;
 	private homePageOp hpo;
+	private insertCorsoFormazione insertcf;
 	
+	
+	
+	
+	private insertCorsoFormazioneDAO insertCorsoDao= new insertCorsoFormazioneDAO();
 	private StudenteDAO stdao = new StudenteDAO();
 	private OperatoreDAO opdao = new OperatoreDAO();
+	
 	
 	static Studente stud = new Studente();
 	static Operatore op = new Operatore();
@@ -23,7 +29,10 @@ public class Controller {
 	public Controller() {
 		lf = new loginFrame(this);
 		rf = new registrationFrame(this);
+		insertcf= new insertCorsoFormazione(this);
+		
 		lf.setVisible(true);
+		
 		//rf.setVisible(true);
 	}
 	
@@ -144,6 +153,22 @@ public class Controller {
 	
 	public void confirmLogin() {
 		JOptionPane.showMessageDialog(lf,"Login effettuato come " + lf.getBoxSceltaLogin().getSelectedItem());
+	}
+
+	public void goInsertCorso() {
+		
+		hpo.setVisible(false);
+		insertcf.setVisible(true);
+	
+		
+	}
+
+	public void goHomePageOP() {
+
+		insertcf.setVisible(false);
+		hpo.setVisible(true);
+		JOptionPane.showMessageDialog(insertcf, "");
+		
 	}	
 	
 	

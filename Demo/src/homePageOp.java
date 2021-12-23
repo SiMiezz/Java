@@ -13,6 +13,9 @@ import java.sql.Date;
 
 import javax.swing.JTextPane;
 import javax.swing.JTextField;
+import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class homePageOp extends JFrame {
 
@@ -43,6 +46,7 @@ public class homePageOp extends JFrame {
 		contentPane.add(lblProfilo);
 		
 		txtNome = new JTextField();
+		txtNome.setBackground(new Color(255, 255, 255));
 		txtNome.setEditable(false);
 		txtNome.setBounds(118, 54, 181, 22);
 		contentPane.add(txtNome);
@@ -108,5 +112,16 @@ public class homePageOp extends JFrame {
 		txtData.setText(strdata);
 		txtCf.setText(c.getOp(id).getCf());
 		txtID.setText(c.getOp(id).getId());
+		
+		JButton btnGoInsertCorso = new JButton("Crea Corso");
+		btnGoInsertCorso.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				c.goInsertCorso();
+			
+			}
+		});
+		btnGoInsertCorso.setBounds(187, 261, 89, 23);
+		contentPane.add(btnGoInsertCorso);
 	}
 }
