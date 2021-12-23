@@ -41,26 +41,31 @@ public class homePageOp extends JFrame {
 		contentPane.add(lblProfilo);
 		
 		txtNome = new JTextField();
+		txtNome.setEditable(false);
 		txtNome.setBounds(118, 54, 181, 22);
 		contentPane.add(txtNome);
 		txtNome.setColumns(10);
 		
 		txtCognome = new JTextField();
+		txtCognome.setEditable(false);
 		txtCognome.setBounds(118, 87, 181, 22);
 		contentPane.add(txtCognome);
 		txtCognome.setColumns(10);
 		
 		txtData = new JTextField();
+		txtData.setEditable(false);
 		txtData.setBounds(118, 120, 181, 22);
 		contentPane.add(txtData);
 		txtData.setColumns(10);
 		
 		txtCf = new JTextField();
+		txtCf.setEditable(false);
 		txtCf.setBounds(118, 153, 181, 22);
 		contentPane.add(txtCf);
 		txtCf.setColumns(10);
 		
 		txtID = new JTextField();
+		txtID.setEditable(false);
 		txtID.setBounds(118, 192, 181, 20);
 		contentPane.add(txtID);
 		txtID.setColumns(10);

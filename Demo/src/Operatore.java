@@ -1,4 +1,4 @@
-import java.util.Date;
+import java.sql.Date;
 
 public class Operatore {
 	private String nome,cognome,cf,id,password;

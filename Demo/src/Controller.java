@@ -19,8 +19,8 @@ public class Controller {
 		rf = new registrationFrame(this);
 		hps = new homePageStud(this);
 		hpo = new homePageOp(this);
-		//lf.setVisible(true);
-		rf.setVisible(true);
+		lf.setVisible(true);
+		//rf.setVisible(true);
 	}
 	
 	public boolean checkUser(String id,String pwd){
