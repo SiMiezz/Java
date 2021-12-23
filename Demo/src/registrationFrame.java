@@ -45,6 +45,7 @@ public class registrationFrame extends JFrame {
 	Controller theController;
 	private JTextField txtData;
 	private JLabel lblNewLabel;
+	private JButton btnBack;
 
 	public registrationFrame(Controller c) {
 		theController=c;
@@ -118,10 +119,10 @@ public class registrationFrame extends JFrame {
 				Date data = Date.valueOf(txtData.getText());
 				
 				if(c.registrazione(nome, cognome, id, password, cf, data)) {
-					confirmRegistration();
+					c.confirmRegistration();
 				}
 				else {
-					alertRegistration();
+					c.alertRegistration();
 				}
 			}
 		});
@@ -153,13 +154,16 @@ public class registrationFrame extends JFrame {
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setBounds(130, 73, 174, 17);
 		contentPane.add(lblNewLabel);
+		
+		btnBack = new JButton("<- back");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				c.backLogin();
+			}
+		});
+		btnBack.setBounds(10, 234, 77, 23);
+		contentPane.add(btnBack);
 	}
 	
-	public void confirmRegistration() {
-		JOptionPane.showMessageDialog(this, "Registrazione effettuata : " + boxSceltaRegistration.getSelectedItem());
-	}
-	
-	public void alertRegistration() {
-		JOptionPane.showMessageDialog(this, "Errore registrazione");
-	}
+
 }

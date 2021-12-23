@@ -95,6 +95,16 @@ public class loginFrame extends JFrame {
 		BoxSceltaLogin.setEditable(true);
 		BoxSceltaLogin.setBounds(354, 226, 106, 22);
 		contentPane.add(BoxSceltaLogin);
+		
+		JButton btnRegistrati = new JButton("REGISTRATI");
+		btnRegistrati.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnRegistrati.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				c.goRegistrazioneFrame();
+			}
+		});
+		btnRegistrati.setBounds(30, 260, 118, 24);
+		contentPane.add(btnRegistrati);
 	}
 	
 	public void alertLogin()
