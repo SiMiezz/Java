@@ -27,6 +27,39 @@ public class StudenteDAO {
 		return check;
 	}
 	
+	public Studente getStud(String matricola) throws SQLException{
+		Studente stud = new Studente();
+		
+		try {
+			Connection conn = DataBaseConnection.getInstance().getConnection();
+			Statement st= conn.createStatement();
+			String query = "SELECT * FROM studente WHERE matricola = ?";
+			
+			PreparedStatement statement = conn.prepareStatement(query);
+			statement.setString(1, matricola);
+			
+			ResultSet rs = statement.executeQuery();
+			
+			while(rs.next()) {
+				stud.setNome(rs.getString(1));
+				stud.setCognome(rs.getString(2));
+				stud.setData(rs.getDate(3));
+				stud.setMatricola(matricola);
+				stud.setCf(rs.getString(4));
+				stud.setPassword(rs.getString(6));
+			}
+			
+			rs.close();
+			st.close();
+			conn.close();
+		}
+		catch (SQLException e) {
+			//e.printStackTrace();
+		}
+		
+		return stud;
+	}
+	
 	public boolean registrazioneStud(String nome, String cognome, String matricola, String password, String cf, Date data) throws SQLException {
 		try {
 			if(nome !=null && cognome !=null && matricola!=null && password !=null && cf!=null) {
