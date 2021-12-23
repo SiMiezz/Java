@@ -89,9 +89,6 @@ public class Controller {
 			return false;
 		}
 	}
-<<<<<<< HEAD
-
-=======
 	
 	public Studente getStud(String matricola) {
 		try {
@@ -110,6 +107,6 @@ public class Controller {
 			return null;
 		}
 	}
-	
->>>>>>> branch 'main' of file:///C:\Users\Giuseppe\Documents\GitHub\Java
+
+
 }
