@@ -13,6 +13,7 @@ import java.awt.Font;
 import javax.swing.JTextField;
 
 import java.sql.Date;
+import javax.swing.JTextArea;
 
 public class homePageStud extends JFrame {
 
@@ -30,7 +31,7 @@ public class homePageStud extends JFrame {
 		TheController=c;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 600, 450);
+		setBounds(100, 100, 650, 500);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -44,31 +45,31 @@ public class homePageStud extends JFrame {
 		
 		txtNome = new JTextField();
 		txtNome.setEditable(false);
-		txtNome.setBounds(114, 63, 166, 20);
+		txtNome.setBounds(114, 63, 135, 20);
 		contentPane.add(txtNome);
 		txtNome.setColumns(10);
 		
 		txtCognome = new JTextField();
 		txtCognome.setEditable(false);
-		txtCognome.setBounds(114, 90, 166, 20);
+		txtCognome.setBounds(114, 90, 135, 20);
 		contentPane.add(txtCognome);
 		txtCognome.setColumns(10);
 		
 		txtData = new JTextField();
 		txtData.setEditable(false);
-		txtData.setBounds(114, 121, 166, 20);
+		txtData.setBounds(114, 121, 135, 20);
 		contentPane.add(txtData);
 		txtData.setColumns(10);
 		
 		txtCf = new JTextField();
 		txtCf.setEditable(false);
-		txtCf.setBounds(114, 152, 166, 20);
+		txtCf.setBounds(114, 152, 135, 20);
 		contentPane.add(txtCf);
 		txtCf.setColumns(10);
 		
 		txtMatricola = new JTextField();
 		txtMatricola.setEditable(false);
-		txtMatricola.setBounds(114, 184, 166, 20);
+		txtMatricola.setBounds(114, 184, 135, 20);
 		contentPane.add(txtMatricola);
 		txtMatricola.setColumns(10);
 		
@@ -97,14 +98,38 @@ public class homePageStud extends JFrame {
 		lblMatricola.setBounds(10, 186, 94, 17);
 		contentPane.add(lblMatricola);
 		
-		txtNome.setText(c.getStud(matricola).getNome());
-		txtCognome.setText(c.getStud(matricola).getCognome());
+		JTextArea txtCorsi = new JTextArea();
+		txtCorsi.setFont(new Font("Monospaced", Font.PLAIN, 16));
+		txtCorsi.setBounds(341, 254, 270, 184);
+		contentPane.add(txtCorsi);
 		
-		Date data = c.getStud(matricola).getData();
+		JLabel lblCorsi = new JLabel("ISCRIZIONI CORSI");
+		lblCorsi.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblCorsi.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCorsi.setBounds(369, 217, 215, 26);
+		contentPane.add(lblCorsi);
+		
+		Studente stud = new Studente();
+		
+		stud.setMatricola(matricola);
+		stud.setNome(c.getStud(matricola).getNome());
+		stud.setCognome(c.getStud(matricola).getCognome());
+		stud.setData(c.getStud(matricola).getData());
+		stud.setCf(c.getStud(matricola).getCf());
+		stud.setIscrizioni(c.getIscrizioni(stud));
+		
+		txtNome.setText(stud.getNome());
+		txtCognome.setText(stud.getCognome());
+		
+		Date data = stud.getData();
 		String strdata = data.toString();
 		
 		txtData.setText(strdata);
-		txtCf.setText(c.getStud(matricola).getCf());
-		txtMatricola.setText(c.getStud(matricola).getMatricola());
+		txtCf.setText(stud.getCf());
+		txtMatricola.setText(matricola);
+		
+		for(Iscritto iscrizione:stud.getIscrizioni()) {
+			txtCorsi.append(iscrizione.getCorso().getNome() + "\n");
+		}
 	}
 }

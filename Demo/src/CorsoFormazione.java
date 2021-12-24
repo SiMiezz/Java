@@ -1,8 +1,10 @@
+import java.util.*;
 
 public class CorsoFormazione {
 	private String nome,descrizione;
 	private int presenzeMin,maxPartecipanti;
 	private Operatore op = new Operatore();
+	private ArrayList <Iscritto> iscrizioni = new ArrayList<Iscritto>();
 	
 	public String getNome() {
 		return nome;
@@ -33,5 +35,11 @@ public class CorsoFormazione {
 	}
 	public void setOp(Operatore op) {
 		this.op = op;
+	}
+	public ArrayList<Iscritto> getIscrizioni() {
+		return iscrizioni;
+	}
+	public void setIscrizioni(ArrayList<Iscritto> iscrizioni) {
+		this.iscrizioni = iscrizioni;
 	}
 }

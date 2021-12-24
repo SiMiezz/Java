@@ -15,6 +15,7 @@ public class Controller {
 	private CorsoFormazioneDAO corsodao = new CorsoFormazioneDAO();
 	private StudenteDAO stdao = new StudenteDAO();
 	private OperatoreDAO opdao = new OperatoreDAO();
+	private IscrittoDAO iscdao = new IscrittoDAO();
 	
 	public static void main(String[] args) {
 		Controller c= new Controller();
@@ -23,11 +24,8 @@ public class Controller {
 	public Controller() {
 		lf = new loginFrame(this);
 		rf = new registrationFrame(this);
-		insertcf= new insertCorsoFormazione(this);
-		
+		//insertcf= new insertCorsoFormazione(this);
 		lf.setVisible(true);
-		
-		//rf.setVisible(true);
 	}
 	
 	public boolean checkUser(String id,String pwd){
@@ -110,6 +108,15 @@ public class Controller {
 	public ArrayList<CorsoFormazione> getCorsi(Operatore op) {
 		try {
 			return corsodao.getCorsi(op);
+		}catch(SQLException e){
+			//e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public ArrayList<Iscritto> getIscrizioni(Studente stud) {
+		try {
+			return iscdao.getIscrizioni(stud);
 		}catch(SQLException e){
 			//e.printStackTrace();
 			return null;

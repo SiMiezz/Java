@@ -49,31 +49,31 @@ public class homePageOp extends JFrame {
 		txtNome = new JTextField();
 		txtNome.setBackground(new Color(255, 255, 255));
 		txtNome.setEditable(false);
-		txtNome.setBounds(118, 54, 150, 22);
+		txtNome.setBounds(118, 54, 135, 22);
 		contentPane.add(txtNome);
 		txtNome.setColumns(10);
 		
 		txtCognome = new JTextField();
 		txtCognome.setEditable(false);
-		txtCognome.setBounds(118, 87, 150, 22);
+		txtCognome.setBounds(118, 87, 135, 22);
 		contentPane.add(txtCognome);
 		txtCognome.setColumns(10);
 		
 		txtData = new JTextField();
 		txtData.setEditable(false);
-		txtData.setBounds(118, 120, 150, 22);
+		txtData.setBounds(118, 120, 135, 22);
 		contentPane.add(txtData);
 		txtData.setColumns(10);
 		
 		txtCf = new JTextField();
 		txtCf.setEditable(false);
-		txtCf.setBounds(118, 153, 150, 22);
+		txtCf.setBounds(118, 153, 135, 22);
 		contentPane.add(txtCf);
 		txtCf.setColumns(10);
 		
 		txtID = new JTextField();
 		txtID.setEditable(false);
-		txtID.setBounds(118, 192, 150, 20);
+		txtID.setBounds(118, 192, 135, 22);
 		contentPane.add(txtID);
 		txtID.setColumns(10);
 		
@@ -102,20 +102,6 @@ public class homePageOp extends JFrame {
 		lblID.setBounds(10, 189, 98, 22);
 		contentPane.add(lblID);
 		
-		Operatore op = new Operatore();
-		op.setId(id);
-		op.setCorsi(c.getCorsi(op));
-		
-		txtNome.setText(c.getOp(id).getNome());
-		txtCognome.setText(c.getOp(id).getCognome());
-		
-		Date data = c.getOp(id).getData();
-		String strdata = data.toString();
-		
-		txtData.setText(strdata);
-		txtCf.setText(c.getOp(id).getCf());
-		txtID.setText(c.getOp(id).getId());
-		
 		JButton btnGoInsertCorso = new JButton("Crea Corso");
 		btnGoInsertCorso.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -126,6 +112,7 @@ public class homePageOp extends JFrame {
 		contentPane.add(btnGoInsertCorso);
 		
 		JTextArea txtCorsi = new JTextArea();
+		txtCorsi.setFont(new Font("Monospaced", Font.PLAIN, 16));
 		txtCorsi.setEditable(false);
 		txtCorsi.setBounds(314, 226, 290, 203);
 		contentPane.add(txtCorsi);
@@ -135,6 +122,24 @@ public class homePageOp extends JFrame {
 		lblCorsi.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblCorsi.setBounds(366, 195, 175, 17);
 		contentPane.add(lblCorsi);
+		
+		Operatore op = new Operatore();
+		op.setId(id);
+		op.setNome(c.getOp(id).getNome());
+		op.setCognome(c.getOp(id).getCognome());
+		op.setData(c.getOp(id).getData());
+		op.setCf(c.getOp(id).getCf());
+		op.setCorsi(c.getCorsi(op));
+		
+		txtNome.setText(op.getNome());
+		txtCognome.setText(op.getCognome());
+		
+		Date data = op.getData();
+		String strdata = data.toString();
+		
+		txtData.setText(strdata);
+		txtCf.setText(op.getCf());
+		txtID.setText(id);
 		
 		for (CorsoFormazione corso:op.getCorsi()) {
 			txtCorsi.append(corso.getNome() + "\n");

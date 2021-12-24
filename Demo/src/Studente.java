@@ -1,8 +1,10 @@
 import java.sql.Date;
+import java.util.*;
 
 public class Studente {
 	private String nome,cognome,cf,matricola,password;
 	private Date data;
+	private ArrayList <Iscritto> iscrizioni = new ArrayList<Iscritto>();
 	
 	public String getNome() {
 		return nome;
@@ -39,5 +41,11 @@ public class Studente {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public ArrayList<Iscritto> getIscrizioni() {
+		return iscrizioni;
+	}
+	public void setIscrizioni(ArrayList<Iscritto> iscrizioni) {
+		this.iscrizioni = iscrizioni;
 	}
 }

@@ -52,7 +52,7 @@ public class registrationFrame extends JFrame {
 		
 		setTitle("REGISTRATION");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 600, 300);
+		setBounds(100, 100, 600, 350);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -71,7 +71,7 @@ public class registrationFrame extends JFrame {
 		boxSceltaRegistration = new JComboBox();
 		boxSceltaRegistration.setModel(new DefaultComboBoxModel(new String[] {"Studente", "Operatore"}));
 		boxSceltaRegistration.setSelectedIndex(1);
-		boxSceltaRegistration.setBounds(430, 159, 111, 20);
+		boxSceltaRegistration.setBounds(449, 239, 111, 20);
 		contentPane.add(boxSceltaRegistration);
 		
 		txtNome = new JTextField();
@@ -126,7 +126,7 @@ public class registrationFrame extends JFrame {
 				}
 			}
 		});
-		btnRegistration.setBounds(416, 198, 141, 33);
+		btnRegistration.setBounds(433, 270, 141, 33);
 		contentPane.add(btnRegistration);
 		
 		txtCF = new JTextField();
@@ -161,7 +161,7 @@ public class registrationFrame extends JFrame {
 				c.backLogin();
 			}
 		});
-		btnLogin.setBounds(447, 125, 77, 23);
+		btnLogin.setBounds(21, 277, 77, 23);
 		contentPane.add(btnLogin);
 	}
 	
