@@ -100,13 +100,13 @@ public class homePageStud extends JFrame {
 		
 		JTextArea txtCorsi = new JTextArea();
 		txtCorsi.setFont(new Font("Monospaced", Font.PLAIN, 16));
-		txtCorsi.setBounds(341, 254, 270, 184);
+		txtCorsi.setBounds(344, 249, 280, 201);
 		contentPane.add(txtCorsi);
 		
 		JLabel lblCorsi = new JLabel("ISCRIZIONI CORSI");
 		lblCorsi.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblCorsi.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCorsi.setBounds(369, 217, 215, 26);
+		lblCorsi.setBounds(382, 212, 215, 26);
 		contentPane.add(lblCorsi);
 		
 		Studente stud = new Studente();

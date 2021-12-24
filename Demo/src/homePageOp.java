@@ -102,25 +102,16 @@ public class homePageOp extends JFrame {
 		lblID.setBounds(10, 189, 98, 22);
 		contentPane.add(lblID);
 		
-		JButton btnGoInsertCorso = new JButton("Crea Corso");
-		btnGoInsertCorso.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				c.goInsertCorso();
-			}
-		});
-		btnGoInsertCorso.setBounds(215, 406, 89, 23);
-		contentPane.add(btnGoInsertCorso);
-		
 		JTextArea txtCorsi = new JTextArea();
 		txtCorsi.setFont(new Font("Monospaced", Font.PLAIN, 16));
 		txtCorsi.setEditable(false);
-		txtCorsi.setBounds(314, 226, 290, 203);
+		txtCorsi.setBounds(334, 247, 290, 203);
 		contentPane.add(txtCorsi);
 		
-		JLabel lblCorsi = new JLabel("CORSI");
+		JLabel lblCorsi = new JLabel("I TUOI CORSI");
 		lblCorsi.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCorsi.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblCorsi.setBounds(366, 195, 175, 17);
+		lblCorsi.setBounds(392, 219, 175, 17);
 		contentPane.add(lblCorsi);
 		
 		Operatore op = new Operatore();

@@ -10,7 +10,6 @@ public class Controller {
 	private registrationFrame rf;
 	private homePageStud hps;
 	private homePageOp hpo;
-	private insertCorsoFormazione insertcf;
 	
 	private CorsoFormazioneDAO corsodao = new CorsoFormazioneDAO();
 	private StudenteDAO stdao = new StudenteDAO();
@@ -24,7 +23,6 @@ public class Controller {
 	public Controller() {
 		lf = new loginFrame(this);
 		rf = new registrationFrame(this);
-		//insertcf= new insertCorsoFormazione(this);
 		lf.setVisible(true);
 	}
 	
@@ -33,7 +31,6 @@ public class Controller {
 			if(lf.getBoxSceltaLogin().getSelectedItem().equals("Studente")) {
 				if(stdao.checkStud(id,pwd)) {
 					hps = new homePageStud(this,id,pwd);
-					hps.setVisible(true);
 					return true;
 				}
 				else {
@@ -42,7 +39,6 @@ public class Controller {
 			}else{
 				if(opdao.checkOp(id,pwd)) {
 					hpo = new homePageOp(this,id,pwd);
-					hpo.setVisible(true);
 					return true;
 				}
 				else {
@@ -61,8 +57,6 @@ public class Controller {
 			if(rf.getBoxSceltaRegistration().getSelectedItem().equals("Operatore")) {
 				if(opdao.registrazioneOP(nome, cognome, id, password, cf, data))
 				{
-					lf.setVisible(true);
-					rf.setVisible(false);
 					return true;
 				}
 				else {
@@ -72,8 +66,6 @@ public class Controller {
 			else {
 				if(stdao.registrazioneStud(nome, cognome, id, password, cf, data))
 				{
-					lf.setVisible(true);
-					rf.setVisible(false);
 					return true;
 				}
 				else {
@@ -134,7 +126,7 @@ public class Controller {
 	}
 
 	public void confirmRegistration() {
-		JOptionPane.showMessageDialog(rf,"Registrazione avvenuta con successo:" +rf.getBoxSceltaRegistration().getSelectedItem() +" verrete riportati alla pagina di Login");
+		JOptionPane.showMessageDialog(rf,"Registrazione avvenuta con successo come " +rf.getBoxSceltaRegistration().getSelectedItem() +"\nverrete riportati alla pagina di Login");
 		rf.setVisible(false);
 		lf.setVisible(true);
 	}
@@ -149,23 +141,16 @@ public class Controller {
 	
 	public void confirmLogin() {
 		JOptionPane.showMessageDialog(lf,"Login effettuato come " + lf.getBoxSceltaLogin().getSelectedItem());
-		lf.setVisible(false);
+		
+		if(lf.getBoxSceltaLogin().getSelectedItem().equals("Studente")) {
+			lf.setVisible(false);
+			hps.setVisible(true);
+		}
+		else {
+			lf.setVisible(false);
+			hpo.setVisible(true);
+		}
 	}
 
-	public void goInsertCorso() {
-		
-		hpo.setVisible(false);
-		insertcf.setVisible(true);
-	
-		
-	}
-
-	public void goHomePageOP() {
-
-		insertcf.setVisible(false);
-		hpo.setVisible(true);
-		JOptionPane.showMessageDialog(insertcf, "");
-		
-	}	
 }
 

@@ -52,7 +52,7 @@ public class registrationFrame extends JFrame {
 		
 		setTitle("REGISTRATION");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 600, 350);
+		setBounds(100, 100, 600, 360);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -65,22 +65,22 @@ public class registrationFrame extends JFrame {
 		contentPane.add(pwdLbl);
 		
 		pwdField = new JPasswordField();
-		pwdField.setBounds(130, 202, 174, 20);
+		pwdField.setBounds(130, 202, 150, 20);
 		contentPane.add(pwdField);
 		
 		boxSceltaRegistration = new JComboBox();
 		boxSceltaRegistration.setModel(new DefaultComboBoxModel(new String[] {"Studente", "Operatore"}));
 		boxSceltaRegistration.setSelectedIndex(1);
-		boxSceltaRegistration.setBounds(449, 239, 111, 20);
+		boxSceltaRegistration.setBounds(446, 241, 111, 20);
 		contentPane.add(boxSceltaRegistration);
 		
 		txtNome = new JTextField();
-		txtNome.setBounds(130, 11, 174, 20);
+		txtNome.setBounds(130, 11, 150, 20);
 		contentPane.add(txtNome);
 		txtNome.setColumns(10);
 		
 		txtCognome = new JTextField();
-		txtCognome.setBounds(130, 42, 174, 20);
+		txtCognome.setBounds(130, 42, 150, 20);
 		contentPane.add(txtCognome);
 		txtCognome.setColumns(10);
 		
@@ -97,7 +97,7 @@ public class registrationFrame extends JFrame {
 		contentPane.add(cognomeLbl);
 		
 		txtID = new JTextField();
-		txtID.setBounds(130, 171, 174, 20);
+		txtID.setBounds(130, 171, 150, 20);
 		contentPane.add(txtID);
 		txtID.setColumns(10);
 		
@@ -126,11 +126,11 @@ public class registrationFrame extends JFrame {
 				}
 			}
 		});
-		btnRegistration.setBounds(433, 270, 141, 33);
+		btnRegistration.setBounds(433, 277, 141, 33);
 		contentPane.add(btnRegistration);
 		
 		txtCF = new JTextField();
-		txtCF.setBounds(130, 126, 174, 20);
+		txtCF.setBounds(130, 126, 150, 20);
 		contentPane.add(txtCF);
 		txtCF.setColumns(10);
 		
@@ -145,14 +145,14 @@ public class registrationFrame extends JFrame {
 		contentPane.add(lblCF);
 		
 		txtData = new JTextField();
-		txtData.setBounds(130, 95, 174, 20);
+		txtData.setBounds(130, 95, 150, 20);
 		contentPane.add(txtData);
 		txtData.setColumns(10);
 		
 		lblNewLabel = new JLabel("yyyy-mm-dd");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(130, 73, 174, 17);
+		lblNewLabel.setBounds(130, 73, 150, 17);
 		contentPane.add(lblNewLabel);
 		
 		btnLogin = new JButton("LOGIN");
@@ -161,7 +161,7 @@ public class registrationFrame extends JFrame {
 				c.backLogin();
 			}
 		});
-		btnLogin.setBounds(21, 277, 77, 23);
+		btnLogin.setBounds(10, 284, 77, 23);
 		contentPane.add(btnLogin);
 	}
 	

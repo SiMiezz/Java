@@ -49,20 +49,20 @@ public class loginFrame extends JFrame {
 		contentPane.setLayout(null);
 		
 		textID = new JTextField();
-		textID.setBounds(158, 81, 148, 26);
+		textID.setBounds(171, 94, 148, 22);
 		contentPane.add(textID);
 		textID.setColumns(10);
 		
 		JLabel lblID = new JLabel("ID/MATRICOLA");
 		lblID.setHorizontalAlignment(SwingConstants.CENTER);
 		lblID.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblID.setBounds(31, 79, 117, 26);
+		lblID.setBounds(45, 90, 117, 26);
 		contentPane.add(lblID);
 		
 		JLabel lblPwd = new JLabel("PASSWORD");
 		lblPwd.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPwd.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblPwd.setBounds(41, 120, 107, 26);
+		lblPwd.setBounds(55, 123, 107, 26);
 		contentPane.add(lblPwd);
 		
 		JButton btnGo = new JButton("LOGIN");
@@ -81,11 +81,11 @@ public class loginFrame extends JFrame {
 				
 			}
 		});
-		btnGo.setBounds(354, 259, 106, 26);
+		btnGo.setBounds(348, 267, 126, 33);
 		contentPane.add(btnGo);
 		
 		pwdField = new JPasswordField();
-		pwdField.setBounds(158, 122, 148, 26);
+		pwdField.setBounds(171, 127, 148, 22);
 		contentPane.add(pwdField);
 		
 		BoxSceltaLogin = new JComboBox();
@@ -93,7 +93,7 @@ public class loginFrame extends JFrame {
 		BoxSceltaLogin.setModel(new DefaultComboBoxModel(new String[] {"Studente", "Operatore"}));
 		BoxSceltaLogin.setToolTipText("");
 		BoxSceltaLogin.setEditable(true);
-		BoxSceltaLogin.setBounds(354, 226, 106, 22);
+		BoxSceltaLogin.setBounds(356, 234, 106, 22);
 		contentPane.add(BoxSceltaLogin);
 		
 		JButton btnRegistrati = new JButton("REGISTRATI");
@@ -103,7 +103,7 @@ public class loginFrame extends JFrame {
 				c.goRegistrazioneFrame();
 			}
 		});
-		btnRegistrati.setBounds(30, 260, 118, 24);
+		btnRegistrati.setBounds(10, 276, 118, 24);
 		contentPane.add(btnRegistrati);
 	}
 	
