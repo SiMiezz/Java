@@ -1,0 +1,76 @@
+import java.sql.*;
+import java.util.*;
+
+public class CorsoFormazioneDAO {
+	
+	public boolean aggiungiCorso(String nome, String descrizione, int presenzeMin, int maxPartecipanti, String idCorso) throws SQLException {
+		try {
+			if(nome !=null && presenzeMin!=0 && maxPartecipanti !=0 && idCorso!=null) {
+				Connection conn = DataBaseConnection.getInstance().getConnection();
+				Statement st= conn.createStatement();
+				String query ="INSERT INTO corsoformazione (nome,descrizione,presenzemin,maxpartecipanti,idcorso) VALUES(?,?,?,?,?,?)";
+				
+				PreparedStatement statement = conn.prepareStatement(query);
+				statement.setString(1, nome);
+				statement.setString(2, descrizione);
+				statement.setInt(3, presenzeMin);
+				statement.setInt(4, maxPartecipanti);
+				statement.setString(5, idCorso);
+				
+				statement.executeUpdate();
+				
+				st.close();
+				conn.close();
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		catch(SQLException e){
+			//e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public ArrayList<CorsoFormazione> getCorsi(Operatore op) throws SQLException {
+		ArrayList <CorsoFormazione> corsi = new ArrayList<CorsoFormazione>();
+		
+		try {
+			Connection conn = DataBaseConnection.getInstance().getConnection();
+			Statement st= conn.createStatement();
+			String query = "SELECT * FROM corsoformazione WHERE id = ?";
+			
+			PreparedStatement statement = conn.prepareStatement(query);
+			statement.setString(1, op.getId());
+			
+			ResultSet rs = statement.executeQuery();
+			
+			while(rs.next()) {
+				CorsoFormazione corso = extractCorso(rs,op);
+				corsi.add(corso);
+			}
+			
+			rs.close();
+			st.close();
+			conn.close();
+		}
+		catch(SQLException e) {
+			//e.printStackTrace();
+		}
+		
+		return corsi;
+	}
+	
+	public CorsoFormazione extractCorso(ResultSet rs,Operatore op) throws SQLException{
+		CorsoFormazione corso = new CorsoFormazione();
+		
+		corso.setNome(rs.getString(1));
+		corso.setDescrizione(rs.getString(2));
+		corso.setPresenzeMin(rs.getInt(3));
+		corso.setMaxPartecipanti(rs.getInt(4));
+		corso.setOp(op);
+		
+		return corso;
+	}
+}

@@ -2,6 +2,7 @@ import java.sql.Date;
 import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
+import java.util.*;
 
 public class Controller {
 
@@ -11,16 +12,9 @@ public class Controller {
 	private homePageOp hpo;
 	private insertCorsoFormazione insertcf;
 	
-	
-	
-	
-	private insertCorsoFormazioneDAO insertCorsoDao= new insertCorsoFormazioneDAO();
+	private CorsoFormazioneDAO corsodao = new CorsoFormazioneDAO();
 	private StudenteDAO stdao = new StudenteDAO();
 	private OperatoreDAO opdao = new OperatoreDAO();
-	
-	
-	static Studente stud = new Studente();
-	static Operatore op = new Operatore();
 	
 	public static void main(String[] args) {
 		Controller c= new Controller();
@@ -40,9 +34,7 @@ public class Controller {
 		try {
 			if(lf.getBoxSceltaLogin().getSelectedItem().equals("Studente")) {
 				if(stdao.checkStud(id,pwd)) {
-					Controller.stud.setMatricola(id);
-					Controller.stud.setPassword(pwd);
-					hps = new homePageStud(this);
+					hps = new homePageStud(this,id,pwd);
 					hps.setVisible(true);
 					return true;
 				}
@@ -51,9 +43,7 @@ public class Controller {
 				}
 			}else{
 				if(opdao.checkOp(id,pwd)) {
-					Controller.op.setId(id);
-					Controller.op.setPassword(pwd);
-					hpo = new homePageOp(this);
+					hpo = new homePageOp(this,id,pwd);
 					hpo.setVisible(true);
 					return true;
 				}
@@ -99,7 +89,6 @@ public class Controller {
 		}
 	}
 		
-		
 	public Studente getStud(String matricola) {
 		try {
 			return stdao.getStud(matricola);
@@ -116,43 +105,44 @@ public class Controller {
 			//e.printStackTrace();
 			return null;
 		}
-}
+	}
+	
+	public ArrayList<CorsoFormazione> getCorsi(Operatore op) {
+		try {
+			return corsodao.getCorsi(op);
+		}catch(SQLException e){
+			//e.printStackTrace();
+			return null;
+		}
+	}
 
 	public void goRegistrazioneFrame() {
 		lf.setVisible(false);
 		rf.setVisible(true);
-		
 	}
 
 	public void backLogin() {
 		rf.setVisible(false);
 		lf.setVisible(true);
-		
 	}
 
 	public void confirmRegistration() {
-		
-		
 		JOptionPane.showMessageDialog(rf,"Registrazione avvenuta con successo:" +rf.getBoxSceltaRegistration().getSelectedItem() +" verrete riportati alla pagina di Login");
-		
 		rf.setVisible(false);
 		lf.setVisible(true);
 	}
 
 	public void alertRegistration() {
-		
 		JOptionPane.showMessageDialog(rf,"Registrazione errata. Riprova");
-		
 	}
 	
-	public void alertLogin()
-	{
+	public void alertLogin(){
 		JOptionPane.showMessageDialog(lf,"Credenziali Errate o non inserite");			
 	}
 	
-	
 	public void confirmLogin() {
 		JOptionPane.showMessageDialog(lf,"Login effettuato come " + lf.getBoxSceltaLogin().getSelectedItem());
+		lf.setVisible(false);
 	}
 
 	public void goInsertCorso() {
@@ -170,9 +160,5 @@ public class Controller {
 		JOptionPane.showMessageDialog(insertcf, "");
 		
 	}	
-	
-	
-	
-	
-	}
+}
 

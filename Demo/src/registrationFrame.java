@@ -45,7 +45,7 @@ public class registrationFrame extends JFrame {
 	Controller theController;
 	private JTextField txtData;
 	private JLabel lblNewLabel;
-	private JButton btnBack;
+	private JButton btnLogin;
 
 	public registrationFrame(Controller c) {
 		theController=c;
@@ -155,14 +155,14 @@ public class registrationFrame extends JFrame {
 		lblNewLabel.setBounds(130, 73, 174, 17);
 		contentPane.add(lblNewLabel);
 		
-		btnBack = new JButton("<- back");
-		btnBack.addActionListener(new ActionListener() {
+		btnLogin = new JButton("LOGIN");
+		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				c.backLogin();
 			}
 		});
-		btnBack.setBounds(10, 234, 77, 23);
-		contentPane.add(btnBack);
+		btnLogin.setBounds(447, 125, 77, 23);
+		contentPane.add(btnLogin);
 	}
 	
 

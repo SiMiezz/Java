@@ -1,8 +1,10 @@
 import java.sql.Date;
+import java.util.*;
 
 public class Operatore {
 	private String nome,cognome,cf,id,password;
 	private Date data;
+	private ArrayList <CorsoFormazione> corsi = new ArrayList<CorsoFormazione>();
 	
 	public String getNome() {
 		return nome;
@@ -39,5 +41,11 @@ public class Operatore {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public ArrayList<CorsoFormazione> getCorsi() {
+		return corsi;
+	}
+	public void setCorsi(ArrayList<CorsoFormazione> corsi) {
+		this.corsi = corsi;
 	}
 }

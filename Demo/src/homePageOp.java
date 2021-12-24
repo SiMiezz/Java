@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextArea;
 
 public class homePageOp extends JFrame {
 
@@ -27,13 +28,13 @@ public class homePageOp extends JFrame {
 	private JTextField txtCf;
 	private JTextField txtID;
 
-	public homePageOp(Controller c) {
+	public homePageOp(Controller c, String id, String pwd) {
 		setTitle("OPERATORE");
 		
 		TheController= c;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 600, 450);
+		setBounds(100, 100, 650, 500);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -48,31 +49,31 @@ public class homePageOp extends JFrame {
 		txtNome = new JTextField();
 		txtNome.setBackground(new Color(255, 255, 255));
 		txtNome.setEditable(false);
-		txtNome.setBounds(118, 54, 181, 22);
+		txtNome.setBounds(118, 54, 150, 22);
 		contentPane.add(txtNome);
 		txtNome.setColumns(10);
 		
 		txtCognome = new JTextField();
 		txtCognome.setEditable(false);
-		txtCognome.setBounds(118, 87, 181, 22);
+		txtCognome.setBounds(118, 87, 150, 22);
 		contentPane.add(txtCognome);
 		txtCognome.setColumns(10);
 		
 		txtData = new JTextField();
 		txtData.setEditable(false);
-		txtData.setBounds(118, 120, 181, 22);
+		txtData.setBounds(118, 120, 150, 22);
 		contentPane.add(txtData);
 		txtData.setColumns(10);
 		
 		txtCf = new JTextField();
 		txtCf.setEditable(false);
-		txtCf.setBounds(118, 153, 181, 22);
+		txtCf.setBounds(118, 153, 150, 22);
 		contentPane.add(txtCf);
 		txtCf.setColumns(10);
 		
 		txtID = new JTextField();
 		txtID.setEditable(false);
-		txtID.setBounds(118, 192, 181, 20);
+		txtID.setBounds(118, 192, 150, 20);
 		contentPane.add(txtID);
 		txtID.setColumns(10);
 		
@@ -101,7 +102,9 @@ public class homePageOp extends JFrame {
 		lblID.setBounds(10, 189, 98, 22);
 		contentPane.add(lblID);
 		
-		String id = Controller.op.getId();
+		Operatore op = new Operatore();
+		op.setId(id);
+		op.setCorsi(c.getCorsi(op));
 		
 		txtNome.setText(c.getOp(id).getNome());
 		txtCognome.setText(c.getOp(id).getCognome());
@@ -116,12 +119,26 @@ public class homePageOp extends JFrame {
 		JButton btnGoInsertCorso = new JButton("Crea Corso");
 		btnGoInsertCorso.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				c.goInsertCorso();
-			
 			}
 		});
-		btnGoInsertCorso.setBounds(187, 261, 89, 23);
+		btnGoInsertCorso.setBounds(215, 406, 89, 23);
 		contentPane.add(btnGoInsertCorso);
+		
+		JTextArea txtCorsi = new JTextArea();
+		txtCorsi.setEditable(false);
+		txtCorsi.setBounds(314, 226, 290, 203);
+		contentPane.add(txtCorsi);
+		
+		JLabel lblCorsi = new JLabel("CORSI");
+		lblCorsi.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCorsi.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblCorsi.setBounds(366, 195, 175, 17);
+		contentPane.add(lblCorsi);
+		
+		for (CorsoFormazione corso:op.getCorsi()) {
+			txtCorsi.append(corso.getNome() + "\n");
+		}
+		
 	}
 }

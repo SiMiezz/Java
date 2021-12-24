@@ -4,9 +4,9 @@ public class DataBaseConnection {
 
     private static DataBaseConnection instance;
     private Connection conn;
-    private String url = "jdbc:postgresql://localhost:5432/Progetto";
+    private String url = "jdbc:postgresql://localhost:5432/DemoDB";
     private String username = "postgres";
-    private String password = "Flegreo4";
+    private String password = "Cosmoplay123";
 
     private DataBaseConnection() throws SQLException {
         try {

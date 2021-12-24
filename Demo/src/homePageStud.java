@@ -25,7 +25,7 @@ public class homePageStud extends JFrame {
 	private JTextField txtCf;
 	private JTextField txtMatricola;
 	
-	public homePageStud(Controller c) {
+	public homePageStud(Controller c, String matricola, String pwd) {
 		setTitle("STUDENTE");
 		TheController=c;
 		
@@ -96,8 +96,6 @@ public class homePageStud extends JFrame {
 		lblMatricola.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblMatricola.setBounds(10, 186, 94, 17);
 		contentPane.add(lblMatricola);
-		
-		String matricola = Controller.stud.getMatricola();
 		
 		txtNome.setText(c.getStud(matricola).getNome());
 		txtCognome.setText(c.getStud(matricola).getCognome());
