@@ -62,6 +62,30 @@ public class CorsoFormazioneDAO {
 		return corsi;
 	}
 	
+	public ArrayList<CorsoFormazione> getAllCorsi() throws SQLException {
+		ArrayList <CorsoFormazione> corsi = new ArrayList<CorsoFormazione>();
+		
+		try {
+			Connection conn = DataBaseConnection.getInstance().getConnection();
+			Statement st= conn.createStatement();
+			ResultSet rs = st.executeQuery("SELECT * FROM corsoformazione");
+			
+			while(rs.next()) {
+				CorsoFormazione corso = extractCorsi(rs);
+				corsi.add(corso);
+			}
+			
+			rs.close();
+			st.close();
+			conn.close();
+		}
+		catch(SQLException e) {
+			//e.printStackTrace();
+		}
+		
+		return corsi;
+	}
+	
 	public CorsoFormazione extractCorso(ResultSet rs,Operatore op) throws SQLException{
 		CorsoFormazione corso = new CorsoFormazione();
 		
@@ -70,6 +94,17 @@ public class CorsoFormazioneDAO {
 		corso.setPresenzeMin(rs.getInt(3));
 		corso.setMaxPartecipanti(rs.getInt(4));
 		corso.setOp(op);
+		
+		return corso;
+	}
+	
+	public CorsoFormazione extractCorsi(ResultSet rs) throws SQLException{
+		CorsoFormazione corso = new CorsoFormazione();
+		
+		corso.setNome(rs.getString(1));
+		corso.setDescrizione(rs.getString(2));
+		corso.setPresenzeMin(rs.getInt(3));
+		corso.setMaxPartecipanti(rs.getInt(4));
 		
 		return corso;
 	}

@@ -16,6 +16,8 @@ import java.sql.Date;
 import javax.swing.JTextArea;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JLayeredPane;
+import java.awt.CardLayout;
 
 public class homePageStud extends JFrame {
 
@@ -100,17 +102,6 @@ public class homePageStud extends JFrame {
 		lblMatricola.setBounds(10, 186, 94, 17);
 		contentPane.add(lblMatricola);
 		
-		JTextArea txtCorsi = new JTextArea();
-		txtCorsi.setFont(new Font("Monospaced", Font.PLAIN, 16));
-		txtCorsi.setBounds(10, 299, 250, 201);
-		contentPane.add(txtCorsi);
-		
-		JLabel lblCorsi = new JLabel("I TUOI CORSI");
-		lblCorsi.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblCorsi.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCorsi.setBounds(24, 268, 215, 20);
-		contentPane.add(lblCorsi);
-		
 		Studente stud = new Studente();
 		
 		stud.setMatricola(matricola);
@@ -130,8 +121,118 @@ public class homePageStud extends JFrame {
 		txtCf.setText(stud.getCf());
 		txtMatricola.setText(matricola);
 		
-		for(Iscritto iscrizione:stud.getIscrizioni()) {
-			txtCorsi.append(iscrizione.getCorso().getNome() + "\n");
-		}
+		JLayeredPane layeredPanel = new JLayeredPane();
+		layeredPanel.setBounds(297, 25, 327, 475);
+		contentPane.add(layeredPanel);
+		layeredPanel.setLayout(new CardLayout(0, 0));
+		
+		JPanel panelCorsi = new JPanel();
+		layeredPanel.add(panelCorsi, "name_527413552155300");
+		panelCorsi.setLayout(null);
+		
+		JLabel lblCorsi = new JLabel("CORSI");
+		lblCorsi.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblCorsi.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCorsi.setBounds(10, 11, 307, 14);
+		panelCorsi.add(lblCorsi);
+		
+		JTextArea txtCorsi = new JTextArea();
+		txtCorsi.setFont(new Font("Monospaced", Font.PLAIN, 16));
+		txtCorsi.setEditable(false);
+		txtCorsi.setBounds(36, 65, 263, 184);
+		panelCorsi.add(txtCorsi);
+		
+		JPanel panelIscrizioni = new JPanel();
+		layeredPanel.add(panelIscrizioni, "name_527425117892300");
+		panelIscrizioni.setLayout(null);
+		
+		JLabel lblIscrizioni = new JLabel("ISCRIZIONI");
+		lblIscrizioni.setHorizontalAlignment(SwingConstants.CENTER);
+		lblIscrizioni.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblIscrizioni.setBounds(10, 11, 307, 14);
+		panelIscrizioni.add(lblIscrizioni);
+		
+		JTextArea txtIscrizioni = new JTextArea();
+		txtIscrizioni.setFont(new Font("Monospaced", Font.PLAIN, 16));
+		txtIscrizioni.setEditable(false);
+		txtIscrizioni.setBounds(37, 60, 257, 190);
+		panelIscrizioni.add(txtIscrizioni);
+		
+		JPanel panelLezioni = new JPanel();
+		layeredPanel.add(panelLezioni, "name_527436106862699");
+		panelLezioni.setLayout(null);
+		
+		JLabel lblLezioni = new JLabel("LEZIONI");
+		lblLezioni.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblLezioni.setHorizontalAlignment(SwingConstants.CENTER);
+		lblLezioni.setBounds(10, 11, 307, 14);
+		panelLezioni.add(lblLezioni);
+		
+		JPanel panelNewIscrizione = new JPanel();
+		layeredPanel.add(panelNewIscrizione, "name_529526638992000");
+		panelNewIscrizione.setLayout(null);
+		
+		JLabel lblNewIscrizione = new JLabel("EFFETTUA ISCRIZIONE");
+		lblNewIscrizione.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewIscrizione.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblNewIscrizione.setBounds(10, 11, 307, 14);
+		panelNewIscrizione.add(lblNewIscrizione);
+		
+		JButton btnIscrizioni = new JButton("Visualizza Iscrizioni");
+		btnIscrizioni.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				layeredPanel.removeAll();
+                layeredPanel.add(panelIscrizioni);
+                layeredPanel.repaint();
+                layeredPanel.revalidate();
+                
+                stud.setIscrizioni(c.getIscrizioni(stud));
+				for(Iscritto iscrizione:stud.getIscrizioni()) {
+					txtIscrizioni.append(iscrizione.getCorso().getNome() + "\n");
+				}
+			}
+		});
+		btnIscrizioni.setBounds(128, 259, 121, 21);
+		contentPane.add(btnIscrizioni);
+		
+		JButton btnCorsi = new JButton("Visualizza Corsi");
+		btnCorsi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				layeredPanel.removeAll();
+                layeredPanel.add(panelCorsi);
+                layeredPanel.repaint();
+                layeredPanel.revalidate();
+				
+				for(CorsoFormazione corso:c.getAllCorsi()) {
+					txtCorsi.append(corso.getNome() + "\n");
+				}
+			}
+		});
+		btnCorsi.setBounds(10, 259, 112, 20);
+		contentPane.add(btnCorsi);
+		
+		JButton btnNewIscrizione = new JButton("Effettua Iscrizione");
+		btnNewIscrizione.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				layeredPanel.removeAll();
+                layeredPanel.add(panelNewIscrizione);
+                layeredPanel.repaint();
+                layeredPanel.revalidate();
+			}
+		});
+		btnNewIscrizione.setBounds(128, 291, 121, 20);
+		contentPane.add(btnNewIscrizione);
+		
+		JButton btnLezioni = new JButton("Visualizza lezioni");
+		btnLezioni.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				layeredPanel.removeAll();
+                layeredPanel.add(panelLezioni);
+                layeredPanel.repaint();
+                layeredPanel.revalidate();
+			}
+		});
+		btnLezioni.setBounds(10, 290, 112, 20);
+		contentPane.add(btnLezioni);
 	}
 }

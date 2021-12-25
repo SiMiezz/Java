@@ -106,6 +106,15 @@ public class Controller {
 		}
 	}
 	
+	public ArrayList<CorsoFormazione> getAllCorsi() {
+		try {
+			return corsodao.getAllCorsi();
+		}catch(SQLException e){
+			//e.printStackTrace();
+			return null;
+		}
+	}
+	
 	public ArrayList<Iscritto> getIscrizioni(Studente stud) {
 		try {
 			return iscdao.getIscrizioni(stud);
