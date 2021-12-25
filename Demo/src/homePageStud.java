@@ -14,6 +14,8 @@ import javax.swing.JTextField;
 
 import java.sql.Date;
 import javax.swing.JTextArea;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class homePageStud extends JFrame {
 
@@ -31,7 +33,7 @@ public class homePageStud extends JFrame {
 		TheController=c;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 650, 500);
+		setBounds(100, 100, 650, 550);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -100,13 +102,13 @@ public class homePageStud extends JFrame {
 		
 		JTextArea txtCorsi = new JTextArea();
 		txtCorsi.setFont(new Font("Monospaced", Font.PLAIN, 16));
-		txtCorsi.setBounds(344, 249, 280, 201);
+		txtCorsi.setBounds(10, 299, 250, 201);
 		contentPane.add(txtCorsi);
 		
-		JLabel lblCorsi = new JLabel("ISCRIZIONI CORSI");
+		JLabel lblCorsi = new JLabel("I TUOI CORSI");
 		lblCorsi.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblCorsi.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCorsi.setBounds(382, 212, 215, 26);
+		lblCorsi.setBounds(24, 268, 215, 20);
 		contentPane.add(lblCorsi);
 		
 		Studente stud = new Studente();
@@ -127,6 +129,12 @@ public class homePageStud extends JFrame {
 		txtData.setText(strdata);
 		txtCf.setText(stud.getCf());
 		txtMatricola.setText(matricola);
+		
+		JComboBox comboScelta = new JComboBox();
+		comboScelta.setModel(new DefaultComboBoxModel(new String[] {"Visualizza corsi", "Partecipa lezione", "Iscrizione corsi"}));
+		comboScelta.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		comboScelta.setBounds(78, 235, 107, 22);
+		contentPane.add(comboScelta);
 		
 		for(Iscritto iscrizione:stud.getIscrizioni()) {
 			txtCorsi.append(iscrizione.getCorso().getNome() + "\n");

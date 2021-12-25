@@ -17,6 +17,8 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class homePageOp extends JFrame {
 
@@ -34,7 +36,7 @@ public class homePageOp extends JFrame {
 		TheController= c;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 650, 500);
+		setBounds(100, 100, 650, 550);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -47,6 +49,7 @@ public class homePageOp extends JFrame {
 		contentPane.add(lblProfilo);
 		
 		txtNome = new JTextField();
+		txtNome.setDisabledTextColor(new Color(109, 109, 109));
 		txtNome.setBackground(new Color(255, 255, 255));
 		txtNome.setEditable(false);
 		txtNome.setBounds(118, 54, 135, 22);
@@ -105,13 +108,13 @@ public class homePageOp extends JFrame {
 		JTextArea txtCorsi = new JTextArea();
 		txtCorsi.setFont(new Font("Monospaced", Font.PLAIN, 16));
 		txtCorsi.setEditable(false);
-		txtCorsi.setBounds(334, 247, 290, 203);
+		txtCorsi.setBounds(10, 297, 250, 203);
 		contentPane.add(txtCorsi);
 		
 		JLabel lblCorsi = new JLabel("I TUOI CORSI");
 		lblCorsi.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCorsi.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblCorsi.setBounds(392, 219, 175, 17);
+		lblCorsi.setBounds(47, 269, 175, 17);
 		contentPane.add(lblCorsi);
 		
 		Operatore op = new Operatore();
@@ -131,6 +134,12 @@ public class homePageOp extends JFrame {
 		txtData.setText(strdata);
 		txtCf.setText(op.getCf());
 		txtID.setText(id);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Visualizza corsi", "Inserisci corso", "Modifica corso", "Elimina corso"}));
+		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		comboBox.setBounds(82, 241, 104, 17);
+		contentPane.add(comboBox);
 		
 		for (CorsoFormazione corso:op.getCorsi()) {
 			txtCorsi.append(corso.getNome() + "\n");
