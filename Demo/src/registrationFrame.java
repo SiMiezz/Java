@@ -124,6 +124,13 @@ public class registrationFrame extends JFrame {
 				else {
 					c.alertRegistration();
 				}
+				
+				txtNome.setText(null);
+				txtCognome.setText(null);
+				txtID.setText(null);
+				pwdField.setText(null);
+				txtCF.setText(null);
+				txtData.setText(null);
 			}
 		});
 		btnRegistration.setBounds(433, 277, 141, 33);

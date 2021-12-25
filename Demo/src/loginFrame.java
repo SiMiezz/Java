@@ -23,7 +23,7 @@ import java.awt.Color;
 public class loginFrame extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textID;
+	private JTextField txtID;
 	private JPasswordField pwdField;
 	private JComboBox BoxSceltaLogin;
 	
@@ -48,10 +48,10 @@ public class loginFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		textID = new JTextField();
-		textID.setBounds(171, 94, 148, 22);
-		contentPane.add(textID);
-		textID.setColumns(10);
+		txtID = new JTextField();
+		txtID.setBounds(171, 94, 148, 22);
+		contentPane.add(txtID);
+		txtID.setColumns(10);
 		
 		JLabel lblID = new JLabel("ID/MATRICOLA");
 		lblID.setHorizontalAlignment(SwingConstants.CENTER);
@@ -69,7 +69,7 @@ public class loginFrame extends JFrame {
 		btnGo.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnGo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String id = textID.getText();
+				String id = txtID.getText();
 				String pwd = String.valueOf(pwdField.getPassword());
 				
 				if(c.checkUser(id, pwd)) {
@@ -79,6 +79,8 @@ public class loginFrame extends JFrame {
 					c.alertLogin();
 				}
 				
+				txtID.setText(null);
+				pwdField.setText(null);
 			}
 		});
 		btnGo.setBounds(348, 267, 126, 33);

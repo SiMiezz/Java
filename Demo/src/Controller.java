@@ -114,6 +114,21 @@ public class Controller {
 			return null;
 		}
 	}
+	
+	public boolean inserisciCorso(String nome, String descrizione, int presenzeMin, int maxPartecipanti, Operatore op) {
+		try {
+			if(corsodao.aggiungiCorso(nome, descrizione, presenzeMin, maxPartecipanti, op)) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		catch(SQLException e) {
+			//e.printStackTrace();
+			return false;
+		}
+	}
 
 	public void goRegistrazioneFrame() {
 		lf.setVisible(false);
@@ -150,6 +165,14 @@ public class Controller {
 			lf.setVisible(false);
 			hpo.setVisible(true);
 		}
+	}
+	
+	public void confirmInsert() {
+		JOptionPane.showMessageDialog(hpo, "Corso aggiunto correttamente");
+	}
+	
+	public void alertInsert() {
+		JOptionPane.showMessageDialog(hpo, "Errore nell'inserimento del corso");
 	}
 
 }

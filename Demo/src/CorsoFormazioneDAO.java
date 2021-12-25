@@ -3,19 +3,19 @@ import java.util.*;
 
 public class CorsoFormazioneDAO {
 	
-	public boolean aggiungiCorso(String nome, String descrizione, int presenzeMin, int maxPartecipanti, String idCorso) throws SQLException {
+	public boolean aggiungiCorso(String nome, String descrizione, int presenzeMin, int maxPartecipanti, Operatore op) throws SQLException {
 		try {
-			if(nome !=null && presenzeMin!=0 && maxPartecipanti !=0 && idCorso!=null) {
+			if(nome !=null && presenzeMin!=0 && maxPartecipanti !=0 && op!=null) {
 				Connection conn = DataBaseConnection.getInstance().getConnection();
 				Statement st= conn.createStatement();
-				String query ="INSERT INTO corsoformazione (nome,descrizione,presenzemin,maxpartecipanti,idcorso) VALUES(?,?,?,?,?,?)";
+				String query ="INSERT INTO corsoformazione (nome,descrizione,presenzemin,maxpartecipanti,id) VALUES(?,?,?,?,?)";
 				
 				PreparedStatement statement = conn.prepareStatement(query);
 				statement.setString(1, nome);
 				statement.setString(2, descrizione);
 				statement.setInt(3, presenzeMin);
 				statement.setInt(4, maxPartecipanti);
-				statement.setString(5, idCorso);
+				statement.setString(5, op.getId());
 				
 				statement.executeUpdate();
 				
