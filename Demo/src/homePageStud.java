@@ -130,12 +130,6 @@ public class homePageStud extends JFrame {
 		txtCf.setText(stud.getCf());
 		txtMatricola.setText(matricola);
 		
-		JComboBox comboScelta = new JComboBox();
-		comboScelta.setModel(new DefaultComboBoxModel(new String[] {"Visualizza corsi", "Partecipa lezione", "Iscrizione corsi"}));
-		comboScelta.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		comboScelta.setBounds(78, 235, 107, 22);
-		contentPane.add(comboScelta);
-		
 		for(Iscritto iscrizione:stud.getIscrizioni()) {
 			txtCorsi.append(iscrizione.getCorso().getNome() + "\n");
 		}
