@@ -187,8 +187,9 @@ public class homePageStud extends JFrame {
                 layeredPanel.revalidate();
                 
                 stud.setIscrizioni(c.getIscrizioni(stud));
+                txtIscrizioni.setText(null);
 				for(Iscritto iscrizione:stud.getIscrizioni()) {
-					txtIscrizioni.append(iscrizione.getCorso().getNome() + "\n");
+					txtIscrizioni.append(iscrizione.getCorso().getIdCorso() + " " + iscrizione.getCorso().getNome() + "\n");
 				}
 			}
 		});
@@ -203,8 +204,9 @@ public class homePageStud extends JFrame {
                 layeredPanel.repaint();
                 layeredPanel.revalidate();
 				
+                txtCorsi.setText(null);
 				for(CorsoFormazione corso:c.getAllCorsi()) {
-					txtCorsi.append(corso.getNome() + "\n");
+					txtCorsi.append(corso.getIdCorso() + " " +corso.getNome() + "\n");
 				}
 			}
 		});

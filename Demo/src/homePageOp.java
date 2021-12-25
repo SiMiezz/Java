@@ -39,6 +39,7 @@ public class homePageOp extends JFrame {
 	private JTextField txtModificaDesc;
 	private JTextField txtModificaPresenze;
 	private JTextField txtModificaPartecipanti;
+	private JTextField txtModificaID;
 
 	public homePageOp(Controller c, String id, String pwd) {
 		setTitle("OPERATORE");
@@ -251,9 +252,13 @@ public class homePageOp extends JFrame {
 		JButton btnSeleziona = new JButton("Seleziona");
 		btnSeleziona.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String nome = txtModifica.getSelectedText();
+				int id = Integer.valueOf(txtModifica.getSelectedText());
 				
-				//System.out.println(nome);
+				txtModificaNome.setText(c.getCorso(id).getNome());
+				txtModificaDesc.setText(c.getCorso(id).getDescrizione());
+				txtModificaPresenze.setText(Integer.toString(c.getCorso(id).getPresenzeMin()));
+				txtModificaPartecipanti.setText(Integer.toString(c.getCorso(id).getMaxPartecipanti()));
+				txtModificaID.setText(Integer.toString(id));
 			}
 		});
 		btnSeleziona.setBounds(123, 239, 89, 23);
@@ -285,37 +290,65 @@ public class homePageOp extends JFrame {
 		lblModNome.setBounds(24, 289, 120, 14);
 		panelModifica.add(lblModNome);
 		
-		JLabel lblNewLabel_1 = new JLabel("Descrizione");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setBounds(24, 319, 120, 17);
-		panelModifica.add(lblNewLabel_1);
+		JLabel lblModDesc = new JLabel("Descrizione");
+		lblModDesc.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblModDesc.setHorizontalAlignment(SwingConstants.CENTER);
+		lblModDesc.setBounds(24, 319, 120, 17);
+		panelModifica.add(lblModDesc);
 		
-		JLabel lblNewLabel_2 = new JLabel("Presenze minime");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2.setBounds(24, 351, 120, 14);
-		panelModifica.add(lblNewLabel_2);
+		JLabel lblModPresenze = new JLabel("Presenze minime");
+		lblModPresenze.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblModPresenze.setHorizontalAlignment(SwingConstants.CENTER);
+		lblModPresenze.setBounds(24, 351, 120, 14);
+		panelModifica.add(lblModPresenze);
 		
-		JLabel lblNewLabel_3 = new JLabel("Partecipanti max");
-		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_3.setBounds(24, 382, 120, 14);
-		panelModifica.add(lblNewLabel_3);
+		JLabel lblModPartecipanti = new JLabel("Partecipanti max");
+		lblModPartecipanti.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblModPartecipanti.setHorizontalAlignment(SwingConstants.CENTER);
+		lblModPartecipanti.setBounds(24, 382, 120, 14);
+		panelModifica.add(lblModPartecipanti);
 		
 		JButton btnAggiorna = new JButton("AGGIORNA");
+		btnAggiorna.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(txtModificaID.getText()!=null) {
+					String nome = txtModificaNome.getText();
+					String descrizione = txtModificaDesc.getText();
+					int presenze = Integer.valueOf(txtModificaPresenze.getText());
+					int partecipanti = Integer.valueOf(txtModificaPartecipanti.getText());
+					int id = Integer.valueOf(txtModificaID.getText());
+					
+					if(c.aggiornaCorso(nome, descrizione, presenze, partecipanti, id)) {
+						c.confirmUpdate();
+					}
+					else {
+						c.alertUpdate();
+					}
+					txtModificaNome.setText(null);
+					txtModificaDesc.setText(null);
+					txtModificaPresenze.setText(null);
+					txtModificaPartecipanti.setText(null);
+					txtModificaID.setText(null);
+				}
+				else {
+					c.alertUpdate();
+				}
+			}
+		});
 		btnAggiorna.setBounds(243, 455, 89, 23);
 		panelModifica.add(btnAggiorna);
 		
-		JPanel panelRimuovi = new JPanel();
-		layeredPane.add(panelRimuovi, "name_503500694014400");
-		panelRimuovi.setLayout(null);
+		txtModificaID = new JTextField();
+		txtModificaID.setEditable(false);
+		txtModificaID.setBounds(154, 412, 150, 20);
+		panelModifica.add(txtModificaID);
+		txtModificaID.setColumns(10);
 		
-		JLabel lblRimuovi = new JLabel("RIMUOVI CORSO");
-		lblRimuovi.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblRimuovi.setHorizontalAlignment(SwingConstants.CENTER);
-		lblRimuovi.setBounds(10, 11, 322, 14);
-		panelRimuovi.add(lblRimuovi);
+		JLabel lblModID = new JLabel("idCorso");
+		lblModID.setHorizontalAlignment(SwingConstants.CENTER);
+		lblModID.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblModID.setBounds(34, 413, 111, 14);
+		panelModifica.add(lblModID);
 		
 		JButton btnVisualizza = new JButton("Visualizza Corsi");
 		btnVisualizza.addActionListener(new ActionListener() {
@@ -326,8 +359,9 @@ public class homePageOp extends JFrame {
                 layeredPane.revalidate();
                 
                 op.setCorsi(c.getCorsi(op));
+                txtVisualizza.setText(null);
                 for (CorsoFormazione corso:op.getCorsi()) {
-        			txtVisualizza.append(corso.getNome() + "\n");
+        			txtVisualizza.append(corso.getIdCorso() + " " + corso.getNome() + "\n");
         		}
 			}
 		});
@@ -355,25 +389,14 @@ public class homePageOp extends JFrame {
                 layeredPane.revalidate();
                 
                 op.setCorsi(c.getCorsi(op));
+                txtModifica.setText(null);
                 for (CorsoFormazione corso:op.getCorsi()) {
-        			txtModifica.append(corso.getNome() + "\n");
+        			txtModifica.append(corso.getIdCorso() + " " + corso.getNome() + "\n");
         		}
 			}
 		});
-		btnModifica.setBounds(10, 299, 115, 22);
+		btnModifica.setBounds(76, 299, 115, 22);
 		contentPane.add(btnModifica);
-		
-		JButton btnRimuovi = new JButton("Rimuovi Corso");
-		btnRimuovi.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				layeredPane.removeAll();
-                layeredPane.add(panelRimuovi);
-                layeredPane.repaint();
-                layeredPane.revalidate();
-			}
-		});
-		btnRimuovi.setBounds(146, 299, 107, 23);
-		contentPane.add(btnRimuovi);
 		
 	}
 }

@@ -106,6 +106,15 @@ public class Controller {
 		}
 	}
 	
+	public CorsoFormazione getCorso(int id) {
+		try {
+			return corsodao.getCorso(id);
+		}catch(SQLException e) {
+			//e.printStackTrace();
+			return null;
+		}
+	}
+	
 	public ArrayList<CorsoFormazione> getAllCorsi() {
 		try {
 			return corsodao.getAllCorsi();
@@ -127,6 +136,21 @@ public class Controller {
 	public boolean inserisciCorso(String nome, String descrizione, int presenzeMin, int maxPartecipanti, Operatore op) {
 		try {
 			if(corsodao.aggiungiCorso(nome, descrizione, presenzeMin, maxPartecipanti, op)) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		catch(SQLException e) {
+			//e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public boolean aggiornaCorso(String nome, String descrizione, int presenzeMin, int maxPartecipanti, int id) {
+		try {
+			if(corsodao.aggiornaCorso(nome, descrizione, presenzeMin, maxPartecipanti, id)) {
 				return true;
 			}
 			else {
@@ -182,6 +206,14 @@ public class Controller {
 	
 	public void alertInsert() {
 		JOptionPane.showMessageDialog(hpo, "Errore nell'inserimento del corso");
+	}
+	
+	public void confirmUpdate() {
+		JOptionPane.showMessageDialog(hpo, "Corso aggiornato correttamente");
+	}
+	
+	public void alertUpdate() {
+		JOptionPane.showMessageDialog(hpo, "Errore nell'aggiornamento del corso");
 	}
 
 }

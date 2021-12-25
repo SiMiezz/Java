@@ -44,6 +44,7 @@ public class IscrittoDAO {
 		corso.setDescrizione(rs.getString(6));
 		corso.setPresenzeMin(rs.getInt(7));
 		corso.setMaxPartecipanti(rs.getInt(8));
+		corso.setIdCorso(rs.getInt(10));
 		
 		iscrizione.setCorso(corso);
 		

@@ -33,6 +33,31 @@ public class CorsoFormazioneDAO {
 		}
 	}
 	
+	public boolean aggiornaCorso(String nome, String descrizione, int presenzeMin, int maxPartecipanti, int id) throws SQLException{
+		try {
+			Connection conn = DataBaseConnection.getInstance().getConnection();
+			Statement st= conn.createStatement();
+			String query ="UPDATE corsoformazione SET nome = ?, descrizione = ?, presenzemin = ?, maxpartecipanti = ? WHERE idcorso = ?";
+			
+			PreparedStatement statement = conn.prepareStatement(query);
+			statement.setString(1, nome);
+			statement.setString(2, descrizione);
+			statement.setInt(3, presenzeMin);
+			statement.setInt(4, maxPartecipanti);
+			statement.setInt(5, id);
+			
+			statement.executeUpdate();
+			
+			st.close();
+			conn.close();
+			return true;
+		}
+		catch(SQLException e){
+			//e.printStackTrace();
+			return false;
+		}
+	}
+	
 	public ArrayList<CorsoFormazione> getCorsi(Operatore op) throws SQLException {
 		ArrayList <CorsoFormazione> corsi = new ArrayList<CorsoFormazione>();
 		
@@ -60,6 +85,38 @@ public class CorsoFormazioneDAO {
 		}
 		
 		return corsi;
+	}
+	
+	public CorsoFormazione getCorso(int id) throws SQLException{
+		CorsoFormazione corso = new CorsoFormazione();
+		
+		try {
+			Connection conn = DataBaseConnection.getInstance().getConnection();
+			Statement st= conn.createStatement();
+			String query = "SELECT * FROM corsoformazione WHERE idcorso = ?";
+			
+			PreparedStatement statement = conn.prepareStatement(query);
+			statement.setInt(1, id);
+			
+			ResultSet rs = statement.executeQuery();
+			
+			while(rs.next()) {
+				corso.setNome(rs.getString(1));
+				corso.setDescrizione(rs.getString(2));
+				corso.setPresenzeMin(rs.getInt(3));
+				corso.setMaxPartecipanti(rs.getInt(4));
+				corso.setIdCorso(id);
+			}
+			
+			rs.close();
+			st.close();
+			conn.close();
+		}
+		catch(SQLException e) {
+			//e.printStackTrace();
+		}
+		
+		return corso;
 	}
 	
 	public ArrayList<CorsoFormazione> getAllCorsi() throws SQLException {
@@ -94,6 +151,7 @@ public class CorsoFormazioneDAO {
 		corso.setPresenzeMin(rs.getInt(3));
 		corso.setMaxPartecipanti(rs.getInt(4));
 		corso.setOp(op);
+		corso.setIdCorso(rs.getInt(6));
 		
 		return corso;
 	}
@@ -105,6 +163,7 @@ public class CorsoFormazioneDAO {
 		corso.setDescrizione(rs.getString(2));
 		corso.setPresenzeMin(rs.getInt(3));
 		corso.setMaxPartecipanti(rs.getInt(4));
+		corso.setIdCorso(rs.getInt(6));
 		
 		return corso;
 	}
