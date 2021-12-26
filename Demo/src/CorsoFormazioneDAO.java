@@ -87,6 +87,35 @@ public class CorsoFormazioneDAO {
 		return corsi;
 	}
 	
+	public ArrayList<CorsoFormazione> getCorsi(Studente stud) throws SQLException {
+		ArrayList <CorsoFormazione> corsi = new ArrayList<CorsoFormazione>();
+		
+		try {
+			Connection conn = DataBaseConnection.getInstance().getConnection();
+			Statement st= conn.createStatement();
+			String query = "SELECT * FROM corsoformazione WHERE idcorso NOT IN (SELECT cs.idcorso FROM corsoformazione AS cs JOIN iscritto AS isc ON cs.idcorso = isc.idcorso WHERE isc.matricola = ?)";
+			
+			PreparedStatement statement = conn.prepareStatement(query);
+			statement.setString(1, stud.getMatricola());
+			
+			ResultSet rs = statement.executeQuery();
+			
+			while(rs.next()) {
+				CorsoFormazione corso = extractCorsi(rs);
+				corsi.add(corso);
+			}
+			
+			rs.close();
+			st.close();
+			conn.close();
+		}
+		catch(SQLException e) {
+			//e.printStackTrace();
+		}
+		
+		return corsi;
+	}
+	
 	public CorsoFormazione getCorso(int id) throws SQLException{
 		CorsoFormazione corso = new CorsoFormazione();
 		
@@ -101,11 +130,11 @@ public class CorsoFormazioneDAO {
 			ResultSet rs = statement.executeQuery();
 			
 			while(rs.next()) {
-				corso.setNome(rs.getString(1));
-				corso.setDescrizione(rs.getString(2));
-				corso.setPresenzeMin(rs.getInt(3));
-				corso.setMaxPartecipanti(rs.getInt(4));
 				corso.setIdCorso(id);
+				corso.setNome(rs.getString(2));
+				corso.setDescrizione(rs.getString(3));
+				corso.setPresenzeMin(rs.getInt(4));
+				corso.setMaxPartecipanti(rs.getInt(5));
 			}
 			
 			rs.close();
@@ -146,12 +175,12 @@ public class CorsoFormazioneDAO {
 	public CorsoFormazione extractCorso(ResultSet rs,Operatore op) throws SQLException{
 		CorsoFormazione corso = new CorsoFormazione();
 		
-		corso.setNome(rs.getString(1));
-		corso.setDescrizione(rs.getString(2));
-		corso.setPresenzeMin(rs.getInt(3));
-		corso.setMaxPartecipanti(rs.getInt(4));
+		corso.setIdCorso(rs.getInt(1));
+		corso.setNome(rs.getString(2));
+		corso.setDescrizione(rs.getString(3));
+		corso.setPresenzeMin(rs.getInt(4));
+		corso.setMaxPartecipanti(rs.getInt(5));
 		corso.setOp(op);
-		corso.setIdCorso(rs.getInt(6));
 		
 		return corso;
 	}
@@ -159,11 +188,11 @@ public class CorsoFormazioneDAO {
 	public CorsoFormazione extractCorsi(ResultSet rs) throws SQLException{
 		CorsoFormazione corso = new CorsoFormazione();
 		
-		corso.setNome(rs.getString(1));
-		corso.setDescrizione(rs.getString(2));
-		corso.setPresenzeMin(rs.getInt(3));
-		corso.setMaxPartecipanti(rs.getInt(4));
-		corso.setIdCorso(rs.getInt(6));
+		corso.setIdCorso(rs.getInt(1));
+		corso.setNome(rs.getString(2));
+		corso.setDescrizione(rs.getString(3));
+		corso.setPresenzeMin(rs.getInt(4));
+		corso.setMaxPartecipanti(rs.getInt(5));
 		
 		return corso;
 	}

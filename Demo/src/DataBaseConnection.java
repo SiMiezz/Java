@@ -4,13 +4,13 @@ public class DataBaseConnection {
 
     private static DataBaseConnection instance;
     private Connection conn;
-    private String url = "jdbc:postgresql://localhost:5432/DemoDB";
-    private String username = "postgres";
-    private String password = "Cosmoplay123";
+    private String url = "jdbc:mysql://localhost:3306/demodb";
+    private String username = "root";
+    private String password = "Cosmoplay123.";
 
     private DataBaseConnection() throws SQLException {
         try {
-            Class.forName("org.postgresql.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             this.conn = DriverManager.getConnection(url, username, password);
         } catch (ClassNotFoundException e) {
             System.err.println(e);

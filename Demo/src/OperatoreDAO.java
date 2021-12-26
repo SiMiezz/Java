@@ -11,7 +11,7 @@ public class OperatoreDAO {
 			ResultSet rs = st.executeQuery("SELECT * FROM operatore");
 			
 			while(rs.next() && (check == false)) {
-				if(rs.getString(4).equals(id) && rs.getString(6).equals(pwd)) {
+				if(rs.getString(1).equals(id) && rs.getString(6).equals(pwd)) {
 					check = true;
 				}
 			}
@@ -41,10 +41,10 @@ public class OperatoreDAO {
 			ResultSet rs = statement.executeQuery();
 			
 			while(rs.next()) {
-				op.setNome(rs.getString(1));
-				op.setCognome(rs.getString(2));
-				op.setData(rs.getDate(3));
 				op.setId(id);
+				op.setNome(rs.getString(2));
+				op.setCognome(rs.getString(3));
+				op.setData(rs.getDate(4));
 				op.setCf(rs.getString(5));
 				op.setPassword(rs.getString(6));
 			}
@@ -65,13 +65,13 @@ public class OperatoreDAO {
 			if(nome !=null && cognome !=null && id!=null && password !=null && cf!=null) {
 				Connection conn = DataBaseConnection.getInstance().getConnection();
 				Statement st= conn.createStatement();
-				String query ="INSERT INTO operatore (nome,cognome,data,id,cf,password) VALUES(?,?,?,?,?,?)";
+				String query ="INSERT INTO operatore VALUES(?,?,?,?,?,?)";
 				
 				PreparedStatement statement = conn.prepareStatement(query);
-				statement.setString(1, nome);
-				statement.setString(2, cognome);
-				statement.setDate(3, data);
-				statement.setString(4, id);
+				statement.setString(1, id);
+				statement.setString(2, nome);
+				statement.setString(3, cognome);
+				statement.setDate(4, data);
 				statement.setString(5, cf);
 				statement.setString(6, password);
 				

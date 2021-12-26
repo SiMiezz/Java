@@ -12,6 +12,7 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JTextField;
 
+import java.sql.Time;
 import java.sql.Date;
 import javax.swing.JTextArea;
 import javax.swing.JComboBox;
@@ -178,6 +179,31 @@ public class homePageStud extends JFrame {
 		lblNewIscrizione.setBounds(10, 11, 307, 14);
 		panelNewIscrizione.add(lblNewIscrizione);
 		
+		JTextArea txtNewIscrizione = new JTextArea();
+		txtNewIscrizione.setFont(new Font("Monospaced", Font.PLAIN, 16));
+		txtNewIscrizione.setEditable(false);
+		txtNewIscrizione.setBounds(36, 53, 261, 192);
+		panelNewIscrizione.add(txtNewIscrizione);
+		
+		JButton btnIscriviti = new JButton("ISCRIVITI");
+		btnIscriviti.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int id = Integer.valueOf(txtNewIscrizione.getSelectedText());
+				long millis = System.currentTimeMillis(); 
+				Date dataiscrizione = new Date(millis);
+				Time orario = new Time(millis);
+				
+				if(c.iscriviti(dataiscrizione,orario,stud,id)) {
+					c.confirmInsertIscrizione();
+				}
+				else {
+					c.alertInsertIscrizione();
+				}
+			}
+		});
+		btnIscriviti.setBounds(199, 265, 97, 23);
+		panelNewIscrizione.add(btnIscriviti);
+		
 		JButton btnIscrizioni = new JButton("Visualizza Iscrizioni");
 		btnIscrizioni.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -220,6 +246,11 @@ public class homePageStud extends JFrame {
                 layeredPanel.add(panelNewIscrizione);
                 layeredPanel.repaint();
                 layeredPanel.revalidate();
+                
+                txtNewIscrizione.setText(null);
+				for(CorsoFormazione corso:c.getCorsi(stud)) {
+					txtNewIscrizione.append(corso.getIdCorso() + " " +corso.getNome() + "\n");
+				}
 			}
 		});
 		btnNewIscrizione.setBounds(128, 291, 121, 20);

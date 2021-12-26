@@ -218,10 +218,10 @@ public class homePageOp extends JFrame {
 				int partecipanti = Integer.valueOf(txtInsertPartecipanti.getText());
 				
 				if(c.inserisciCorso(nome,descrizione,presenze,partecipanti,op)){
-					c.confirmInsert();
+					c.confirmInsertCorso();
 				}
 				else {
-					c.alertInsert();
+					c.alertInsertCorso();
 				}
 				
 				txtInsertNome.setText(null);
@@ -324,6 +324,7 @@ public class homePageOp extends JFrame {
 					else {
 						c.alertUpdate();
 					}
+					
 					txtModificaNome.setText(null);
 					txtModificaDesc.setText(null);
 					txtModificaPresenze.setText(null);

@@ -1,4 +1,5 @@
 import java.sql.Date;
+import java.sql.Time;
 import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
@@ -106,6 +107,15 @@ public class Controller {
 		}
 	}
 	
+	public ArrayList<CorsoFormazione> getCorsi(Studente stud){
+		try {
+			return corsodao.getCorsi(stud);
+		}catch(SQLException e){
+			//e.printStackTrace();
+			return null;
+		}
+	}
+	
 	public CorsoFormazione getCorso(int id) {
 		try {
 			return corsodao.getCorso(id);
@@ -136,6 +146,21 @@ public class Controller {
 	public boolean inserisciCorso(String nome, String descrizione, int presenzeMin, int maxPartecipanti, Operatore op) {
 		try {
 			if(corsodao.aggiungiCorso(nome, descrizione, presenzeMin, maxPartecipanti, op)) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		catch(SQLException e) {
+			//e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public boolean iscriviti(Date data,Time orario,Studente stud,int id) {
+		try {
+			if(iscdao.aggiungiIscrizione(data,orario,stud,id)) {
 				return true;
 			}
 			else {
@@ -200,12 +225,20 @@ public class Controller {
 		}
 	}
 	
-	public void confirmInsert() {
+	public void confirmInsertCorso() {
 		JOptionPane.showMessageDialog(hpo, "Corso aggiunto correttamente");
 	}
 	
-	public void alertInsert() {
+	public void alertInsertCorso() {
 		JOptionPane.showMessageDialog(hpo, "Errore nell'inserimento del corso");
+	}
+	
+	public void confirmInsertIscrizione() {
+		JOptionPane.showMessageDialog(hps, "Iscrizione avvenuta correttamente");
+	}
+	
+	public void alertInsertIscrizione() {
+		JOptionPane.showMessageDialog(hps, "Errore nell'iscrizione");
 	}
 	
 	public void confirmUpdate() {
