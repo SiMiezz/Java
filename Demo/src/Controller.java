@@ -209,10 +209,10 @@ public class Controller {
 	}
 	
 	public void logout() {
-		if(hps.isVisible()) {
+		if(hpo == null || !hpo.isShowing()) {
 			hps.setVisible(false);
 		}
-		else {
+		else if (hps == null || !hps.isShowing()){
 			hpo.setVisible(false);
 		}
 		
