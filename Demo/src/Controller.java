@@ -16,6 +16,7 @@ public class Controller {
 	private StudenteDAO stdao = new StudenteDAO();
 	private OperatoreDAO opdao = new OperatoreDAO();
 	private IscrittoDAO iscdao = new IscrittoDAO();
+	private LezioneDAO lezdao = new LezioneDAO();
 	
 	public static void main(String[] args) {
 		Controller c= new Controller();
@@ -111,6 +112,15 @@ public class Controller {
 		try {
 			return corsodao.getCorsi(stud);
 		}catch(SQLException e){
+			//e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public ArrayList<Lezione> getLezioni(Studente stud){
+		try {
+			return lezdao.getLezioni(stud);
+		}catch(SQLException e) {
 			//e.printStackTrace();
 			return null;
 		}
@@ -250,4 +260,3 @@ public class Controller {
 	}
 
 }
-

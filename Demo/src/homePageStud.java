@@ -14,6 +14,9 @@ import javax.swing.JTextField;
 
 import java.sql.Time;
 import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import javax.swing.JTextArea;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
@@ -169,6 +172,12 @@ public class homePageStud extends JFrame {
 		lblLezioni.setBounds(10, 11, 307, 14);
 		panelLezioni.add(lblLezioni);
 		
+		JTextArea txtLezioni = new JTextArea();
+		txtLezioni.setFont(new Font("Monospaced", Font.PLAIN, 16));
+		txtLezioni.setEditable(false);
+		txtLezioni.setBounds(32, 58, 266, 192);
+		panelLezioni.add(txtLezioni);
+		
 		JPanel panelNewIscrizione = new JPanel();
 		layeredPanel.add(panelNewIscrizione, "name_529526638992000");
 		panelNewIscrizione.setLayout(null);
@@ -182,7 +191,7 @@ public class homePageStud extends JFrame {
 		JTextArea txtNewIscrizione = new JTextArea();
 		txtNewIscrizione.setFont(new Font("Monospaced", Font.PLAIN, 16));
 		txtNewIscrizione.setEditable(false);
-		txtNewIscrizione.setBounds(36, 53, 261, 192);
+		txtNewIscrizione.setBounds(35, 74, 261, 192);
 		panelNewIscrizione.add(txtNewIscrizione);
 		
 		JButton btnIscriviti = new JButton("ISCRIVITI");
@@ -201,8 +210,14 @@ public class homePageStud extends JFrame {
 				}
 			}
 		});
-		btnIscriviti.setBounds(199, 265, 97, 23);
+		btnIscriviti.setBounds(200, 277, 97, 23);
 		panelNewIscrizione.add(btnIscriviti);
+		
+		JLabel lblAlert = new JLabel("Seleziona l'id del corso");
+		lblAlert.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAlert.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblAlert.setBounds(32, 49, 264, 14);
+		panelNewIscrizione.add(lblAlert);
 		
 		JButton btnIscrizioni = new JButton("Visualizza Iscrizioni");
 		btnIscrizioni.addActionListener(new ActionListener() {
@@ -219,7 +234,7 @@ public class homePageStud extends JFrame {
 				}
 			}
 		});
-		btnIscrizioni.setBounds(128, 259, 121, 21);
+		btnIscrizioni.setBounds(128, 358, 121, 21);
 		contentPane.add(btnIscrizioni);
 		
 		JButton btnCorsi = new JButton("Visualizza Corsi");
@@ -236,7 +251,7 @@ public class homePageStud extends JFrame {
 				}
 			}
 		});
-		btnCorsi.setBounds(10, 259, 112, 20);
+		btnCorsi.setBounds(6, 358, 112, 20);
 		contentPane.add(btnCorsi);
 		
 		JButton btnNewIscrizione = new JButton("Effettua Iscrizione");
@@ -253,7 +268,7 @@ public class homePageStud extends JFrame {
 				}
 			}
 		});
-		btnNewIscrizione.setBounds(128, 291, 121, 20);
+		btnNewIscrizione.setBounds(128, 390, 121, 20);
 		contentPane.add(btnNewIscrizione);
 		
 		JButton btnLezioni = new JButton("Visualizza lezioni");
@@ -263,9 +278,18 @@ public class homePageStud extends JFrame {
                 layeredPanel.add(panelLezioni);
                 layeredPanel.repaint();
                 layeredPanel.revalidate();
+                
+                txtLezioni.setText(null);
+				for(Lezione lezione:c.getLezioni(stud)) {
+					txtLezioni.append(lezione.getIdlezione() + " " +lezione.getTitolo() + "\n");
+				}
 			}
 		});
-		btnLezioni.setBounds(10, 290, 112, 20);
+		btnLezioni.setBounds(10, 390, 112, 20);
 		contentPane.add(btnLezioni);
+		
+		JButton btnLogout = new JButton("LOGOUT");
+		btnLogout.setBounds(10, 214, 89, 23);
+		contentPane.add(btnLogout);
 	}
 }
