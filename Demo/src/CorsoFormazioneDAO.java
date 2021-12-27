@@ -35,22 +35,27 @@ public class CorsoFormazioneDAO {
 	
 	public boolean aggiornaCorso(String nome, String descrizione, int presenzeMin, int maxPartecipanti, int id) throws SQLException{
 		try {
-			Connection conn = DataBaseConnection.getInstance().getConnection();
-			Statement st= conn.createStatement();
-			String query ="UPDATE corsoformazione SET nome = ?, descrizione = ?, presenzemin = ?, maxpartecipanti = ? WHERE idcorso = ?";
-			
-			PreparedStatement statement = conn.prepareStatement(query);
-			statement.setString(1, nome);
-			statement.setString(2, descrizione);
-			statement.setInt(3, presenzeMin);
-			statement.setInt(4, maxPartecipanti);
-			statement.setInt(5, id);
-			
-			statement.executeUpdate();
-			
-			st.close();
-			conn.close();
-			return true;
+			if(nome !=null && presenzeMin!=0 && maxPartecipanti !=0) {
+				Connection conn = DataBaseConnection.getInstance().getConnection();
+				Statement st= conn.createStatement();
+				String query ="UPDATE corsoformazione SET nome = ?, descrizione = ?, presenzemin = ?, maxpartecipanti = ? WHERE idcorso = ?";
+				
+				PreparedStatement statement = conn.prepareStatement(query);
+				statement.setString(1, nome);
+				statement.setString(2, descrizione);
+				statement.setInt(3, presenzeMin);
+				statement.setInt(4, maxPartecipanti);
+				statement.setInt(5, id);
+				
+				statement.executeUpdate();
+				
+				st.close();
+				conn.close();
+				return true;
+			}
+			else {
+				return false;
+			}	
 		}
 		catch(SQLException e){
 			//e.printStackTrace();

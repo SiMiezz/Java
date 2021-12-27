@@ -109,6 +109,7 @@ public class homePageStud extends JFrame {
 		Studente stud = new Studente();
 		
 		stud.setMatricola(matricola);
+		stud.setPassword(pwd);
 		stud.setNome(c.getStud(matricola).getNome());
 		stud.setCognome(c.getStud(matricola).getCognome());
 		stud.setData(c.getStud(matricola).getData());
@@ -289,6 +290,19 @@ public class homePageStud extends JFrame {
 		contentPane.add(btnLezioni);
 		
 		JButton btnLogout = new JButton("LOGOUT");
+		btnLogout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				stud.setMatricola(null);
+				stud.setPassword(null);
+				stud.setNome(null);
+				stud.setCognome(null);
+				stud.setData(null);
+				stud.setCf(null);
+				stud.setIscrizioni(null);
+				
+				c.logout();
+			}
+		});
 		btnLogout.setBounds(10, 214, 89, 23);
 		contentPane.add(btnLogout);
 	}

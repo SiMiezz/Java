@@ -207,6 +207,17 @@ public class Controller {
 		rf.setVisible(false);
 		lf.setVisible(true);
 	}
+	
+	public void logout() {
+		if(hps.isVisible()) {
+			hps.setVisible(false);
+		}
+		else {
+			hpo.setVisible(false);
+		}
+		
+		lf.setVisible(true);
+	}
 
 	public void confirmRegistration() {
 		JOptionPane.showMessageDialog(rf,"Registrazione avvenuta con successo come " +rf.getBoxSceltaRegistration().getSelectedItem() +"\nverrete riportati alla pagina di Login");

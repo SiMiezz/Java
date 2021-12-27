@@ -118,6 +118,7 @@ public class homePageOp extends JFrame {
 		
 		Operatore op = new Operatore();
 		op.setId(id);
+		op.setPassword(pwd);
 		op.setNome(c.getOp(id).getNome());
 		op.setCognome(c.getOp(id).getCognome());
 		op.setData(c.getOp(id).getData());
@@ -406,6 +407,19 @@ public class homePageOp extends JFrame {
 		contentPane.add(btnModifica);
 		
 		JButton btnLogout = new JButton("LOGOUT");
+		btnLogout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				op.setId(null);
+				op.setNome(null);
+				op.setCognome(null);
+				op.setData(null);
+				op.setCf(null);
+				op.setCorsi(null);
+				op.setPassword(null);
+				
+				c.logout();
+			}
+		});
 		btnLogout.setBounds(10, 222, 89, 23);
 		contentPane.add(btnLogout);
 		
