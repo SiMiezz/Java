@@ -42,27 +42,27 @@ public class loginFrame extends JFrame {
 		
 		setTitle("LOGIN");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 500, 350);
+		setBounds(100, 100, 550, 401);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		txtID = new JTextField();
-		txtID.setBounds(171, 94, 148, 22);
+		txtID.setBounds(192, 127, 148, 22);
 		contentPane.add(txtID);
 		txtID.setColumns(10);
 		
 		JLabel lblID = new JLabel("ID/MATRICOLA");
 		lblID.setHorizontalAlignment(SwingConstants.CENTER);
 		lblID.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblID.setBounds(45, 90, 117, 26);
+		lblID.setBounds(62, 129, 120, 14);
 		contentPane.add(lblID);
 		
 		JLabel lblPwd = new JLabel("PASSWORD");
 		lblPwd.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPwd.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblPwd.setBounds(55, 123, 107, 26);
+		lblPwd.setBounds(62, 162, 120, 14);
 		contentPane.add(lblPwd);
 		
 		JButton btnGo = new JButton("LOGIN");
@@ -83,11 +83,11 @@ public class loginFrame extends JFrame {
 				pwdField.setText(null);
 			}
 		});
-		btnGo.setBounds(348, 267, 126, 33);
+		btnGo.setBounds(384, 316, 140, 35);
 		contentPane.add(btnGo);
 		
 		pwdField = new JPasswordField();
-		pwdField.setBounds(171, 127, 148, 22);
+		pwdField.setBounds(192, 160, 148, 22);
 		contentPane.add(pwdField);
 		
 		BoxSceltaLogin = new JComboBox();
@@ -95,17 +95,17 @@ public class loginFrame extends JFrame {
 		BoxSceltaLogin.setModel(new DefaultComboBoxModel(new String[] {"Studente", "Operatore"}));
 		BoxSceltaLogin.setToolTipText("");
 		BoxSceltaLogin.setEditable(true);
-		BoxSceltaLogin.setBounds(356, 234, 106, 22);
+		BoxSceltaLogin.setBounds(404, 285, 100, 20);
 		contentPane.add(BoxSceltaLogin);
 		
 		JButton btnRegistrati = new JButton("REGISTRATI");
-		btnRegistrati.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnRegistrati.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnRegistrati.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				c.goRegistrazioneFrame();
 			}
 		});
-		btnRegistrati.setBounds(10, 276, 118, 24);
+		btnRegistrati.setBounds(10, 326, 118, 25);
 		contentPane.add(btnRegistrati);
 	}
 	

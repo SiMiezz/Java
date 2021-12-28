@@ -3,6 +3,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -22,6 +23,7 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JLayeredPane;
 import java.awt.CardLayout;
+import java.awt.Color;
 
 public class homePageStud extends JFrame {
 
@@ -46,6 +48,7 @@ public class homePageStud extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblProfilo = new JLabel("PROFILO STUDENTE");
+		lblProfilo.setForeground(Color.RED);
 		lblProfilo.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblProfilo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblProfilo.setBounds(10, 26, 191, 26);
@@ -141,11 +144,14 @@ public class homePageStud extends JFrame {
 		lblCorsi.setBounds(10, 11, 307, 14);
 		panelCorsi.add(lblCorsi);
 		
+		JScrollPane scrollPaneCorsi = new JScrollPane();
+		scrollPaneCorsi.setBounds(36, 65, 263, 184);
+		panelCorsi.add(scrollPaneCorsi);
+		
 		JTextArea txtCorsi = new JTextArea();
+		scrollPaneCorsi.setViewportView(txtCorsi);
 		txtCorsi.setFont(new Font("Monospaced", Font.PLAIN, 16));
 		txtCorsi.setEditable(false);
-		txtCorsi.setBounds(36, 65, 263, 184);
-		panelCorsi.add(txtCorsi);
 		
 		JPanel panelIscrizioni = new JPanel();
 		layeredPanel.add(panelIscrizioni, "name_527425117892300");
@@ -157,11 +163,14 @@ public class homePageStud extends JFrame {
 		lblIscrizioni.setBounds(10, 11, 307, 14);
 		panelIscrizioni.add(lblIscrizioni);
 		
+		JScrollPane scrollPaneIscrizioni = new JScrollPane();
+		scrollPaneIscrizioni.setBounds(37, 60, 257, 190);
+		panelIscrizioni.add(scrollPaneIscrizioni);
+		
 		JTextArea txtIscrizioni = new JTextArea();
+		scrollPaneIscrizioni.setViewportView(txtIscrizioni);
 		txtIscrizioni.setFont(new Font("Monospaced", Font.PLAIN, 16));
 		txtIscrizioni.setEditable(false);
-		txtIscrizioni.setBounds(37, 60, 257, 190);
-		panelIscrizioni.add(txtIscrizioni);
 		
 		JPanel panelLezioni = new JPanel();
 		layeredPanel.add(panelLezioni, "name_527436106862699");
@@ -173,11 +182,14 @@ public class homePageStud extends JFrame {
 		lblLezioni.setBounds(10, 11, 307, 14);
 		panelLezioni.add(lblLezioni);
 		
+		JScrollPane scrollPaneLezioni = new JScrollPane();
+		scrollPaneLezioni.setBounds(32, 58, 266, 192);
+		panelLezioni.add(scrollPaneLezioni);
+		
 		JTextArea txtLezioni = new JTextArea();
+		scrollPaneLezioni.setViewportView(txtLezioni);
 		txtLezioni.setFont(new Font("Monospaced", Font.PLAIN, 16));
 		txtLezioni.setEditable(false);
-		txtLezioni.setBounds(32, 58, 266, 192);
-		panelLezioni.add(txtLezioni);
 		
 		JPanel panelNewIscrizione = new JPanel();
 		layeredPanel.add(panelNewIscrizione, "name_529526638992000");
@@ -189,25 +201,33 @@ public class homePageStud extends JFrame {
 		lblNewIscrizione.setBounds(10, 11, 307, 14);
 		panelNewIscrizione.add(lblNewIscrizione);
 		
+		JScrollPane scrollPaneNewIscrizione = new JScrollPane();
+		scrollPaneNewIscrizione.setBounds(35, 74, 261, 192);
+		panelNewIscrizione.add(scrollPaneNewIscrizione);
+		
 		JTextArea txtNewIscrizione = new JTextArea();
+		scrollPaneNewIscrizione.setViewportView(txtNewIscrizione);
 		txtNewIscrizione.setFont(new Font("Monospaced", Font.PLAIN, 16));
 		txtNewIscrizione.setEditable(false);
-		txtNewIscrizione.setBounds(35, 74, 261, 192);
-		panelNewIscrizione.add(txtNewIscrizione);
 		
 		JButton btnIscriviti = new JButton("ISCRIVITI");
 		btnIscriviti.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int id = Integer.valueOf(txtNewIscrizione.getSelectedText());
-				long millis = System.currentTimeMillis(); 
-				Date dataiscrizione = new Date(millis);
-				Time orario = new Time(millis);
-				
-				if(c.iscriviti(dataiscrizione,orario,stud,id)) {
-					c.confirmInsertIscrizione();
+				if(txtNewIscrizione.getSelectedText() != null) {
+					int id = Integer.valueOf(txtNewIscrizione.getSelectedText());
+					long millis = System.currentTimeMillis(); 
+					Date dataiscrizione = new Date(millis);
+					Time orario = new Time(millis);
+					
+					if(c.iscriviti(dataiscrizione,orario,stud,id)) {
+						c.confirmInsertIscrizione();
+					}
+					else {
+						c.alertInsertIscrizione();
+					}
 				}
 				else {
-					c.alertInsertIscrizione();
+					c.alertSeleziona();
 				}
 			}
 		});
@@ -215,6 +235,7 @@ public class homePageStud extends JFrame {
 		panelNewIscrizione.add(btnIscriviti);
 		
 		JLabel lblAlert = new JLabel("Seleziona l'id del corso");
+		lblAlert.setForeground(Color.BLUE);
 		lblAlert.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAlert.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblAlert.setBounds(32, 49, 264, 14);
@@ -252,7 +273,7 @@ public class homePageStud extends JFrame {
 				}
 			}
 		});
-		btnCorsi.setBounds(6, 358, 112, 20);
+		btnCorsi.setBounds(10, 358, 112, 20);
 		contentPane.add(btnCorsi);
 		
 		JButton btnNewIscrizione = new JButton("Effettua Iscrizione");

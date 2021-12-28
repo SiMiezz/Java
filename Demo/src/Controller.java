@@ -269,5 +269,14 @@ public class Controller {
 	public void alertUpdate() {
 		JOptionPane.showMessageDialog(hpo, "Errore nell'aggiornamento del corso");
 	}
+	
+	public void alertSeleziona() {
+		if(hpo == null || !hpo.isShowing()) {
+			JOptionPane.showMessageDialog(hps, "Selezionare l'id del corso!");
+		}
+		else if (hps == null || !hps.isShowing()){
+			JOptionPane.showMessageDialog(hpo, "Selezionare l'id del corso!");
+		}
+	}
 
 }
