@@ -17,6 +17,7 @@ public class Controller {
 	private OperatoreDAO opdao = new OperatoreDAO();
 	private IscrittoDAO iscdao = new IscrittoDAO();
 	private LezioneDAO lezdao = new LezioneDAO();
+	private AreeTematicheDAO areedao = new AreeTematicheDAO();
 	
 	public static void main(String[] args) {
 		Controller c= new Controller();
@@ -183,6 +184,21 @@ public class Controller {
 		}
 	}
 	
+	public boolean aggiungiAree(String tipo,String descrizione,CorsoFormazione corso) {
+		try {
+			if(areedao.aggiungiAree(tipo,descrizione,corso)) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		catch(SQLException e) {
+			//e.printStackTrace();
+			return false;
+		}
+	}
+	
 	public boolean aggiornaCorso(String nome, String descrizione, int presenzeMin, int maxPartecipanti, int id) {
 		try {
 			if(corsodao.aggiornaCorso(nome, descrizione, presenzeMin, maxPartecipanti, id)) {
@@ -278,5 +294,12 @@ public class Controller {
 			JOptionPane.showMessageDialog(hpo, "Selezionare l'id del corso!");
 		}
 	}
-
+	
+	public void confirmInsertAree() {
+		JOptionPane.showMessageDialog(hpo, "Area Tematica aggiunta correttamente");
+	}
+	
+	public void alertInsertAree() {
+		JOptionPane.showMessageDialog(hpo, "Errore nell'iserimento dell'Area");
+	}
 }

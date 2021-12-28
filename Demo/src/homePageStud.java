@@ -138,7 +138,7 @@ public class homePageStud extends JFrame {
 		layeredPanel.add(panelCorsi, "name_527413552155300");
 		panelCorsi.setLayout(null);
 		
-		JLabel lblCorsi = new JLabel("CORSI");
+		JLabel lblCorsi = new JLabel("VISUALIZZA CORSI");
 		lblCorsi.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblCorsi.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCorsi.setBounds(10, 11, 307, 14);
@@ -157,7 +157,7 @@ public class homePageStud extends JFrame {
 		layeredPanel.add(panelIscrizioni, "name_527425117892300");
 		panelIscrizioni.setLayout(null);
 		
-		JLabel lblIscrizioni = new JLabel("ISCRIZIONI");
+		JLabel lblIscrizioni = new JLabel("VISUALIZZA ISCRIZIONI");
 		lblIscrizioni.setHorizontalAlignment(SwingConstants.CENTER);
 		lblIscrizioni.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblIscrizioni.setBounds(10, 11, 307, 14);
@@ -176,7 +176,7 @@ public class homePageStud extends JFrame {
 		layeredPanel.add(panelLezioni, "name_527436106862699");
 		panelLezioni.setLayout(null);
 		
-		JLabel lblLezioni = new JLabel("LEZIONI");
+		JLabel lblLezioni = new JLabel("VISUALIZZA LEZIONI");
 		lblLezioni.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblLezioni.setHorizontalAlignment(SwingConstants.CENTER);
 		lblLezioni.setBounds(10, 11, 307, 14);
@@ -241,7 +241,7 @@ public class homePageStud extends JFrame {
 		lblAlert.setBounds(32, 49, 264, 14);
 		panelNewIscrizione.add(lblAlert);
 		
-		JButton btnIscrizioni = new JButton("Visualizza Iscrizioni");
+		JButton btnIscrizioni = new JButton("Iscrizioni");
 		btnIscrizioni.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				layeredPanel.removeAll();
@@ -256,7 +256,7 @@ public class homePageStud extends JFrame {
 				}
 			}
 		});
-		btnIscrizioni.setBounds(128, 358, 121, 21);
+		btnIscrizioni.setBounds(132, 358, 121, 22);
 		contentPane.add(btnIscrizioni);
 		
 		JButton btnCorsi = new JButton("Visualizza Corsi");
@@ -273,27 +273,10 @@ public class homePageStud extends JFrame {
 				}
 			}
 		});
-		btnCorsi.setBounds(10, 358, 112, 20);
+		btnCorsi.setBounds(10, 358, 112, 22);
 		contentPane.add(btnCorsi);
 		
-		JButton btnNewIscrizione = new JButton("Effettua Iscrizione");
-		btnNewIscrizione.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				layeredPanel.removeAll();
-                layeredPanel.add(panelNewIscrizione);
-                layeredPanel.repaint();
-                layeredPanel.revalidate();
-                
-                txtNewIscrizione.setText(null);
-				for(CorsoFormazione corso:c.getCorsi(stud)) {
-					txtNewIscrizione.append(corso.getIdCorso() + " " +corso.getNome() + "\n");
-				}
-			}
-		});
-		btnNewIscrizione.setBounds(128, 390, 121, 20);
-		contentPane.add(btnNewIscrizione);
-		
-		JButton btnLezioni = new JButton("Visualizza lezioni");
+		JButton btnLezioni = new JButton("Lezioni");
 		btnLezioni.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				layeredPanel.removeAll();
@@ -307,7 +290,7 @@ public class homePageStud extends JFrame {
 				}
 			}
 		});
-		btnLezioni.setBounds(10, 390, 112, 20);
+		btnLezioni.setBounds(76, 390, 112, 22);
 		contentPane.add(btnLezioni);
 		
 		JButton btnLogout = new JButton("LOGOUT");
@@ -326,5 +309,22 @@ public class homePageStud extends JFrame {
 		});
 		btnLogout.setBounds(10, 214, 89, 23);
 		contentPane.add(btnLogout);
+		
+		JButton btnNewButton = new JButton("EFFETTUA ISCRIZIONE");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				layeredPanel.removeAll();
+                layeredPanel.add(panelNewIscrizione);
+                layeredPanel.repaint();
+                layeredPanel.revalidate();
+                
+                txtNewIscrizione.setText(null);
+				for(CorsoFormazione corso:c.getCorsi(stud)) {
+					txtNewIscrizione.append(corso.getIdCorso() + " " +corso.getNome() + "\n");
+				}
+			}
+		});
+		btnNewButton.setBounds(149, 372, 145, 23);
+		panelIscrizioni.add(btnNewButton);
 	}
 }
