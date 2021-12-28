@@ -458,19 +458,19 @@ public class homePageOp extends JFrame {
 		txtStatistiche.setFont(new Font("Monospaced", Font.PLAIN, 16));
 		txtStatistiche.setEditable(false);
 		
-		JPanel panelAreeTematiche = new JPanel();
-		layeredPane.add(panelAreeTematiche, "name_103804907046600");
-		panelAreeTematiche.setLayout(null);
+		JPanel panelNewAreeTematiche = new JPanel();
+		layeredPane.add(panelNewAreeTematiche, "name_103804907046600");
+		panelNewAreeTematiche.setLayout(null);
 		
-		JLabel lblAreeTematiche = new JLabel("AREE TEMATICHE");
+		JLabel lblAreeTematiche = new JLabel("CREA AREE TEMATICHE");
 		lblAreeTematiche.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAreeTematiche.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblAreeTematiche.setBounds(10, 11, 322, 14);
-		panelAreeTematiche.add(lblAreeTematiche);
+		panelNewAreeTematiche.add(lblAreeTematiche);
 		
 		JScrollPane scrollPaneAreeTematiche = new JScrollPane();
 		scrollPaneAreeTematiche.setBounds(36, 60, 270, 182);
-		panelAreeTematiche.add(scrollPaneAreeTematiche);
+		panelNewAreeTematiche.add(scrollPaneAreeTematiche);
 		
 		JTextArea txtAreeTematiche = new JTextArea();
 		scrollPaneAreeTematiche.setViewportView(txtAreeTematiche);
@@ -482,7 +482,7 @@ public class homePageOp extends JFrame {
 		lblAlertAreeTematiche.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAlertAreeTematiche.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblAlertAreeTematiche.setBounds(34, 36, 268, 14);
-		panelAreeTematiche.add(lblAlertAreeTematiche);
+		panelNewAreeTematiche.add(lblAlertAreeTematiche);
 		
 		JButton btnSelezionaAree = new JButton("Seleziona");
 		btnSelezionaAree.addActionListener(new ActionListener() {
@@ -498,41 +498,41 @@ public class homePageOp extends JFrame {
 			}
 		});
 		btnSelezionaAree.setBounds(217, 253, 89, 23);
-		panelAreeTematiche.add(btnSelezionaAree);
+		panelNewAreeTematiche.add(btnSelezionaAree);
 		
 		txtTipoAree = new JTextField();
 		txtTipoAree.setBounds(156, 304, 150, 20);
-		panelAreeTematiche.add(txtTipoAree);
+		panelNewAreeTematiche.add(txtTipoAree);
 		txtTipoAree.setColumns(10);
 		
 		txtDescAree = new JTextField();
 		txtDescAree.setBounds(156, 335, 150, 20);
-		panelAreeTematiche.add(txtDescAree);
+		panelNewAreeTematiche.add(txtDescAree);
 		txtDescAree.setColumns(10);
 		
 		txtIdAree = new JTextField();
 		txtIdAree.setEditable(false);
 		txtIdAree.setBounds(156, 366, 150, 20);
-		panelAreeTematiche.add(txtIdAree);
+		panelNewAreeTematiche.add(txtIdAree);
 		txtIdAree.setColumns(10);
 		
 		JLabel lblTipoAree = new JLabel("Tipo");
 		lblTipoAree.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTipoAree.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblTipoAree.setBounds(57, 303, 89, 18);
-		panelAreeTematiche.add(lblTipoAree);
+		panelNewAreeTematiche.add(lblTipoAree);
 		
 		JLabel lblDescAree = new JLabel("Descrizione");
 		lblDescAree.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDescAree.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblDescAree.setBounds(57, 338, 89, 14);
-		panelAreeTematiche.add(lblDescAree);
+		panelNewAreeTematiche.add(lblDescAree);
 		
 		JLabel lblIdAree = new JLabel("idCorso");
 		lblIdAree.setHorizontalAlignment(SwingConstants.CENTER);
 		lblIdAree.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblIdAree.setBounds(57, 369, 89, 14);
-		panelAreeTematiche.add(lblIdAree);
+		panelNewAreeTematiche.add(lblIdAree);
 		
 		JButton btnCreaAree = new JButton("CREA");
 		btnCreaAree.addActionListener(new ActionListener() {
@@ -559,7 +559,7 @@ public class homePageOp extends JFrame {
 			}
 		});
 		btnCreaAree.setBounds(243, 411, 89, 23);
-		panelAreeTematiche.add(btnCreaAree);
+		panelNewAreeTematiche.add(btnCreaAree);
 		
 		JButton btnVisualizza = new JButton("Visualizza Corsi");
 		btnVisualizza.addActionListener(new ActionListener() {
@@ -618,7 +618,7 @@ public class homePageOp extends JFrame {
 		btnAreeTematiche.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				layeredPane.removeAll();
-                layeredPane.add(panelAreeTematiche);
+                layeredPane.add(panelNewAreeTematiche);
                 layeredPane.repaint();
                 layeredPane.revalidate();
                 
