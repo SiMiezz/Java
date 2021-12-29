@@ -1,22 +1,18 @@
-import java.sql.Date;
-import java.sql.Time;
 import java.sql.*;
 import java.util.*;
 
 public class IscrittoDAO {
 	
-	public boolean aggiungiIscrizione(Date data,Time orario,Studente stud,int id) throws SQLException{
+	public boolean aggiungiIscrizione(Studente stud,int id) throws SQLException{
 		try {
-			if(data!=null && stud!=null && id!=0) {
+			if(stud!=null && id!=0) {
 				Connection conn = DataBaseConnection.getInstance().getConnection();
 				Statement st= conn.createStatement();
-				String query ="INSERT INTO iscritto (data,orario,matricola,idcorso) VALUES(?,?,?,?)";
+				String query ="INSERT INTO iscritto (matricola,idcorso) VALUES(?,?)";
 				
 				PreparedStatement statement = conn.prepareStatement(query);
-				statement.setDate(1, data);
-				statement.setTime(2, orario);
-				statement.setString(3, stud.getMatricola());
-				statement.setInt(4, id);
+				statement.setString(1, stud.getMatricola());
+				statement.setInt(2, id);
 				
 				statement.executeUpdate();
 				
@@ -66,16 +62,14 @@ public class IscrittoDAO {
 	public Iscritto extractIscrizione(ResultSet rs,Studente stud) throws SQLException{
 		Iscritto iscrizione = new Iscritto();
 		
-		iscrizione.setData(rs.getDate(1));
-		iscrizione.setOrario(rs.getTime(2));
 		iscrizione.setStud(stud);
 		
 		CorsoFormazione corso = new CorsoFormazione();
-		corso.setIdCorso(rs.getInt(5));
-		corso.setNome(rs.getString(6));
-		corso.setDescrizione(rs.getString(7));
-		corso.setPresenzeMin(rs.getInt(8));
-		corso.setMaxPartecipanti(rs.getInt(9));
+		corso.setIdCorso(rs.getInt(3));
+		corso.setNome(rs.getString(4));
+		corso.setDescrizione(rs.getString(5));
+		corso.setPresenzeMin(rs.getInt(6));
+		corso.setMaxPartecipanti(rs.getInt(7));
 		
 		iscrizione.setCorso(corso);
 		

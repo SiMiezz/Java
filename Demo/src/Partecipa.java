@@ -1,24 +1,8 @@
-import java.sql.Date;
-import java.sql.Time;
 
 public class Partecipa {
-	private Date data;
-	private Time orario;
 	private Studente stud = new Studente();
 	private CorsoFormazione corso = new CorsoFormazione();
 	
-	public Date getData() {
-		return data;
-	}
-	public void setData(Date data) {
-		this.data = data;
-	}
-	public Time getOrario() {
-		return orario;
-	}
-	public void setOrario(Time orario) {
-		this.orario = orario;
-	}
 	public Studente getStud() {
 		return stud;
 	}

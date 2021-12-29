@@ -4,12 +4,12 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+
 import java.sql.Date;
 
 import javax.swing.JTextPane;
@@ -101,26 +101,31 @@ public class homePageOp extends JFrame {
 		txtID.setColumns(10);
 		
 		JLabel lblNome = new JLabel("Nome");
+		lblNome.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNome.setBounds(10, 54, 98, 22);
 		contentPane.add(lblNome);
 		
 		JLabel lblCognome = new JLabel("Cognome");
+		lblCognome.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCognome.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblCognome.setBounds(10, 91, 98, 22);
 		contentPane.add(lblCognome);
 		
 		JLabel lblData = new JLabel("Data di Nascita");
+		lblData.setHorizontalAlignment(SwingConstants.CENTER);
 		lblData.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblData.setBounds(10, 124, 98, 22);
 		contentPane.add(lblData);
 		
 		JLabel lblCf = new JLabel("Codice Fiscale");
+		lblCf.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCf.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblCf.setBounds(10, 157, 98, 22);
 		contentPane.add(lblCf);
 		
 		JLabel lblID = new JLabel("Id");
+		lblID.setHorizontalAlignment(SwingConstants.CENTER);
 		lblID.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblID.setBounds(10, 189, 98, 22);
 		contentPane.add(lblID);
@@ -223,6 +228,7 @@ public class homePageOp extends JFrame {
 		panelInserisci.add(lblPartecipanti);
 		
 		JButton btnInserimento = new JButton("INSERISCI");
+		btnInserimento.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnInserimento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(!txtInsertNome.getText().isBlank() && !txtInsertPresenze.getText().isBlank() && !txtInsertPartecipanti.getText().isBlank()) {
@@ -248,7 +254,7 @@ public class homePageOp extends JFrame {
 				txtInsertPartecipanti.setText(null);
 			}
 		});
-		btnInserimento.setBounds(236, 423, 96, 23);
+		btnInserimento.setBounds(236, 271, 96, 23);
 		panelInserisci.add(btnInserimento);
 		
 		JPanel panelModifica = new JPanel();
@@ -271,6 +277,7 @@ public class homePageOp extends JFrame {
 		txtModifica.setFont(new Font("Monospaced", Font.PLAIN, 16));
 		
 		JButton btnSelezionaMod = new JButton("Seleziona");
+		btnSelezionaMod.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnSelezionaMod.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(txtModifica.getSelectedText()!=null) {
@@ -313,28 +320,29 @@ public class homePageOp extends JFrame {
 		JLabel lblModNome = new JLabel("Nome");
 		lblModNome.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblModNome.setHorizontalAlignment(SwingConstants.CENTER);
-		lblModNome.setBounds(24, 306, 120, 14);
+		lblModNome.setBounds(24, 301, 120, 14);
 		panelModifica.add(lblModNome);
 		
 		JLabel lblModDesc = new JLabel("Descrizione");
 		lblModDesc.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblModDesc.setHorizontalAlignment(SwingConstants.CENTER);
-		lblModDesc.setBounds(24, 337, 120, 14);
+		lblModDesc.setBounds(24, 332, 120, 14);
 		panelModifica.add(lblModDesc);
 		
 		JLabel lblModPresenze = new JLabel("Presenze minime");
 		lblModPresenze.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblModPresenze.setHorizontalAlignment(SwingConstants.CENTER);
-		lblModPresenze.setBounds(24, 368, 120, 14);
+		lblModPresenze.setBounds(24, 363, 120, 14);
 		panelModifica.add(lblModPresenze);
 		
 		JLabel lblModPartecipanti = new JLabel("Partecipanti max");
 		lblModPartecipanti.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblModPartecipanti.setHorizontalAlignment(SwingConstants.CENTER);
-		lblModPartecipanti.setBounds(24, 399, 120, 14);
+		lblModPartecipanti.setBounds(24, 394, 120, 14);
 		panelModifica.add(lblModPartecipanti);
 		
 		JButton btnAggiorna = new JButton("AGGIORNA");
+		btnAggiorna.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnAggiorna.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(!txtModificaNome.getText().isBlank() && !txtModificaPresenze.getText().isBlank() && !txtModificaPartecipanti.getText().isBlank() && !txtModificaID.getText().isBlank()) {
@@ -362,7 +370,7 @@ public class homePageOp extends JFrame {
 				txtModificaID.setText(null);
 			}
 		});
-		btnAggiorna.setBounds(243, 455, 89, 23);
+		btnAggiorna.setBounds(239, 455, 93, 23);
 		panelModifica.add(btnAggiorna);
 		
 		txtModificaID = new JTextField();
@@ -374,7 +382,7 @@ public class homePageOp extends JFrame {
 		JLabel lblModID = new JLabel("idCorso");
 		lblModID.setHorizontalAlignment(SwingConstants.CENTER);
 		lblModID.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblModID.setBounds(33, 430, 111, 14);
+		lblModID.setBounds(33, 425, 111, 14);
 		panelModifica.add(lblModID);
 		
 		JLabel lblAlertModifica = new JLabel("Seleziona l'id del corso");
@@ -402,6 +410,7 @@ public class homePageOp extends JFrame {
 		panelStatistiche.add(lblAlertStatistiche);
 		
 		JButton btnSelezionaStatistiche = new JButton("Seleziona");
+		btnSelezionaStatistiche.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnSelezionaStatistiche.setBounds(227, 264, 89, 23);
 		panelStatistiche.add(btnSelezionaStatistiche);
 		
@@ -430,21 +439,25 @@ public class homePageOp extends JFrame {
 		txtRiempimento.setColumns(10);
 		
 		JLabel lblNumMedio = new JLabel("Numero medio studenti ");
+		lblNumMedio.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblNumMedio.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNumMedio.setBounds(10, 319, 146, 17);
 		panelStatistiche.add(lblNumMedio);
 		
 		JLabel lblMinStud = new JLabel("Studenti minimi");
+		lblMinStud.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblMinStud.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMinStud.setBounds(10, 350, 146, 14);
 		panelStatistiche.add(lblMinStud);
 		
 		JLabel lblMaxStud = new JLabel("Studenti massimi");
+		lblMaxStud.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblMaxStud.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMaxStud.setBounds(10, 378, 146, 14);
 		panelStatistiche.add(lblMaxStud);
 		
 		JLabel lblRiempimento = new JLabel("Riempimento medio");
+		lblRiempimento.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblRiempimento.setHorizontalAlignment(SwingConstants.CENTER);
 		lblRiempimento.setBounds(10, 409, 146, 14);
 		panelStatistiche.add(lblRiempimento);
@@ -485,6 +498,7 @@ public class homePageOp extends JFrame {
 		panelNewAreeTematiche.add(lblAlertAreeTematiche);
 		
 		JButton btnSelezionaAree = new JButton("Seleziona");
+		btnSelezionaAree.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnSelezionaAree.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(txtAreeTematiche.getSelectedText()!=null) {
@@ -535,6 +549,7 @@ public class homePageOp extends JFrame {
 		panelNewAreeTematiche.add(lblIdAree);
 		
 		JButton btnCreaAree = new JButton("CREA");
+		btnCreaAree.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnCreaAree.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(!txtTipoAree.getText().isBlank() && !txtIdAree.getText().isBlank()) {
@@ -562,6 +577,7 @@ public class homePageOp extends JFrame {
 		panelNewAreeTematiche.add(btnCreaAree);
 		
 		JButton btnVisualizza = new JButton("Visualizza Corsi");
+		btnVisualizza.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnVisualizza.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				layeredPane.removeAll();
@@ -576,10 +592,11 @@ public class homePageOp extends JFrame {
         		}
 			}
 		});
-		btnVisualizza.setBounds(10, 375, 115, 23);
+		btnVisualizza.setBounds(10, 375, 120, 23);
 		contentPane.add(btnVisualizza);
 		
 		JButton btnLogout = new JButton("LOGOUT");
+		btnLogout.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnLogout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				op.setId(null);
@@ -597,6 +614,7 @@ public class homePageOp extends JFrame {
 		contentPane.add(btnLogout);
 		
 		JButton btnStatistiche = new JButton("Statistiche corso");
+		btnStatistiche.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnStatistiche.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				layeredPane.removeAll();
@@ -611,10 +629,11 @@ public class homePageOp extends JFrame {
         		}
 			}
 		});
-		btnStatistiche.setBounds(135, 375, 115, 22);
+		btnStatistiche.setBounds(142, 375, 130, 23);
 		contentPane.add(btnStatistiche);
 		
 		JButton btnAreeTematiche = new JButton("Aree Tematiche");
+		btnAreeTematiche.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnAreeTematiche.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				layeredPane.removeAll();
@@ -629,7 +648,7 @@ public class homePageOp extends JFrame {
         		}
 			}
 		});
-		btnAreeTematiche.setBounds(76, 409, 115, 22);
+		btnAreeTematiche.setBounds(77, 409, 125, 23);
 		contentPane.add(btnAreeTematiche);
 		
 		JButton btnInserisci = new JButton("INSERISCI CORSO");

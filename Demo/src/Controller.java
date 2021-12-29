@@ -1,5 +1,4 @@
 import java.sql.Date;
-import java.sql.Time;
 import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
@@ -18,6 +17,7 @@ public class Controller {
 	private IscrittoDAO iscdao = new IscrittoDAO();
 	private LezioneDAO lezdao = new LezioneDAO();
 	private AreeTematicheDAO areedao = new AreeTematicheDAO();
+	private PartecipaDAO pardao = new PartecipaDAO();
 	
 	public static void main(String[] args) {
 		Controller c= new Controller();
@@ -169,9 +169,24 @@ public class Controller {
 		}
 	}
 	
-	public boolean iscriviti(Date data,Time orario,Studente stud,int id) {
+	public boolean iscriviti(Studente stud,int id) {
 		try {
-			if(iscdao.aggiungiIscrizione(data,orario,stud,id)) {
+			if(iscdao.aggiungiIscrizione(stud,id)) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		catch(SQLException e) {
+			//e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public boolean partecipa(Studente stud,int id) {
+		try {
+			if(pardao.aggiungiPartecipa(stud,id)) {
 				return true;
 			}
 			else {
@@ -301,5 +316,13 @@ public class Controller {
 	
 	public void alertInsertAree() {
 		JOptionPane.showMessageDialog(hpo, "Errore nell'iserimento dell'Area");
+	}
+	
+	public void confirmInsertPresenza() {
+		JOptionPane.showMessageDialog(hps, "Presenza effettuata");
+	}
+	
+	public void alertInsertPresenza() {
+		JOptionPane.showMessageDialog(hps, "Presenza non effettuata");
 	}
 }
