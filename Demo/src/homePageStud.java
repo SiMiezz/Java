@@ -212,7 +212,7 @@ public class homePageStud extends JFrame {
 				}
 			}
 		});
-		btnPartecipa.setBounds(203, 261, 95, 23);
+		btnPartecipa.setBounds(197, 261, 100, 23);
 		panelLezioni.add(btnPartecipa);
 		
 		JPanel panelNewIscrizione = new JPanel();
@@ -279,7 +279,7 @@ public class homePageStud extends JFrame {
 				}
 			}
 		});
-		btnIscrizioni.setBounds(132, 358, 121, 23);
+		btnIscrizioni.setBounds(134, 358, 115, 23);
 		contentPane.add(btnIscrizioni);
 		
 		JButton btnCorsi = new JButton("Visualizza Corsi");
@@ -297,7 +297,7 @@ public class homePageStud extends JFrame {
 				}
 			}
 		});
-		btnCorsi.setBounds(10, 358, 112, 23);
+		btnCorsi.setBounds(10, 358, 115, 23);
 		contentPane.add(btnCorsi);
 		
 		JButton btnLezioni = new JButton("Lezioni");
@@ -315,7 +315,7 @@ public class homePageStud extends JFrame {
 				}
 			}
 		});
-		btnLezioni.setBounds(76, 390, 112, 23);
+		btnLezioni.setBounds(74, 392, 115, 23);
 		contentPane.add(btnLezioni);
 		
 		JButton btnLogout = new JButton("LOGOUT");
@@ -350,7 +350,7 @@ public class homePageStud extends JFrame {
 				}
 			}
 		});
-		btnNewButton.setBounds(149, 372, 145, 23);
+		btnNewButton.setBounds(157, 285, 160, 23);
 		panelIscrizioni.add(btnNewButton);
 	}
 }

@@ -370,7 +370,7 @@ public class homePageOp extends JFrame {
 				txtModificaID.setText(null);
 			}
 		});
-		btnAggiorna.setBounds(239, 455, 93, 23);
+		btnAggiorna.setBounds(232, 455, 100, 23);
 		panelModifica.add(btnAggiorna);
 		
 		txtModificaID = new JTextField();
@@ -655,7 +655,7 @@ public class homePageOp extends JFrame {
                 layeredPane.revalidate();
 			}
 		});
-		btnInserisci.setBounds(33, 411, 123, 23);
+		btnInserisci.setBounds(10, 309, 135, 23);
 		panelVisualizza.add(btnInserisci);
 		
 		JButton btnModifica = new JButton("MODIFICA CORSO");
@@ -673,7 +673,7 @@ public class homePageOp extends JFrame {
         		}
 			}
 		});
-		btnModifica.setBounds(188, 411, 123, 23);
+		btnModifica.setBounds(197, 309, 135, 23);
 		panelVisualizza.add(btnModifica);
 		
 		JButton btnSelezionaStatistiche = new JButton("Seleziona");
@@ -695,5 +695,9 @@ public class homePageOp extends JFrame {
 		btnSelezionaStatistiche.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnSelezionaStatistiche.setBounds(227, 264, 89, 23);
 		panelStatistiche.add(btnSelezionaStatistiche);
+		
+		JButton btnSuperamentoCorso = new JButton("SUPERAMENTO CORSO");
+		btnSuperamentoCorso.setBounds(182, 455, 150, 23);
+		panelStatistiche.add(btnSuperamentoCorso);
 	}
 }

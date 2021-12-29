@@ -5,6 +5,7 @@ public class Studente {
 	private String nome,cognome,cf,matricola,password;
 	private Date data;
 	private ArrayList <Iscritto> iscrizioni = new ArrayList<Iscritto>();
+	private ArrayList <Partecipa> partecipazione = new ArrayList<Partecipa>();
 	
 	public String getNome() {
 		return nome;
@@ -47,5 +48,11 @@ public class Studente {
 	}
 	public void setIscrizioni(ArrayList<Iscritto> iscrizioni) {
 		this.iscrizioni = iscrizioni;
+	}
+	public ArrayList<Partecipa> getPartecipazione() {
+		return partecipazione;
+	}
+	public void setPartecipazione(ArrayList<Partecipa> partecipazione) {
+		this.partecipazione = partecipazione;
 	}
 }
