@@ -409,11 +409,6 @@ public class homePageOp extends JFrame {
 		lblAlertStatistiche.setBounds(28, 36, 288, 14);
 		panelStatistiche.add(lblAlertStatistiche);
 		
-		JButton btnSelezionaStatistiche = new JButton("Seleziona");
-		btnSelezionaStatistiche.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnSelezionaStatistiche.setBounds(227, 264, 89, 23);
-		panelStatistiche.add(btnSelezionaStatistiche);
-		
 		txtNumMedio = new JTextField();
 		txtNumMedio.setEditable(false);
 		txtNumMedio.setBounds(166, 316, 150, 20);
@@ -680,5 +675,25 @@ public class homePageOp extends JFrame {
 		});
 		btnModifica.setBounds(188, 411, 123, 23);
 		panelVisualizza.add(btnModifica);
+		
+		JButton btnSelezionaStatistiche = new JButton("Seleziona");
+		btnSelezionaStatistiche.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(txtStatistiche.getSelectedText()!=null) {
+					int id = Integer.valueOf(txtStatistiche.getSelectedText());
+					
+					txtNumMedio.setText(Integer.toString(c.getStat(c.getCorso(id)).getNumMedioStud()));
+					txtMinStud.setText(Integer.toString(c.getStat(c.getCorso(id)).getMinStud()));
+					txtMaxStud.setText(Integer.toString(c.getStat(c.getCorso(id)).getMaxStud()));
+					txtRiempimento.setText(Integer.toString(c.getStat(c.getCorso(id)).getRiempimentoMedio()));
+				}
+				else {
+					c.alertSeleziona();
+				}
+			}
+		});
+		btnSelezionaStatistiche.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnSelezionaStatistiche.setBounds(227, 264, 89, 23);
+		panelStatistiche.add(btnSelezionaStatistiche);
 	}
 }

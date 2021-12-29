@@ -18,6 +18,7 @@ public class Controller {
 	private LezioneDAO lezdao = new LezioneDAO();
 	private AreeTematicheDAO areedao = new AreeTematicheDAO();
 	private PartecipaDAO pardao = new PartecipaDAO();
+	private StatisticheDAO statdao = new StatisticheDAO();
 	
 	public static void main(String[] args) {
 		Controller c= new Controller();
@@ -130,6 +131,15 @@ public class Controller {
 	public CorsoFormazione getCorso(int id) {
 		try {
 			return corsodao.getCorso(id);
+		}catch(SQLException e) {
+			//e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public Statistiche getStat(CorsoFormazione corso) {
+		try {
+			return statdao.getStat(corso);
 		}catch(SQLException e) {
 			//e.printStackTrace();
 			return null;
