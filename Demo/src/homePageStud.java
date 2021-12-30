@@ -21,6 +21,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JLayeredPane;
 import java.awt.CardLayout;
 import java.awt.Color;
+import javax.swing.JMenuBar;
 
 public class homePageStud extends JFrame {
 
@@ -34,11 +35,74 @@ public class homePageStud extends JFrame {
 	private JTextField txtMatricola;
 	
 	public homePageStud(Controller c, String matricola, String pwd) {
+		setResizable(false);
 		setTitle("STUDENTE");
 		TheController=c;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 650, 550);
+		
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		
+		JButton btnProfilo = new JButton("PROFILO");
+		btnProfilo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		menuBar.add(btnProfilo);
+		
+		JButton btnLezioni = new JButton("LEZIONI");
+		menuBar.add(btnLezioni);
+		btnLezioni.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		
+		JButton btnCorsi = new JButton("VISUALIZZA CORSI");
+		menuBar.add(btnCorsi);
+		btnCorsi.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		
+		JButton btnIscrizioni = new JButton("ISCRIZIONI");
+		menuBar.add(btnIscrizioni);
+		btnIscrizioni.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnIscrizioni.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				layeredPanel.removeAll();
+                layeredPanel.add(panelIscrizioni);
+                layeredPanel.repaint();
+                layeredPanel.revalidate();
+                
+                stud.setIscrizioni(c.getIscrizioni(stud));
+                txtIscrizioni.setText(null);
+				for(Iscritto iscrizione:stud.getIscrizioni()) {
+					txtIscrizioni.append(iscrizione.getCorso().getIdCorso() + " " + iscrizione.getCorso().getNome() + "\n");
+				}
+			}
+		});
+		btnCorsi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				layeredPanel.removeAll();
+                layeredPanel.add(panelCorsi);
+                layeredPanel.repaint();
+                layeredPanel.revalidate();
+				
+                txtCorsi.setText(null);
+				for(CorsoFormazione corso:c.getAllCorsi()) {
+					txtCorsi.append(corso.getIdCorso() + " " + corso.getNome() + "\n");
+				}
+			}
+		});
+		btnLezioni.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				layeredPanel.removeAll();
+                layeredPanel.add(panelLezioni);
+                layeredPanel.repaint();
+                layeredPanel.revalidate();
+                
+                txtLezioni.setText(null);
+				for(Lezione lezione:c.getLezioni(stud)) {
+					txtLezioni.append(lezione.getIdlezione() + " " + lezione.getTitolo() + " " + lezione.getDatainizio() +"\n");
+				}
+			}
+		});
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -263,61 +327,6 @@ public class homePageStud extends JFrame {
 		lblAlert.setBounds(32, 49, 264, 14);
 		panelNewIscrizione.add(lblAlert);
 		
-		JButton btnIscrizioni = new JButton("Iscrizioni");
-		btnIscrizioni.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnIscrizioni.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				layeredPanel.removeAll();
-                layeredPanel.add(panelIscrizioni);
-                layeredPanel.repaint();
-                layeredPanel.revalidate();
-                
-                stud.setIscrizioni(c.getIscrizioni(stud));
-                txtIscrizioni.setText(null);
-				for(Iscritto iscrizione:stud.getIscrizioni()) {
-					txtIscrizioni.append(iscrizione.getCorso().getIdCorso() + " " + iscrizione.getCorso().getNome() + "\n");
-				}
-			}
-		});
-		btnIscrizioni.setBounds(134, 358, 115, 23);
-		contentPane.add(btnIscrizioni);
-		
-		JButton btnCorsi = new JButton("Visualizza Corsi");
-		btnCorsi.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnCorsi.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				layeredPanel.removeAll();
-                layeredPanel.add(panelCorsi);
-                layeredPanel.repaint();
-                layeredPanel.revalidate();
-				
-                txtCorsi.setText(null);
-				for(CorsoFormazione corso:c.getAllCorsi()) {
-					txtCorsi.append(corso.getIdCorso() + " " + corso.getNome() + "\n");
-				}
-			}
-		});
-		btnCorsi.setBounds(10, 358, 115, 23);
-		contentPane.add(btnCorsi);
-		
-		JButton btnLezioni = new JButton("Lezioni");
-		btnLezioni.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnLezioni.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				layeredPanel.removeAll();
-                layeredPanel.add(panelLezioni);
-                layeredPanel.repaint();
-                layeredPanel.revalidate();
-                
-                txtLezioni.setText(null);
-				for(Lezione lezione:c.getLezioni(stud)) {
-					txtLezioni.append(lezione.getIdlezione() + " " + lezione.getTitolo() + " " + lezione.getDatainizio() +"\n");
-				}
-			}
-		});
-		btnLezioni.setBounds(74, 392, 115, 23);
-		contentPane.add(btnLezioni);
-		
 		JButton btnLogout = new JButton("LOGOUT");
 		btnLogout.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnLogout.addActionListener(new ActionListener() {
@@ -333,7 +342,7 @@ public class homePageStud extends JFrame {
 				c.logout();
 			}
 		});
-		btnLogout.setBounds(10, 214, 89, 23);
+		btnLogout.setBounds(10, 477, 89, 23);
 		contentPane.add(btnLogout);
 		
 		JButton btnNewButton = new JButton("EFFETTUA ISCRIZIONE");

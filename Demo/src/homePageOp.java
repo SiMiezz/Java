@@ -50,6 +50,7 @@ public class homePageOp extends JFrame {
 	private JTextField txtIdAree;
 
 	public homePageOp(Controller c, String id, String pwd) {
+		setResizable(false);
 		setTitle("OPERATORE");
 		
 		TheController= c;
@@ -150,12 +151,14 @@ public class homePageOp extends JFrame {
 		txtID.setText(id);
 		
 		JLayeredPane layeredPane = new JLayeredPane();
+		layeredPane.setBackground(Color.LIGHT_GRAY);
 		layeredPane.setBounds(282, 11, 342, 489);
 		contentPane.add(layeredPane);
-		layeredPane.setLayout(new CardLayout(0, 0));
+		layeredPane.setLayout(null);
 		
-		JPanel panelVisualizza = new JPanel();
-		layeredPane.add(panelVisualizza, "name_503451017127200");
+		JLayeredPane panelVisualizza = new JLayeredPane();
+		panelVisualizza.setBounds(0, 0, 342, 489);
+		layeredPane.add(panelVisualizza);
 		panelVisualizza.setLayout(null);
 		
 		JScrollPane scrollPaneVisualizza = new JScrollPane();
@@ -168,13 +171,14 @@ public class homePageOp extends JFrame {
 		txtVisualizza.setFont(new Font("Monospaced", Font.PLAIN, 16));
 		
 		JLabel lblVisualizza = new JLabel("VISUALIZZA CORSI");
+		lblVisualizza.setBounds(10, 11, 322, 20);
 		lblVisualizza.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblVisualizza.setHorizontalAlignment(SwingConstants.CENTER);
-		lblVisualizza.setBounds(10, 11, 322, 20);
 		panelVisualizza.add(lblVisualizza);
 		
 		JPanel panelInserisci = new JPanel();
-		layeredPane.add(panelInserisci, "name_503457154114800");
+		panelInserisci.setBounds(-10290, -10042, 342, 489);
+		layeredPane.add(panelInserisci);
 		panelInserisci.setLayout(null);
 		
 		JLabel lblInserisci = new JLabel("INSERISCI CORSO");
@@ -258,7 +262,8 @@ public class homePageOp extends JFrame {
 		panelInserisci.add(btnInserimento);
 		
 		JPanel panelModifica = new JPanel();
-		layeredPane.add(panelModifica, "name_503460830301000");
+		panelModifica.setBounds(-10290, -10042, 342, 489);
+		layeredPane.add(panelModifica);
 		panelModifica.setLayout(null);
 		
 		JLabel lblModifica = new JLabel("MODIFICA CORSO");
@@ -393,7 +398,8 @@ public class homePageOp extends JFrame {
 		panelModifica.add(lblAlertModifica);
 		
 		JPanel panelStatistiche = new JPanel();
-		layeredPane.add(panelStatistiche, "name_82724793143400");
+		panelStatistiche.setBounds(-10290, -10042, 342, 489);
+		layeredPane.add(panelStatistiche);
 		panelStatistiche.setLayout(null);
 		
 		JLabel lblStatistiche = new JLabel("STATISTICHE");
@@ -467,7 +473,8 @@ public class homePageOp extends JFrame {
 		txtStatistiche.setEditable(false);
 		
 		JPanel panelNewAreeTematiche = new JPanel();
-		layeredPane.add(panelNewAreeTematiche, "name_103804907046600");
+		panelNewAreeTematiche.setBounds(-10290, -10042, 342, 489);
+		layeredPane.add(panelNewAreeTematiche);
 		panelNewAreeTematiche.setLayout(null);
 		
 		JLabel lblAreeTematiche = new JLabel("CREA AREE TEMATICHE");
@@ -647,6 +654,7 @@ public class homePageOp extends JFrame {
 		contentPane.add(btnAreeTematiche);
 		
 		JButton btnInserisci = new JButton("INSERISCI CORSO");
+		btnInserisci.setBounds(10, 309, 135, 23);
 		btnInserisci.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				layeredPane.removeAll();
@@ -655,10 +663,10 @@ public class homePageOp extends JFrame {
                 layeredPane.revalidate();
 			}
 		});
-		btnInserisci.setBounds(10, 309, 135, 23);
 		panelVisualizza.add(btnInserisci);
 		
 		JButton btnModifica = new JButton("MODIFICA CORSO");
+		btnModifica.setBounds(197, 309, 135, 23);
 		btnModifica.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				layeredPane.removeAll();
@@ -673,7 +681,6 @@ public class homePageOp extends JFrame {
         		}
 			}
 		});
-		btnModifica.setBounds(197, 309, 135, 23);
 		panelVisualizza.add(btnModifica);
 		
 		JButton btnSelezionaStatistiche = new JButton("Seleziona");
