@@ -154,11 +154,10 @@ public class homePageOp extends JFrame {
 		layeredPane.setBackground(Color.LIGHT_GRAY);
 		layeredPane.setBounds(282, 11, 342, 489);
 		contentPane.add(layeredPane);
-		layeredPane.setLayout(null);
+		layeredPane.setLayout(new CardLayout(0, 0));
 		
 		JLayeredPane panelVisualizza = new JLayeredPane();
-		panelVisualizza.setBounds(0, 0, 342, 489);
-		layeredPane.add(panelVisualizza);
+		layeredPane.add(panelVisualizza, "name_265649558857400");
 		panelVisualizza.setLayout(null);
 		
 		JScrollPane scrollPaneVisualizza = new JScrollPane();
@@ -177,8 +176,7 @@ public class homePageOp extends JFrame {
 		panelVisualizza.add(lblVisualizza);
 		
 		JPanel panelInserisci = new JPanel();
-		panelInserisci.setBounds(-10290, -10042, 342, 489);
-		layeredPane.add(panelInserisci);
+		layeredPane.add(panelInserisci, "name_265649587309300");
 		panelInserisci.setLayout(null);
 		
 		JLabel lblInserisci = new JLabel("INSERISCI CORSO");
@@ -262,8 +260,7 @@ public class homePageOp extends JFrame {
 		panelInserisci.add(btnInserimento);
 		
 		JPanel panelModifica = new JPanel();
-		panelModifica.setBounds(-10290, -10042, 342, 489);
-		layeredPane.add(panelModifica);
+		layeredPane.add(panelModifica, "name_265649613267400");
 		panelModifica.setLayout(null);
 		
 		JLabel lblModifica = new JLabel("MODIFICA CORSO");
@@ -398,8 +395,7 @@ public class homePageOp extends JFrame {
 		panelModifica.add(lblAlertModifica);
 		
 		JPanel panelStatistiche = new JPanel();
-		panelStatistiche.setBounds(-10290, -10042, 342, 489);
-		layeredPane.add(panelStatistiche);
+		layeredPane.add(panelStatistiche, "name_265649639062799");
 		panelStatistiche.setLayout(null);
 		
 		JLabel lblStatistiche = new JLabel("STATISTICHE");
@@ -473,8 +469,7 @@ public class homePageOp extends JFrame {
 		txtStatistiche.setEditable(false);
 		
 		JPanel panelNewAreeTematiche = new JPanel();
-		panelNewAreeTematiche.setBounds(-10290, -10042, 342, 489);
-		layeredPane.add(panelNewAreeTematiche);
+		layeredPane.add(panelNewAreeTematiche, "name_265649664779800");
 		panelNewAreeTematiche.setLayout(null);
 		
 		JLabel lblAreeTematiche = new JLabel("CREA AREE TEMATICHE");

@@ -40,7 +40,7 @@ public class homePageStud extends JFrame {
 		TheController=c;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 650, 550);
+		setBounds(100, 100, 650, 580);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -60,49 +60,6 @@ public class homePageStud extends JFrame {
 		menuBar.add(btnCorsi);
 		btnCorsi.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		
-		JButton btnIscrizioni = new JButton("ISCRIZIONI");
-		menuBar.add(btnIscrizioni);
-		btnIscrizioni.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnIscrizioni.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				layeredPanel.removeAll();
-                layeredPanel.add(panelIscrizioni);
-                layeredPanel.repaint();
-                layeredPanel.revalidate();
-                
-                stud.setIscrizioni(c.getIscrizioni(stud));
-                txtIscrizioni.setText(null);
-				for(Iscritto iscrizione:stud.getIscrizioni()) {
-					txtIscrizioni.append(iscrizione.getCorso().getIdCorso() + " " + iscrizione.getCorso().getNome() + "\n");
-				}
-			}
-		});
-		btnCorsi.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				layeredPanel.removeAll();
-                layeredPanel.add(panelCorsi);
-                layeredPanel.repaint();
-                layeredPanel.revalidate();
-				
-                txtCorsi.setText(null);
-				for(CorsoFormazione corso:c.getAllCorsi()) {
-					txtCorsi.append(corso.getIdCorso() + " " + corso.getNome() + "\n");
-				}
-			}
-		});
-		btnLezioni.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				layeredPanel.removeAll();
-                layeredPanel.add(panelLezioni);
-                layeredPanel.repaint();
-                layeredPanel.revalidate();
-                
-                txtLezioni.setText(null);
-				for(Lezione lezione:c.getLezioni(stud)) {
-					txtLezioni.append(lezione.getIdlezione() + " " + lezione.getTitolo() + " " + lezione.getDatainizio() +"\n");
-				}
-			}
-		});
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -342,7 +299,7 @@ public class homePageStud extends JFrame {
 				c.logout();
 			}
 		});
-		btnLogout.setBounds(10, 477, 89, 23);
+		btnLogout.setBounds(10, 214, 89, 23);
 		contentPane.add(btnLogout);
 		
 		JButton btnNewButton = new JButton("EFFETTUA ISCRIZIONE");
@@ -361,5 +318,51 @@ public class homePageStud extends JFrame {
 		});
 		btnNewButton.setBounds(157, 285, 160, 23);
 		panelIscrizioni.add(btnNewButton);
+		
+		JButton btnIscrizioni = new JButton("ISCRIZIONI");
+		menuBar.add(btnIscrizioni);
+		btnIscrizioni.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnIscrizioni.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				layeredPanel.removeAll();
+                layeredPanel.add(panelIscrizioni);
+                layeredPanel.repaint();
+                layeredPanel.revalidate();
+                
+                stud.setIscrizioni(c.getIscrizioni(stud));
+                txtIscrizioni.setText(null);
+				for(Iscritto iscrizione:stud.getIscrizioni()) {
+					txtIscrizioni.append(iscrizione.getCorso().getIdCorso() + " " + iscrizione.getCorso().getNome() + "\n");
+				}
+			}
+		});
+		
+		btnCorsi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				layeredPanel.removeAll();
+                layeredPanel.add(panelCorsi);
+                layeredPanel.repaint();
+                layeredPanel.revalidate();
+				
+                txtCorsi.setText(null);
+				for(CorsoFormazione corso:c.getAllCorsi()) {
+					txtCorsi.append(corso.getIdCorso() + " " + corso.getNome() + "\n");
+				}
+			}
+		});
+		
+		btnLezioni.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				layeredPanel.removeAll();
+                layeredPanel.add(panelLezioni);
+                layeredPanel.repaint();
+                layeredPanel.revalidate();
+                
+                txtLezioni.setText(null);
+				for(Lezione lezione:c.getLezioni(stud)) {
+					txtLezioni.append(lezione.getIdlezione() + " " + lezione.getTitolo() + " " + lezione.getDatainizio() +"\n");
+				}
+			}
+		});
 	}
 }
