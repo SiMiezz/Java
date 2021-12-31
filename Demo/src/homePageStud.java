@@ -3,134 +3,101 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import java.awt.Font;
-import javax.swing.JTextField;
-
-import java.sql.Date;
-
-import javax.swing.JTextArea;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JLayeredPane;
 import java.awt.CardLayout;
-import java.awt.Color;
 import javax.swing.JMenuBar;
+import javax.swing.JLabel;
+import java.awt.Font;
+import java.awt.Color;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.sql.Date;
+import java.awt.event.ActionEvent;
 
 public class homePageStud extends JFrame {
 
 	private JPanel contentPane;
-	
-	Controller TheController;
 	private JTextField txtNome;
 	private JTextField txtCognome;
 	private JTextField txtData;
-	private JTextField txtCf;
+	private JTextField txtCF;
 	private JTextField txtMatricola;
+	Controller TheController;
 	
+	private void switchPanel(JLayeredPane layeredPane, JPanel panelInserisci) {
+		layeredPane.removeAll();
+        layeredPane.add(panelInserisci);
+        layeredPane.repaint();
+        layeredPane.revalidate();
+	}
+
 	public homePageStud(Controller c, String matricola, String pwd) {
-		setResizable(false);
-		setTitle("STUDENTE");
-		TheController=c;
-		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 650, 580);
+		setBounds(100, 100, 600, 525);
 		
-		JMenuBar menuBar = new JMenuBar();
-		setJMenuBar(menuBar);
-		
-		JButton btnProfilo = new JButton("PROFILO");
-		btnProfilo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		menuBar.add(btnProfilo);
-		
-		JButton btnLezioni = new JButton("LEZIONI");
-		menuBar.add(btnLezioni);
-		btnLezioni.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		
-		JButton btnCorsi = new JButton("VISUALIZZA CORSI");
-		menuBar.add(btnCorsi);
-		btnCorsi.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		TheController=c;
 		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblProfilo = new JLabel("PROFILO STUDENTE");
-		lblProfilo.setForeground(Color.RED);
-		lblProfilo.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblProfilo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblProfilo.setBounds(10, 26, 191, 26);
-		contentPane.add(lblProfilo);
+		JLayeredPane layeredPane = new JLayeredPane();
+		layeredPane.setBounds(10, 11, 564, 442);
+		contentPane.add(layeredPane);
+		layeredPane.setLayout(new CardLayout(0, 0));
+		
+		JPanel panelProfilo = new JPanel();
+		panelProfilo.setLayout(null);
+		layeredPane.add(panelProfilo, "name_367346658513700");
+		
+		JLabel lblNewLabel = new JLabel("PROFILO STUDENTE");
+		lblNewLabel.setForeground(Color.RED);
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblNewLabel.setBounds(168, 11, 226, 31);
+		panelProfilo.add(lblNewLabel);
 		
 		txtNome = new JTextField();
+		txtNome.setText((String) null);
 		txtNome.setEditable(false);
-		txtNome.setBounds(114, 63, 135, 20);
-		contentPane.add(txtNome);
 		txtNome.setColumns(10);
+		txtNome.setBounds(168, 68, 226, 22);
+		panelProfilo.add(txtNome);
 		
 		txtCognome = new JTextField();
+		txtCognome.setText((String) null);
 		txtCognome.setEditable(false);
-		txtCognome.setBounds(114, 90, 135, 20);
-		contentPane.add(txtCognome);
 		txtCognome.setColumns(10);
+		txtCognome.setBounds(168, 106, 226, 22);
+		panelProfilo.add(txtCognome);
 		
 		txtData = new JTextField();
+		txtData.setText("<dynamic>\r\n");
 		txtData.setEditable(false);
-		txtData.setBounds(114, 121, 135, 20);
-		contentPane.add(txtData);
 		txtData.setColumns(10);
+		txtData.setBounds(168, 149, 226, 22);
+		panelProfilo.add(txtData);
 		
-		txtCf = new JTextField();
-		txtCf.setEditable(false);
-		txtCf.setBounds(114, 152, 135, 20);
-		contentPane.add(txtCf);
-		txtCf.setColumns(10);
+		txtCF = new JTextField();
+		txtCF.setText((String) null);
+		txtCF.setEditable(false);
+		txtCF.setColumns(10);
+		txtCF.setBounds(168, 182, 226, 22);
+		panelProfilo.add(txtCF);
 		
 		txtMatricola = new JTextField();
+		txtMatricola.setText("<dynamic>");
 		txtMatricola.setEditable(false);
-		txtMatricola.setBounds(114, 184, 135, 20);
-		contentPane.add(txtMatricola);
 		txtMatricola.setColumns(10);
-		
-		JLabel lblNome = new JLabel("Nome");
-		lblNome.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNome.setBounds(10, 63, 94, 17);
-		contentPane.add(lblNome);
-		
-		JLabel lblCognome = new JLabel("Cognome");
-		lblCognome.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCognome.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblCognome.setBounds(10, 93, 94, 17);
-		contentPane.add(lblCognome);
-		
-		JLabel lblData = new JLabel("Data di Nascita");
-		lblData.setHorizontalAlignment(SwingConstants.CENTER);
-		lblData.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblData.setBounds(10, 124, 94, 17);
-		contentPane.add(lblData);
-		
-		JLabel lblCf = new JLabel("Codice Fiscale");
-		lblCf.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCf.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblCf.setBounds(10, 155, 94, 17);
-		contentPane.add(lblCf);
-		
-		JLabel lblMatricola = new JLabel("Matricola");
-		lblMatricola.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMatricola.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblMatricola.setBounds(10, 186, 94, 17);
-		contentPane.add(lblMatricola);
+		txtMatricola.setBounds(168, 215, 226, 22);
+		panelProfilo.add(txtMatricola);
 		
 		Studente stud = new Studente();
 		
@@ -149,26 +116,51 @@ public class homePageStud extends JFrame {
 		String strdata = data.toString();
 		
 		txtData.setText(strdata);
-		txtCf.setText(stud.getCf());
+		txtCF.setText(stud.getCf());
 		txtMatricola.setText(matricola);
 		
-		JLayeredPane layeredPanel = new JLayeredPane();
-		layeredPanel.setBounds(297, 25, 327, 475);
-		contentPane.add(layeredPanel);
-		layeredPanel.setLayout(new CardLayout(0, 0));
+		JLabel lblNome = new JLabel("Nome");
+		lblNome.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNome.setBounds(31, 72, 114, 14);
+		panelProfilo.add(lblNome);
+		
+		JLabel lblCognome = new JLabel("Cognome");
+		lblCognome.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCognome.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblCognome.setBounds(31, 104, 114, 22);
+		panelProfilo.add(lblCognome);
+		
+		JLabel lblData = new JLabel("Data di nascita");
+		lblData.setHorizontalAlignment(SwingConstants.CENTER);
+		lblData.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblData.setBounds(31, 151, 114, 14);
+		panelProfilo.add(lblData);
+		
+		JLabel lblCf = new JLabel("Codice Fiscale");
+		lblCf.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCf.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblCf.setBounds(31, 186, 114, 14);
+		panelProfilo.add(lblCf);
+		
+		JLabel lblMatricola = new JLabel("Matricola");
+		lblMatricola.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMatricola.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblMatricola.setBounds(31, 219, 114, 14);
+		panelProfilo.add(lblMatricola);
 		
 		JPanel panelCorsi = new JPanel();
-		layeredPanel.add(panelCorsi, "name_527413552155300");
 		panelCorsi.setLayout(null);
+		layeredPane.add(panelCorsi, "name_367386059393600");
 		
 		JLabel lblCorsi = new JLabel("VISUALIZZA CORSI");
-		lblCorsi.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblCorsi.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCorsi.setBounds(10, 11, 307, 14);
+		lblCorsi.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblCorsi.setBounds(10, 11, 544, 14);
 		panelCorsi.add(lblCorsi);
 		
 		JScrollPane scrollPaneCorsi = new JScrollPane();
-		scrollPaneCorsi.setBounds(36, 65, 263, 184);
+		scrollPaneCorsi.setBounds(10, 36, 542, 219);
 		panelCorsi.add(scrollPaneCorsi);
 		
 		JTextArea txtCorsi = new JTextArea();
@@ -177,17 +169,17 @@ public class homePageStud extends JFrame {
 		txtCorsi.setEditable(false);
 		
 		JPanel panelIscrizioni = new JPanel();
-		layeredPanel.add(panelIscrizioni, "name_527425117892300");
+		layeredPane.add(panelIscrizioni, "name_367500255637100");
 		panelIscrizioni.setLayout(null);
 		
 		JLabel lblIscrizioni = new JLabel("VISUALIZZA ISCRIZIONI");
 		lblIscrizioni.setHorizontalAlignment(SwingConstants.CENTER);
 		lblIscrizioni.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblIscrizioni.setBounds(10, 11, 307, 14);
+		lblIscrizioni.setBounds(10, 11, 544, 14);
 		panelIscrizioni.add(lblIscrizioni);
 		
 		JScrollPane scrollPaneIscrizioni = new JScrollPane();
-		scrollPaneIscrizioni.setBounds(37, 60, 257, 190);
+		scrollPaneIscrizioni.setBounds(10, 36, 540, 217);
 		panelIscrizioni.add(scrollPaneIscrizioni);
 		
 		JTextArea txtIscrizioni = new JTextArea();
@@ -195,59 +187,25 @@ public class homePageStud extends JFrame {
 		txtIscrizioni.setFont(new Font("Monospaced", Font.PLAIN, 16));
 		txtIscrizioni.setEditable(false);
 		
-		JPanel panelLezioni = new JPanel();
-		layeredPanel.add(panelLezioni, "name_527436106862699");
-		panelLezioni.setLayout(null);
-		
-		JLabel lblLezioni = new JLabel("VISUALIZZA LEZIONI");
-		lblLezioni.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblLezioni.setHorizontalAlignment(SwingConstants.CENTER);
-		lblLezioni.setBounds(10, 11, 307, 14);
-		panelLezioni.add(lblLezioni);
-		
-		JScrollPane scrollPaneLezioni = new JScrollPane();
-		scrollPaneLezioni.setBounds(32, 58, 266, 192);
-		panelLezioni.add(scrollPaneLezioni);
-		
-		JTextArea txtLezioni = new JTextArea();
-		scrollPaneLezioni.setViewportView(txtLezioni);
-		txtLezioni.setFont(new Font("Monospaced", Font.PLAIN, 16));
-		txtLezioni.setEditable(false);
-		
-		JButton btnPartecipa = new JButton("PARTECIPA");
-		btnPartecipa.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnPartecipa.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(txtLezioni.getSelectedText() != null) {
-					int id = Integer.valueOf(txtLezioni.getSelectedText());
-					
-					if(c.partecipa(stud,id)) {
-						c.confirmInsertPresenza();
-					}
-					else {
-						c.alertInsertPresenza();
-					}
-				}
-				else {
-					c.alertSeleziona();
-				}
-			}
-		});
-		btnPartecipa.setBounds(197, 261, 100, 23);
-		panelLezioni.add(btnPartecipa);
-		
 		JPanel panelNewIscrizione = new JPanel();
-		layeredPanel.add(panelNewIscrizione, "name_529526638992000");
+		layeredPane.add(panelNewIscrizione, "name_367633326808700");
 		panelNewIscrizione.setLayout(null);
 		
 		JLabel lblNewIscrizione = new JLabel("EFFETTUA ISCRIZIONE");
 		lblNewIscrizione.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewIscrizione.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblNewIscrizione.setBounds(10, 11, 307, 14);
+		lblNewIscrizione.setBounds(10, 11, 544, 14);
 		panelNewIscrizione.add(lblNewIscrizione);
 		
+		JLabel lblAlertIscrizione = new JLabel("Seleziona l'id del corso");
+		lblAlertIscrizione.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAlertIscrizione.setForeground(Color.BLUE);
+		lblAlertIscrizione.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblAlertIscrizione.setBounds(141, 36, 285, 14);
+		panelNewIscrizione.add(lblAlertIscrizione);
+		
 		JScrollPane scrollPaneNewIscrizione = new JScrollPane();
-		scrollPaneNewIscrizione.setBounds(35, 74, 261, 192);
+		scrollPaneNewIscrizione.setBounds(143, 61, 283, 168);
 		panelNewIscrizione.add(scrollPaneNewIscrizione);
 		
 		JTextArea txtNewIscrizione = new JTextArea();
@@ -256,7 +214,6 @@ public class homePageStud extends JFrame {
 		txtNewIscrizione.setEditable(false);
 		
 		JButton btnIscriviti = new JButton("ISCRIVITI");
-		btnIscriviti.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnIscriviti.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(txtNewIscrizione.getSelectedText() != null) {
@@ -274,19 +231,88 @@ public class homePageStud extends JFrame {
 				}
 			}
 		});
-		btnIscriviti.setBounds(200, 277, 97, 23);
+		btnIscriviti.setBounds(337, 240, 89, 23);
 		panelNewIscrizione.add(btnIscriviti);
 		
-		JLabel lblAlert = new JLabel("Seleziona l'id del corso");
-		lblAlert.setForeground(Color.BLUE);
-		lblAlert.setHorizontalAlignment(SwingConstants.CENTER);
-		lblAlert.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblAlert.setBounds(32, 49, 264, 14);
-		panelNewIscrizione.add(lblAlert);
+		JPanel panelLezioni = new JPanel();
+		layeredPane.add(panelLezioni, "name_367792570924600");
+		panelLezioni.setLayout(null);
 		
-		JButton btnLogout = new JButton("LOGOUT");
-		btnLogout.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnLogout.addActionListener(new ActionListener() {
+		JLabel lblVisualizzaLezioni = new JLabel("VISUALIZZA LEZIONI");
+		lblVisualizzaLezioni.setHorizontalAlignment(SwingConstants.CENTER);
+		lblVisualizzaLezioni.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblVisualizzaLezioni.setBounds(10, 11, 544, 14);
+		panelLezioni.add(lblVisualizzaLezioni);
+		
+		JTextArea txtLezioni = new JTextArea();
+		txtLezioni.setFont(new Font("Monospaced", Font.PLAIN, 16));
+		txtLezioni.setEditable(false);
+		txtLezioni.setBounds(10, 32, 540, 217);
+		panelLezioni.add(txtLezioni);
+		
+		JPanel panelPartecipa = new JPanel();
+		layeredPane.add(panelPartecipa, "name_367912807561300");
+		panelPartecipa.setLayout(null);
+		
+		JLabel lblPartecipaLezioni = new JLabel("PARTECIPA LEZIONE");
+		lblPartecipaLezioni.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPartecipaLezioni.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblPartecipaLezioni.setBounds(10, 11, 544, 14);
+		panelPartecipa.add(lblPartecipaLezioni);
+		
+		JLabel lblAlertPartecipa = new JLabel("Seleziona l'id della lezione");
+		lblAlertPartecipa.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAlertPartecipa.setForeground(Color.BLUE);
+		lblAlertPartecipa.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblAlertPartecipa.setBounds(141, 36, 285, 14);
+		panelPartecipa.add(lblAlertPartecipa);
+		
+		JScrollPane scrollPanePartecipa = new JScrollPane();
+		scrollPanePartecipa.setBounds(141, 61, 281, 166);
+		panelPartecipa.add(scrollPanePartecipa);
+		
+		JTextArea txtPartecipa = new JTextArea();
+		scrollPanePartecipa.setViewportView(txtPartecipa);
+		txtPartecipa.setFont(new Font("Monospaced", Font.PLAIN, 16));
+		txtPartecipa.setEditable(false);
+		
+		JButton btnPartecipa = new JButton("PARTECIPA");
+		btnPartecipa.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(txtLezioni.getSelectedText() != null) {
+					int id = Integer.valueOf(txtLezioni.getSelectedText());
+					
+					if(c.partecipa(stud,id)) {
+						c.confirmInsertPresenza();
+					}
+					else {
+						c.alertInsertPresenza();
+					}
+				}
+				else {
+					c.alertSeleziona();
+				}
+			}
+		});
+		btnPartecipa.setBounds(337, 238, 89, 23);
+		panelPartecipa.add(btnPartecipa);
+		
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		
+		JMenu mnProfilo = new JMenu("PROFILO");
+		menuBar.add(mnProfilo);
+		
+		JMenuItem mntmProfilo = new JMenuItem("Visualizza Profilo");
+		mntmProfilo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				switchPanel(layeredPane, panelProfilo);
+			}
+		});
+		mnProfilo.add(mntmProfilo);
+		
+		JMenuItem mntmLogout = new JMenuItem("Logout");
+		mntmLogout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				stud.setMatricola(null);
 				stud.setPassword(null);
@@ -299,70 +325,76 @@ public class homePageStud extends JFrame {
 				c.logout();
 			}
 		});
-		btnLogout.setBounds(10, 214, 89, 23);
-		contentPane.add(btnLogout);
+		mnProfilo.add(mntmLogout);
 		
-		JButton btnNewButton = new JButton("EFFETTUA ISCRIZIONE");
-		btnNewButton.addActionListener(new ActionListener() {
+		JMenu mnCorsi = new JMenu("CORSI");
+		menuBar.add(mnCorsi);
+		
+		JMenuItem mntmVisualizzaCorsi = new JMenuItem("Visualizza Corsi");
+		mntmVisualizzaCorsi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				layeredPanel.removeAll();
-                layeredPanel.add(panelNewIscrizione);
-                layeredPanel.repaint();
-                layeredPanel.revalidate();
-                
-                txtNewIscrizione.setText(null);
-				for(CorsoFormazione corso:c.getCorsi(stud)) {
-					txtNewIscrizione.append(corso.getIdCorso() + " " +corso.getNome() + "\n");
+				switchPanel(layeredPane, panelCorsi);
+				
+				txtCorsi.setText(null);
+				for(CorsoFormazione corso:c.getAllCorsi()) {
+					txtCorsi.append(corso.getIdCorso() + " " + corso.getNome() + " " + corso.getDescrizione() + "\n");
 				}
 			}
 		});
-		btnNewButton.setBounds(157, 285, 160, 23);
-		panelIscrizioni.add(btnNewButton);
+		mnCorsi.add(mntmVisualizzaCorsi);
 		
-		JButton btnIscrizioni = new JButton("ISCRIZIONI");
-		menuBar.add(btnIscrizioni);
-		btnIscrizioni.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnIscrizioni.addActionListener(new ActionListener() {
+		JMenu mnIscrizioni = new JMenu("ISCRIZIONI");
+		menuBar.add(mnIscrizioni);
+		
+		JMenuItem mntmVisualizzaIscrizioni = new JMenuItem("Visualizza Iscrizioni");
+		mntmVisualizzaIscrizioni.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				layeredPanel.removeAll();
-                layeredPanel.add(panelIscrizioni);
-                layeredPanel.repaint();
-                layeredPanel.revalidate();
-                
-                stud.setIscrizioni(c.getIscrizioni(stud));
+				switchPanel(layeredPane, panelIscrizioni);
+				
+				stud.setIscrizioni(c.getIscrizioni(stud));
                 txtIscrizioni.setText(null);
 				for(Iscritto iscrizione:stud.getIscrizioni()) {
-					txtIscrizioni.append(iscrizione.getCorso().getIdCorso() + " " + iscrizione.getCorso().getNome() + "\n");
+					txtIscrizioni.append(iscrizione.getCorso().getIdCorso() + " " + iscrizione.getCorso().getNome() + " " + iscrizione.getCorso().getDescrizione() + "\n");
 				}
 			}
 		});
+		mnIscrizioni.add(mntmVisualizzaIscrizioni);
 		
-		btnCorsi.addActionListener(new ActionListener() {
+		JMenuItem mntmAggiungiIscrizioni = new JMenuItem("Effettua Iscrizione");
+		mntmAggiungiIscrizioni.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				layeredPanel.removeAll();
-                layeredPanel.add(panelCorsi);
-                layeredPanel.repaint();
-                layeredPanel.revalidate();
+				switchPanel(layeredPane, panelNewIscrizione);
 				
-                txtCorsi.setText(null);
-				for(CorsoFormazione corso:c.getAllCorsi()) {
-					txtCorsi.append(corso.getIdCorso() + " " + corso.getNome() + "\n");
+				txtNewIscrizione.setText(null);
+				for(CorsoFormazione corso:c.getCorsi(stud)) {
+					txtNewIscrizione.append(corso.getIdCorso() + " " + corso.getNome() + " " + corso.getDescrizione() + "\n");
 				}
 			}
 		});
+		mnIscrizioni.add(mntmAggiungiIscrizioni);
 		
-		btnLezioni.addActionListener(new ActionListener() {
+		JMenu mnLezioni = new JMenu("LEZIONI");
+		menuBar.add(mnLezioni);
+		
+		JMenuItem mntmVisualizzaLezioni = new JMenuItem("Visualizza Lezioni");
+		mntmVisualizzaLezioni.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				layeredPanel.removeAll();
-                layeredPanel.add(panelLezioni);
-                layeredPanel.repaint();
-                layeredPanel.revalidate();
-                
-                txtLezioni.setText(null);
+				switchPanel(layeredPane, panelLezioni);
+				
+				txtLezioni.setText(null);
 				for(Lezione lezione:c.getLezioni(stud)) {
 					txtLezioni.append(lezione.getIdlezione() + " " + lezione.getTitolo() + " " + lezione.getDatainizio() +"\n");
 				}
 			}
 		});
+		mnLezioni.add(mntmVisualizzaLezioni);
+		
+		JMenuItem mntmPartecipaLezioni = new JMenuItem("Partecipa Lezione");
+		mntmPartecipaLezioni.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				switchPanel(layeredPane, panelPartecipa);
+			}
+		});
+		mnLezioni.add(mntmPartecipaLezioni);
 	}
 }
