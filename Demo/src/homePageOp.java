@@ -607,14 +607,34 @@ public class homePageOp extends JFrame {
 		lblSuperamento.setBounds(10, 11, 544, 14);
 		panelSuperamento.add(lblSuperamento);
 		
-		JScrollPane scrollPaneSuperamento = new JScrollPane();
-		scrollPaneSuperamento.setBounds(10, 36, 542, 219);
-		panelSuperamento.add(scrollPaneSuperamento);
+		JLabel lblAlertSuperamento = new JLabel("Seleziona l'id del corso");
+		lblAlertSuperamento.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAlertSuperamento.setForeground(Color.BLUE);
+		lblAlertSuperamento.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblAlertSuperamento.setBounds(141, 36, 285, 14);
+		panelSuperamento.add(lblAlertSuperamento);
 		
-		JTextArea txtSuperamento = new JTextArea();
-		scrollPaneSuperamento.setViewportView(txtSuperamento);
-		txtSuperamento.setFont(new Font("Monospaced", Font.PLAIN, 16));
-		txtSuperamento.setEditable(false);
+		JScrollPane scrollPaneCorsiSuperamento = new JScrollPane();
+		scrollPaneCorsiSuperamento.setBounds(141, 61, 283, 168);
+		panelSuperamento.add(scrollPaneCorsiSuperamento);
+		
+		JTextArea txtCorsiSuperamento = new JTextArea();
+		scrollPaneCorsiSuperamento.setViewportView(txtCorsiSuperamento);
+		txtCorsiSuperamento.setFont(new Font("Monospaced", Font.PLAIN, 16));
+		txtCorsiSuperamento.setEditable(false);
+		
+		JButton btnSelezionaSuperamento = new JButton("SELEZIONA");
+		btnSelezionaSuperamento.setBounds(337, 240, 89, 23);
+		panelSuperamento.add(btnSelezionaSuperamento);
+		
+		JScrollPane scrollPaneStudSuperamento = new JScrollPane();
+		scrollPaneStudSuperamento.setBounds(145, 273, 281, 166);
+		panelSuperamento.add(scrollPaneStudSuperamento);
+		
+		JTextArea txtStudSuperamento = new JTextArea();
+		scrollPaneStudSuperamento.setViewportView(txtStudSuperamento);
+		txtStudSuperamento.setFont(new Font("Monospaced", Font.PLAIN, 16));
+		txtStudSuperamento.setEditable(false);
 		
 		JPanel panelAreeTematiche = new JPanel();
 		layeredPane.add(panelAreeTematiche, "name_364509658303200");
@@ -769,20 +789,6 @@ public class homePageOp extends JFrame {
 		JMenu mnAreeTematiche = new JMenu("AREE TEMATICHE");
 		menuBar.add(mnAreeTematiche);
 		
-		JMenuItem mntmVisualizzaAree = new JMenuItem("Visualizza Aree Tematiche");
-		mntmVisualizzaAree.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				switchPanel(layeredPane, panelAreeTematiche);
-				
-				op.setCorsi(c.getCorsiOperatore(op));
-                txtCorsiAree.setText(null);
-                for (CorsoFormazione corso:c.getCorsiOperatore(op)) {
-                	txtCorsiAree.append(corso.getIdCorso() + " " + corso.getNome() + " " + corso.getDescrizione() + "\n");
-        		}
-			}
-		});
-		mnAreeTematiche.add(mntmVisualizzaAree);
-		
 		JMenuItem mntmCreaAree = new JMenuItem("Crea Aree Tematiche");
 		mntmCreaAree.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -796,6 +802,20 @@ public class homePageOp extends JFrame {
 			}
 		});
 		mnAreeTematiche.add(mntmCreaAree);
+		
+		JMenuItem mntmVisualizzaAree = new JMenuItem("Visualizza Aree Tematiche");
+		mntmVisualizzaAree.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				switchPanel(layeredPane, panelAreeTematiche);
+				
+				op.setCorsi(c.getCorsiOperatore(op));
+                txtCorsiAree.setText(null);
+                for (CorsoFormazione corso:c.getCorsiOperatore(op)) {
+                	txtCorsiAree.append(corso.getIdCorso() + " " + corso.getNome() + " " + corso.getDescrizione() + "\n");
+        		}
+			}
+		});
+		mnAreeTematiche.add(mntmVisualizzaAree);
 		
 		
 		
