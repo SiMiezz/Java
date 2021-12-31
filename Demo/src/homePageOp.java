@@ -246,7 +246,7 @@ public class homePageOp extends JFrame {
 			}
 		});
 		btnInserimento.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnInserimento.setBounds(236, 271, 96, 23);
+		btnInserimento.setBounds(236, 271, 100, 23);
 		panelInserisci.add(btnInserimento);
 		
 		JPanel panelVisualizza = new JPanel();
@@ -311,32 +311,32 @@ public class homePageOp extends JFrame {
 				}
 			}
 		});
-		btnSelezionaModifica.setBounds(338, 238, 89, 23);
+		btnSelezionaModifica.setBounds(327, 238, 100, 23);
 		panelModifica.add(btnSelezionaModifica);
 		
 		txtModificaNome = new JTextField();
-		txtModificaNome.setBounds(142, 272, 199, 20);
+		txtModificaNome.setBounds(142, 272, 187, 20);
 		panelModifica.add(txtModificaNome);
 		txtModificaNome.setColumns(10);
 		
 		txtModificaDesc = new JTextField();
-		txtModificaDesc.setBounds(142, 303, 199, 20);
+		txtModificaDesc.setBounds(142, 303, 187, 20);
 		panelModifica.add(txtModificaDesc);
 		txtModificaDesc.setColumns(10);
 		
 		txtModificaPresenze = new JTextField();
-		txtModificaPresenze.setBounds(142, 334, 199, 20);
+		txtModificaPresenze.setBounds(142, 334, 187, 20);
 		panelModifica.add(txtModificaPresenze);
 		txtModificaPresenze.setColumns(10);
 		
 		txtModificaPartecipanti = new JTextField();
-		txtModificaPartecipanti.setBounds(142, 365, 199, 20);
+		txtModificaPartecipanti.setBounds(142, 365, 187, 20);
 		panelModifica.add(txtModificaPartecipanti);
 		txtModificaPartecipanti.setColumns(10);
 		
 		txtModificaID = new JTextField();
 		txtModificaID.setEditable(false);
-		txtModificaID.setBounds(142, 396, 199, 20);
+		txtModificaID.setBounds(142, 396, 187, 20);
 		panelModifica.add(txtModificaID);
 		txtModificaID.setColumns(10);
 		
@@ -398,7 +398,7 @@ public class homePageOp extends JFrame {
 				txtModificaID.setText(null);
 			}
 		});
-		btnAggiorna.setBounds(351, 395, 89, 23);
+		btnAggiorna.setBounds(337, 395, 100, 23);
 		panelModifica.add(btnAggiorna);
 		
 		JPanel panelStatistiche = new JPanel();
@@ -443,55 +443,55 @@ public class homePageOp extends JFrame {
 				}
 			}
 		});
-		btnSelezionaStatistiche.setBounds(339, 236, 89, 23);
+		btnSelezionaStatistiche.setBounds(328, 236, 100, 23);
 		panelStatistiche.add(btnSelezionaStatistiche);
 		
 		txtNumMedio = new JTextField();
 		txtNumMedio.setEditable(false);
-		txtNumMedio.setBounds(221, 270, 120, 20);
+		txtNumMedio.setBounds(210, 270, 120, 20);
 		panelStatistiche.add(txtNumMedio);
 		txtNumMedio.setColumns(10);
 		
 		JLabel lblNumMedio = new JLabel("Numero medio Studenti");
 		lblNumMedio.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNumMedio.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNumMedio.setBounds(71, 273, 140, 14);
+		lblNumMedio.setBounds(60, 272, 140, 14);
 		panelStatistiche.add(lblNumMedio);
 		
 		txtMinStud = new JTextField();
 		txtMinStud.setEditable(false);
-		txtMinStud.setBounds(221, 301, 120, 20);
+		txtMinStud.setBounds(210, 301, 120, 20);
 		panelStatistiche.add(txtMinStud);
 		txtMinStud.setColumns(10);
 		
 		txtMaxStud = new JTextField();
 		txtMaxStud.setEditable(false);
-		txtMaxStud.setBounds(221, 332, 120, 20);
+		txtMaxStud.setBounds(210, 332, 120, 20);
 		panelStatistiche.add(txtMaxStud);
 		txtMaxStud.setColumns(10);
 		
 		txtRiempimento = new JTextField();
 		txtRiempimento.setEditable(false);
-		txtRiempimento.setBounds(221, 363, 120, 20);
+		txtRiempimento.setBounds(210, 363, 120, 20);
 		panelStatistiche.add(txtRiempimento);
 		txtRiempimento.setColumns(10);
 		
 		JLabel lblMinStud = new JLabel("Studenti minimi");
 		lblMinStud.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMinStud.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblMinStud.setBounds(71, 304, 140, 14);
+		lblMinStud.setBounds(60, 303, 140, 14);
 		panelStatistiche.add(lblMinStud);
 		
 		JLabel lblMaxStud = new JLabel("Studenti massimi");
 		lblMaxStud.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMaxStud.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblMaxStud.setBounds(71, 335, 140, 14);
+		lblMaxStud.setBounds(60, 334, 140, 14);
 		panelStatistiche.add(lblMaxStud);
 		
 		JLabel lblRiempimento = new JLabel("Riempimento medio");
 		lblRiempimento.setHorizontalAlignment(SwingConstants.CENTER);
 		lblRiempimento.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblRiempimento.setBounds(71, 366, 140, 14);
+		lblRiempimento.setBounds(60, 365, 140, 14);
 		panelStatistiche.add(lblRiempimento);
 		
 		JPanel panelNewAreeTematiche = new JPanel();
@@ -533,22 +533,22 @@ public class homePageOp extends JFrame {
 				}
 			}
 		});
-		btnSelezionaNewAree.setBounds(333, 236, 89, 23);
+		btnSelezionaNewAree.setBounds(322, 236, 100, 23);
 		panelNewAreeTematiche.add(btnSelezionaNewAree);
 		
 		txtTipoAree = new JTextField();
-		txtTipoAree.setBounds(141, 270, 194, 20);
+		txtTipoAree.setBounds(141, 270, 184, 20);
 		panelNewAreeTematiche.add(txtTipoAree);
 		txtTipoAree.setColumns(10);
 		
 		txtDescAree = new JTextField();
-		txtDescAree.setBounds(141, 301, 194, 20);
+		txtDescAree.setBounds(141, 301, 184, 20);
 		panelNewAreeTematiche.add(txtDescAree);
 		txtDescAree.setColumns(10);
 		
 		txtIdAree = new JTextField();
 		txtIdAree.setEditable(false);
-		txtIdAree.setBounds(141, 332, 194, 20);
+		txtIdAree.setBounds(141, 332, 184, 20);
 		panelNewAreeTematiche.add(txtIdAree);
 		txtIdAree.setColumns(10);
 		
@@ -594,7 +594,7 @@ public class homePageOp extends JFrame {
 				txtIdAree.setText(null);
 			}
 		});
-		btnCreaAree.setBounds(333, 363, 89, 23);
+		btnCreaAree.setBounds(322, 363, 100, 23);
 		panelNewAreeTematiche.add(btnCreaAree);
 		
 		JPanel panelSuperamento = new JPanel();
@@ -620,13 +620,13 @@ public class homePageOp extends JFrame {
 		layeredPane.add(panelAreeTematiche, "name_364509658303200");
 		panelAreeTematiche.setLayout(null);
 		
-		JLabel lblAreeTematiche = new JLabel("VISUALIZZA CORSI PER AREE TEMATICHE");
+		JLabel lblAreeTematiche = new JLabel("VISUALIZZA AREE TEMATICHE PER CORSI");
 		lblAreeTematiche.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAreeTematiche.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblAreeTematiche.setBounds(10, 11, 544, 14);
 		panelAreeTematiche.add(lblAreeTematiche);
 		
-		JLabel lblAlertAree = new JLabel("Seleziona il tipo dell'area tematica");
+		JLabel lblAlertAree = new JLabel("Seleziona l'id del corso");
 		lblAlertAree.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAlertAree.setForeground(Color.BLUE);
 		lblAlertAree.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -637,29 +637,29 @@ public class homePageOp extends JFrame {
 		scrollPaneAreeTema.setBounds(144, 61, 279, 164);
 		panelAreeTematiche.add(scrollPaneAreeTema);
 		
-		JTextArea txtAreeTematiche = new JTextArea();
-		scrollPaneAreeTema.setViewportView(txtAreeTematiche);
-		txtAreeTematiche.setFont(new Font("Monospaced", Font.PLAIN, 16));
-		txtAreeTematiche.setEditable(false);
+		JTextArea txtCorsiAree = new JTextArea();
+		scrollPaneAreeTema.setViewportView(txtCorsiAree);
+		txtCorsiAree.setFont(new Font("Monospaced", Font.PLAIN, 16));
+		txtCorsiAree.setEditable(false);
 		
 		JScrollPane scrollPaneCorsiAree = new JScrollPane();
 		scrollPaneCorsiAree.setBounds(144, 268, 277, 162);
 		panelAreeTematiche.add(scrollPaneCorsiAree);
 		
-		JTextArea txtCorsiAree = new JTextArea();
-		scrollPaneCorsiAree.setViewportView(txtCorsiAree);
-		txtCorsiAree.setFont(new Font("Monospaced", Font.PLAIN, 16));
-		txtCorsiAree.setEditable(false);
+		JTextArea txtAreeTematiche = new JTextArea();
+		scrollPaneCorsiAree.setViewportView(txtAreeTematiche);
+		txtAreeTematiche.setFont(new Font("Monospaced", Font.PLAIN, 16));
+		txtAreeTematiche.setEditable(false);
 		
 		JButton btnSelezionaAree = new JButton("SELEZIONA");
 		btnSelezionaAree.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(txtAreeTematiche.getSelectedText()!=null) {
-					String tipo = txtAreeTematiche.getSelectedText();
+				if(txtCorsiAree.getSelectedText()!=null) {
+					int id = Integer.valueOf(txtCorsiAree.getSelectedText());
 					
-	                txtCorsiAree.setText(null);
-	                for (CorsoFormazione corso:c.getCorsiAree(tipo)) {
-	        			txtVisualizza.append(corso.getIdCorso() + " " + corso.getNome() + " " + corso.getDescrizione() + "\n");
+	                txtAreeTematiche.setText(null);
+	                for (AreeTematiche aree:c.getAreeCorso(c.getCorso(id),op)) {
+	                	txtAreeTematiche.append(aree.getTipo() + " " + aree.getDescrizione() + "\n");
 	        		}
 				}
 				else {
@@ -668,7 +668,7 @@ public class homePageOp extends JFrame {
 				
 			}
 		});
-		btnSelezionaAree.setBounds(334, 234, 89, 23);
+		btnSelezionaAree.setBounds(323, 234, 100, 23);
 		panelAreeTematiche.add(btnSelezionaAree);
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -774,10 +774,10 @@ public class homePageOp extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				switchPanel(layeredPane, panelAreeTematiche);
 				
-				op.setAree(c.getAree(op));
-                txtAreeTematiche.setText(null);
-                for (AreeTematiche aree:op.getAree()) {
-                	txtAreeTematiche.append(aree.getTipo() + " " + aree.getDescrizione() + "\n");
+				op.setCorsi(c.getCorsiOperatore(op));
+                txtCorsiAree.setText(null);
+                for (CorsoFormazione corso:c.getCorsiOperatore(op)) {
+                	txtCorsiAree.append(corso.getIdCorso() + " " + corso.getNome() + " " + corso.getDescrizione() + "\n");
         		}
 			}
 		});

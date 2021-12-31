@@ -244,11 +244,14 @@ public class homePageStud extends JFrame {
 		lblVisualizzaLezioni.setBounds(10, 11, 544, 14);
 		panelLezioni.add(lblVisualizzaLezioni);
 		
+		JScrollPane scrollPaneLezioni = new JScrollPane();
+		scrollPaneLezioni.setBounds(10, 32, 540, 217);
+		panelLezioni.add(scrollPaneLezioni);
+		
 		JTextArea txtLezioni = new JTextArea();
+		scrollPaneLezioni.setViewportView(txtLezioni);
 		txtLezioni.setFont(new Font("Monospaced", Font.PLAIN, 16));
 		txtLezioni.setEditable(false);
-		txtLezioni.setBounds(10, 32, 540, 217);
-		panelLezioni.add(txtLezioni);
 		
 		JPanel panelPartecipa = new JPanel();
 		layeredPane.add(panelPartecipa, "name_367912807561300");
@@ -294,7 +297,7 @@ public class homePageStud extends JFrame {
 				}
 			}
 		});
-		btnPartecipa.setBounds(337, 238, 89, 23);
+		btnPartecipa.setBounds(326, 238, 100, 23);
 		panelPartecipa.add(btnPartecipa);
 		
 		JMenuBar menuBar = new JMenuBar();

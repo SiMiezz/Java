@@ -31,22 +31,23 @@ public class AreeTematicheDAO {
 			return false;
 		}
 	}
+
 	
-	public ArrayList<AreeTematiche> getAree(Operatore op) throws SQLException {
+	public ArrayList<AreeTematiche> getAreeCorso(CorsoFormazione corso,Operatore op) throws SQLException {
 		ArrayList <AreeTematiche> aree = new ArrayList<AreeTematiche>();
 		
 		try {
 			Connection conn = DataBaseConnection.getInstance().getConnection();
 			Statement st= conn.createStatement();
-			String query = "SELECT * FROM areetematiche AS ar JOIN corsoformazione AS cs ON ar.idcorso = cs.idcorso WHERE ar.id = ?";
+			String query = "SELECT * FROM areetematiche AS ar JOIN corsoformazione AS cs ON ar.idcorso = cs.idcorso WHERE cs.idcorso = ?";
 			
 			PreparedStatement statement = conn.prepareStatement(query);
-			statement.setString(1, op.getId());
+			statement.setInt(1, corso.getIdCorso());
 			
 			ResultSet rs = statement.executeQuery();
 			
 			while(rs.next()) {
-				AreeTematiche area = extractAree(rs,op);
+				AreeTematiche area = extractAree(rs,corso,op);
 				aree.add(area);
 			}
 			
@@ -61,19 +62,11 @@ public class AreeTematicheDAO {
 		return aree;
 	}
 	
-	public AreeTematiche extractAree(ResultSet rs,Operatore op) throws SQLException{
+	public AreeTematiche extractAree(ResultSet rs,CorsoFormazione corso,Operatore op) throws SQLException{
 		AreeTematiche area = new AreeTematiche();
 		
 		area.setTipo(rs.getString(1));
 		area.setDescrizione(rs.getString(2));
-		
-		CorsoFormazione corso = new CorsoFormazione();
-		corso.setIdCorso(rs.getInt(4));
-		corso.setNome(rs.getString(5));
-		corso.setDescrizione(rs.getString(6));
-		corso.setPresenzeMin(rs.getInt(7));
-		corso.setMaxPartecipanti(rs.getInt(8));
-		
 		area.setCorso(corso);
 		area.setOp(op);
 		

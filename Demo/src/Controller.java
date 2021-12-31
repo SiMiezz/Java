@@ -119,9 +119,9 @@ public class Controller {
 		}
 	}
 	
-	public ArrayList<CorsoFormazione> getCorsiAree(String tipo){
+	public ArrayList<AreeTematiche> getAreeCorso(CorsoFormazione corso,Operatore op){
 		try {
-			return corsodao.getCorsiAree(tipo);
+			return areedao.getAreeCorso(corso,op);
 		}catch(SQLException e){
 			//e.printStackTrace();
 			return null;
@@ -181,15 +181,7 @@ public class Controller {
 			return null;
 		}
 	}
-	
-	public ArrayList<AreeTematiche> getAree(Operatore op) {
-		try {
-			return areedao.getAree(op);
-		}catch(SQLException e){
-			//e.printStackTrace();
-			return null;
-		}
-	}
+
 	
 	public boolean inserisciCorso(String nome, String descrizione, int presenzeMin, int maxPartecipanti, Operatore op) {
 		try {
