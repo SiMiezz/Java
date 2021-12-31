@@ -366,7 +366,7 @@ public class homePageStud extends JFrame {
 				switchPanel(layeredPane, panelNewIscrizione);
 				
 				txtNewIscrizione.setText(null);
-				for(CorsoFormazione corso:c.getCorsi(stud)) {
+				for(CorsoFormazione corso:c.getCorsiIscrizione(stud)) {
 					txtNewIscrizione.append(corso.getIdCorso() + " " + corso.getNome() + " " + corso.getDescrizione() + "\n");
 				}
 			}
@@ -383,7 +383,7 @@ public class homePageStud extends JFrame {
 				
 				txtLezioni.setText(null);
 				for(Lezione lezione:c.getLezioni(stud)) {
-					txtLezioni.append(lezione.getIdlezione() + " " + lezione.getTitolo() + " " + lezione.getDatainizio() +"\n");
+					txtLezioni.append(lezione.getIdlezione() + " " + lezione.getTitolo() + " " + lezione.getDatainizio() + " " + lezione.getOrarioinizio() + "\n");
 				}
 			}
 		});
@@ -393,6 +393,11 @@ public class homePageStud extends JFrame {
 		mntmPartecipaLezioni.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				switchPanel(layeredPane, panelPartecipa);
+				
+				txtPartecipa.setText(null);
+				for(Lezione lezione:c.getLezioniPartecipa(stud)) {
+					txtPartecipa.append(lezione.getIdlezione() + " " + lezione.getTitolo() + " " + lezione.getDatainizio() + "\n");
+				}
 			}
 		});
 		mnLezioni.add(mntmPartecipaLezioni);

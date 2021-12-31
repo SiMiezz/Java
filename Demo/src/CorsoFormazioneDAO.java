@@ -63,7 +63,7 @@ public class CorsoFormazioneDAO {
 		}
 	}
 	
-	public ArrayList<CorsoFormazione> getCorsi(Operatore op) throws SQLException {
+	public ArrayList<CorsoFormazione> getCorsiOperatore(Operatore op) throws SQLException {
 		ArrayList <CorsoFormazione> corsi = new ArrayList<CorsoFormazione>();
 		
 		try {
@@ -92,7 +92,7 @@ public class CorsoFormazioneDAO {
 		return corsi;
 	}
 	
-	public ArrayList<CorsoFormazione> getCorsi(Studente stud) throws SQLException {
+	public ArrayList<CorsoFormazione> getCorsiIscrizione(Studente stud) throws SQLException {
 		ArrayList <CorsoFormazione> corsi = new ArrayList<CorsoFormazione>();
 		
 		try {
@@ -102,6 +102,35 @@ public class CorsoFormazioneDAO {
 			
 			PreparedStatement statement = conn.prepareStatement(query);
 			statement.setString(1, stud.getMatricola());
+			
+			ResultSet rs = statement.executeQuery();
+			
+			while(rs.next()) {
+				CorsoFormazione corso = extractCorsi(rs);
+				corsi.add(corso);
+			}
+			
+			rs.close();
+			st.close();
+			conn.close();
+		}
+		catch(SQLException e) {
+			//e.printStackTrace();
+		}
+		
+		return corsi;
+	}
+	
+	public ArrayList<CorsoFormazione> getCorsiAree(String tipo) throws SQLException {
+		ArrayList <CorsoFormazione> corsi = new ArrayList<CorsoFormazione>();
+		
+		try {
+			Connection conn = DataBaseConnection.getInstance().getConnection();
+			Statement st= conn.createStatement();
+			String query = "SELECT * FROM corsoformazione AS cs JOIN areetematiche AS ar ON cs.idcorso = ar.idcorso WHERE ar.tipo = ?";
+			
+			PreparedStatement statement = conn.prepareStatement(query);
+			statement.setString(1, tipo);
 			
 			ResultSet rs = statement.executeQuery();
 			

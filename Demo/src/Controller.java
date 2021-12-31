@@ -101,18 +101,27 @@ public class Controller {
 		}
 	}
 	
-	public ArrayList<CorsoFormazione> getCorsi(Operatore op) {
+	public ArrayList<CorsoFormazione> getCorsiOperatore(Operatore op) {
 		try {
-			return corsodao.getCorsi(op);
+			return corsodao.getCorsiOperatore(op);
 		}catch(SQLException e){
 			//e.printStackTrace();
 			return null;
 		}
 	}
 	
-	public ArrayList<CorsoFormazione> getCorsi(Studente stud){
+	public ArrayList<CorsoFormazione> getCorsiIscrizione(Studente stud){
 		try {
-			return corsodao.getCorsi(stud);
+			return corsodao.getCorsiIscrizione(stud);
+		}catch(SQLException e){
+			//e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public ArrayList<CorsoFormazione> getCorsiAree(String tipo){
+		try {
+			return corsodao.getCorsiAree(tipo);
 		}catch(SQLException e){
 			//e.printStackTrace();
 			return null;
@@ -122,6 +131,15 @@ public class Controller {
 	public ArrayList<Lezione> getLezioni(Studente stud){
 		try {
 			return lezdao.getLezioni(stud);
+		}catch(SQLException e) {
+			//e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public ArrayList<Lezione> getLezioniPartecipa(Studente stud){
+		try {
+			return lezdao.getLezioniPartecipa(stud);
 		}catch(SQLException e) {
 			//e.printStackTrace();
 			return null;
@@ -158,6 +176,15 @@ public class Controller {
 	public ArrayList<Iscritto> getIscrizioni(Studente stud) {
 		try {
 			return iscdao.getIscrizioni(stud);
+		}catch(SQLException e){
+			//e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public ArrayList<AreeTematiche> getAree(Operatore op) {
+		try {
+			return areedao.getAree(op);
 		}catch(SQLException e){
 			//e.printStackTrace();
 			return null;
@@ -209,9 +236,9 @@ public class Controller {
 		}
 	}
 	
-	public boolean aggiungiAree(String tipo,String descrizione,CorsoFormazione corso) {
+	public boolean aggiungiAree(String tipo,String descrizione,CorsoFormazione corso,Operatore op) {
 		try {
-			if(areedao.aggiungiAree(tipo,descrizione,corso)) {
+			if(areedao.aggiungiAree(tipo,descrizione,corso,op)) {
 				return true;
 			}
 			else {

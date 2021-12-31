@@ -2,6 +2,15 @@
 public class AreeTematiche {
 	private String tipo,descrizione;
 	private CorsoFormazione corso = new CorsoFormazione();
+	private Operatore op = new Operatore();
+
+	public Operatore getOp() {
+		return op;
+	}
+
+	public void setOp(Operatore op) {
+		this.op = op;
+	}
 
 	public String getTipo() {
 		return tipo;

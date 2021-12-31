@@ -5,7 +5,14 @@ public class Operatore {
 	private String nome,cognome,cf,id,password;
 	private Date data;
 	private ArrayList <CorsoFormazione> corsi = new ArrayList<CorsoFormazione>();
+	private ArrayList <AreeTematiche> aree = new ArrayList<AreeTematiche>();
 	
+	public ArrayList<AreeTematiche> getAree() {
+		return aree;
+	}
+	public void setAree(ArrayList<AreeTematiche> aree) {
+		this.aree = aree;
+	}
 	public String getNome() {
 		return nome;
 	}

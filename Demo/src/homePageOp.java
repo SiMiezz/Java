@@ -123,7 +123,7 @@ public class homePageOp extends JFrame {
 		op.setCognome(c.getOp(id).getCognome());
 		op.setData(c.getOp(id).getData());
 		op.setCf(c.getOp(id).getCf());
-		op.setCorsi(c.getCorsi(op));
+		op.setCorsi(c.getCorsiOperatore(op));
 		
 		txtNome.setText(op.getNome());
 		txtCognome.setText(op.getCognome());
@@ -578,7 +578,7 @@ public class homePageOp extends JFrame {
 					String descrizione = txtDescAree.getText();
 					int id = Integer.valueOf(txtIdAree.getText());
 					
-					if(c.aggiungiAree(tipo,descrizione,c.getCorso(id))) {
+					if(c.aggiungiAree(tipo,descrizione,c.getCorso(id),op)) {
 						c.confirmInsertAree();
 					}
 					else {
@@ -642,10 +642,6 @@ public class homePageOp extends JFrame {
 		txtAreeTematiche.setFont(new Font("Monospaced", Font.PLAIN, 16));
 		txtAreeTematiche.setEditable(false);
 		
-		JButton btnSelezionaAree = new JButton("SELEZIONA");
-		btnSelezionaAree.setBounds(334, 234, 89, 23);
-		panelAreeTematiche.add(btnSelezionaAree);
-		
 		JScrollPane scrollPaneCorsiAree = new JScrollPane();
 		scrollPaneCorsiAree.setBounds(144, 268, 277, 162);
 		panelAreeTematiche.add(scrollPaneCorsiAree);
@@ -654,6 +650,26 @@ public class homePageOp extends JFrame {
 		scrollPaneCorsiAree.setViewportView(txtCorsiAree);
 		txtCorsiAree.setFont(new Font("Monospaced", Font.PLAIN, 16));
 		txtCorsiAree.setEditable(false);
+		
+		JButton btnSelezionaAree = new JButton("SELEZIONA");
+		btnSelezionaAree.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(txtAreeTematiche.getSelectedText()!=null) {
+					String tipo = txtAreeTematiche.getSelectedText();
+					
+	                txtCorsiAree.setText(null);
+	                for (CorsoFormazione corso:c.getCorsiAree(tipo)) {
+	        			txtVisualizza.append(corso.getIdCorso() + " " + corso.getNome() + " " + corso.getDescrizione() + "\n");
+	        		}
+				}
+				else {
+					c.alertSeleziona();
+				}
+				
+			}
+		});
+		btnSelezionaAree.setBounds(334, 234, 89, 23);
+		panelAreeTematiche.add(btnSelezionaAree);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -693,7 +709,7 @@ public class homePageOp extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				switchPanel(layeredPane, panelVisualizza);
 				
-				op.setCorsi(c.getCorsi(op));
+				op.setCorsi(c.getCorsiOperatore(op));
                 txtVisualizza.setText(null);
                 for (CorsoFormazione corso:op.getCorsi()) {
         			txtVisualizza.append(corso.getIdCorso() + " " + corso.getNome() + " " + corso.getDescrizione() + "\n");
@@ -715,7 +731,7 @@ public class homePageOp extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				switchPanel(layeredPane, panelModifica);
 				
-				op.setCorsi(c.getCorsi(op));
+				op.setCorsi(c.getCorsiOperatore(op));
                 txtModifica.setText(null);
                 for (CorsoFormazione corso:op.getCorsi()) {
         			txtModifica.append(corso.getIdCorso() + " " + corso.getNome() + " " + corso.getDescrizione() + "\n");
@@ -733,7 +749,7 @@ public class homePageOp extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				switchPanel(layeredPane, panelStatistiche);
 				
-				op.setCorsi(c.getCorsi(op));
+				op.setCorsi(c.getCorsiOperatore(op));
                 txtStatistiche.setText(null);
                 for (CorsoFormazione corso:op.getCorsi()) {
                 	txtStatistiche.append(corso.getIdCorso() + " " + corso.getNome() + " " + corso.getDescrizione() + "\n");
@@ -757,6 +773,12 @@ public class homePageOp extends JFrame {
 		mntmVisualizzaAree.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				switchPanel(layeredPane, panelAreeTematiche);
+				
+				op.setAree(c.getAree(op));
+                txtAreeTematiche.setText(null);
+                for (AreeTematiche aree:op.getAree()) {
+                	txtAreeTematiche.append(aree.getTipo() + " " + aree.getDescrizione() + "\n");
+        		}
 			}
 		});
 		mnAreeTematiche.add(mntmVisualizzaAree);
@@ -766,7 +788,7 @@ public class homePageOp extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				switchPanel(layeredPane, panelNewAreeTematiche);
 				
-				op.setCorsi(c.getCorsi(op));
+				op.setCorsi(c.getCorsiOperatore(op));
                 txtNewAreeTematiche.setText(null);
                 for (CorsoFormazione corso:op.getCorsi()) {
                 	txtNewAreeTematiche.append(corso.getIdCorso() + " " + corso.getNome() + " " + corso.getDescrizione() + "\n");
