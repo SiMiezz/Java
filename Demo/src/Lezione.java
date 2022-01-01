@@ -8,7 +8,6 @@ public class Lezione {
 	private Date datainizio;
 	private Time durata,orarioinizio;
 	private CorsoFormazione corso = new CorsoFormazione();
-	private ArrayList<Partecipa> partecipa = new ArrayList<Partecipa>();
 	
 	public int getIdlezione() {
 		return idlezione;
@@ -52,11 +51,4 @@ public class Lezione {
 	public void setCorso(CorsoFormazione corso) {
 		this.corso = corso;
 	}
-	public ArrayList<Partecipa> getPartecipa() {
-		return partecipa;
-	}
-	public void setPartecipa(ArrayList<Partecipa> partecipa) {
-		this.partecipa = partecipa;
-	}
-	
 }
