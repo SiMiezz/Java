@@ -282,8 +282,8 @@ public class homePageStud extends JFrame {
 		JButton btnPartecipa = new JButton("PARTECIPA");
 		btnPartecipa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(txtLezioni.getSelectedText() != null) {
-					int id = Integer.valueOf(txtLezioni.getSelectedText());
+				if(txtPartecipa.getSelectedText() != null) {
+					int id = Integer.valueOf(txtPartecipa.getSelectedText());
 					
 					if(c.partecipa(stud,id)) {
 						c.confirmInsertPresenza();

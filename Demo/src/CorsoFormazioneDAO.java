@@ -153,6 +153,65 @@ public class CorsoFormazioneDAO {
 		return corso;
 	}
 	
+	public ArrayList<CorsoFormazione> getCorsiNoTermina(Operatore op) throws SQLException {
+		ArrayList <CorsoFormazione> corsi = new ArrayList<CorsoFormazione>();
+		
+		try {
+			Connection conn = DataBaseConnection.getInstance().getConnection();
+			Statement st= conn.createStatement();
+			String query = "SELECT * FROM corsoformazione AS cs WHERE cs.id = ? AND cs.idcorso NOT IN (SELECT cs.idcorso FROM corsoformazione AS cs JOIN terminazione AS ter ON cs.idcorso = ter.idcorso WHERE cs.id = ?)";
+			
+			PreparedStatement statement = conn.prepareStatement(query);
+			statement.setString(1, op.getId());
+			statement.setString(2, op.getId());
+			
+			ResultSet rs = statement.executeQuery();
+			
+			while(rs.next()) {
+				CorsoFormazione corso = extractCorso(rs,op);
+				corsi.add(corso);
+			}
+			
+			rs.close();
+			st.close();
+			conn.close();
+		}
+		catch(SQLException e) {
+			//e.printStackTrace();
+		}
+		
+		return corsi;
+	}
+	
+	public ArrayList<CorsoFormazione> getCorsiTermina(Operatore op) throws SQLException {
+		ArrayList <CorsoFormazione> corsi = new ArrayList<CorsoFormazione>();
+		
+		try {
+			Connection conn = DataBaseConnection.getInstance().getConnection();
+			Statement st= conn.createStatement();
+			String query = "SELECT * FROM corsoformazione AS cs JOIN terminazione AS ter ON cs.idcorso = ter.idcorso WHERE cs.id = ?";
+			
+			PreparedStatement statement = conn.prepareStatement(query);
+			statement.setString(1, op.getId());
+			
+			ResultSet rs = statement.executeQuery();
+			
+			while(rs.next()) {
+				CorsoFormazione corso = extractCorso(rs,op);
+				corsi.add(corso);
+			}
+			
+			rs.close();
+			st.close();
+			conn.close();
+		}
+		catch(SQLException e) {
+			//e.printStackTrace();
+		}
+		
+		return corsi;
+	}
+	
 	public ArrayList<CorsoFormazione> getAllCorsi() throws SQLException {
 		ArrayList <CorsoFormazione> corsi = new ArrayList<CorsoFormazione>();
 		

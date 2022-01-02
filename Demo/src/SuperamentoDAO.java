@@ -3,13 +3,13 @@ import java.util.*;
 
 public class SuperamentoDAO {
 	
-	public ArrayList<Superamento> getSupera(CorsoFormazione corso) throws SQLException{
+	public ArrayList<Superamento> getStudSupera(CorsoFormazione corso) throws SQLException{
 		ArrayList<Superamento> superati = new ArrayList<Superamento>();
 		
 		try {
 			Connection conn = DataBaseConnection.getInstance().getConnection();
 			Statement st= conn.createStatement();
-			String query = "SELECT * FROM superamento AS sup JOIN studente AS stud ON sup.matricola = stud.matricola WHERE idcorso = ?";
+			String query = "SELECT * FROM superamento AS sup JOIN studente AS stud ON sup.matricola = stud.matricola WHERE sup.idcorso = ? AND sup.superato = true";
 			
 			PreparedStatement statement = conn.prepareStatement(query);
 			statement.setInt(1, corso.getIdCorso());

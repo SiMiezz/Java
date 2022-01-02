@@ -19,6 +19,8 @@ public class Controller {
 	private AreeTematicheDAO areedao = new AreeTematicheDAO();
 	private PartecipaDAO pardao = new PartecipaDAO();
 	private StatisticheDAO statdao = new StatisticheDAO();
+	private SuperamentoDAO supdao = new SuperamentoDAO();
+	private TerminazioneDAO terminadao = new TerminazioneDAO();
 	
 	public static void main(String[] args) {
 		Controller c= new Controller();
@@ -119,6 +121,24 @@ public class Controller {
 		}
 	}
 	
+	public ArrayList<CorsoFormazione> getCorsiNoTermina(Operatore op){
+		try {
+			return corsodao.getCorsiNoTermina(op);
+		}catch(SQLException e){
+			//e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public ArrayList<CorsoFormazione> getCorsiTermina(Operatore op){
+		try {
+			return corsodao.getCorsiTermina(op);
+		}catch(SQLException e){
+			//e.printStackTrace();
+			return null;
+		}
+	}
+	
 	public ArrayList<AreeTematiche> getAreeCorso(CorsoFormazione corso,Operatore op){
 		try {
 			return areedao.getAreeCorso(corso,op);
@@ -181,7 +201,15 @@ public class Controller {
 			return null;
 		}
 	}
-
+	
+	public ArrayList<Superamento> getStudSupera(CorsoFormazione corso) {
+		try {
+			return supdao.getStudSupera(corso);
+		}catch(SQLException e){
+			//e.printStackTrace();
+			return null;
+		}
+	}
 	
 	public boolean inserisciCorso(String nome, String descrizione, int presenzeMin, int maxPartecipanti, Operatore op) {
 		try {
@@ -231,6 +259,21 @@ public class Controller {
 	public boolean aggiungiAree(String tipo,String descrizione,CorsoFormazione corso,Operatore op) {
 		try {
 			if(areedao.aggiungiAree(tipo,descrizione,corso,op)) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		catch(SQLException e) {
+			//e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public boolean terminaCorso(CorsoFormazione corso,Operatore op) {
+		try {
+			if(terminadao.terminaCorso(corso,op)) {
 				return true;
 			}
 			else {
@@ -353,5 +396,13 @@ public class Controller {
 	
 	public void alertInsertPresenza() {
 		JOptionPane.showMessageDialog(hps, "Presenza non effettuata");
+	}
+	
+	public void confirmTermina() {
+		JOptionPane.showMessageDialog(hpo, "Corso Terminato");
+	}
+	
+	public void alertTermina() {
+		JOptionPane.showMessageDialog(hpo, "Corso non terminato");
 	}
 }
