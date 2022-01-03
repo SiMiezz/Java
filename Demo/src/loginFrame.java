@@ -46,7 +46,7 @@ public class loginFrame extends JFrame {
 		
 		setTitle("LOGIN");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 550, 401);
+		setBounds(100, 100, 550, 400);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -88,7 +88,7 @@ public class loginFrame extends JFrame {
 				pwdField.setText(null);
 			}
 		});
-		btnGo.setBounds(362, 315, 162, 35);
+		btnGo.setBounds(374, 315, 150, 35);
 		contentPane.add(btnGo);
 		
 		pwdField = new JPasswordField();
@@ -99,9 +99,10 @@ public class loginFrame extends JFrame {
 		BoxSceltaLogin = new JComboBox();
 		BoxSceltaLogin.setBackground(Color.WHITE);
 		BoxSceltaLogin.setModel(new DefaultComboBoxModel(new String[] {"Studente", "Operatore"}));
+		BoxSceltaLogin.setSelectedIndex(1);
 		BoxSceltaLogin.setToolTipText("");
 		BoxSceltaLogin.setEditable(true);
-		BoxSceltaLogin.setBounds(270, 53, 100, 20);
+		BoxSceltaLogin.setBounds(240, 193, 100, 20);
 		contentPane.add(BoxSceltaLogin);
 		
 		JButton btnRegistrati = new JButton("REGISTRATI");
@@ -118,17 +119,13 @@ public class loginFrame extends JFrame {
 		lblLoginTitle.setForeground(Color.RED);
 		lblLoginTitle.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lblLoginTitle.setHorizontalAlignment(SwingConstants.CENTER);
-		lblLoginTitle.setBounds(192, 11, 148, 25);
+		lblLoginTitle.setBounds(20, 11, 504, 25);
 		contentPane.add(lblLoginTitle);
 		
-		JLabel lblTipoLogin = new JLabel("Selezionare il tipo di login:\r\n");
-		lblTipoLogin.setFont(new Font("Tahoma", Font.ITALIC, 16));
-		lblTipoLogin.setLabelFor(BoxSceltaLogin);
-		lblTipoLogin.setBounds(63, 53, 197, 17);
-		contentPane.add(lblTipoLogin);
-		
-		JLabel lblRegistrati = new JLabel("Non sei registrato? Clicca qui...");
-		lblRegistrati.setBounds(20, 307, 181, 14);
+		JLabel lblRegistrati = new JLabel("Non sei registrato?");
+		lblRegistrati.setForeground(Color.BLUE);
+		lblRegistrati.setHorizontalAlignment(SwingConstants.CENTER);
+		lblRegistrati.setBounds(20, 296, 120, 14);
 		contentPane.add(lblRegistrati);
 	}
 }

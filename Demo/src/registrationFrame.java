@@ -48,7 +48,6 @@ public class registrationFrame extends JFrame {
 	private JTextField txtData;
 	private JLabel lblInserimentoData;
 	private JButton btnLogin;
-	private JLabel lblTipoRegistrazione;
 
 	public registrationFrame(Controller c) {
 		setResizable(false);
@@ -56,7 +55,7 @@ public class registrationFrame extends JFrame {
 		
 		setTitle("REGISTRAZIONE");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 600, 457);
+		setBounds(100, 100, 600, 475);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -76,7 +75,7 @@ public class registrationFrame extends JFrame {
 		boxSceltaRegistration = new JComboBox();
 		boxSceltaRegistration.setModel(new DefaultComboBoxModel(new String[] {"Studente", "Operatore"}));
 		boxSceltaRegistration.setSelectedIndex(1);
-		boxSceltaRegistration.setBounds(395, 47, 100, 20);
+		boxSceltaRegistration.setBounds(285, 310, 100, 20);
 		contentPane.add(boxSceltaRegistration);
 		
 		txtNome = new JTextField();
@@ -115,7 +114,7 @@ public class registrationFrame extends JFrame {
 		idLbl.setBounds(105, 249, 120, 14);
 		contentPane.add(idLbl);
 		
-		JButton btnRegistration = new JButton("INVIO");
+		JButton btnRegistration = new JButton("REGISTRATI");
 		btnRegistration.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnRegistration.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -146,7 +145,7 @@ public class registrationFrame extends JFrame {
 				txtData.setText(null);
 			}
 		});
-		btnRegistration.setBounds(434, 330, 140, 35);
+		btnRegistration.setBounds(424, 390, 150, 35);
 		contentPane.add(btnRegistration);
 		
 		txtCF = new JTextField();
@@ -179,32 +178,35 @@ public class registrationFrame extends JFrame {
 		lblInserimentoData.setBounds(395, 185, 150, 18);
 		contentPane.add(lblInserimentoData);
 		
-		btnLogin = new JButton("< back");
-		btnLogin.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		btnLogin = new JButton("LOGIN");
+		btnLogin.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				c.backLogin();
 			}
 		});
-		btnLogin.setBounds(10, 387, 68, 20);
+		btnLogin.setBounds(10, 396, 100, 25);
 		contentPane.add(btnLogin);
 		
-		JLabel lblRegistratiTiltle = new JLabel("REGISTRATI");
+		JLabel lblRegistratiTiltle = new JLabel("REGISTRAZIONE");
 		lblRegistratiTiltle.setHorizontalAlignment(SwingConstants.CENTER);
 		lblRegistratiTiltle.setForeground(Color.RED);
 		lblRegistratiTiltle.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblRegistratiTiltle.setBounds(215, 11, 150, 28);
+		lblRegistratiTiltle.setBounds(10, 11, 564, 28);
 		contentPane.add(lblRegistratiTiltle);
 		
-		JLabel lblDescrizione = new JLabel("Inserire i seguenti dati");
-		lblDescrizione.setHorizontalAlignment(SwingConstants.CENTER);
-		lblDescrizione.setFont(new Font("Constantia", Font.BOLD, 16));
-		lblDescrizione.setBounds(215, 78, 193, 20);
-		contentPane.add(lblDescrizione);
+		JLabel lblDati = new JLabel("Inserisci i seguenti dati:");
+		lblDati.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblDati.setForeground(Color.BLUE);
+		lblDati.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDati.setBounds(144, 83, 241, 20);
+		contentPane.add(lblDati);
 		
-		lblTipoRegistrazione = new JLabel("Selezionare il tipo di registrazione da eseguire\r\n");
-		lblTipoRegistrazione.setBounds(105, 50, 280, 14);
-		contentPane.add(lblTipoRegistrazione);
+		JLabel lblBack = new JLabel("Effettua Login");
+		lblBack.setForeground(Color.BLUE);
+		lblBack.setHorizontalAlignment(SwingConstants.CENTER);
+		lblBack.setBounds(10, 371, 100, 14);
+		contentPane.add(lblBack);
 		
 
 	}

@@ -6,7 +6,7 @@ public class DataBaseConnection {
     private Connection conn;
     private String url = "jdbc:mysql://localhost:3306/demodb";
     private String username = "root";
-    private String password = "Flegreo4";
+    private String password = "Cosmoplay123.";
 
     private DataBaseConnection() throws SQLException {
         try {

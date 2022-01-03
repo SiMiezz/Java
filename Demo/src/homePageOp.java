@@ -276,17 +276,18 @@ public class homePageOp extends JFrame {
 		lblVisualizza.setBounds(10, 11, 544, 14);
 		panelVisualizza.add(lblVisualizza);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(26, 72, 517, 301);
-		panelVisualizza.add(scrollPane);
+		JScrollPane scrollPaneVisualizza = new JScrollPane();
+		scrollPaneVisualizza.setBounds(26, 72, 517, 301);
+		panelVisualizza.add(scrollPaneVisualizza);
 		
 		table = new JTable();
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
 		model= new DefaultTableModel();
-		Object[] column= {"ID", "Nome corso", "Descrizione", "Presenze Minime", "Massimo partecipanti"};
+		Object[] column= {"ID", "Nome", "Descrizione", "Presenze min", "Partecipanti max"};
 		Object [] row= new Object[5];
 		table.setModel(model);
 		model.setColumnIdentifiers(column);
-		scrollPane.setViewportView(table);
+		scrollPaneVisualizza.setViewportView(table);
 		
 		JPanel panelModifica = new JPanel();
 		layeredPane.add(panelModifica, "name_678172324780300");
@@ -811,15 +812,14 @@ public class homePageOp extends JFrame {
 				switchPanel(layeredPane, panelVisualizza);
 				
 				op.setCorsi(c.getCorsiOperatore(op));
-           
+				model.setRowCount(0);
                 for (CorsoFormazione corso:op.getCorsi()) {
-                
                 	row[0]= corso.getIdCorso();
                 	row[1]= corso.getNome();
                 	row[2]= corso.getDescrizione();
                 	row[3]= corso.getPresenzeMin();
                 	row[4]= corso.getMaxPartecipanti();
-                	
+                	model.addRow(row);
         		}
 			}
 		});
