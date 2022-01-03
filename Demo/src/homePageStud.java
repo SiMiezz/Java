@@ -282,8 +282,8 @@ public class homePageStud extends JFrame {
 		JButton btnPartecipa = new JButton("PARTECIPA");
 		btnPartecipa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(txtLezioni.getSelectedText() != null) {
-					int id = Integer.valueOf(txtLezioni.getSelectedText());
+				if(txtPartecipa.getSelectedText() != null) {
+					int id = Integer.valueOf(txtPartecipa.getSelectedText());
 					
 					if(c.partecipa(stud,id)) {
 						c.confirmInsertPresenza();
@@ -386,7 +386,7 @@ public class homePageStud extends JFrame {
 				
 				txtLezioni.setText(null);
 				for(Lezione lezione:c.getLezioni(stud)) {
-					txtLezioni.append(lezione.getIdlezione() + " " + lezione.getTitolo() + " " + lezione.getDatainizio() + " " + lezione.getOrarioinizio() + "\n");
+					txtLezioni.append(lezione.getIdlezione() + " " + lezione.getTitolo() + " " + lezione.getDatainizio() + " " + lezione.getOrarioinizio() + " " + lezione.getCorso().getNome() + "\n");
 				}
 			}
 		});

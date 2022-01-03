@@ -36,7 +36,9 @@ public class IscrittoDAO {
 		try {
 			Connection conn = DataBaseConnection.getInstance().getConnection();
 			Statement st= conn.createStatement();
-			String query = "SELECT * FROM iscritto AS st JOIN corsoformazione AS cs ON st.idcorso = cs.idcorso WHERE st.matricola = ?";
+			String query = "SELECT * "
+					+ "FROM iscritto AS st JOIN corsoformazione AS cs ON st.idcorso = cs.idcorso "
+					+ "WHERE st.matricola = ?";
 			
 			PreparedStatement statement = conn.prepareStatement(query);
 			statement.setString(1, stud.getMatricola());
