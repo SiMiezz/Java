@@ -20,6 +20,7 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import java.awt.Color;
 import javax.swing.JTextArea;
+import javax.swing.JSplitPane;
 
 public class homePageOp extends JFrame {
 
