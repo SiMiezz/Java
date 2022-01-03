@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.JLayeredPane;
 import java.awt.CardLayout;
 import javax.swing.JLabel;
@@ -20,11 +21,12 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import java.awt.Color;
 import javax.swing.JTextArea;
-<<<<<<< HEAD
+
 import javax.swing.JSplitPane;
-=======
+
 import javax.swing.ScrollPaneConstants;
->>>>>>> branch 'main' of file:///C:\Users\Giuseppe\Documents\GitHub\Java
+import javax.swing.JTable;
+
 
 public class homePageOp extends JFrame {
 
@@ -51,6 +53,8 @@ public class homePageOp extends JFrame {
 	private JTextField txtDescAree;
 	private JTextField txtIdAree;
 	Controller TheController;
+	private JTable table;
+	DefaultTableModel model;
 
 	private void switchPanel(JLayeredPane layeredPane, JPanel panelInserisci) {
 		layeredPane.removeAll();
@@ -264,14 +268,17 @@ public class homePageOp extends JFrame {
 		lblVisualizza.setBounds(10, 11, 544, 14);
 		panelVisualizza.add(lblVisualizza);
 		
-		JScrollPane scrollPaneVisualizza = new JScrollPane();
-		scrollPaneVisualizza.setBounds(10, 36, 544, 221);
-		panelVisualizza.add(scrollPaneVisualizza);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(26, 72, 517, 301);
+		panelVisualizza.add(scrollPane);
 		
-		JTextArea txtVisualizza = new JTextArea();
-		scrollPaneVisualizza.setViewportView(txtVisualizza);
-		txtVisualizza.setFont(new Font("Monospaced", Font.PLAIN, 16));
-		txtVisualizza.setEditable(false);
+		table = new JTable();
+		model= new DefaultTableModel();
+		Object[] column= {"ID", "Nome corso", "Descrizione", "Presenze Minime", "Massimo partecipanti"};
+		Object [] row= new Object[5];
+		table.setModel(model);
+		model.setColumnIdentifiers(column);
+		scrollPane.setViewportView(table);
 		
 		JPanel panelModifica = new JPanel();
 		layeredPane.add(panelModifica, "name_678172324780300");
@@ -796,9 +803,15 @@ public class homePageOp extends JFrame {
 				switchPanel(layeredPane, panelVisualizza);
 				
 				op.setCorsi(c.getCorsiOperatore(op));
-                txtVisualizza.setText(null);
+           
                 for (CorsoFormazione corso:op.getCorsi()) {
-        			txtVisualizza.append(corso.getIdCorso() + " " + corso.getNome() + " " + corso.getDescrizione() + "\n");
+                
+                	row[0]= corso.getIdCorso();
+                	row[1]= corso.getNome();
+                	row[2]= corso.getDescrizione();
+                	row[3]= corso.getPresenzeMin();
+                	row[4]= corso.getMaxPartecipanti();
+                	
         		}
 			}
 		});
