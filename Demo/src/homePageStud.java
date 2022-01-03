@@ -37,6 +37,14 @@ public class homePageStud extends JFrame {
         layeredPane.repaint();
         layeredPane.revalidate();
 	}
+	
+	public static Integer tryParse(String text) {
+		try {
+			return Integer.valueOf(text);
+		} catch (NumberFormatException e) {
+			return null;
+		}
+	}
 
 	public homePageStud(Controller c, String matricola, String pwd) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -216,8 +224,8 @@ public class homePageStud extends JFrame {
 		JButton btnIscriviti = new JButton("ISCRIVITI");
 		btnIscriviti.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(txtNewIscrizione.getSelectedText() != null) {
-					int id = Integer.valueOf(txtNewIscrizione.getSelectedText());
+				if(tryParse(txtNewIscrizione.getSelectedText()) != null) {
+					int id = tryParse(txtNewIscrizione.getSelectedText());
 					
 					if(c.iscriviti(stud,id)) {
 						c.confirmInsertIscrizione();
@@ -282,8 +290,8 @@ public class homePageStud extends JFrame {
 		JButton btnPartecipa = new JButton("PARTECIPA");
 		btnPartecipa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(txtPartecipa.getSelectedText() != null) {
-					int id = Integer.valueOf(txtPartecipa.getSelectedText());
+				if(tryParse(txtPartecipa.getSelectedText()) != null) {
+					int id = tryParse(txtPartecipa.getSelectedText());
 					
 					if(c.partecipa(stud,id)) {
 						c.confirmInsertPresenza();

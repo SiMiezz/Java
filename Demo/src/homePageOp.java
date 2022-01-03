@@ -54,6 +54,14 @@ public class homePageOp extends JFrame {
         layeredPane.repaint();
         layeredPane.revalidate();
 	}
+	
+	public static Integer tryParse(String text) {
+		try {
+			return Integer.valueOf(text);
+		} catch (NumberFormatException e) {
+			return null;
+		}
+	}
 
 	public homePageOp(Controller c, String id, String pwd) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -298,8 +306,8 @@ public class homePageOp extends JFrame {
 		JButton btnSelezionaModifica = new JButton("SELEZIONA");
 		btnSelezionaModifica.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(txtModifica.getSelectedText()!=null) {
-					int id = Integer.valueOf(txtModifica.getSelectedText());
+				if(tryParse(txtModifica.getSelectedText())!=null) {
+					int id = tryParse(txtModifica.getSelectedText());
 					
 					txtModificaNome.setText(c.getCorso(id).getNome());
 					txtModificaDesc.setText(c.getCorso(id).getDescrizione());
@@ -431,8 +439,8 @@ public class homePageOp extends JFrame {
 		JButton btnSelezionaStatistiche = new JButton("SELEZIONA");
 		btnSelezionaStatistiche.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(txtStatistiche.getSelectedText()!=null) {
-					int id = Integer.valueOf(txtStatistiche.getSelectedText());
+				if(tryParse(txtStatistiche.getSelectedText())!=null) {
+					int id = tryParse(txtStatistiche.getSelectedText());
 					
 					txtNumMedio.setText(Integer.toString(c.getStat(c.getCorso(id)).getNumMedioStud()));
 					txtMinStud.setText(Integer.toString(c.getStat(c.getCorso(id)).getMinStud()));
@@ -524,8 +532,8 @@ public class homePageOp extends JFrame {
 		JButton btnSelezionaNewAree = new JButton("SELEZIONA");
 		btnSelezionaNewAree.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(txtNewAreeTematiche.getSelectedText()!=null) {
-					int id = Integer.valueOf(txtNewAreeTematiche.getSelectedText());
+				if(tryParse(txtNewAreeTematiche.getSelectedText())!=null) {
+					int id = tryParse(txtNewAreeTematiche.getSelectedText());
 					
 					txtIdAree.setText(Integer.toString(id));
 				}
@@ -671,8 +679,8 @@ public class homePageOp extends JFrame {
 		JButton btnSelezionaSuperamento = new JButton("SELEZIONA");
 		btnSelezionaSuperamento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(txtCorsiSuperamento.getSelectedText()!=null) {
-					int id = Integer.valueOf(txtCorsiSuperamento.getSelectedText());
+				if(tryParse(txtCorsiSuperamento.getSelectedText())!=null) {
+					int id = tryParse(txtCorsiSuperamento.getSelectedText());
 					
 	                txtStudSuperamento.setText(null);
 	                for (Superamento sup:c.getStudSupera(c.getCorso(id))) {
@@ -684,14 +692,14 @@ public class homePageOp extends JFrame {
 				}
 			}
 		});
-		btnSelezionaSuperamento.setBounds(337, 240, 89, 23);
+		btnSelezionaSuperamento.setBounds(326, 239, 100, 23);
 		panelSuperamento.add(btnSelezionaSuperamento);
 		
 		JButton btnSelezionaAree = new JButton("SELEZIONA");
 		btnSelezionaAree.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(txtCorsiAree.getSelectedText()!=null) {
-					int id = Integer.valueOf(txtCorsiAree.getSelectedText());
+				if(tryParse(txtCorsiAree.getSelectedText())!=null) {
+					int id = tryParse(txtCorsiAree.getSelectedText());
 					
 	                txtAreeTematiche.setText(null);
 	                for (AreeTematiche aree:c.getAreeCorso(c.getCorso(id),op)) {
@@ -735,8 +743,8 @@ public class homePageOp extends JFrame {
 		JButton btnTermina = new JButton("TERMINA");
 		btnTermina.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(txtTermina.getSelectedText()!=null) {
-					int id = Integer.valueOf(txtTermina.getSelectedText());
+				if(tryParse(txtTermina.getSelectedText())!=null) {
+					int id = tryParse(txtTermina.getSelectedText());
 					
 					if(c.terminaCorso(c.getCorso(id),op)) {
 						c.confirmTermina();
@@ -895,8 +903,5 @@ public class homePageOp extends JFrame {
 			}
 		});
 		mnAreeTematiche.add(mntmVisualizzaAree);
-		
-		
-		
 	}
 }
