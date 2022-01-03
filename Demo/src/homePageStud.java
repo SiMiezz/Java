@@ -386,7 +386,7 @@ public class homePageStud extends JFrame {
 				
 				txtLezioni.setText(null);
 				for(Lezione lezione:c.getLezioni(stud)) {
-					txtLezioni.append(lezione.getIdlezione() + " " + lezione.getTitolo() + " " + lezione.getDatainizio() + " " + lezione.getOrarioinizio() + "\n");
+					txtLezioni.append(lezione.getIdlezione() + " " + lezione.getTitolo() + " " + lezione.getDatainizio() + " " + lezione.getOrarioinizio() + " " + lezione.getCorso().getNome() + "\n");
 				}
 			}
 		});

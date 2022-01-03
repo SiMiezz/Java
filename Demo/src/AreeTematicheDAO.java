@@ -31,7 +31,6 @@ public class AreeTematicheDAO {
 			return false;
 		}
 	}
-
 	
 	public ArrayList<AreeTematiche> getAreeCorso(CorsoFormazione corso,Operatore op) throws SQLException {
 		ArrayList <AreeTematiche> aree = new ArrayList<AreeTematiche>();

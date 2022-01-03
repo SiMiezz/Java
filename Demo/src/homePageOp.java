@@ -844,9 +844,8 @@ public class homePageOp extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				switchPanel(layeredPane, panelStatistiche);
 				
-				op.setCorsi(c.getCorsiOperatore(op));
                 txtStatistiche.setText(null);
-                for (CorsoFormazione corso:op.getCorsi()) {
+                for (CorsoFormazione corso:c.getCorsiTermina(op)) {
                 	txtStatistiche.append(corso.getIdCorso() + " " + corso.getNome() + " " + corso.getDescrizione() + "\n");
         		}
 			}

@@ -98,7 +98,15 @@ public class CorsoFormazioneDAO {
 		try {
 			Connection conn = DataBaseConnection.getInstance().getConnection();
 			Statement st= conn.createStatement();
-			String query = "SELECT * FROM corsoformazione WHERE idcorso NOT IN (SELECT cs.idcorso FROM corsoformazione AS cs JOIN iscritto AS isc ON cs.idcorso = isc.idcorso WHERE isc.matricola = ?)";
+			String query = "SELECT * "
+					+ "FROM corsoformazione "
+					+ "WHERE idcorso NOT IN "
+					+ "(SELECT isc.idcorso "
+					+ "FROM iscritto AS isc "
+					+ "WHERE isc.matricola = ?) "
+					+ "AND idcorso NOT IN "
+					+ "(SELECT ter.idcorso "
+					+ "FROM terminazione AS ter)";
 			
 			PreparedStatement statement = conn.prepareStatement(query);
 			statement.setString(1, stud.getMatricola());
@@ -159,7 +167,12 @@ public class CorsoFormazioneDAO {
 		try {
 			Connection conn = DataBaseConnection.getInstance().getConnection();
 			Statement st= conn.createStatement();
-			String query = "SELECT * FROM corsoformazione AS cs WHERE cs.id = ? AND cs.idcorso NOT IN (SELECT cs.idcorso FROM corsoformazione AS cs JOIN terminazione AS ter ON cs.idcorso = ter.idcorso WHERE cs.id = ?)";
+			String query = "SELECT * "
+					+ "FROM corsoformazione AS cs "
+					+ "WHERE cs.id = ? AND cs.idcorso NOT IN "
+					+ "(SELECT cs.idcorso "
+					+ "FROM corsoformazione AS cs JOIN terminazione AS ter ON cs.idcorso = ter.idcorso "
+					+ "WHERE cs.id = ?)";
 			
 			PreparedStatement statement = conn.prepareStatement(query);
 			statement.setString(1, op.getId());
@@ -189,7 +202,9 @@ public class CorsoFormazioneDAO {
 		try {
 			Connection conn = DataBaseConnection.getInstance().getConnection();
 			Statement st= conn.createStatement();
-			String query = "SELECT * FROM corsoformazione AS cs JOIN terminazione AS ter ON cs.idcorso = ter.idcorso WHERE cs.id = ?";
+			String query = "SELECT * "
+					+ "FROM corsoformazione AS cs JOIN terminazione AS ter ON cs.idcorso = ter.idcorso "
+					+ "WHERE cs.id = ?";
 			
 			PreparedStatement statement = conn.prepareStatement(query);
 			statement.setString(1, op.getId());
