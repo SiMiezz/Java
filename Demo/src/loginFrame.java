@@ -30,6 +30,7 @@ public class loginFrame extends JFrame {
 	private JTextField txtID;
 	private JPasswordField pwdField;
 	private JComboBox BoxSceltaLogin;
+	private Controller theController;
 	
 	public JComboBox getBoxSceltaLogin() {
 		return BoxSceltaLogin;
@@ -38,8 +39,6 @@ public class loginFrame extends JFrame {
 	public void setBoxSceltaLogin(JComboBox boxSceltaLogin) {
 		BoxSceltaLogin = boxSceltaLogin;
 	}
-
-	private Controller theController;
 
 	public loginFrame(Controller c) {
 		theController=c;

@@ -35,6 +35,8 @@ public class registrationFrame extends JFrame {
 	private JTextField txtID;
 	private JTextField txtCF;
 	private JComboBox boxSceltaRegistration;
+	private JTextField txtData;
+	Controller theController;
 	
 	public JComboBox getBoxSceltaRegistration() {
 		return boxSceltaRegistration;
@@ -43,11 +45,14 @@ public class registrationFrame extends JFrame {
 	public void setBoxSceltaRegistration(JComboBox boxSceltaRegistration) {
 		this.boxSceltaRegistration = boxSceltaRegistration;
 	}
-
-	Controller theController;
-	private JTextField txtData;
-	private JLabel lblInserimentoData;
-	private JButton btnLogin;
+	
+	public static Date tryParse(String text) {
+		try {
+			return Date.valueOf(text);
+		} catch (IllegalArgumentException e) {
+			return null;
+		}
+	}
 
 	public registrationFrame(Controller c) {
 		setResizable(false);
@@ -124,7 +129,7 @@ public class registrationFrame extends JFrame {
 					String id = txtID.getText();
 					String password = String.valueOf(pwdField.getPassword());
 					String cf = txtCF.getText();
-					Date data = Date.valueOf(txtData.getText());
+					Date data = tryParse(txtData.getText());
 					
 					if(c.registrazione(nome, cognome, id, password, cf, data)) {
 						c.confirmRegistration();
@@ -172,13 +177,13 @@ public class registrationFrame extends JFrame {
 		contentPane.add(txtData);
 		txtData.setColumns(10);
 		
-		lblInserimentoData = new JLabel("(yyyy-mm-dd)");
+		JLabel lblInserimentoData = new JLabel("(yyyy-mm-dd)");
 		lblInserimentoData.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 14));
 		lblInserimentoData.setHorizontalAlignment(SwingConstants.CENTER);
 		lblInserimentoData.setBounds(395, 185, 150, 18);
 		contentPane.add(lblInserimentoData);
 		
-		btnLogin = new JButton("LOGIN");
+		JButton btnLogin = new JButton("LOGIN");
 		btnLogin.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

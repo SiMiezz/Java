@@ -239,11 +239,11 @@ public class homePageOp extends JFrame {
 		JButton btnInserimento = new JButton("INSERISCI");
 		btnInserimento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(!txtInsertNome.getText().isBlank() && !txtInsertPresenze.getText().isBlank() && !txtInsertPartecipanti.getText().isBlank()) {
+				if(!txtInsertNome.getText().isBlank() && tryParse(txtInsertPresenze.getText())!=null && tryParse(txtInsertPartecipanti.getText())!=null) {
 					String nome = txtInsertNome.getText();
 					String descrizione = txtInsertDesc.getText();
-					int presenze = Integer.valueOf(txtInsertPresenze.getText());
-					int partecipanti = Integer.valueOf(txtInsertPartecipanti.getText());
+					int presenze = tryParse(txtInsertPresenze.getText());
+					int partecipanti = tryParse(txtInsertPartecipanti.getText());
 					
 					if(c.inserisciCorso(nome,descrizione,presenze,partecipanti,op)){
 						c.confirmInsertCorso();
@@ -394,11 +394,11 @@ public class homePageOp extends JFrame {
 		JButton btnAggiorna = new JButton("AGGIORNA");
 		btnAggiorna.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(!txtModificaNome.getText().isBlank() && !txtModificaPresenze.getText().isBlank() && !txtModificaPartecipanti.getText().isBlank() && !txtModificaID.getText().isBlank()) {
+				if(!txtModificaNome.getText().isBlank() && tryParse(txtModificaPresenze.getText())!=null && tryParse(txtModificaPartecipanti.getText())!=null && !txtModificaID.getText().isBlank()) {
 					String nome = txtModificaNome.getText();
 					String descrizione = txtModificaDesc.getText();
-					int presenze = Integer.valueOf(txtModificaPresenze.getText());
-					int partecipanti = Integer.valueOf(txtModificaPartecipanti.getText());
+					int presenze = tryParse(txtModificaPresenze.getText());
+					int partecipanti = tryParse(txtModificaPartecipanti.getText());
 					int id = Integer.valueOf(txtModificaID.getText());
 					
 					if(c.aggiornaCorso(nome, descrizione, presenze, partecipanti, id)) {
