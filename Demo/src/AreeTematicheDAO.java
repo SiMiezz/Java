@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class AreeTematicheDAO {
 	
-	public boolean aggiungiAree(String tipo,String descrizione,CorsoFormazione corso,Operatore op) throws SQLException{
+	public boolean aggiungiAree(String tipo,String descrizione,CorsoFormazione corso,Operatore op){
 		try {
 			if(tipo !=null && corso!=null) {
 				Connection conn = DataBaseConnection.getInstance().getConnection();
@@ -27,12 +27,13 @@ public class AreeTematicheDAO {
 			}
 		}
 		catch(SQLException e){
-			//e.printStackTrace();
-			return false;
+			e.printStackTrace();
 		}
+		
+		return false;
 	}
 	
-	public ArrayList<AreeTematiche> getAreeCorso(CorsoFormazione corso,Operatore op) throws SQLException {
+	public ArrayList<AreeTematiche> getAreeCorso(CorsoFormazione corso,Operatore op){
 		ArrayList <AreeTematiche> aree = new ArrayList<AreeTematiche>();
 		
 		try {
@@ -55,7 +56,7 @@ public class AreeTematicheDAO {
 			conn.close();
 		}
 		catch(SQLException e) {
-			//e.printStackTrace();
+			e.printStackTrace();
 		}
 		
 		return aree;

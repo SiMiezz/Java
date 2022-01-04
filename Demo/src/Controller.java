@@ -33,272 +33,113 @@ public class Controller {
 	}
 	
 	public boolean checkUser(String id,String pwd){
-		try {
-			if(lf.getBoxSceltaLogin().getSelectedItem().equals("Studente")) {
-				if(stdao.checkStud(id,pwd)) {
-					hps = new homePageStud(this,id,pwd);
-					return true;
-				}
-				else {
-					return false;
-				}
-			}else{
-				if(opdao.checkOp(id,pwd)) {
-					hpo = new homePageOp(this,id,pwd);
-					return true;
-				}
-				else {
-					return false;
-				}
+		if(lf.getBoxSceltaLogin().getSelectedItem().equals("Studente")) {
+			if(stdao.checkStud(id,pwd)) {
+				hps = new homePageStud(this,id,pwd);
+				return true;
 			}
-		} catch (Exception e) {
-			//e.printStackTrace();
-			return false;
+			else {
+				return false;
+			}
+		}else{
+			if(opdao.checkOp(id,pwd)) {
+				hpo = new homePageOp(this,id,pwd);
+				return true;
+			}
+			else {
+				return false;
+			}
 		}
 	}
 
 	public boolean registrazione(String nome, String cognome, String id, String password, String cf,Date data) 
 	{
-		try {
-			if(rf.getBoxSceltaRegistration().getSelectedItem().equals("Operatore")) {
-				if(opdao.registrazioneOP(nome, cognome, id, password, cf, data))
-				{
-					return true;
-				}
-				else {
-					return false;
-				}
-			}
-			else {
-				if(stdao.registrazioneStud(nome, cognome, id, password, cf, data))
-				{
-					return true;
-				}
-				else {
-					return false;
-				}
-			}
-			
-		} catch (Exception e) {
-			//e.printStackTrace();
-			return false;
+		if(rf.getBoxSceltaRegistration().getSelectedItem().equals("Operatore")) {
+			return opdao.registrazioneOP(nome, cognome, id, password, cf, data);
+		}
+		else {
+			return stdao.registrazioneStud(nome, cognome, id, password, cf, data);
 		}
 	}
 		
 	public Studente getStud(String matricola) {
-		try {
-			return stdao.getStud(matricola);
-		} catch (SQLException e) {
-			//e.printStackTrace();
-			return null;
-		}
+		return stdao.getStud(matricola);
 	}
 	
 	public Operatore getOp(String id) {
-		try {
-			return opdao.getOp(id);
-		} catch (SQLException e) {
-			//e.printStackTrace();
-			return null;
-		}
+		return opdao.getOp(id);
 	}
 	
 	public ArrayList<CorsoFormazione> getCorsiOperatore(Operatore op) {
-		try {
-			return corsodao.getCorsiOperatore(op);
-		}catch(SQLException e){
-			//e.printStackTrace();
-			return null;
-		}
+		return corsodao.getCorsiOperatore(op);
 	}
 	
 	public ArrayList<CorsoFormazione> getCorsiIscrizione(Studente stud){
-		try {
-			return corsodao.getCorsiIscrizione(stud);
-		}catch(SQLException e){
-			//e.printStackTrace();
-			return null;
-		}
+		return corsodao.getCorsiIscrizione(stud);
 	}
 	
 	public ArrayList<CorsoFormazione> getCorsiNoTermina(Operatore op){
-		try {
-			return corsodao.getCorsiNoTermina(op);
-		}catch(SQLException e){
-			//e.printStackTrace();
-			return null;
-		}
+		return corsodao.getCorsiNoTermina(op);
 	}
 	
 	public ArrayList<CorsoFormazione> getCorsiTermina(Operatore op){
-		try {
-			return corsodao.getCorsiTermina(op);
-		}catch(SQLException e){
-			//e.printStackTrace();
-			return null;
-		}
+		return corsodao.getCorsiTermina(op);
 	}
 	
 	public ArrayList<AreeTematiche> getAreeCorso(CorsoFormazione corso,Operatore op){
-		try {
-			return areedao.getAreeCorso(corso,op);
-		}catch(SQLException e){
-			//e.printStackTrace();
-			return null;
-		}
+		return areedao.getAreeCorso(corso,op);
 	}
 	
 	public ArrayList<Lezione> getLezioni(Studente stud){
-		try {
-			return lezdao.getLezioni(stud);
-		}catch(SQLException e) {
-			//e.printStackTrace();
-			return null;
-		}
+		return lezdao.getLezioni(stud);
 	}
 	
 	public ArrayList<Lezione> getLezioniPartecipa(Studente stud){
-		try {
-			return lezdao.getLezioniPartecipa(stud);
-		}catch(SQLException e) {
-			//e.printStackTrace();
-			return null;
-		}
+		return lezdao.getLezioniPartecipa(stud);
 	}
 	
 	public CorsoFormazione getCorso(int id) {
-		try {
-			return corsodao.getCorso(id);
-		}catch(SQLException e) {
-			//e.printStackTrace();
-			return null;
-		}
+		return corsodao.getCorso(id);
 	}
 	
 	public Statistiche getStat(CorsoFormazione corso) {
-		try {
-			return statdao.getStat(corso);
-		}catch(SQLException e) {
-			//e.printStackTrace();
-			return null;
-		}
+		return statdao.getStat(corso);
 	}
 	
 	public ArrayList<CorsoFormazione> getAllCorsi() {
-		try {
-			return corsodao.getAllCorsi();
-		}catch(SQLException e){
-			//e.printStackTrace();
-			return null;
-		}
+		return corsodao.getAllCorsi();
 	}
 	
 	public ArrayList<Iscritto> getIscrizioni(Studente stud) {
-		try {
-			return iscdao.getIscrizioni(stud);
-		}catch(SQLException e){
-			//e.printStackTrace();
-			return null;
-		}
+		return iscdao.getIscrizioni(stud);
 	}
 	
 	public ArrayList<Superamento> getStudSupera(CorsoFormazione corso) {
-		try {
-			return supdao.getStudSupera(corso);
-		}catch(SQLException e){
-			//e.printStackTrace();
-			return null;
-		}
+		return supdao.getStudSupera(corso);
 	}
 	
 	public boolean inserisciCorso(String nome, String descrizione, int presenzeMin, int maxPartecipanti, Operatore op) {
-		try {
-			if(corsodao.aggiungiCorso(nome, descrizione, presenzeMin, maxPartecipanti, op)) {
-				return true;
-			}
-			else {
-				return false;
-			}
-		}
-		catch(SQLException e) {
-			//e.printStackTrace();
-			return false;
-		}
+		return corsodao.aggiungiCorso(nome, descrizione, presenzeMin, maxPartecipanti, op);
 	}
 	
 	public boolean iscriviti(Studente stud,int id) {
-		try {
-			if(iscdao.aggiungiIscrizione(stud,id)) {
-				return true;
-			}
-			else {
-				return false;
-			}
-		}
-		catch(SQLException e) {
-			//e.printStackTrace();
-			return false;
-		}
+		return iscdao.aggiungiIscrizione(stud,id);
 	}
 	
 	public boolean partecipa(Studente stud,int id) {
-		try {
-			if(pardao.aggiungiPartecipa(stud,id)) {
-				return true;
-			}
-			else {
-				return false;
-			}
-		}
-		catch(SQLException e) {
-			//e.printStackTrace();
-			return false;
-		}
+		return pardao.aggiungiPartecipa(stud,id);
 	}
 	
 	public boolean aggiungiAree(String tipo,String descrizione,CorsoFormazione corso,Operatore op) {
-		try {
-			if(areedao.aggiungiAree(tipo,descrizione,corso,op)) {
-				return true;
-			}
-			else {
-				return false;
-			}
-		}
-		catch(SQLException e) {
-			//e.printStackTrace();
-			return false;
-		}
+		return areedao.aggiungiAree(tipo,descrizione,corso,op);
 	}
 	
 	public boolean terminaCorso(CorsoFormazione corso,Operatore op) {
-		try {
-			if(terminadao.terminaCorso(corso,op)) {
-				return true;
-			}
-			else {
-				return false;
-			}
-		}
-		catch(SQLException e) {
-			//e.printStackTrace();
-			return false;
-		}
+		return terminadao.terminaCorso(corso,op);
 	}
 	
 	public boolean aggiornaCorso(String nome, String descrizione, int presenzeMin, int maxPartecipanti, int id) {
-		try {
-			if(corsodao.aggiornaCorso(nome, descrizione, presenzeMin, maxPartecipanti, id)) {
-				return true;
-			}
-			else {
-				return false;
-			}
-		}
-		catch(SQLException e) {
-			//e.printStackTrace();
-			return false;
-		}
+		return corsodao.aggiornaCorso(nome, descrizione, presenzeMin, maxPartecipanti, id);
 	}
 
 	public void goRegistrazioneFrame() {

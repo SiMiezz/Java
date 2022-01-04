@@ -3,7 +3,7 @@ import java.util.*;
 
 public class SuperamentoDAO {
 	
-	public ArrayList<Superamento> getStudSupera(CorsoFormazione corso) throws SQLException{
+	public ArrayList<Superamento> getStudSupera(CorsoFormazione corso){
 		ArrayList<Superamento> superati = new ArrayList<Superamento>();
 		
 		try {
@@ -28,7 +28,7 @@ public class SuperamentoDAO {
 			conn.close();
 		}
 		catch(SQLException e) {
-			//e.printStackTrace();
+			e.printStackTrace();
 		}
 		
 		return superati;

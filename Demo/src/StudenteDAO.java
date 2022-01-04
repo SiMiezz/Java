@@ -2,7 +2,7 @@ import java.sql.*;
 
 public class StudenteDAO {
 	
-	public boolean checkStud(String id,String pwd) throws SQLException{
+	public boolean checkStud(String id,String pwd){
 		boolean check = false;
 		
 		try {
@@ -21,13 +21,13 @@ public class StudenteDAO {
 			conn.close();
 		}
 		catch(SQLException e){
-			//e.printStackTrace();
+			e.printStackTrace();
 		}
 		
 		return check;
 	}
 	
-	public Studente getStud(String matricola) throws SQLException{
+	public Studente getStud(String matricola){
 		Studente stud = new Studente();
 		
 		try {
@@ -54,13 +54,13 @@ public class StudenteDAO {
 			conn.close();
 		}
 		catch (SQLException e) {
-			//e.printStackTrace();
+			e.printStackTrace();
 		}
 		
 		return stud;
 	}
 	
-	public boolean registrazioneStud(String nome, String cognome, String matricola, String password, String cf, Date data) throws SQLException {
+	public boolean registrazioneStud(String nome, String cognome, String matricola, String password, String cf, Date data){
 		try {
 			if(nome !=null && cognome !=null && matricola!=null && password !=null && cf!=null) {
 				Connection conn = DataBaseConnection.getInstance().getConnection();
@@ -86,8 +86,9 @@ public class StudenteDAO {
 			}
 		}
 		catch(SQLException e){
-			//e.printStackTrace();
-			return false;
+			e.printStackTrace();
 		}
+		
+		return false;
 	}
 }

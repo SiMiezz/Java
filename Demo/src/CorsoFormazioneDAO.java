@@ -3,7 +3,7 @@ import java.util.*;
 
 public class CorsoFormazioneDAO {
 	
-	public boolean aggiungiCorso(String nome, String descrizione, int presenzeMin, int maxPartecipanti, Operatore op) throws SQLException {
+	public boolean aggiungiCorso(String nome, String descrizione, int presenzeMin, int maxPartecipanti, Operatore op){
 		try {
 			if(nome !=null && presenzeMin!=0 && maxPartecipanti !=0 && op!=null) {
 				Connection conn = DataBaseConnection.getInstance().getConnection();
@@ -28,12 +28,13 @@ public class CorsoFormazioneDAO {
 			}
 		}
 		catch(SQLException e){
-			//e.printStackTrace();
-			return false;
+			e.printStackTrace();
 		}
+		
+		return false;
 	}
 	
-	public boolean aggiornaCorso(String nome, String descrizione, int presenzeMin, int maxPartecipanti, int id) throws SQLException{
+	public boolean aggiornaCorso(String nome, String descrizione, int presenzeMin, int maxPartecipanti, int id){
 		try {
 			if(nome !=null && presenzeMin!=0 && maxPartecipanti !=0) {
 				Connection conn = DataBaseConnection.getInstance().getConnection();
@@ -58,12 +59,13 @@ public class CorsoFormazioneDAO {
 			}	
 		}
 		catch(SQLException e){
-			//e.printStackTrace();
-			return false;
+			e.printStackTrace();
 		}
+		
+		return false;
 	}
 	
-	public ArrayList<CorsoFormazione> getCorsiOperatore(Operatore op) throws SQLException {
+	public ArrayList<CorsoFormazione> getCorsiOperatore(Operatore op){
 		ArrayList <CorsoFormazione> corsi = new ArrayList<CorsoFormazione>();
 		
 		try {
@@ -86,13 +88,13 @@ public class CorsoFormazioneDAO {
 			conn.close();
 		}
 		catch(SQLException e) {
-			//e.printStackTrace();
+			e.printStackTrace();
 		}
 		
 		return corsi;
 	}
 	
-	public ArrayList<CorsoFormazione> getCorsiIscrizione(Studente stud) throws SQLException {
+	public ArrayList<CorsoFormazione> getCorsiIscrizione(Studente stud){
 		ArrayList <CorsoFormazione> corsi = new ArrayList<CorsoFormazione>();
 		
 		try {
@@ -123,13 +125,13 @@ public class CorsoFormazioneDAO {
 			conn.close();
 		}
 		catch(SQLException e) {
-			//e.printStackTrace();
+			e.printStackTrace();
 		}
 		
 		return corsi;
 	}
 	
-	public CorsoFormazione getCorso(int id) throws SQLException{
+	public CorsoFormazione getCorso(int id){
 		CorsoFormazione corso = new CorsoFormazione();
 		
 		try {
@@ -155,13 +157,13 @@ public class CorsoFormazioneDAO {
 			conn.close();
 		}
 		catch(SQLException e) {
-			//e.printStackTrace();
+			e.printStackTrace();
 		}
 		
 		return corso;
 	}
 	
-	public ArrayList<CorsoFormazione> getCorsiNoTermina(Operatore op) throws SQLException {
+	public ArrayList<CorsoFormazione> getCorsiNoTermina(Operatore op){
 		ArrayList <CorsoFormazione> corsi = new ArrayList<CorsoFormazione>();
 		
 		try {
@@ -190,13 +192,13 @@ public class CorsoFormazioneDAO {
 			conn.close();
 		}
 		catch(SQLException e) {
-			//e.printStackTrace();
+			e.printStackTrace();
 		}
 		
 		return corsi;
 	}
 	
-	public ArrayList<CorsoFormazione> getCorsiTermina(Operatore op) throws SQLException {
+	public ArrayList<CorsoFormazione> getCorsiTermina(Operatore op){
 		ArrayList <CorsoFormazione> corsi = new ArrayList<CorsoFormazione>();
 		
 		try {
@@ -221,13 +223,13 @@ public class CorsoFormazioneDAO {
 			conn.close();
 		}
 		catch(SQLException e) {
-			//e.printStackTrace();
+			e.printStackTrace();
 		}
 		
 		return corsi;
 	}
 	
-	public ArrayList<CorsoFormazione> getAllCorsi() throws SQLException {
+	public ArrayList<CorsoFormazione> getAllCorsi(){
 		ArrayList <CorsoFormazione> corsi = new ArrayList<CorsoFormazione>();
 		
 		try {
@@ -245,7 +247,7 @@ public class CorsoFormazioneDAO {
 			conn.close();
 		}
 		catch(SQLException e) {
-			//e.printStackTrace();
+			e.printStackTrace();
 		}
 		
 		return corsi;

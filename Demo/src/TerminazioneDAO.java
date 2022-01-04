@@ -2,7 +2,7 @@ import java.sql.*;
 
 public class TerminazioneDAO {
 	
-	public boolean terminaCorso(CorsoFormazione corso,Operatore op) throws SQLException{
+	public boolean terminaCorso(CorsoFormazione corso,Operatore op){
 		try {
 			if(corso!=null && op!=null) {
 				Connection conn = DataBaseConnection.getInstance().getConnection();
@@ -24,8 +24,9 @@ public class TerminazioneDAO {
 			}
 		}
 		catch(SQLException e){
-			//e.printStackTrace();
-			return false;
+			e.printStackTrace();
 		}
+		
+		return false;
 	}
 }

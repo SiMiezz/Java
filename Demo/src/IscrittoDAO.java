@@ -3,7 +3,7 @@ import java.util.*;
 
 public class IscrittoDAO {
 	
-	public boolean aggiungiIscrizione(Studente stud,int id) throws SQLException{
+	public boolean aggiungiIscrizione(Studente stud,int id){
 		try {
 			if(stud!=null && id!=0) {
 				Connection conn = DataBaseConnection.getInstance().getConnection();
@@ -25,12 +25,13 @@ public class IscrittoDAO {
 			}
 		}
 		catch(SQLException e){
-			//e.printStackTrace();
-			return false;
+			e.printStackTrace();
 		}
+		
+		return false;
 	}
 	
-	public ArrayList<Iscritto> getIscrizioni(Studente stud) throws SQLException{
+	public ArrayList<Iscritto> getIscrizioni(Studente stud){
 		ArrayList <Iscritto> iscrizioni = new ArrayList<Iscritto>();
 		
 		try {
@@ -55,7 +56,7 @@ public class IscrittoDAO {
 			conn.close();
 		}
 		catch(SQLException e) {
-			//e.printStackTrace();
+			e.printStackTrace();
 		}
 		
 		return iscrizioni;

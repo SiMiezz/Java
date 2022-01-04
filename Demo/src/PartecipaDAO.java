@@ -5,7 +5,7 @@ import java.sql.Statement;
 
 public class PartecipaDAO {
 	
-	public boolean aggiungiPartecipa(Studente stud,int id) throws SQLException{
+	public boolean aggiungiPartecipa(Studente stud,int id){
 		try {
 			if(stud!=null && id!=0) {
 				Connection conn = DataBaseConnection.getInstance().getConnection();
@@ -27,9 +27,10 @@ public class PartecipaDAO {
 			}
 		}
 		catch(SQLException e){
-			//e.printStackTrace();
-			return false;
+			e.printStackTrace();
 		}
+		
+		return false;
 	}
 
 }

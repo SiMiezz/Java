@@ -2,7 +2,7 @@ import java.sql.*;
 
 public class StatisticheDAO {
 	
-	public Statistiche getStat(CorsoFormazione corso) throws SQLException{
+	public Statistiche getStat(CorsoFormazione corso){
 		Statistiche stat = new Statistiche();
 		
 		try {
@@ -29,7 +29,7 @@ public class StatisticheDAO {
 			conn.close();
 		}
 		catch(SQLException e) {
-			//e.printStackTrace();
+			e.printStackTrace();
 		}
 		
 		return stat;

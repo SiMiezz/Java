@@ -3,7 +3,7 @@ import java.util.*;
 
 public class LezioneDAO {
 	
-	public ArrayList<Lezione> getLezioni(Studente stud) throws SQLException {
+	public ArrayList<Lezione> getLezioni(Studente stud){
 		ArrayList <Lezione> lezioni = new ArrayList<Lezione>();
 		
 		try {
@@ -28,13 +28,13 @@ public class LezioneDAO {
 			conn.close();
 		}
 		catch(SQLException e) {
-			//e.printStackTrace();
+			e.printStackTrace();
 		}
 		
 		return lezioni;
 	}
 	
-	public ArrayList<Lezione> getLezioniPartecipa(Studente stud) throws SQLException {
+	public ArrayList<Lezione> getLezioniPartecipa(Studente stud){
 		ArrayList <Lezione> lezioni = new ArrayList<Lezione>();
 		
 		try {
@@ -68,7 +68,7 @@ public class LezioneDAO {
 			conn.close();
 		}
 		catch(SQLException e) {
-			//e.printStackTrace();
+			e.printStackTrace();
 		}
 		
 		return lezioni;

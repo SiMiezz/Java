@@ -2,7 +2,7 @@ import java.sql.*;
 
 public class OperatoreDAO {
 
-	public boolean checkOp(String id,String pwd) throws SQLException{
+	public boolean checkOp(String id,String pwd){
 		boolean check = false;
 		
 		try {
@@ -21,13 +21,13 @@ public class OperatoreDAO {
 			conn.close();
 		}
 		catch(SQLException e){
-			//e.printStackTrace();
+			e.printStackTrace();
 		}
 		
 		return check;
 	}
 	
-	public Operatore getOp(String id) throws SQLException{
+	public Operatore getOp(String id){
 		Operatore op = new Operatore();
 		
 		try {
@@ -54,13 +54,13 @@ public class OperatoreDAO {
 			conn.close();
 		}
 		catch (SQLException e) {
-			//e.printStackTrace();
+			e.printStackTrace();
 		}
 		
 		return op;
 	}
 
-	public boolean registrazioneOP(String nome, String cognome, String id, String password, String cf, Date data) throws SQLException {
+	public boolean registrazioneOP(String nome, String cognome, String id, String password, String cf, Date data){
 		try {
 			if(nome !=null && cognome !=null && id!=null && password !=null && cf!=null) {
 				Connection conn = DataBaseConnection.getInstance().getConnection();
@@ -87,8 +87,8 @@ public class OperatoreDAO {
 		}
 		catch(SQLException e){
 			e.printStackTrace();
-			return false;
 		}
 		
+		return false;
 	}
 }
