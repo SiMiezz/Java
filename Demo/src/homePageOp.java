@@ -27,7 +27,6 @@ import javax.swing.JSplitPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JTable;
 
-
 public class homePageOp extends JFrame {
 
 	private JPanel contentPane;
@@ -78,6 +77,7 @@ public class homePageOp extends JFrame {
 		TheController= c;
 		
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(176, 224, 230));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -88,14 +88,16 @@ public class homePageOp extends JFrame {
 		layeredPane.setLayout(new CardLayout(0, 0));
 		
 		JPanel panelProfilo = new JPanel();
+		panelProfilo.setBackground(new Color(176, 224, 230));
 		layeredPane.add(panelProfilo, "name_680381200185900");
 		panelProfilo.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("PROFILO OPERATORE");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setForeground(Color.RED);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lblNewLabel.setLabelFor(panelProfilo);
-		lblNewLabel.setBounds(168, 11, 226, 31);
+		lblNewLabel.setBounds(10, 11, 544, 31);
 		panelProfilo.add(lblNewLabel);
 		
 		txtNome = new JTextField();
@@ -188,6 +190,7 @@ public class homePageOp extends JFrame {
 		panelProfilo.add(lblId);
 		
 		JPanel panelInserisci = new JPanel();
+		panelInserisci.setBackground(new Color(176, 224, 230));
 		panelInserisci.setLayout(null);
 		layeredPane.add(panelInserisci, "name_679299759213300");
 		
@@ -277,6 +280,7 @@ public class homePageOp extends JFrame {
 		panelInserisci.add(btnInserimento);
 		
 		JPanel panelVisualizza = new JPanel();
+		panelVisualizza.setBackground(new Color(176, 224, 230));
 		layeredPane.add(panelVisualizza, "name_302338902470800");
 		panelVisualizza.setLayout(null);
 		
@@ -301,6 +305,7 @@ public class homePageOp extends JFrame {
 		scrollPaneVisualizza.setViewportView(table);
 		
 		JPanel panelModifica = new JPanel();
+		panelModifica.setBackground(new Color(176, 224, 230));
 		layeredPane.add(panelModifica, "name_678172324780300");
 		panelModifica.setLayout(null);
 		
@@ -441,6 +446,7 @@ public class homePageOp extends JFrame {
 		panelModifica.add(btnAggiorna);
 		
 		JPanel panelStatistiche = new JPanel();
+		panelStatistiche.setBackground(new Color(176, 224, 230));
 		layeredPane.add(panelStatistiche, "name_362930448153500");
 		panelStatistiche.setLayout(null);
 		
@@ -535,6 +541,7 @@ public class homePageOp extends JFrame {
 		panelStatistiche.add(lblRiempimento);
 		
 		JPanel panelNewAreeTematiche = new JPanel();
+		panelNewAreeTematiche.setBackground(new Color(176, 224, 230));
 		layeredPane.add(panelNewAreeTematiche, "name_363800109925200");
 		panelNewAreeTematiche.setLayout(null);
 		
@@ -640,6 +647,7 @@ public class homePageOp extends JFrame {
 		panelNewAreeTematiche.add(btnCreaAree);
 		
 		JPanel panelSuperamento = new JPanel();
+		panelSuperamento.setBackground(new Color(176, 224, 230));
 		layeredPane.add(panelSuperamento, "name_364302989866400");
 		panelSuperamento.setLayout(null);
 		
@@ -676,6 +684,7 @@ public class homePageOp extends JFrame {
 		txtStudSuperamento.setEditable(false);
 		
 		JPanel panelAreeTematiche = new JPanel();
+		panelAreeTematiche.setBackground(new Color(176, 224, 230));
 		layeredPane.add(panelAreeTematiche, "name_364509658303200");
 		panelAreeTematiche.setLayout(null);
 		
@@ -750,6 +759,7 @@ public class homePageOp extends JFrame {
 		panelAreeTematiche.add(btnSelezionaAree);
 		
 		JPanel panelTermina = new JPanel();
+		panelTermina.setBackground(new Color(176, 224, 230));
 		layeredPane.add(panelTermina, "name_137764646419200");
 		panelTermina.setLayout(null);
 		
@@ -799,12 +809,15 @@ public class homePageOp extends JFrame {
 		panelTermina.add(btnTermina);
 		
 		JMenuBar menuBar = new JMenuBar();
+		menuBar.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		setJMenuBar(menuBar);
 		
 		JMenu mnProfilo = new JMenu("PROFILO");
+		mnProfilo.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		menuBar.add(mnProfilo);
 		
 		JMenuItem mntmVisualizzaProfilo = new JMenuItem("Visualizza profilo");
+		mntmVisualizzaProfilo.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		mntmVisualizzaProfilo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				switchPanel(layeredPane, panelProfilo);
@@ -813,6 +826,7 @@ public class homePageOp extends JFrame {
 		mnProfilo.add(mntmVisualizzaProfilo);
 		
 		JMenuItem mntmLogoutProfilo = new JMenuItem("Logout");
+		mntmLogoutProfilo.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		mntmLogoutProfilo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				op.setId(null);
@@ -829,9 +843,11 @@ public class homePageOp extends JFrame {
 		mnProfilo.add(mntmLogoutProfilo);
 		
 		JMenu mnCorsi = new JMenu("CORSI");
+		mnCorsi.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		menuBar.add(mnCorsi);
 		
 		JMenuItem mntmVisualizzaCorsi = new JMenuItem("Visualizza corsi");
+		mntmVisualizzaCorsi.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		mntmVisualizzaCorsi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				switchPanel(layeredPane, panelVisualizza);
@@ -851,6 +867,7 @@ public class homePageOp extends JFrame {
 		mnCorsi.add(mntmVisualizzaCorsi);
 		
 		JMenuItem mntmInserisciCorsi = new JMenuItem("Inserisci corso");
+		mntmInserisciCorsi.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		mntmInserisciCorsi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				switchPanel(layeredPane, panelInserisci);
@@ -859,6 +876,7 @@ public class homePageOp extends JFrame {
 		mnCorsi.add(mntmInserisciCorsi);
 		
 		JMenuItem mntmModificaCorso = new JMenuItem("Modifica corso");
+		mntmModificaCorso.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		mntmModificaCorso.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				switchPanel(layeredPane, panelModifica);
@@ -874,6 +892,7 @@ public class homePageOp extends JFrame {
 		mnCorsi.add(mntmModificaCorso);
 		
 		JMenuItem mntmTerminaCorso = new JMenuItem("Termina corso");
+		mntmTerminaCorso.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		mntmTerminaCorso.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				switchPanel(layeredPane, panelTermina);
@@ -887,9 +906,11 @@ public class homePageOp extends JFrame {
 		mnCorsi.add(mntmTerminaCorso);
 		
 		JMenu mnStatistiche = new JMenu("STATISTICHE");
+		mnStatistiche.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		menuBar.add(mnStatistiche);
 		
 		JMenuItem mntmVisualizzaStat = new JMenuItem("Visualizza Statistiche");
+		mntmVisualizzaStat.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		mntmVisualizzaStat.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				switchPanel(layeredPane, panelStatistiche);
@@ -903,6 +924,7 @@ public class homePageOp extends JFrame {
 		mnStatistiche.add(mntmVisualizzaStat);
 		
 		JMenuItem mntmStudIdonei = new JMenuItem("Studenti Idonei");
+		mntmStudIdonei.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		mntmStudIdonei.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				switchPanel(layeredPane, panelSuperamento);
@@ -916,9 +938,11 @@ public class homePageOp extends JFrame {
 		mnStatistiche.add(mntmStudIdonei);
 		
 		JMenu mnAreeTematiche = new JMenu("AREE TEMATICHE");
+		mnAreeTematiche.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		menuBar.add(mnAreeTematiche);
 		
 		JMenuItem mntmCreaAree = new JMenuItem("Crea Aree Tematiche");
+		mntmCreaAree.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		mntmCreaAree.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				switchPanel(layeredPane, panelNewAreeTematiche);
@@ -933,6 +957,7 @@ public class homePageOp extends JFrame {
 		mnAreeTematiche.add(mntmCreaAree);
 		
 		JMenuItem mntmVisualizzaAree = new JMenuItem("Visualizza Aree Tematiche");
+		mntmVisualizzaAree.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		mntmVisualizzaAree.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				switchPanel(layeredPane, panelAreeTematiche);

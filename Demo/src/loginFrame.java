@@ -4,25 +4,18 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import java.awt.Window.Type;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
-import javax.swing.JRadioButton;
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Color;
-import javax.swing.JFormattedTextField;
-import javax.swing.JSlider;
-import javax.swing.JSeparator;
-import javax.swing.JTable;
 
 public class loginFrame extends JFrame {
 
@@ -47,23 +40,25 @@ public class loginFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 550, 400);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(173, 216, 230));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		txtID = new JTextField();
-		txtID.setBounds(192, 127, 148, 22);
+		txtID.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtID.setBounds(192, 127, 150, 20);
 		contentPane.add(txtID);
 		txtID.setColumns(10);
 		
-		JLabel lblID = new JLabel("ID/MATRICOLA");
+		JLabel lblID = new JLabel("ID/Matricola");
 		lblID.setLabelFor(txtID);
 		lblID.setHorizontalAlignment(SwingConstants.CENTER);
 		lblID.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblID.setBounds(62, 129, 120, 14);
 		contentPane.add(lblID);
 		
-		JLabel lblPwd = new JLabel("PASSWORD");
+		JLabel lblPwd = new JLabel("Password");
 		lblPwd.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPwd.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblPwd.setBounds(62, 162, 120, 14);
@@ -91,8 +86,9 @@ public class loginFrame extends JFrame {
 		contentPane.add(btnGo);
 		
 		pwdField = new JPasswordField();
+		pwdField.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblPwd.setLabelFor(pwdField);
-		pwdField.setBounds(192, 160, 148, 22);
+		pwdField.setBounds(192, 160, 150, 20);
 		contentPane.add(pwdField);
 		
 		BoxSceltaLogin = new JComboBox();

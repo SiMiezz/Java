@@ -1,6 +1,4 @@
-import java.sql.Date;
-import java.sql.Time;
-import java.util.*;
+import java.sql.*;
 
 public class Lezione {
 	private int idlezione;

@@ -5,7 +5,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.SwingConstants;
@@ -15,15 +14,9 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JFormattedTextField;
-import javax.swing.text.*;
 
 import java.sql.Date;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.awt.Color;
-import javax.swing.JToggleButton;
 
 public class registrationFrame extends JFrame {
 
@@ -62,6 +55,7 @@ public class registrationFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 475);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(173, 216, 230));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -73,6 +67,7 @@ public class registrationFrame extends JFrame {
 		contentPane.add(pwdLbl);
 		
 		pwdField = new JPasswordField();
+		pwdField.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		pwdLbl.setLabelFor(pwdField);
 		pwdField.setBounds(235, 279, 150, 20);
 		contentPane.add(pwdField);
@@ -85,11 +80,13 @@ public class registrationFrame extends JFrame {
 		contentPane.add(boxSceltaRegistration);
 		
 		txtNome = new JTextField();
+		txtNome.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtNome.setBounds(235, 123, 150, 20);
 		contentPane.add(txtNome);
 		txtNome.setColumns(10);
 		
 		txtCognome = new JTextField();
+		txtCognome.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtCognome.setBounds(235, 154, 150, 20);
 		contentPane.add(txtCognome);
 		txtCognome.setColumns(10);
@@ -109,6 +106,7 @@ public class registrationFrame extends JFrame {
 		contentPane.add(cognomeLbl);
 		
 		txtID = new JTextField();
+		txtID.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtID.setBounds(235, 248, 150, 20);
 		contentPane.add(txtID);
 		txtID.setColumns(10);
@@ -155,6 +153,7 @@ public class registrationFrame extends JFrame {
 		contentPane.add(btnRegistration);
 		
 		txtCF = new JTextField();
+		txtCF.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtCF.setBounds(235, 217, 150, 20);
 		contentPane.add(txtCF);
 		txtCF.setColumns(10);
@@ -173,6 +172,7 @@ public class registrationFrame extends JFrame {
 		contentPane.add(lblCF);
 		
 		txtData = new JTextField();
+		txtData.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblDataN.setLabelFor(txtData);
 		txtData.setBounds(235, 186, 150, 20);
 		contentPane.add(txtData);

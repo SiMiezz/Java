@@ -53,6 +53,7 @@ public class homePageStud extends JFrame {
 		TheController=c;
 		
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(176, 224, 230));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -63,6 +64,7 @@ public class homePageStud extends JFrame {
 		layeredPane.setLayout(new CardLayout(0, 0));
 		
 		JPanel panelProfilo = new JPanel();
+		panelProfilo.setBackground(new Color(176, 224, 230));
 		panelProfilo.setLayout(null);
 		layeredPane.add(panelProfilo, "name_367346658513700");
 		
@@ -164,6 +166,7 @@ public class homePageStud extends JFrame {
 		panelProfilo.add(lblMatricola);
 		
 		JPanel panelCorsi = new JPanel();
+		panelCorsi.setBackground(new Color(176, 224, 230));
 		panelCorsi.setLayout(null);
 		layeredPane.add(panelCorsi, "name_367386059393600");
 		
@@ -188,6 +191,7 @@ public class homePageStud extends JFrame {
 		scrollPaneCorsi.setViewportView(tableCorsi);
 		
 		JPanel panelIscrizioni = new JPanel();
+		panelIscrizioni.setBackground(new Color(176, 224, 230));
 		layeredPane.add(panelIscrizioni, "name_367500255637100");
 		panelIscrizioni.setLayout(null);
 		
@@ -212,6 +216,7 @@ public class homePageStud extends JFrame {
 		scrollPaneIscrizioni.setViewportView(tableIscrizioni);
 		
 		JPanel panelNewIscrizione = new JPanel();
+		panelNewIscrizione.setBackground(new Color(176, 224, 230));
 		layeredPane.add(panelNewIscrizione, "name_367633326808700");
 		panelNewIscrizione.setLayout(null);
 		
@@ -261,6 +266,7 @@ public class homePageStud extends JFrame {
 		panelNewIscrizione.add(btnIscriviti);
 		
 		JPanel panelLezioni = new JPanel();
+		panelLezioni.setBackground(new Color(176, 224, 230));
 		layeredPane.add(panelLezioni, "name_367792570924600");
 		panelLezioni.setLayout(null);
 		
@@ -285,6 +291,7 @@ public class homePageStud extends JFrame {
 		scrollPaneLezioni.setViewportView(tableLezioni);
 		
 		JPanel panelPartecipa = new JPanel();
+		panelPartecipa.setBackground(new Color(176, 224, 230));
 		layeredPane.add(panelPartecipa, "name_367912807561300");
 		panelPartecipa.setLayout(null);
 		
@@ -334,12 +341,15 @@ public class homePageStud extends JFrame {
 		panelPartecipa.add(btnPartecipa);
 		
 		JMenuBar menuBar = new JMenuBar();
+		menuBar.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		setJMenuBar(menuBar);
 		
 		JMenu mnProfilo = new JMenu("PROFILO");
+		mnProfilo.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		menuBar.add(mnProfilo);
 		
 		JMenuItem mntmProfilo = new JMenuItem("Visualizza Profilo");
+		mntmProfilo.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		mntmProfilo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				switchPanel(layeredPane, panelProfilo);
@@ -348,6 +358,7 @@ public class homePageStud extends JFrame {
 		mnProfilo.add(mntmProfilo);
 		
 		JMenuItem mntmLogout = new JMenuItem("Logout");
+		mntmLogout.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		mntmLogout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				stud.setMatricola(null);
@@ -364,9 +375,11 @@ public class homePageStud extends JFrame {
 		mnProfilo.add(mntmLogout);
 		
 		JMenu mnCorsi = new JMenu("CORSI");
+		mnCorsi.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		menuBar.add(mnCorsi);
 		
 		JMenuItem mntmVisualizzaCorsi = new JMenuItem("Visualizza Corsi");
+		mntmVisualizzaCorsi.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		mntmVisualizzaCorsi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				switchPanel(layeredPane, panelCorsi);
@@ -386,9 +399,11 @@ public class homePageStud extends JFrame {
 		mnCorsi.add(mntmVisualizzaCorsi);
 		
 		JMenu mnIscrizioni = new JMenu("ISCRIZIONI");
+		mnIscrizioni.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		menuBar.add(mnIscrizioni);
 		
 		JMenuItem mntmVisualizzaIscrizioni = new JMenuItem("Visualizza Iscrizioni");
+		mntmVisualizzaIscrizioni.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		mntmVisualizzaIscrizioni.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				switchPanel(layeredPane, panelIscrizioni);
@@ -407,6 +422,7 @@ public class homePageStud extends JFrame {
 		mnIscrizioni.add(mntmVisualizzaIscrizioni);
 		
 		JMenuItem mntmAggiungiIscrizioni = new JMenuItem("Effettua Iscrizione");
+		mntmAggiungiIscrizioni.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		mntmAggiungiIscrizioni.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				switchPanel(layeredPane, panelNewIscrizione);
@@ -420,9 +436,11 @@ public class homePageStud extends JFrame {
 		mnIscrizioni.add(mntmAggiungiIscrizioni);
 		
 		JMenu mnLezioni = new JMenu("LEZIONI");
+		mnLezioni.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		menuBar.add(mnLezioni);
 		
 		JMenuItem mntmVisualizzaLezioni = new JMenuItem("Visualizza Lezioni");
+		mntmVisualizzaLezioni.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		mntmVisualizzaLezioni.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				switchPanel(layeredPane, panelLezioni);
@@ -441,6 +459,7 @@ public class homePageStud extends JFrame {
 		mnLezioni.add(mntmVisualizzaLezioni);
 		
 		JMenuItem mntmPartecipaLezioni = new JMenuItem("Partecipa Lezione");
+		mntmPartecipaLezioni.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		mntmPartecipaLezioni.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				switchPanel(layeredPane, panelPartecipa);
