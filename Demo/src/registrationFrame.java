@@ -78,6 +78,7 @@ public class registrationFrame extends JFrame {
 		contentPane.add(pwdField);
 		
 		boxSceltaRegistration = new JComboBox();
+		boxSceltaRegistration.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		boxSceltaRegistration.setModel(new DefaultComboBoxModel(new String[] {"Studente", "Operatore"}));
 		boxSceltaRegistration.setSelectedIndex(1);
 		boxSceltaRegistration.setBounds(285, 310, 100, 20);
@@ -120,7 +121,7 @@ public class registrationFrame extends JFrame {
 		contentPane.add(idLbl);
 		
 		JButton btnRegistration = new JButton("REGISTRATI");
-		btnRegistration.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnRegistration.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnRegistration.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(!txtNome.getText().isBlank() && !txtCognome.getText().isBlank() && !txtID.getText().isBlank() && !pwdField.getPassword().toString().isBlank() && !txtCF.getText().isBlank()) {
@@ -178,13 +179,13 @@ public class registrationFrame extends JFrame {
 		txtData.setColumns(10);
 		
 		JLabel lblInserimentoData = new JLabel("(yyyy-mm-dd)");
-		lblInserimentoData.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 14));
+		lblInserimentoData.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblInserimentoData.setHorizontalAlignment(SwingConstants.CENTER);
-		lblInserimentoData.setBounds(395, 185, 150, 18);
+		lblInserimentoData.setBounds(395, 185, 110, 18);
 		contentPane.add(lblInserimentoData);
 		
 		JButton btnLogin = new JButton("LOGIN");
-		btnLogin.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnLogin.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				c.backLogin();
@@ -208,6 +209,7 @@ public class registrationFrame extends JFrame {
 		contentPane.add(lblDati);
 		
 		JLabel lblBack = new JLabel("Effettua Login");
+		lblBack.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblBack.setForeground(Color.BLUE);
 		lblBack.setHorizontalAlignment(SwingConstants.CENTER);
 		lblBack.setBounds(10, 371, 100, 14);

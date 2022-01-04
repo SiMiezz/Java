@@ -70,7 +70,7 @@ public class loginFrame extends JFrame {
 		contentPane.add(lblPwd);
 		
 		JButton btnGo = new JButton("LOGIN");
-		btnGo.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnGo.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnGo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String id = txtID.getText();
@@ -96,22 +96,22 @@ public class loginFrame extends JFrame {
 		contentPane.add(pwdField);
 		
 		BoxSceltaLogin = new JComboBox();
+		BoxSceltaLogin.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		BoxSceltaLogin.setBackground(Color.WHITE);
 		BoxSceltaLogin.setModel(new DefaultComboBoxModel(new String[] {"Studente", "Operatore"}));
 		BoxSceltaLogin.setSelectedIndex(1);
 		BoxSceltaLogin.setToolTipText("");
-		BoxSceltaLogin.setEditable(true);
-		BoxSceltaLogin.setBounds(204, 64, 100, 20);
+		BoxSceltaLogin.setBounds(240, 193, 100, 20);
 		contentPane.add(BoxSceltaLogin);
 		
 		JButton btnRegistrati = new JButton("REGISTRATI");
-		btnRegistrati.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnRegistrati.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnRegistrati.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				c.goRegistrazioneFrame();
 			}
 		});
-		btnRegistrati.setBounds(20, 321, 120, 25);
+		btnRegistrati.setBounds(10, 321, 120, 25);
 		contentPane.add(btnRegistrati);
 		
 		JLabel lblLoginTitle = new JLabel("LOGIN");
@@ -122,13 +122,10 @@ public class loginFrame extends JFrame {
 		contentPane.add(lblLoginTitle);
 		
 		JLabel lblRegistrati = new JLabel("Non sei registrato?");
+		lblRegistrati.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblRegistrati.setForeground(Color.BLUE);
 		lblRegistrati.setHorizontalAlignment(SwingConstants.CENTER);
-		lblRegistrati.setBounds(20, 296, 120, 14);
+		lblRegistrati.setBounds(10, 296, 120, 14);
 		contentPane.add(lblRegistrati);
-		
-		JLabel lblNewLabel = new JLabel("Selezionare il tipo di login:");
-		lblNewLabel.setBounds(62, 67, 132, 14);
-		contentPane.add(lblNewLabel);
 	}
 }

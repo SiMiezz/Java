@@ -99,38 +99,43 @@ public class homePageOp extends JFrame {
 		panelProfilo.add(lblNewLabel);
 		
 		txtNome = new JTextField();
+		txtNome.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtNome.setText((String) null);
 		txtNome.setEditable(false);
 		txtNome.setColumns(10);
-		txtNome.setBounds(168, 68, 226, 22);
+		txtNome.setBounds(168, 68, 200, 22);
 		panelProfilo.add(txtNome);
 		
 		txtCognome = new JTextField();
+		txtCognome.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtCognome.setText((String) null);
 		txtCognome.setEditable(false);
 		txtCognome.setColumns(10);
-		txtCognome.setBounds(168, 106, 226, 22);
+		txtCognome.setBounds(168, 106, 200, 22);
 		panelProfilo.add(txtCognome);
 		
 		txtDataNascita = new JTextField();
+		txtDataNascita.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtDataNascita.setText("<dynamic>\r\n");
 		txtDataNascita.setEditable(false);
 		txtDataNascita.setColumns(10);
-		txtDataNascita.setBounds(168, 149, 226, 22);
+		txtDataNascita.setBounds(168, 149, 200, 22);
 		panelProfilo.add(txtDataNascita);
 		
 		txtCF = new JTextField();
+		txtCF.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtCF.setText((String) null);
 		txtCF.setEditable(false);
 		txtCF.setColumns(10);
-		txtCF.setBounds(168, 182, 226, 22);
+		txtCF.setBounds(168, 182, 200, 22);
 		panelProfilo.add(txtCF);
 		
 		txtID = new JTextField();
+		txtID.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtID.setText("<dynamic>");
 		txtID.setEditable(false);
 		txtID.setColumns(10);
-		txtID.setBounds(168, 215, 226, 22);
+		txtID.setBounds(168, 215, 200, 22);
 		panelProfilo.add(txtID);
 		
 		Operatore op = new Operatore();
@@ -153,33 +158,33 @@ public class homePageOp extends JFrame {
 		txtID.setText(id);
 		
 		JLabel lblNome = new JLabel("Nome");
-		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNome.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblNome.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNome.setBounds(31, 72, 114, 14);
+		lblNome.setBounds(38, 72, 120, 14);
 		panelProfilo.add(lblNome);
 		
 		JLabel lblCognome = new JLabel("Cognome");
 		lblCognome.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCognome.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblCognome.setBounds(31, 104, 114, 22);
+		lblCognome.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblCognome.setBounds(38, 106, 120, 22);
 		panelProfilo.add(lblCognome);
 		
 		JLabel lblData = new JLabel("Data di nascita");
 		lblData.setHorizontalAlignment(SwingConstants.CENTER);
-		lblData.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblData.setBounds(31, 151, 114, 14);
+		lblData.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblData.setBounds(38, 153, 120, 14);
 		panelProfilo.add(lblData);
 		
 		JLabel lblCf = new JLabel("Codice Fiscale");
 		lblCf.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCf.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblCf.setBounds(31, 186, 114, 14);
+		lblCf.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblCf.setBounds(38, 186, 120, 14);
 		panelProfilo.add(lblCf);
 		
-		JLabel lblId = new JLabel("ID Operatore");
+		JLabel lblId = new JLabel("ID");
 		lblId.setHorizontalAlignment(SwingConstants.CENTER);
-		lblId.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblId.setBounds(31, 219, 114, 14);
+		lblId.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblId.setBounds(38, 219, 120, 14);
 		panelProfilo.add(lblId);
 		
 		JPanel panelInserisci = new JPanel();
@@ -187,53 +192,58 @@ public class homePageOp extends JFrame {
 		layeredPane.add(panelInserisci, "name_679299759213300");
 		
 		JLabel lblInserisci = new JLabel("INSERISCI CORSO");
+		lblInserisci.setForeground(Color.RED);
 		lblInserisci.setHorizontalAlignment(SwingConstants.CENTER);
-		lblInserisci.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblInserisci.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblInserisci.setBounds(10, 11, 544, 14);
 		panelInserisci.add(lblInserisci);
 		
 		txtInsertNome = new JTextField();
+		txtInsertNome.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtInsertNome.setColumns(10);
-		txtInsertNome.setBounds(147, 123, 150, 20);
+		txtInsertNome.setBounds(147, 123, 175, 20);
 		panelInserisci.add(txtInsertNome);
 		
 		txtInsertDesc = new JTextField();
+		txtInsertDesc.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtInsertDesc.setColumns(10);
-		txtInsertDesc.setBounds(147, 154, 150, 20);
+		txtInsertDesc.setBounds(147, 154, 175, 20);
 		panelInserisci.add(txtInsertDesc);
 		
 		txtInsertPresenze = new JTextField();
+		txtInsertPresenze.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtInsertPresenze.setColumns(10);
-		txtInsertPresenze.setBounds(147, 185, 150, 20);
+		txtInsertPresenze.setBounds(147, 185, 175, 20);
 		panelInserisci.add(txtInsertPresenze);
 		
 		txtInsertPartecipanti = new JTextField();
+		txtInsertPartecipanti.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtInsertPartecipanti.setColumns(10);
-		txtInsertPartecipanti.setBounds(147, 216, 150, 20);
+		txtInsertPartecipanti.setBounds(147, 216, 175, 20);
 		panelInserisci.add(txtInsertPartecipanti);
 		
 		JLabel lblNomeCorso = new JLabel("Nome");
 		lblNomeCorso.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNomeCorso.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNomeCorso.setBounds(10, 124, 106, 14);
+		lblNomeCorso.setBounds(17, 124, 120, 14);
 		panelInserisci.add(lblNomeCorso);
 		
 		JLabel lblDescrizione = new JLabel("Descrizione");
 		lblDescrizione.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDescrizione.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblDescrizione.setBounds(10, 155, 106, 14);
+		lblDescrizione.setBounds(17, 155, 120, 14);
 		panelInserisci.add(lblDescrizione);
 		
 		JLabel lblPresenze = new JLabel("Presenze Minime");
 		lblPresenze.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPresenze.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblPresenze.setBounds(10, 186, 106, 14);
+		lblPresenze.setBounds(17, 186, 120, 14);
 		panelInserisci.add(lblPresenze);
 		
 		JLabel lblPartecipanti = new JLabel("Partecipanti Max");
 		lblPartecipanti.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPartecipanti.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblPartecipanti.setBounds(10, 217, 106, 14);
+		lblPartecipanti.setBounds(17, 217, 120, 14);
 		panelInserisci.add(lblPartecipanti);
 		
 		JButton btnInserimento = new JButton("INSERISCI");
@@ -262,8 +272,8 @@ public class homePageOp extends JFrame {
 				txtInsertPartecipanti.setText(null);
 			}
 		});
-		btnInserimento.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnInserimento.setBounds(236, 271, 100, 23);
+		btnInserimento.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnInserimento.setBounds(289, 247, 100, 23);
 		panelInserisci.add(btnInserimento);
 		
 		JPanel panelVisualizza = new JPanel();
@@ -271,13 +281,14 @@ public class homePageOp extends JFrame {
 		panelVisualizza.setLayout(null);
 		
 		JLabel lblVisualizza = new JLabel("VISUALIZZA CORSI");
-		lblVisualizza.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblVisualizza.setForeground(Color.RED);
+		lblVisualizza.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblVisualizza.setHorizontalAlignment(SwingConstants.CENTER);
 		lblVisualizza.setBounds(10, 11, 544, 14);
 		panelVisualizza.add(lblVisualizza);
 		
 		JScrollPane scrollPaneVisualizza = new JScrollPane();
-		scrollPaneVisualizza.setBounds(26, 72, 517, 301);
+		scrollPaneVisualizza.setBounds(10, 36, 544, 270);
 		panelVisualizza.add(scrollPaneVisualizza);
 		
 		table = new JTable();
@@ -294,7 +305,8 @@ public class homePageOp extends JFrame {
 		panelModifica.setLayout(null);
 		
 		JLabel lblModifica = new JLabel("MODIFICA CORSO");
-		lblModifica.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblModifica.setForeground(Color.RED);
+		lblModifica.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblModifica.setHorizontalAlignment(SwingConstants.CENTER);
 		lblModifica.setBounds(10, 11, 544, 14);
 		panelModifica.add(lblModifica);
@@ -336,62 +348,68 @@ public class homePageOp extends JFrame {
 		panelModifica.add(btnSelezionaModifica);
 		
 		txtModificaNome = new JTextField();
-		txtModificaNome.setBounds(142, 272, 187, 20);
+		txtModificaNome.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtModificaNome.setBounds(154, 272, 175, 20);
 		panelModifica.add(txtModificaNome);
 		txtModificaNome.setColumns(10);
 		
 		txtModificaDesc = new JTextField();
-		txtModificaDesc.setBounds(142, 303, 187, 20);
+		txtModificaDesc.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtModificaDesc.setBounds(154, 303, 175, 20);
 		panelModifica.add(txtModificaDesc);
 		txtModificaDesc.setColumns(10);
 		
 		txtModificaPresenze = new JTextField();
-		txtModificaPresenze.setBounds(142, 334, 187, 20);
+		txtModificaPresenze.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtModificaPresenze.setBounds(154, 334, 175, 20);
 		panelModifica.add(txtModificaPresenze);
 		txtModificaPresenze.setColumns(10);
 		
 		txtModificaPartecipanti = new JTextField();
-		txtModificaPartecipanti.setBounds(142, 365, 187, 20);
+		txtModificaPartecipanti.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtModificaPartecipanti.setBounds(154, 365, 175, 20);
 		panelModifica.add(txtModificaPartecipanti);
 		txtModificaPartecipanti.setColumns(10);
 		
 		txtModificaID = new JTextField();
+		txtModificaID.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtModificaID.setEditable(false);
-		txtModificaID.setBounds(142, 396, 187, 20);
+		txtModificaID.setBounds(154, 394, 175, 20);
 		panelModifica.add(txtModificaID);
 		txtModificaID.setColumns(10);
 		
 		JLabel lblModNome = new JLabel("Nome");
-		lblModNome.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblModNome.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblModNome.setHorizontalAlignment(SwingConstants.CENTER);
-		lblModNome.setBounds(17, 273, 115, 14);
+		lblModNome.setBounds(14, 275, 130, 14);
 		panelModifica.add(lblModNome);
 		
 		JLabel txtModDesc = new JLabel("Descrizione");
 		txtModDesc.setHorizontalAlignment(SwingConstants.CENTER);
-		txtModDesc.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		txtModDesc.setBounds(17, 304, 115, 14);
+		txtModDesc.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtModDesc.setBounds(14, 306, 130, 14);
 		panelModifica.add(txtModDesc);
 		
 		JLabel lblModPresenze = new JLabel("Presenze minime");
 		lblModPresenze.setHorizontalAlignment(SwingConstants.CENTER);
-		lblModPresenze.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblModPresenze.setBounds(17, 335, 115, 14);
+		lblModPresenze.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblModPresenze.setBounds(14, 337, 130, 14);
 		panelModifica.add(lblModPresenze);
 		
 		JLabel lblModPartecipanti = new JLabel("Partecipanti max");
 		lblModPartecipanti.setHorizontalAlignment(SwingConstants.CENTER);
-		lblModPartecipanti.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblModPartecipanti.setBounds(17, 367, 115, 14);
+		lblModPartecipanti.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblModPartecipanti.setBounds(14, 368, 130, 14);
 		panelModifica.add(lblModPartecipanti);
 		
 		JLabel lblModId = new JLabel("IDCorso");
 		lblModId.setHorizontalAlignment(SwingConstants.CENTER);
-		lblModId.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblModId.setBounds(17, 398, 115, 14);
+		lblModId.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblModId.setBounds(14, 397, 130, 14);
 		panelModifica.add(lblModId);
 		
 		JButton btnAggiorna = new JButton("AGGIORNA");
+		btnAggiorna.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnAggiorna.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(!txtModificaNome.getText().isBlank() && tryParse(txtModificaPresenze.getText())!=null && tryParse(txtModificaPartecipanti.getText())!=null && !txtModificaID.getText().isBlank()) {
@@ -427,8 +445,9 @@ public class homePageOp extends JFrame {
 		panelStatistiche.setLayout(null);
 		
 		JLabel lblStatistiche = new JLabel("STATISTICHE CORSO");
+		lblStatistiche.setForeground(Color.RED);
 		lblStatistiche.setHorizontalAlignment(SwingConstants.CENTER);
-		lblStatistiche.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblStatistiche.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblStatistiche.setBounds(10, 11, 544, 14);
 		panelStatistiche.add(lblStatistiche);
 		
@@ -520,7 +539,8 @@ public class homePageOp extends JFrame {
 		panelNewAreeTematiche.setLayout(null);
 		
 		JLabel lblNewAree = new JLabel("CREA AREE TEMATICHE");
-		lblNewAree.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblNewAree.setForeground(Color.RED);
+		lblNewAree.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblNewAree.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewAree.setBounds(10, 11, 544, 14);
 		panelNewAreeTematiche.add(lblNewAree);
@@ -592,6 +612,7 @@ public class homePageOp extends JFrame {
 		panelNewAreeTematiche.add(lblIdAree);
 		
 		JButton btnCreaAree = new JButton("CREA");
+		btnCreaAree.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnCreaAree.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(!txtTipoAree.getText().isBlank() && !txtIdAree.getText().isBlank()) {
@@ -623,8 +644,9 @@ public class homePageOp extends JFrame {
 		panelSuperamento.setLayout(null);
 		
 		JLabel lblSuperamento = new JLabel("VISUALIZZA STUDENTI IDONEI");
+		lblSuperamento.setForeground(Color.RED);
 		lblSuperamento.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSuperamento.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblSuperamento.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblSuperamento.setBounds(10, 11, 544, 14);
 		panelSuperamento.add(lblSuperamento);
 		
@@ -636,7 +658,7 @@ public class homePageOp extends JFrame {
 		panelSuperamento.add(lblAlertSuperamento);
 		
 		JScrollPane scrollPaneCorsiSuperamento = new JScrollPane();
-		scrollPaneCorsiSuperamento.setBounds(141, 61, 283, 168);
+		scrollPaneCorsiSuperamento.setBounds(141, 61, 285, 165);
 		panelSuperamento.add(scrollPaneCorsiSuperamento);
 		
 		JTextArea txtCorsiSuperamento = new JTextArea();
@@ -645,7 +667,7 @@ public class homePageOp extends JFrame {
 		txtCorsiSuperamento.setEditable(false);
 		
 		JScrollPane scrollPaneStudSuperamento = new JScrollPane();
-		scrollPaneStudSuperamento.setBounds(145, 273, 281, 166);
+		scrollPaneStudSuperamento.setBounds(141, 271, 285, 165);
 		panelSuperamento.add(scrollPaneStudSuperamento);
 		
 		JTextArea txtStudSuperamento = new JTextArea();
@@ -658,8 +680,9 @@ public class homePageOp extends JFrame {
 		panelAreeTematiche.setLayout(null);
 		
 		JLabel lblAreeTematiche = new JLabel("VISUALIZZA AREE TEMATICHE PER CORSI");
+		lblAreeTematiche.setForeground(Color.RED);
 		lblAreeTematiche.setHorizontalAlignment(SwingConstants.CENTER);
-		lblAreeTematiche.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblAreeTematiche.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblAreeTematiche.setBounds(10, 11, 544, 14);
 		panelAreeTematiche.add(lblAreeTematiche);
 		
@@ -667,11 +690,11 @@ public class homePageOp extends JFrame {
 		lblAlertAree.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAlertAree.setForeground(Color.BLUE);
 		lblAlertAree.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblAlertAree.setBounds(144, 36, 279, 14);
+		lblAlertAree.setBounds(144, 36, 285, 14);
 		panelAreeTematiche.add(lblAlertAree);
 		
 		JScrollPane scrollPaneAreeTema = new JScrollPane();
-		scrollPaneAreeTema.setBounds(144, 61, 279, 164);
+		scrollPaneAreeTema.setBounds(144, 61, 285, 165);
 		panelAreeTematiche.add(scrollPaneAreeTema);
 		
 		JTextArea txtCorsiAree = new JTextArea();
@@ -680,7 +703,7 @@ public class homePageOp extends JFrame {
 		txtCorsiAree.setEditable(false);
 		
 		JScrollPane scrollPaneCorsiAree = new JScrollPane();
-		scrollPaneCorsiAree.setBounds(144, 268, 277, 162);
+		scrollPaneCorsiAree.setBounds(144, 268, 285, 165);
 		panelAreeTematiche.add(scrollPaneCorsiAree);
 		
 		JTextArea txtAreeTematiche = new JTextArea();
@@ -704,7 +727,7 @@ public class homePageOp extends JFrame {
 				}
 			}
 		});
-		btnSelezionaSuperamento.setBounds(326, 239, 100, 23);
+		btnSelezionaSuperamento.setBounds(326, 237, 100, 23);
 		panelSuperamento.add(btnSelezionaSuperamento);
 		
 		JButton btnSelezionaAree = new JButton("SELEZIONA");
@@ -723,7 +746,7 @@ public class homePageOp extends JFrame {
 				}
 			}
 		});
-		btnSelezionaAree.setBounds(323, 234, 100, 23);
+		btnSelezionaAree.setBounds(329, 237, 100, 23);
 		panelAreeTematiche.add(btnSelezionaAree);
 		
 		JPanel panelTermina = new JPanel();
@@ -731,8 +754,9 @@ public class homePageOp extends JFrame {
 		panelTermina.setLayout(null);
 		
 		JLabel lblTermina = new JLabel("TERMINA CORSO");
+		lblTermina.setForeground(Color.RED);
 		lblTermina.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTermina.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblTermina.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblTermina.setBounds(10, 11, 544, 14);
 		panelTermina.add(lblTermina);
 		
@@ -753,6 +777,7 @@ public class homePageOp extends JFrame {
 		txtTermina.setEditable(false);
 		
 		JButton btnTermina = new JButton("TERMINA");
+		btnTermina.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnTermina.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(tryParse(txtTermina.getSelectedText())!=null) {
@@ -770,7 +795,7 @@ public class homePageOp extends JFrame {
 				}
 			}
 		});
-		btnTermina.setBounds(338, 236, 89, 23);
+		btnTermina.setBounds(327, 240, 100, 23);
 		panelTermina.add(btnTermina);
 		
 		JMenuBar menuBar = new JMenuBar();

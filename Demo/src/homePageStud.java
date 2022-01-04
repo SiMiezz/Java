@@ -32,10 +32,12 @@ public class homePageStud extends JFrame {
 	private JTextField txtCF;
 	private JTextField txtMatricola;
 	Controller TheController;
-	private JTable table;
+	private JTable tableCorsi;
 	DefaultTableModel model;
 	private JTable tableIscrizioni;
-	private JTable tableVisualizzaLezioni;
+	DefaultTableModel model1;
+	private JTable tableLezioni;
+	DefaultTableModel model2;
 	
 	private void switchPanel(JLayeredPane layeredPane, JPanel panelInserisci) {
 		layeredPane.removeAll();
@@ -65,44 +67,50 @@ public class homePageStud extends JFrame {
 		layeredPane.add(panelProfilo, "name_367346658513700");
 		
 		JLabel lblNewLabel = new JLabel("PROFILO STUDENTE");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setForeground(Color.RED);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblNewLabel.setBounds(168, 11, 226, 31);
+		lblNewLabel.setBounds(0, 11, 554, 31);
 		panelProfilo.add(lblNewLabel);
 		
 		txtNome = new JTextField();
+		txtNome.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtNome.setText((String) null);
 		txtNome.setEditable(false);
 		txtNome.setColumns(10);
-		txtNome.setBounds(168, 68, 226, 22);
+		txtNome.setBounds(168, 68, 200, 22);
 		panelProfilo.add(txtNome);
 		
 		txtCognome = new JTextField();
+		txtCognome.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtCognome.setText((String) null);
 		txtCognome.setEditable(false);
 		txtCognome.setColumns(10);
-		txtCognome.setBounds(168, 106, 226, 22);
+		txtCognome.setBounds(168, 106, 200, 22);
 		panelProfilo.add(txtCognome);
 		
 		txtData = new JTextField();
+		txtData.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtData.setText("<dynamic>\r\n");
 		txtData.setEditable(false);
 		txtData.setColumns(10);
-		txtData.setBounds(168, 149, 226, 22);
+		txtData.setBounds(168, 149, 200, 22);
 		panelProfilo.add(txtData);
 		
 		txtCF = new JTextField();
+		txtCF.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtCF.setText((String) null);
 		txtCF.setEditable(false);
 		txtCF.setColumns(10);
-		txtCF.setBounds(168, 182, 226, 22);
+		txtCF.setBounds(168, 182, 200, 22);
 		panelProfilo.add(txtCF);
 		
 		txtMatricola = new JTextField();
+		txtMatricola.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtMatricola.setText("<dynamic>");
 		txtMatricola.setEditable(false);
 		txtMatricola.setColumns(10);
-		txtMatricola.setBounds(168, 215, 226, 22);
+		txtMatricola.setBounds(168, 215, 200, 22);
 		panelProfilo.add(txtMatricola);
 		
 		Studente stud = new Studente();
@@ -127,32 +135,32 @@ public class homePageStud extends JFrame {
 		
 		JLabel lblNome = new JLabel("Nome");
 		lblNome.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNome.setBounds(31, 72, 114, 14);
+		lblNome.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNome.setBounds(38, 72, 120, 14);
 		panelProfilo.add(lblNome);
 		
 		JLabel lblCognome = new JLabel("Cognome");
 		lblCognome.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCognome.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblCognome.setBounds(31, 104, 114, 22);
+		lblCognome.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblCognome.setBounds(38, 106, 120, 22);
 		panelProfilo.add(lblCognome);
 		
 		JLabel lblData = new JLabel("Data di nascita");
 		lblData.setHorizontalAlignment(SwingConstants.CENTER);
-		lblData.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblData.setBounds(31, 151, 114, 14);
+		lblData.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblData.setBounds(38, 153, 120, 14);
 		panelProfilo.add(lblData);
 		
 		JLabel lblCf = new JLabel("Codice Fiscale");
 		lblCf.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCf.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblCf.setBounds(31, 186, 114, 14);
+		lblCf.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblCf.setBounds(38, 186, 120, 14);
 		panelProfilo.add(lblCf);
 		
 		JLabel lblMatricola = new JLabel("Matricola");
 		lblMatricola.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMatricola.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblMatricola.setBounds(31, 219, 114, 14);
+		lblMatricola.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblMatricola.setBounds(38, 219, 120, 14);
 		panelProfilo.add(lblMatricola);
 		
 		JPanel panelCorsi = new JPanel();
@@ -160,45 +168,47 @@ public class homePageStud extends JFrame {
 		layeredPane.add(panelCorsi, "name_367386059393600");
 		
 		JLabel lblCorsi = new JLabel("VISUALIZZA CORSI");
+		lblCorsi.setForeground(Color.RED);
 		lblCorsi.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCorsi.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblCorsi.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblCorsi.setBounds(10, 11, 544, 14);
 		panelCorsi.add(lblCorsi);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(20, 36, 534, 263);
-		panelCorsi.add(scrollPane);
+		JScrollPane scrollPaneCorsi = new JScrollPane();
+		scrollPaneCorsi.setBounds(10, 36, 544, 270);
+		panelCorsi.add(scrollPaneCorsi);
 		
-		table = new JTable();
-		table.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
+		tableCorsi = new JTable();
+		tableCorsi.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
 		model= new DefaultTableModel();
 		Object[] column= {"ID", "Nome", "Descrizione", "Presenze min", "Partecipanti max"};
 		Object [] row= new Object[5];
-		table.setModel(model);
+		tableCorsi.setModel(model);
 		model.setColumnIdentifiers(column);
-		scrollPane.setViewportView(table);
+		scrollPaneCorsi.setViewportView(tableCorsi);
 		
 		JPanel panelIscrizioni = new JPanel();
 		layeredPane.add(panelIscrizioni, "name_367500255637100");
 		panelIscrizioni.setLayout(null);
 		
 		JLabel lblIscrizioni = new JLabel("VISUALIZZA ISCRIZIONI");
+		lblIscrizioni.setForeground(Color.RED);
 		lblIscrizioni.setHorizontalAlignment(SwingConstants.CENTER);
-		lblIscrizioni.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblIscrizioni.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblIscrizioni.setBounds(10, 11, 544, 14);
 		panelIscrizioni.add(lblIscrizioni);
 		
 		JScrollPane scrollPaneIscrizioni = new JScrollPane();
-		scrollPaneIscrizioni.setBounds(20, 36, 534, 298);
+		scrollPaneIscrizioni.setBounds(10, 36, 544, 270);
 		panelIscrizioni.add(scrollPaneIscrizioni);
 		
 		tableIscrizioni = new JTable();
 		tableIscrizioni.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
-		model= new DefaultTableModel();
-		Object[] column1= {"ID", "Nome", "Descrizione", "Presenze min", "Partecipanti max"};
+		model1 = new DefaultTableModel();
+		Object[] column1= {"ID", "Nome", "Descrizione"};
 		Object [] row1= new Object[3];
-		tableIscrizioni.setModel(model);
-		model.setColumnIdentifiers(column1);
+		tableIscrizioni.setModel(model1);
+		model1.setColumnIdentifiers(column1);
 		scrollPaneIscrizioni.setViewportView(tableIscrizioni);
 		
 		JPanel panelNewIscrizione = new JPanel();
@@ -206,8 +216,9 @@ public class homePageStud extends JFrame {
 		panelNewIscrizione.setLayout(null);
 		
 		JLabel lblNewIscrizione = new JLabel("EFFETTUA ISCRIZIONE");
+		lblNewIscrizione.setForeground(Color.RED);
 		lblNewIscrizione.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewIscrizione.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblNewIscrizione.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblNewIscrizione.setBounds(10, 11, 544, 14);
 		panelNewIscrizione.add(lblNewIscrizione);
 		
@@ -228,6 +239,7 @@ public class homePageStud extends JFrame {
 		txtNewIscrizione.setEditable(false);
 		
 		JButton btnIscriviti = new JButton("ISCRIVITI");
+		btnIscriviti.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnIscriviti.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(txtNewIscrizione.getSelectedText() != null) {
@@ -245,39 +257,41 @@ public class homePageStud extends JFrame {
 				}
 			}
 		});
-		btnIscriviti.setBounds(337, 240, 89, 23);
+		btnIscriviti.setBounds(326, 240, 100, 23);
 		panelNewIscrizione.add(btnIscriviti);
 		
 		JPanel panelLezioni = new JPanel();
 		layeredPane.add(panelLezioni, "name_367792570924600");
 		panelLezioni.setLayout(null);
 		
-		JLabel lblVisualizzaLezioni = new JLabel("VISUALIZZA LEZIONI");
-		lblVisualizzaLezioni.setHorizontalAlignment(SwingConstants.CENTER);
-		lblVisualizzaLezioni.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblVisualizzaLezioni.setBounds(10, 11, 544, 14);
-		panelLezioni.add(lblVisualizzaLezioni);
+		JLabel lblLezioni = new JLabel("VISUALIZZA LEZIONI");
+		lblLezioni.setForeground(Color.RED);
+		lblLezioni.setHorizontalAlignment(SwingConstants.CENTER);
+		lblLezioni.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblLezioni.setBounds(10, 11, 544, 14);
+		panelLezioni.add(lblLezioni);
 		
-		JScrollPane scrollPaneVisualizzaLezioni = new JScrollPane();
-		scrollPaneVisualizzaLezioni.setBounds(20, 36, 534, 270);
-		panelLezioni.add(scrollPaneVisualizzaLezioni);
+		JScrollPane scrollPaneLezioni = new JScrollPane();
+		scrollPaneLezioni.setBounds(10, 36, 544, 270);
+		panelLezioni.add(scrollPaneLezioni);
 		
-		tableVisualizzaLezioni = new JTable();
-		tableVisualizzaLezioni.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
-		model= new DefaultTableModel();
-		Object[] column2= {"ID", "Titolo", "Data inizio", "Oriario inizio", "Nome corso"};
+		tableLezioni = new JTable();
+		tableLezioni.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
+		model2 = new DefaultTableModel();
+		Object[] column2= {"ID", "Titolo", "Data inizio", "Orario inizio", "Nome corso"};
 		Object [] row2= new Object[5];
-		tableVisualizzaLezioni.setModel(model);
-		model.setColumnIdentifiers(column);
-		scrollPaneVisualizzaLezioni.setViewportView(tableVisualizzaLezioni);
+		tableLezioni.setModel(model2);
+		model2.setColumnIdentifiers(column2);
+		scrollPaneLezioni.setViewportView(tableLezioni);
 		
 		JPanel panelPartecipa = new JPanel();
 		layeredPane.add(panelPartecipa, "name_367912807561300");
 		panelPartecipa.setLayout(null);
 		
 		JLabel lblPartecipaLezioni = new JLabel("PARTECIPA LEZIONE");
+		lblPartecipaLezioni.setForeground(Color.RED);
 		lblPartecipaLezioni.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPartecipaLezioni.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblPartecipaLezioni.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblPartecipaLezioni.setBounds(10, 11, 544, 14);
 		panelPartecipa.add(lblPartecipaLezioni);
 		
@@ -298,6 +312,7 @@ public class homePageStud extends JFrame {
 		txtPartecipa.setEditable(false);
 		
 		JButton btnPartecipa = new JButton("PARTECIPA");
+		btnPartecipa.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnPartecipa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(txtPartecipa.getSelectedText() != null) {
@@ -315,7 +330,7 @@ public class homePageStud extends JFrame {
 				}
 			}
 		});
-		btnPartecipa.setBounds(326, 238, 100, 23);
+		btnPartecipa.setBounds(316, 238, 110, 23);
 		panelPartecipa.add(btnPartecipa);
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -358,12 +373,12 @@ public class homePageStud extends JFrame {
 				
 				model.setRowCount(0);
                 for (CorsoFormazione corso:c.getAllCorsi()) {
-                	row1[0]= corso.getIdCorso();
-                	row1[1]= corso.getNome();
-                	row1[2]= corso.getDescrizione();
-                	row1[3]= corso.getPresenzeMin();
-                	row1[4]= corso.getMaxPartecipanti();
-                	model.addRow(row1);
+                	row[0]= corso.getIdCorso();
+                	row[1]= corso.getNome();
+                	row[2]= corso.getDescrizione();
+                	row[3]= corso.getPresenzeMin();
+                	row[4]= corso.getMaxPartecipanti();
+                	model.addRow(row);
         		}
 				
 			}
@@ -380,14 +395,12 @@ public class homePageStud extends JFrame {
 				
 				stud.setIscrizioni(c.getIscrizioni(stud));
 				
-				model.setRowCount(0);
-               
+				model1.setRowCount(0);
 				for(Iscritto iscrizione:stud.getIscrizioni()) {
-					row[0]= iscrizione.getCorso().getIdCorso();
-					row[1]= iscrizione.getCorso().getNome();
-					row[3]= iscrizione.getCorso().getDescrizione();
-					
-					
+					row1[0]= iscrizione.getCorso().getIdCorso();
+					row1[1]= iscrizione.getCorso().getNome();
+					row1[2]= iscrizione.getCorso().getDescrizione();
+					model1.addRow(row1);
 				}
 			}
 		});
@@ -414,15 +427,14 @@ public class homePageStud extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				switchPanel(layeredPane, panelLezioni);
 				
-				model.setRowCount(0);
-				
+				model2.setRowCount(0);
 				for(Lezione lezione:c.getLezioni(stud)) {
 					row2[0]= lezione.getIdlezione();
 					row2[1]= lezione.getTitolo();
 					row2[2]= lezione.getDatainizio();
 					row2[3]= lezione.getOrarioinizio();
 					row2[4]= lezione.getCorso().getNome();
-					
+					model2.addRow(row2);
 				}
 			}
 		});
