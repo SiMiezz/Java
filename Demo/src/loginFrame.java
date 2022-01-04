@@ -101,7 +101,7 @@ public class loginFrame extends JFrame {
 		BoxSceltaLogin.setSelectedIndex(1);
 		BoxSceltaLogin.setToolTipText("");
 		BoxSceltaLogin.setEditable(true);
-		BoxSceltaLogin.setBounds(240, 193, 100, 20);
+		BoxSceltaLogin.setBounds(204, 64, 100, 20);
 		contentPane.add(BoxSceltaLogin);
 		
 		JButton btnRegistrati = new JButton("REGISTRATI");
@@ -126,5 +126,9 @@ public class loginFrame extends JFrame {
 		lblRegistrati.setHorizontalAlignment(SwingConstants.CENTER);
 		lblRegistrati.setBounds(20, 296, 120, 14);
 		contentPane.add(lblRegistrati);
+		
+		JLabel lblNewLabel = new JLabel("Selezionare il tipo di login:");
+		lblNewLabel.setBounds(62, 67, 132, 14);
+		contentPane.add(lblNewLabel);
 	}
 }

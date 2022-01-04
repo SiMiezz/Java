@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.JLayeredPane;
 import java.awt.CardLayout;
 import javax.swing.JMenuBar;
@@ -20,6 +21,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.sql.Date;
 import java.awt.event.ActionEvent;
+import javax.swing.JTable;
 
 public class homePageStud extends JFrame {
 
@@ -30,20 +32,16 @@ public class homePageStud extends JFrame {
 	private JTextField txtCF;
 	private JTextField txtMatricola;
 	Controller TheController;
+	private JTable table;
+	DefaultTableModel model;
+	private JTable tableIscrizioni;
+	private JTable tableVisualizzaLezioni;
 	
 	private void switchPanel(JLayeredPane layeredPane, JPanel panelInserisci) {
 		layeredPane.removeAll();
         layeredPane.add(panelInserisci);
         layeredPane.repaint();
         layeredPane.revalidate();
-	}
-	
-	public static Integer tryParse(String text) {
-		try {
-			return Integer.valueOf(text);
-		} catch (NumberFormatException e) {
-			return null;
-		}
 	}
 
 	public homePageStud(Controller c, String matricola, String pwd) {
@@ -167,14 +165,18 @@ public class homePageStud extends JFrame {
 		lblCorsi.setBounds(10, 11, 544, 14);
 		panelCorsi.add(lblCorsi);
 		
-		JScrollPane scrollPaneCorsi = new JScrollPane();
-		scrollPaneCorsi.setBounds(10, 36, 542, 219);
-		panelCorsi.add(scrollPaneCorsi);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(20, 36, 534, 263);
+		panelCorsi.add(scrollPane);
 		
-		JTextArea txtCorsi = new JTextArea();
-		scrollPaneCorsi.setViewportView(txtCorsi);
-		txtCorsi.setFont(new Font("Monospaced", Font.PLAIN, 16));
-		txtCorsi.setEditable(false);
+		table = new JTable();
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
+		model= new DefaultTableModel();
+		Object[] column= {"ID", "Nome", "Descrizione", "Presenze min", "Partecipanti max"};
+		Object [] row= new Object[5];
+		table.setModel(model);
+		model.setColumnIdentifiers(column);
+		scrollPane.setViewportView(table);
 		
 		JPanel panelIscrizioni = new JPanel();
 		layeredPane.add(panelIscrizioni, "name_367500255637100");
@@ -187,13 +189,17 @@ public class homePageStud extends JFrame {
 		panelIscrizioni.add(lblIscrizioni);
 		
 		JScrollPane scrollPaneIscrizioni = new JScrollPane();
-		scrollPaneIscrizioni.setBounds(10, 36, 540, 217);
+		scrollPaneIscrizioni.setBounds(20, 36, 534, 298);
 		panelIscrizioni.add(scrollPaneIscrizioni);
 		
-		JTextArea txtIscrizioni = new JTextArea();
-		scrollPaneIscrizioni.setViewportView(txtIscrizioni);
-		txtIscrizioni.setFont(new Font("Monospaced", Font.PLAIN, 16));
-		txtIscrizioni.setEditable(false);
+		tableIscrizioni = new JTable();
+		tableIscrizioni.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
+		model= new DefaultTableModel();
+		Object[] column1= {"ID", "Nome", "Descrizione", "Presenze min", "Partecipanti max"};
+		Object [] row1= new Object[3];
+		tableIscrizioni.setModel(model);
+		model.setColumnIdentifiers(column1);
+		scrollPaneIscrizioni.setViewportView(tableIscrizioni);
 		
 		JPanel panelNewIscrizione = new JPanel();
 		layeredPane.add(panelNewIscrizione, "name_367633326808700");
@@ -224,8 +230,8 @@ public class homePageStud extends JFrame {
 		JButton btnIscriviti = new JButton("ISCRIVITI");
 		btnIscriviti.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(tryParse(txtNewIscrizione.getSelectedText()) != null) {
-					int id = tryParse(txtNewIscrizione.getSelectedText());
+				if(txtNewIscrizione.getSelectedText() != null) {
+					int id = Integer.valueOf(txtNewIscrizione.getSelectedText());
 					
 					if(c.iscriviti(stud,c.getCorso(id))) {
 						c.confirmInsertIscrizione();
@@ -252,14 +258,18 @@ public class homePageStud extends JFrame {
 		lblVisualizzaLezioni.setBounds(10, 11, 544, 14);
 		panelLezioni.add(lblVisualizzaLezioni);
 		
-		JScrollPane scrollPaneLezioni = new JScrollPane();
-		scrollPaneLezioni.setBounds(10, 32, 540, 217);
-		panelLezioni.add(scrollPaneLezioni);
+		JScrollPane scrollPaneVisualizzaLezioni = new JScrollPane();
+		scrollPaneVisualizzaLezioni.setBounds(20, 36, 534, 270);
+		panelLezioni.add(scrollPaneVisualizzaLezioni);
 		
-		JTextArea txtLezioni = new JTextArea();
-		scrollPaneLezioni.setViewportView(txtLezioni);
-		txtLezioni.setFont(new Font("Monospaced", Font.PLAIN, 16));
-		txtLezioni.setEditable(false);
+		tableVisualizzaLezioni = new JTable();
+		tableVisualizzaLezioni.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
+		model= new DefaultTableModel();
+		Object[] column2= {"ID", "Titolo", "Data inizio", "Oriario inizio", "Nome corso"};
+		Object [] row2= new Object[5];
+		tableVisualizzaLezioni.setModel(model);
+		model.setColumnIdentifiers(column);
+		scrollPaneVisualizzaLezioni.setViewportView(tableVisualizzaLezioni);
 		
 		JPanel panelPartecipa = new JPanel();
 		layeredPane.add(panelPartecipa, "name_367912807561300");
@@ -290,10 +300,10 @@ public class homePageStud extends JFrame {
 		JButton btnPartecipa = new JButton("PARTECIPA");
 		btnPartecipa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(tryParse(txtPartecipa.getSelectedText()) != null) {
-					int id = tryParse(txtPartecipa.getSelectedText());
+				if(txtPartecipa.getSelectedText() != null) {
+					int id = Integer.valueOf(txtPartecipa.getSelectedText());
 					
-					if(c.partecipa(stud,c.getCorso(id))) {
+					if(c.partecipa(stud, c.getCorso(id))) {
 						c.confirmInsertPresenza();
 					}
 					else {
@@ -346,10 +356,16 @@ public class homePageStud extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				switchPanel(layeredPane, panelCorsi);
 				
-				txtCorsi.setText(null);
-				for(CorsoFormazione corso:c.getAllCorsi()) {
-					txtCorsi.append(corso.getIdCorso() + " " + corso.getNome() + " " + corso.getDescrizione() + "\n");
-				}
+				model.setRowCount(0);
+                for (CorsoFormazione corso:c.getAllCorsi()) {
+                	row1[0]= corso.getIdCorso();
+                	row1[1]= corso.getNome();
+                	row1[2]= corso.getDescrizione();
+                	row1[3]= corso.getPresenzeMin();
+                	row1[4]= corso.getMaxPartecipanti();
+                	model.addRow(row1);
+        		}
+				
 			}
 		});
 		mnCorsi.add(mntmVisualizzaCorsi);
@@ -363,9 +379,15 @@ public class homePageStud extends JFrame {
 				switchPanel(layeredPane, panelIscrizioni);
 				
 				stud.setIscrizioni(c.getIscrizioni(stud));
-                txtIscrizioni.setText(null);
+				
+				model.setRowCount(0);
+               
 				for(Iscritto iscrizione:stud.getIscrizioni()) {
-					txtIscrizioni.append(iscrizione.getCorso().getIdCorso() + " " + iscrizione.getCorso().getNome() + " " + iscrizione.getCorso().getDescrizione() + "\n");
+					row[0]= iscrizione.getCorso().getIdCorso();
+					row[1]= iscrizione.getCorso().getNome();
+					row[3]= iscrizione.getCorso().getDescrizione();
+					
+					
 				}
 			}
 		});
@@ -392,9 +414,15 @@ public class homePageStud extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				switchPanel(layeredPane, panelLezioni);
 				
-				txtLezioni.setText(null);
+				model.setRowCount(0);
+				
 				for(Lezione lezione:c.getLezioni(stud)) {
-					txtLezioni.append(lezione.getIdlezione() + " " + lezione.getTitolo() + " " + lezione.getDatainizio() + " " + lezione.getOrarioinizio() + " " + lezione.getCorso().getNome() + "\n");
+					row2[0]= lezione.getIdlezione();
+					row2[1]= lezione.getTitolo();
+					row2[2]= lezione.getDatainizio();
+					row2[3]= lezione.getOrarioinizio();
+					row2[4]= lezione.getCorso().getNome();
+					
 				}
 			}
 		});
