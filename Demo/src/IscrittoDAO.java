@@ -3,16 +3,16 @@ import java.util.*;
 
 public class IscrittoDAO {
 	
-	public boolean aggiungiIscrizione(Studente stud,int id){
+	public boolean aggiungiIscrizione(Studente stud,CorsoFormazione corso){
 		try {
-			if(stud!=null && id!=0) {
+			if(stud!=null && corso!=null) {
 				Connection conn = DataBaseConnection.getInstance().getConnection();
 				Statement st= conn.createStatement();
 				String query ="INSERT INTO iscritto (matricola,idcorso) VALUES(?,?)";
 				
 				PreparedStatement statement = conn.prepareStatement(query);
 				statement.setString(1, stud.getMatricola());
-				statement.setInt(2, id);
+				statement.setInt(2, corso.getIdCorso());
 				
 				statement.executeUpdate();
 				

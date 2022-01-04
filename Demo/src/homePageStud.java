@@ -227,7 +227,7 @@ public class homePageStud extends JFrame {
 				if(tryParse(txtNewIscrizione.getSelectedText()) != null) {
 					int id = tryParse(txtNewIscrizione.getSelectedText());
 					
-					if(c.iscriviti(stud,id)) {
+					if(c.iscriviti(stud,c.getCorso(id))) {
 						c.confirmInsertIscrizione();
 					}
 					else {
@@ -293,7 +293,7 @@ public class homePageStud extends JFrame {
 				if(tryParse(txtPartecipa.getSelectedText()) != null) {
 					int id = tryParse(txtPartecipa.getSelectedText());
 					
-					if(c.partecipa(stud,id)) {
+					if(c.partecipa(stud,c.getCorso(id))) {
 						c.confirmInsertPresenza();
 					}
 					else {

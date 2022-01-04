@@ -122,12 +122,12 @@ public class Controller {
 		return corsodao.aggiungiCorso(nome, descrizione, presenzeMin, maxPartecipanti, op);
 	}
 	
-	public boolean iscriviti(Studente stud,int id) {
-		return iscdao.aggiungiIscrizione(stud,id);
+	public boolean iscriviti(Studente stud,CorsoFormazione corso) {
+		return iscdao.aggiungiIscrizione(stud,corso);
 	}
 	
-	public boolean partecipa(Studente stud,int id) {
-		return pardao.aggiungiPartecipa(stud,id);
+	public boolean partecipa(Studente stud,CorsoFormazione corso) {
+		return pardao.aggiungiPartecipa(stud,corso);
 	}
 	
 	public boolean aggiungiAree(String tipo,String descrizione,CorsoFormazione corso,Operatore op) {
