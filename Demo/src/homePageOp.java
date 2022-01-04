@@ -26,6 +26,8 @@ import javax.swing.JSplitPane;
 
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JTable;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class homePageOp extends JFrame {
 
@@ -52,8 +54,12 @@ public class homePageOp extends JFrame {
 	private JTextField txtDescAree;
 	private JTextField txtIdAree;
 	Controller TheController;
-	private JTable table;
-	DefaultTableModel model;
+	private JTable tableCorsi;
+	DefaultTableModel modelCorsi;
+	private JTable tableModifica;
+	DefaultTableModel modelModifica;
+	private JTable tableNewAree;
+	DefaultTableModel modelNewAree;
 
 	private void switchPanel(JLayeredPane layeredPane, JPanel panelInserisci) {
 		layeredPane.removeAll();
@@ -279,30 +285,30 @@ public class homePageOp extends JFrame {
 		btnInserimento.setBounds(289, 247, 100, 23);
 		panelInserisci.add(btnInserimento);
 		
-		JPanel panelVisualizza = new JPanel();
-		panelVisualizza.setBackground(new Color(176, 224, 230));
-		layeredPane.add(panelVisualizza, "name_302338902470800");
-		panelVisualizza.setLayout(null);
+		JPanel panelCorsi = new JPanel();
+		panelCorsi.setBackground(new Color(176, 224, 230));
+		layeredPane.add(panelCorsi, "name_302338902470800");
+		panelCorsi.setLayout(null);
 		
-		JLabel lblVisualizza = new JLabel("VISUALIZZA CORSI");
-		lblVisualizza.setForeground(Color.RED);
-		lblVisualizza.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblVisualizza.setHorizontalAlignment(SwingConstants.CENTER);
-		lblVisualizza.setBounds(10, 11, 544, 14);
-		panelVisualizza.add(lblVisualizza);
+		JLabel lblCorsi = new JLabel("VISUALIZZA CORSI");
+		lblCorsi.setForeground(Color.RED);
+		lblCorsi.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblCorsi.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCorsi.setBounds(10, 11, 544, 14);
+		panelCorsi.add(lblCorsi);
 		
-		JScrollPane scrollPaneVisualizza = new JScrollPane();
-		scrollPaneVisualizza.setBounds(10, 36, 544, 270);
-		panelVisualizza.add(scrollPaneVisualizza);
+		JScrollPane scrollPaneCorsi = new JScrollPane();
+		scrollPaneCorsi.setBounds(10, 36, 544, 270);
+		panelCorsi.add(scrollPaneCorsi);
 		
-		table = new JTable();
-		table.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
-		model= new DefaultTableModel();
-		Object[] column= {"ID", "Nome", "Descrizione", "Presenze min", "Partecipanti max"};
-		Object [] row= new Object[5];
-		table.setModel(model);
-		model.setColumnIdentifiers(column);
-		scrollPaneVisualizza.setViewportView(table);
+		tableCorsi = new JTable();
+		tableCorsi.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
+		modelCorsi= new DefaultTableModel();
+		Object[] columnCorsi= {"ID", "Nome", "Descrizione", "Presenze min", "max Partecipanti"};
+		Object [] rowCorsi= new Object[5];
+		tableCorsi.setModel(modelCorsi);
+		modelCorsi.setColumnIdentifiers(columnCorsi);
+		scrollPaneCorsi.setViewportView(tableCorsi);
 		
 		JPanel panelModifica = new JPanel();
 		panelModifica.setBackground(new Color(176, 224, 230));
@@ -316,102 +322,97 @@ public class homePageOp extends JFrame {
 		lblModifica.setBounds(10, 11, 544, 14);
 		panelModifica.add(lblModifica);
 		
-		JScrollPane scrollPaneModifica = new JScrollPane();
-		scrollPaneModifica.setBounds(142, 61, 285, 170);
-		panelModifica.add(scrollPaneModifica);
-		
-		JTextArea txtModifica = new JTextArea();
-		scrollPaneModifica.setViewportView(txtModifica);
-		txtModifica.setFont(new Font("Monospaced", Font.PLAIN, 16));
-		txtModifica.setEditable(false);
-		
-		JLabel lblAlertModifica = new JLabel("Seleziona l'id del corso");
+		JLabel lblAlertModifica = new JLabel("Seleziona il corso");
 		lblAlertModifica.setForeground(Color.BLUE);
 		lblAlertModifica.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAlertModifica.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblAlertModifica.setBounds(142, 36, 285, 14);
+		lblAlertModifica.setBounds(10, 36, 544, 14);
 		panelModifica.add(lblAlertModifica);
-		
-		JButton btnSelezionaModifica = new JButton("SELEZIONA");
-		btnSelezionaModifica.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(tryParse(txtModifica.getSelectedText())!=null) {
-					int id = tryParse(txtModifica.getSelectedText());
-					
-					txtModificaNome.setText(c.getCorso(id).getNome());
-					txtModificaDesc.setText(c.getCorso(id).getDescrizione());
-					txtModificaPresenze.setText(Integer.toString(c.getCorso(id).getPresenzeMin()));
-					txtModificaPartecipanti.setText(Integer.toString(c.getCorso(id).getMaxPartecipanti()));
-					txtModificaID.setText(Integer.toString(id));
-				}
-				else {
-					c.alertSeleziona();
-				}
-			}
-		});
-		btnSelezionaModifica.setBounds(327, 238, 100, 23);
-		panelModifica.add(btnSelezionaModifica);
 		
 		txtModificaNome = new JTextField();
 		txtModificaNome.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		txtModificaNome.setBounds(154, 272, 175, 20);
+		txtModificaNome.setBounds(224, 275, 175, 20);
 		panelModifica.add(txtModificaNome);
 		txtModificaNome.setColumns(10);
 		
 		txtModificaDesc = new JTextField();
 		txtModificaDesc.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		txtModificaDesc.setBounds(154, 303, 175, 20);
+		txtModificaDesc.setBounds(224, 306, 175, 20);
 		panelModifica.add(txtModificaDesc);
 		txtModificaDesc.setColumns(10);
 		
 		txtModificaPresenze = new JTextField();
 		txtModificaPresenze.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		txtModificaPresenze.setBounds(154, 334, 175, 20);
+		txtModificaPresenze.setBounds(224, 337, 175, 20);
 		panelModifica.add(txtModificaPresenze);
 		txtModificaPresenze.setColumns(10);
 		
 		txtModificaPartecipanti = new JTextField();
 		txtModificaPartecipanti.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		txtModificaPartecipanti.setBounds(154, 365, 175, 20);
+		txtModificaPartecipanti.setBounds(224, 368, 175, 20);
 		panelModifica.add(txtModificaPartecipanti);
 		txtModificaPartecipanti.setColumns(10);
 		
 		txtModificaID = new JTextField();
 		txtModificaID.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtModificaID.setEditable(false);
-		txtModificaID.setBounds(154, 394, 175, 20);
+		txtModificaID.setBounds(224, 397, 175, 20);
 		panelModifica.add(txtModificaID);
 		txtModificaID.setColumns(10);
 		
 		JLabel lblModNome = new JLabel("Nome");
 		lblModNome.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblModNome.setHorizontalAlignment(SwingConstants.CENTER);
-		lblModNome.setBounds(14, 275, 130, 14);
+		lblModNome.setBounds(84, 278, 130, 14);
 		panelModifica.add(lblModNome);
 		
 		JLabel txtModDesc = new JLabel("Descrizione");
 		txtModDesc.setHorizontalAlignment(SwingConstants.CENTER);
 		txtModDesc.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		txtModDesc.setBounds(14, 306, 130, 14);
+		txtModDesc.setBounds(84, 309, 130, 14);
 		panelModifica.add(txtModDesc);
 		
 		JLabel lblModPresenze = new JLabel("Presenze minime");
 		lblModPresenze.setHorizontalAlignment(SwingConstants.CENTER);
 		lblModPresenze.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblModPresenze.setBounds(14, 337, 130, 14);
+		lblModPresenze.setBounds(84, 340, 130, 14);
 		panelModifica.add(lblModPresenze);
 		
 		JLabel lblModPartecipanti = new JLabel("Partecipanti max");
 		lblModPartecipanti.setHorizontalAlignment(SwingConstants.CENTER);
 		lblModPartecipanti.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblModPartecipanti.setBounds(14, 368, 130, 14);
+		lblModPartecipanti.setBounds(84, 371, 130, 14);
 		panelModifica.add(lblModPartecipanti);
 		
 		JLabel lblModId = new JLabel("IDCorso");
 		lblModId.setHorizontalAlignment(SwingConstants.CENTER);
 		lblModId.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblModId.setBounds(14, 397, 130, 14);
+		lblModId.setBounds(84, 400, 130, 14);
 		panelModifica.add(lblModId);
+		
+		JScrollPane scrollPaneModifica = new JScrollPane();
+		scrollPaneModifica.setBounds(10, 61, 544, 185);
+		panelModifica.add(scrollPaneModifica);
+		
+		tableModifica = new JTable();
+		tableModifica.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int i = tableModifica.getSelectedRow();
+				
+				txtModificaID.setText(modelModifica.getValueAt(i, 0).toString());
+				txtModificaNome.setText(modelModifica.getValueAt(i, 1).toString());
+				txtModificaDesc.setText(modelModifica.getValueAt(i, 2).toString());
+				txtModificaPresenze.setText(modelModifica.getValueAt(i, 3).toString());
+				txtModificaPartecipanti.setText(modelModifica.getValueAt(i, 4).toString());
+			}
+		});
+		modelModifica = new DefaultTableModel();
+		Object[] columnModifica = {"ID", "Nome", "Descrizione", "Presenze min", "max Partecipanti"};
+		Object[] rowModifica = new Object[5];
+		tableModifica.setModel(modelModifica);
+		modelModifica.setColumnIdentifiers(columnModifica);
+		scrollPaneModifica.setViewportView(tableModifica);
 		
 		JButton btnAggiorna = new JButton("AGGIORNA");
 		btnAggiorna.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -435,6 +436,17 @@ public class homePageOp extends JFrame {
 					c.alertUpdate();
 				}
 				
+				op.setCorsi(c.getCorsiOperatore(op));
+				modelModifica.setRowCount(0);
+                for (CorsoFormazione corso:op.getCorsi()) {
+                	rowModifica[0]= corso.getIdCorso();
+                	rowModifica[1]= corso.getNome();
+                	rowModifica[2]= corso.getDescrizione();
+                	rowModifica[3]= corso.getPresenzeMin();
+                	rowModifica[4]= corso.getMaxPartecipanti();
+                	modelModifica.addRow(rowModifica);
+        		}
+				
 				txtModificaNome.setText(null);
 				txtModificaDesc.setText(null);
 				txtModificaPresenze.setText(null);
@@ -442,7 +454,7 @@ public class homePageOp extends JFrame {
 				txtModificaID.setText(null);
 			}
 		});
-		btnAggiorna.setBounds(337, 395, 100, 23);
+		btnAggiorna.setBounds(454, 397, 100, 23);
 		panelModifica.add(btnAggiorna);
 		
 		JPanel panelStatistiche = new JPanel();
@@ -552,70 +564,45 @@ public class homePageOp extends JFrame {
 		lblNewAree.setBounds(10, 11, 544, 14);
 		panelNewAreeTematiche.add(lblNewAree);
 		
-		JScrollPane scrollPaneAree = new JScrollPane();
-		scrollPaneAree.setBounds(141, 61, 281, 166);
-		panelNewAreeTematiche.add(scrollPaneAree);
-		
-		JTextArea txtNewAreeTematiche = new JTextArea();
-		scrollPaneAree.setViewportView(txtNewAreeTematiche);
-		txtNewAreeTematiche.setFont(new Font("Monospaced", Font.PLAIN, 16));
-		txtNewAreeTematiche.setEditable(false);
-		
-		JLabel lblAlertNewAree = new JLabel("Seleziona l'id del corso");
+		JLabel lblAlertNewAree = new JLabel("Seleziona il corso");
 		lblAlertNewAree.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAlertNewAree.setForeground(Color.BLUE);
 		lblAlertNewAree.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblAlertNewAree.setBounds(139, 36, 283, 14);
+		lblAlertNewAree.setBounds(10, 36, 544, 14);
 		panelNewAreeTematiche.add(lblAlertNewAree);
 		
-		JButton btnSelezionaNewAree = new JButton("SELEZIONA");
-		btnSelezionaNewAree.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(tryParse(txtNewAreeTematiche.getSelectedText())!=null) {
-					int id = tryParse(txtNewAreeTematiche.getSelectedText());
-					
-					txtIdAree.setText(Integer.toString(id));
-				}
-				else {
-					c.alertSeleziona();
-				}
-			}
-		});
-		btnSelezionaNewAree.setBounds(322, 236, 100, 23);
-		panelNewAreeTematiche.add(btnSelezionaNewAree);
-		
 		txtTipoAree = new JTextField();
-		txtTipoAree.setBounds(141, 270, 184, 20);
+		txtTipoAree.setBounds(184, 291, 184, 20);
 		panelNewAreeTematiche.add(txtTipoAree);
 		txtTipoAree.setColumns(10);
 		
 		txtDescAree = new JTextField();
-		txtDescAree.setBounds(141, 301, 184, 20);
+		txtDescAree.setBounds(184, 322, 184, 20);
 		panelNewAreeTematiche.add(txtDescAree);
 		txtDescAree.setColumns(10);
 		
 		txtIdAree = new JTextField();
 		txtIdAree.setEditable(false);
-		txtIdAree.setBounds(141, 332, 184, 20);
+		txtIdAree.setBounds(184, 353, 184, 20);
 		panelNewAreeTematiche.add(txtIdAree);
 		txtIdAree.setColumns(10);
 		
 		JLabel lblTipoAree = new JLabel("Tipo");
 		lblTipoAree.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTipoAree.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblTipoAree.setBounds(42, 273, 89, 14);
+		lblTipoAree.setBounds(85, 294, 89, 14);
 		panelNewAreeTematiche.add(lblTipoAree);
 		
 		JLabel lblDescAree = new JLabel("Descrizione");
 		lblDescAree.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDescAree.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblDescAree.setBounds(42, 304, 89, 14);
+		lblDescAree.setBounds(85, 325, 89, 14);
 		panelNewAreeTematiche.add(lblDescAree);
 		
 		JLabel lblIdAree = new JLabel("IDCorso");
 		lblIdAree.setHorizontalAlignment(SwingConstants.CENTER);
 		lblIdAree.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblIdAree.setBounds(42, 335, 89, 14);
+		lblIdAree.setBounds(85, 356, 89, 14);
 		panelNewAreeTematiche.add(lblIdAree);
 		
 		JButton btnCreaAree = new JButton("CREA");
@@ -643,8 +630,28 @@ public class homePageOp extends JFrame {
 				txtIdAree.setText(null);
 			}
 		});
-		btnCreaAree.setBounds(322, 363, 100, 23);
+		btnCreaAree.setBounds(385, 351, 100, 23);
 		panelNewAreeTematiche.add(btnCreaAree);
+		
+		JScrollPane scrollPaneNewAree = new JScrollPane();
+		scrollPaneNewAree.setBounds(85, 61, 400, 185);
+		panelNewAreeTematiche.add(scrollPaneNewAree);
+		
+		tableNewAree = new JTable();
+		tableNewAree.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int i = tableNewAree.getSelectedRow();
+				
+				txtIdAree.setText(modelNewAree.getValueAt(i, 0).toString());
+			}
+		});
+		modelNewAree = new DefaultTableModel();
+		Object[] columnNewAree = {"ID", "Nome", "Descrizione"};
+		Object[] rowNewAree = new Object[3];
+		tableNewAree.setModel(modelNewAree);
+		modelNewAree.setColumnIdentifiers(columnNewAree);
+		scrollPaneNewAree.setViewportView(tableNewAree);
 		
 		JPanel panelSuperamento = new JPanel();
 		panelSuperamento.setBackground(new Color(176, 224, 230));
@@ -850,17 +857,17 @@ public class homePageOp extends JFrame {
 		mntmVisualizzaCorsi.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		mntmVisualizzaCorsi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				switchPanel(layeredPane, panelVisualizza);
+				switchPanel(layeredPane, panelCorsi);
 				
 				op.setCorsi(c.getCorsiOperatore(op));
-				model.setRowCount(0);
+				modelCorsi.setRowCount(0);
                 for (CorsoFormazione corso:op.getCorsi()) {
-                	row[0]= corso.getIdCorso();
-                	row[1]= corso.getNome();
-                	row[2]= corso.getDescrizione();
-                	row[3]= corso.getPresenzeMin();
-                	row[4]= corso.getMaxPartecipanti();
-                	model.addRow(row);
+                	rowCorsi[0]= corso.getIdCorso();
+                	rowCorsi[1]= corso.getNome();
+                	rowCorsi[2]= corso.getDescrizione();
+                	rowCorsi[3]= corso.getPresenzeMin();
+                	rowCorsi[4]= corso.getMaxPartecipanti();
+                	modelCorsi.addRow(rowCorsi);
         		}
 			}
 		});
@@ -882,9 +889,14 @@ public class homePageOp extends JFrame {
 				switchPanel(layeredPane, panelModifica);
 				
 				op.setCorsi(c.getCorsiOperatore(op));
-                txtModifica.setText(null);
+				modelModifica.setRowCount(0);
                 for (CorsoFormazione corso:op.getCorsi()) {
-        			txtModifica.append(corso.getIdCorso() + " " + corso.getNome() + " " + corso.getDescrizione() + "\n");
+                	rowModifica[0]= corso.getIdCorso();
+                	rowModifica[1]= corso.getNome();
+                	rowModifica[2]= corso.getDescrizione();
+                	rowModifica[3]= corso.getPresenzeMin();
+                	rowModifica[4]= corso.getMaxPartecipanti();
+                	modelModifica.addRow(rowModifica);
         		}
 			}
 
@@ -948,9 +960,12 @@ public class homePageOp extends JFrame {
 				switchPanel(layeredPane, panelNewAreeTematiche);
 				
 				op.setCorsi(c.getCorsiOperatore(op));
-                txtNewAreeTematiche.setText(null);
+				modelNewAree.setRowCount(0);
                 for (CorsoFormazione corso:op.getCorsi()) {
-                	txtNewAreeTematiche.append(corso.getIdCorso() + " " + corso.getNome() + " " + corso.getDescrizione() + "\n");
+                	rowNewAree[0]= corso.getIdCorso();
+                	rowNewAree[1]= corso.getNome();
+                	rowNewAree[2]= corso.getDescrizione();
+                	modelNewAree.addRow(rowNewAree);
         		}
 			}
 		});

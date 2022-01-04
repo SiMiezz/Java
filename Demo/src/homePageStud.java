@@ -33,11 +33,11 @@ public class homePageStud extends JFrame {
 	private JTextField txtMatricola;
 	Controller TheController;
 	private JTable tableCorsi;
-	DefaultTableModel model;
+	DefaultTableModel modelCorsi;
 	private JTable tableIscrizioni;
-	DefaultTableModel model1;
+	DefaultTableModel modelIscrizioni;
 	private JTable tableLezioni;
-	DefaultTableModel model2;
+	DefaultTableModel modelLezioni;
 	
 	private void switchPanel(JLayeredPane layeredPane, JPanel panelInserisci) {
 		layeredPane.removeAll();
@@ -183,11 +183,11 @@ public class homePageStud extends JFrame {
 		
 		tableCorsi = new JTable();
 		tableCorsi.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
-		model= new DefaultTableModel();
-		Object[] column= {"ID", "Nome", "Descrizione", "Presenze min", "Partecipanti max"};
-		Object [] row= new Object[5];
-		tableCorsi.setModel(model);
-		model.setColumnIdentifiers(column);
+		modelCorsi= new DefaultTableModel();
+		Object[] columnCorsi= {"ID", "Nome", "Descrizione", "Presenze min", "Partecipanti max"};
+		Object [] rowCorsi= new Object[5];
+		tableCorsi.setModel(modelCorsi);
+		modelCorsi.setColumnIdentifiers(columnCorsi);
 		scrollPaneCorsi.setViewportView(tableCorsi);
 		
 		JPanel panelIscrizioni = new JPanel();
@@ -208,11 +208,11 @@ public class homePageStud extends JFrame {
 		
 		tableIscrizioni = new JTable();
 		tableIscrizioni.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
-		model1 = new DefaultTableModel();
-		Object[] column1= {"ID", "Nome", "Descrizione"};
-		Object [] row1= new Object[3];
-		tableIscrizioni.setModel(model1);
-		model1.setColumnIdentifiers(column1);
+		modelIscrizioni = new DefaultTableModel();
+		Object[] columnIscrizioni= {"ID", "Nome", "Descrizione"};
+		Object [] rowIscrizioni= new Object[3];
+		tableIscrizioni.setModel(modelIscrizioni);
+		modelIscrizioni.setColumnIdentifiers(columnIscrizioni);
 		scrollPaneIscrizioni.setViewportView(tableIscrizioni);
 		
 		JPanel panelNewIscrizione = new JPanel();
@@ -283,11 +283,11 @@ public class homePageStud extends JFrame {
 		
 		tableLezioni = new JTable();
 		tableLezioni.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
-		model2 = new DefaultTableModel();
-		Object[] column2= {"ID", "Titolo", "Data inizio", "Orario inizio", "Nome corso"};
-		Object [] row2= new Object[5];
-		tableLezioni.setModel(model2);
-		model2.setColumnIdentifiers(column2);
+		modelLezioni = new DefaultTableModel();
+		Object[] columnLezioni= {"ID", "Titolo", "Data inizio", "Orario inizio", "Nome corso"};
+		Object [] rowLezioni= new Object[5];
+		tableLezioni.setModel(modelLezioni);
+		modelLezioni.setColumnIdentifiers(columnLezioni);
 		scrollPaneLezioni.setViewportView(tableLezioni);
 		
 		JPanel panelPartecipa = new JPanel();
@@ -384,14 +384,14 @@ public class homePageStud extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				switchPanel(layeredPane, panelCorsi);
 				
-				model.setRowCount(0);
+				modelCorsi.setRowCount(0);
                 for (CorsoFormazione corso:c.getAllCorsi()) {
-                	row[0]= corso.getIdCorso();
-                	row[1]= corso.getNome();
-                	row[2]= corso.getDescrizione();
-                	row[3]= corso.getPresenzeMin();
-                	row[4]= corso.getMaxPartecipanti();
-                	model.addRow(row);
+                	rowCorsi[0]= corso.getIdCorso();
+                	rowCorsi[1]= corso.getNome();
+                	rowCorsi[2]= corso.getDescrizione();
+                	rowCorsi[3]= corso.getPresenzeMin();
+                	rowCorsi[4]= corso.getMaxPartecipanti();
+                	modelCorsi.addRow(rowCorsi);
         		}
 				
 			}
@@ -410,12 +410,12 @@ public class homePageStud extends JFrame {
 				
 				stud.setIscrizioni(c.getIscrizioni(stud));
 				
-				model1.setRowCount(0);
+				modelIscrizioni.setRowCount(0);
 				for(Iscritto iscrizione:stud.getIscrizioni()) {
-					row1[0]= iscrizione.getCorso().getIdCorso();
-					row1[1]= iscrizione.getCorso().getNome();
-					row1[2]= iscrizione.getCorso().getDescrizione();
-					model1.addRow(row1);
+					rowIscrizioni[0]= iscrizione.getCorso().getIdCorso();
+					rowIscrizioni[1]= iscrizione.getCorso().getNome();
+					rowIscrizioni[2]= iscrizione.getCorso().getDescrizione();
+					modelIscrizioni.addRow(rowIscrizioni);
 				}
 			}
 		});
@@ -445,14 +445,14 @@ public class homePageStud extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				switchPanel(layeredPane, panelLezioni);
 				
-				model2.setRowCount(0);
+				modelLezioni.setRowCount(0);
 				for(Lezione lezione:c.getLezioni(stud)) {
-					row2[0]= lezione.getIdlezione();
-					row2[1]= lezione.getTitolo();
-					row2[2]= lezione.getDatainizio();
-					row2[3]= lezione.getOrarioinizio();
-					row2[4]= lezione.getCorso().getNome();
-					model2.addRow(row2);
+					rowLezioni[0]= lezione.getIdlezione();
+					rowLezioni[1]= lezione.getTitolo();
+					rowLezioni[2]= lezione.getDatainizio();
+					rowLezioni[3]= lezione.getOrarioinizio();
+					rowLezioni[4]= lezione.getCorso().getNome();
+					modelLezioni.addRow(rowLezioni);
 				}
 			}
 		});
