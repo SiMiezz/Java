@@ -131,6 +131,39 @@ public class CorsoFormazioneDAO {
 		return corsi;
 	}
 	
+	public ArrayList<CorsoFormazione> getCorsiPKey(String key,Operatore op){
+		ArrayList <CorsoFormazione> corsi = new ArrayList<CorsoFormazione>();
+		
+		try {
+			Connection conn = DataBaseConnection.getInstance().getConnection();
+			Statement st= conn.createStatement();
+			String query = "SELECT *, LOCATE(?,descrizione) find "
+					+ "FROM corsoformazione "
+					+ "WHERE LOCATE(?,descrizione) <> 0 AND id = ?";
+			
+			PreparedStatement statement = conn.prepareStatement(query);
+			statement.setString(1, key);
+			statement.setString(2, key);
+			statement.setString(3, op.getId());
+			
+			ResultSet rs = statement.executeQuery();
+			
+			while(rs.next()) {
+				CorsoFormazione corso = extractCorsi(rs);
+				corsi.add(corso);
+			}
+			
+			rs.close();
+			st.close();
+			conn.close();
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return corsi;
+	}
+	
 	public CorsoFormazione getCorso(int id){
 		CorsoFormazione corso = new CorsoFormazione();
 		

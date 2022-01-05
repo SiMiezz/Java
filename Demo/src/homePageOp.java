@@ -12,6 +12,8 @@ import javax.swing.SwingConstants;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+
 import java.awt.event.ActionListener;
 import java.sql.Date;
 import java.awt.event.ActionEvent;
@@ -28,6 +30,10 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.JTable;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 public class homePageOp extends JFrame {
 
@@ -111,7 +117,7 @@ public class homePageOp extends JFrame {
 		txtNome.setText((String) null);
 		txtNome.setEditable(false);
 		txtNome.setColumns(10);
-		txtNome.setBounds(168, 68, 200, 22);
+		txtNome.setBounds(168, 80, 200, 22);
 		panelProfilo.add(txtNome);
 		
 		txtCognome = new JTextField();
@@ -119,7 +125,7 @@ public class homePageOp extends JFrame {
 		txtCognome.setText((String) null);
 		txtCognome.setEditable(false);
 		txtCognome.setColumns(10);
-		txtCognome.setBounds(168, 106, 200, 22);
+		txtCognome.setBounds(168, 115, 200, 22);
 		panelProfilo.add(txtCognome);
 		
 		txtDataNascita = new JTextField();
@@ -127,7 +133,7 @@ public class homePageOp extends JFrame {
 		txtDataNascita.setText("<dynamic>\r\n");
 		txtDataNascita.setEditable(false);
 		txtDataNascita.setColumns(10);
-		txtDataNascita.setBounds(168, 149, 200, 22);
+		txtDataNascita.setBounds(168, 150, 200, 22);
 		panelProfilo.add(txtDataNascita);
 		
 		txtCF = new JTextField();
@@ -135,7 +141,7 @@ public class homePageOp extends JFrame {
 		txtCF.setText((String) null);
 		txtCF.setEditable(false);
 		txtCF.setColumns(10);
-		txtCF.setBounds(168, 182, 200, 22);
+		txtCF.setBounds(168, 185, 200, 22);
 		panelProfilo.add(txtCF);
 		
 		txtID = new JTextField();
@@ -143,7 +149,7 @@ public class homePageOp extends JFrame {
 		txtID.setText("<dynamic>");
 		txtID.setEditable(false);
 		txtID.setColumns(10);
-		txtID.setBounds(168, 215, 200, 22);
+		txtID.setBounds(168, 220, 200, 22);
 		panelProfilo.add(txtID);
 		
 		Operatore op = new Operatore();
@@ -168,31 +174,31 @@ public class homePageOp extends JFrame {
 		JLabel lblNome = new JLabel("Nome");
 		lblNome.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblNome.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNome.setBounds(38, 72, 120, 14);
+		lblNome.setBounds(38, 84, 120, 14);
 		panelProfilo.add(lblNome);
 		
 		JLabel lblCognome = new JLabel("Cognome");
 		lblCognome.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCognome.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblCognome.setBounds(38, 106, 120, 22);
+		lblCognome.setBounds(38, 115, 120, 22);
 		panelProfilo.add(lblCognome);
 		
 		JLabel lblData = new JLabel("Data di nascita");
 		lblData.setHorizontalAlignment(SwingConstants.CENTER);
 		lblData.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblData.setBounds(38, 153, 120, 14);
+		lblData.setBounds(38, 154, 120, 14);
 		panelProfilo.add(lblData);
 		
 		JLabel lblCf = new JLabel("Codice Fiscale");
 		lblCf.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCf.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblCf.setBounds(38, 186, 120, 14);
+		lblCf.setBounds(38, 189, 120, 14);
 		panelProfilo.add(lblCf);
 		
 		JLabel lblId = new JLabel("ID");
 		lblId.setHorizontalAlignment(SwingConstants.CENTER);
 		lblId.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblId.setBounds(38, 219, 120, 14);
+		lblId.setBounds(38, 224, 120, 14);
 		panelProfilo.add(lblId);
 		
 		JPanel panelInserisci = new JPanel();
@@ -309,6 +315,45 @@ public class homePageOp extends JFrame {
 		tableCorsi.setModel(modelCorsi);
 		modelCorsi.setColumnIdentifiers(columnCorsi);
 		scrollPaneCorsi.setViewportView(tableCorsi);
+		
+		JComboBox comboBoxFiltro = new JComboBox();
+		comboBoxFiltro.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(e.getStateChange() == ItemEvent.SELECTED) {
+					if(comboBoxFiltro.getSelectedItem().equals("TUTTI")) {
+						
+						op.setCorsi(c.getCorsiOperatore(op));
+						modelCorsi.setRowCount(0);
+		                for (CorsoFormazione corso:op.getCorsi()) {
+		                	rowCorsi[0]= corso.getIdCorso();
+		                	rowCorsi[1]= corso.getNome();
+		                	rowCorsi[2]= corso.getDescrizione();
+		                	rowCorsi[3]= corso.getPresenzeMin();
+		                	rowCorsi[4]= corso.getMaxPartecipanti();
+		                	modelCorsi.addRow(rowCorsi);
+		        		}
+					}
+					else {
+						String key = c.insertKey();
+						
+						modelCorsi.setRowCount(0);
+		                for (CorsoFormazione corso:c.getCorsiPkey(key,op)) {
+		                	rowCorsi[0]= corso.getIdCorso();
+		                	rowCorsi[1]= corso.getNome();
+		                	rowCorsi[2]= corso.getDescrizione();
+		                	rowCorsi[3]= corso.getPresenzeMin();
+		                	rowCorsi[4]= corso.getMaxPartecipanti();
+		                	modelCorsi.addRow(rowCorsi);
+		        		}
+					}
+                }
+			}
+		});
+		comboBoxFiltro.setModel(new DefaultComboBoxModel(new String[] {"TUTTI", "PAROLA CHIAVE"}));
+		comboBoxFiltro.setSelectedIndex(0);
+		comboBoxFiltro.setToolTipText("");
+		comboBoxFiltro.setBounds(10, 317, 150, 22);
+		panelCorsi.add(comboBoxFiltro);
 		
 		JPanel panelModifica = new JPanel();
 		panelModifica.setBackground(new Color(176, 224, 230));

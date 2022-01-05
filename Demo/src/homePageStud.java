@@ -80,7 +80,7 @@ public class homePageStud extends JFrame {
 		txtNome.setText((String) null);
 		txtNome.setEditable(false);
 		txtNome.setColumns(10);
-		txtNome.setBounds(168, 68, 200, 22);
+		txtNome.setBounds(168, 80, 200, 22);
 		panelProfilo.add(txtNome);
 		
 		txtCognome = new JTextField();
@@ -88,7 +88,7 @@ public class homePageStud extends JFrame {
 		txtCognome.setText((String) null);
 		txtCognome.setEditable(false);
 		txtCognome.setColumns(10);
-		txtCognome.setBounds(168, 106, 200, 22);
+		txtCognome.setBounds(168, 115, 200, 22);
 		panelProfilo.add(txtCognome);
 		
 		txtData = new JTextField();
@@ -96,7 +96,7 @@ public class homePageStud extends JFrame {
 		txtData.setText("<dynamic>\r\n");
 		txtData.setEditable(false);
 		txtData.setColumns(10);
-		txtData.setBounds(168, 149, 200, 22);
+		txtData.setBounds(168, 150, 200, 22);
 		panelProfilo.add(txtData);
 		
 		txtCF = new JTextField();
@@ -104,7 +104,7 @@ public class homePageStud extends JFrame {
 		txtCF.setText((String) null);
 		txtCF.setEditable(false);
 		txtCF.setColumns(10);
-		txtCF.setBounds(168, 182, 200, 22);
+		txtCF.setBounds(168, 185, 200, 22);
 		panelProfilo.add(txtCF);
 		
 		txtMatricola = new JTextField();
@@ -112,7 +112,7 @@ public class homePageStud extends JFrame {
 		txtMatricola.setText("<dynamic>");
 		txtMatricola.setEditable(false);
 		txtMatricola.setColumns(10);
-		txtMatricola.setBounds(168, 215, 200, 22);
+		txtMatricola.setBounds(168, 220, 200, 22);
 		panelProfilo.add(txtMatricola);
 		
 		Studente stud = new Studente();
@@ -138,31 +138,31 @@ public class homePageStud extends JFrame {
 		JLabel lblNome = new JLabel("Nome");
 		lblNome.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNome.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblNome.setBounds(38, 72, 120, 14);
+		lblNome.setBounds(38, 84, 120, 14);
 		panelProfilo.add(lblNome);
 		
 		JLabel lblCognome = new JLabel("Cognome");
 		lblCognome.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCognome.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblCognome.setBounds(38, 106, 120, 22);
+		lblCognome.setBounds(38, 115, 120, 22);
 		panelProfilo.add(lblCognome);
 		
 		JLabel lblData = new JLabel("Data di nascita");
 		lblData.setHorizontalAlignment(SwingConstants.CENTER);
 		lblData.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblData.setBounds(38, 153, 120, 14);
+		lblData.setBounds(38, 154, 120, 14);
 		panelProfilo.add(lblData);
 		
 		JLabel lblCf = new JLabel("Codice Fiscale");
 		lblCf.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCf.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblCf.setBounds(38, 186, 120, 14);
+		lblCf.setBounds(38, 189, 120, 14);
 		panelProfilo.add(lblCf);
 		
 		JLabel lblMatricola = new JLabel("Matricola");
 		lblMatricola.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMatricola.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblMatricola.setBounds(38, 219, 120, 14);
+		lblMatricola.setBounds(38, 224, 120, 14);
 		panelProfilo.add(lblMatricola);
 		
 		JPanel panelCorsi = new JPanel();
