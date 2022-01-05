@@ -27,10 +27,8 @@ public class AreeTematicheDAO {
 			}
 		}
 		catch(SQLException e){
-			e.printStackTrace();
-		}
-		
-		return false;
+			return false;
+		}	
 	}
 	
 	public ArrayList<AreeTematiche> getAreeCorso(CorsoFormazione corso,Operatore op){
@@ -54,12 +52,12 @@ public class AreeTematicheDAO {
 			rs.close();
 			st.close();
 			conn.close();
+			
+			return aree;
 		}
 		catch(SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return aree;
+			return null;
+		}	
 	}
 	
 	public AreeTematiche extractAree(ResultSet rs,CorsoFormazione corso,Operatore op) throws SQLException{

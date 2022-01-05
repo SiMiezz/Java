@@ -27,12 +27,12 @@ public class StatisticheDAO {
 			rs.close();
 			st.close();
 			conn.close();
+			
+			return stat;
 		}
 		catch(SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return stat;
+			return null;
+		}	
 	}
 
 }

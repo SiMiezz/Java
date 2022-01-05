@@ -26,12 +26,12 @@ public class LezioneDAO {
 			rs.close();
 			st.close();
 			conn.close();
+			
+			return lezioni;
 		}
 		catch(SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return lezioni;
+			return null;
+		}	
 	}
 	
 	public ArrayList<Lezione> getLezioniPartecipa(Studente stud){
@@ -66,12 +66,12 @@ public class LezioneDAO {
 			rs.close();
 			st.close();
 			conn.close();
+			
+			return lezioni;
 		}
 		catch(SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return lezioni;
+			return null;
+		}	
 	}
 	
 	public Lezione extractLezioneCorso(ResultSet rs) throws SQLException{

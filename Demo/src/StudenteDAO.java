@@ -19,12 +19,12 @@ public class StudenteDAO {
 			rs.close();
 			st.close();
 			conn.close();
+			
+			return check;
 		}
 		catch(SQLException e){
-			e.printStackTrace();
+			return false;
 		}
-		
-		return check;
 	}
 	
 	public Studente getStud(String matricola){
@@ -52,12 +52,12 @@ public class StudenteDAO {
 			rs.close();
 			st.close();
 			conn.close();
+			
+			return stud;
 		}
 		catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return stud;
+			return null;
+		}	
 	}
 	
 	public boolean registrazioneStud(String nome, String cognome, String matricola, String password, String cf, Date data){
@@ -79,6 +79,7 @@ public class StudenteDAO {
 				
 				st.close();
 				conn.close();
+				
 				return true;
 			}
 			else {
@@ -86,9 +87,7 @@ public class StudenteDAO {
 			}
 		}
 		catch(SQLException e){
-			e.printStackTrace();
+			return false;
 		}
-		
-		return false;
 	}
 }

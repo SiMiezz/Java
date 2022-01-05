@@ -19,12 +19,12 @@ public class OperatoreDAO {
 			rs.close();
 			st.close();
 			conn.close();
+			
+			return check;
 		}
 		catch(SQLException e){
-			e.printStackTrace();
+			return false;
 		}
-		
-		return check;
 	}
 	
 	public Operatore getOp(String id){
@@ -52,12 +52,12 @@ public class OperatoreDAO {
 			rs.close();
 			st.close();
 			conn.close();
+			
+			return op;
 		}
 		catch (SQLException e) {
-			e.printStackTrace();
+			return null;
 		}
-		
-		return op;
 	}
 
 	public boolean registrazioneOP(String nome, String cognome, String id, String password, String cf, Date data){
@@ -86,9 +86,7 @@ public class OperatoreDAO {
 			}
 		}
 		catch(SQLException e){
-			e.printStackTrace();
+			return false;
 		}
-		
-		return false;
 	}
 }

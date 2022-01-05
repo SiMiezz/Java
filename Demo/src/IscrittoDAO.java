@@ -25,10 +25,8 @@ public class IscrittoDAO {
 			}
 		}
 		catch(SQLException e){
-			e.printStackTrace();
+			return false;
 		}
-		
-		return false;
 	}
 	
 	public ArrayList<Iscritto> getIscrizioni(Studente stud){
@@ -54,12 +52,12 @@ public class IscrittoDAO {
 			rs.close();
 			st.close();
 			conn.close();
+			
+			return iscrizioni;
 		}
 		catch(SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return iscrizioni;
+			return null;
+		}	
 	}
 	
 	public Iscritto extractIscrizione(ResultSet rs,Studente stud) throws SQLException{

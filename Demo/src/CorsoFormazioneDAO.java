@@ -30,10 +30,8 @@ public class CorsoFormazioneDAO {
 			}
 		}
 		catch(SQLException e){
-			e.printStackTrace();
+			return false;
 		}
-		
-		return false;
 	}
 	
 	public boolean aggiornaCorso(String nome, String descrizione, int presenzeMin, int maxPartecipanti, int id){
@@ -61,10 +59,8 @@ public class CorsoFormazioneDAO {
 			}	
 		}
 		catch(SQLException e){
-			e.printStackTrace();
-		}
-		
-		return false;
+			return false;
+		}	
 	}
 	
 	public ArrayList<CorsoFormazione> getCorsiOperatore(Operatore op){
@@ -88,12 +84,12 @@ public class CorsoFormazioneDAO {
 			rs.close();
 			st.close();
 			conn.close();
+			
+			return corsi;
 		}
 		catch(SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return corsi;
+			return null;
+		}	
 	}
 	
 	public ArrayList<CorsoFormazione> getCorsiIscrizione(Studente stud){
@@ -125,12 +121,12 @@ public class CorsoFormazioneDAO {
 			rs.close();
 			st.close();
 			conn.close();
+			
+			return corsi;
 		}
 		catch(SQLException e) {
-			e.printStackTrace();
+			return null;
 		}
-		
-		return corsi;
 	}
 	
 	public ArrayList<CorsoFormazione> getCorsiPKey(String key,Operatore op){
@@ -158,12 +154,12 @@ public class CorsoFormazioneDAO {
 			rs.close();
 			st.close();
 			conn.close();
+			
+			return corsi;
 		}
 		catch(SQLException e) {
-			e.printStackTrace();
+			return null;
 		}
-		
-		return corsi;
 	}
 	
 	public ArrayList<CorsoFormazione> getCorsiData(Date data,Operatore op){
@@ -188,12 +184,12 @@ public class CorsoFormazioneDAO {
 			rs.close();
 			st.close();
 			conn.close();
+			
+			return corsi;
 		}
 		catch(SQLException e) {
-			e.printStackTrace();
+			return null;
 		}
-		
-		return corsi;
 	}
 	
 	public CorsoFormazione getCorso(int id){
@@ -216,12 +212,12 @@ public class CorsoFormazioneDAO {
 			rs.close();
 			st.close();
 			conn.close();
+			
+			return corso;
 		}
 		catch(SQLException e) {
-			e.printStackTrace();
+			return null;
 		}
-		
-		return corso;
 	}
 	
 	public ArrayList<CorsoFormazione> getCorsiNoTermina(Operatore op){
@@ -251,12 +247,12 @@ public class CorsoFormazioneDAO {
 			rs.close();
 			st.close();
 			conn.close();
+			
+			return corsi;
 		}
 		catch(SQLException e) {
-			e.printStackTrace();
+			return null;
 		}
-		
-		return corsi;
 	}
 	
 	public ArrayList<CorsoFormazione> getCorsiTermina(Operatore op){
@@ -282,12 +278,12 @@ public class CorsoFormazioneDAO {
 			rs.close();
 			st.close();
 			conn.close();
+			
+			return corsi;
 		}
 		catch(SQLException e) {
-			e.printStackTrace();
+			return null;
 		}
-		
-		return corsi;
 	}
 	
 	public ArrayList<CorsoFormazione> getAllCorsi(){
@@ -306,12 +302,12 @@ public class CorsoFormazioneDAO {
 			rs.close();
 			st.close();
 			conn.close();
+			
+			return corsi;
 		}
 		catch(SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return corsi;
+			return null;
+		}	
 	}
 	
 	public CorsoFormazione extractCorso(ResultSet rs,Operatore op) throws SQLException{

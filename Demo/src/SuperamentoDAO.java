@@ -26,12 +26,12 @@ public class SuperamentoDAO {
 			rs.close();
 			st.close();
 			conn.close();
+			
+			return superati;
 		}
 		catch(SQLException e) {
-			e.printStackTrace();
+			return null;
 		}
-		
-		return superati;
 	}
 	
 	public Superamento extractSuperato(ResultSet rs,CorsoFormazione corso) throws SQLException{

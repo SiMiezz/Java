@@ -24,10 +24,8 @@ public class PartecipaDAO {
 			}
 		}
 		catch(SQLException e){
-			e.printStackTrace();
+			return false;
 		}
-		
-		return false;
 	}
 
 }

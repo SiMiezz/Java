@@ -594,6 +594,8 @@ public class homePageOp extends JFrame {
 		panelStatistiche.add(scrollPaneStatistiche);
 		
 		JProgressBar progressBarRiempimento = new JProgressBar();
+		progressBarRiempimento.setMinimum(0);
+		progressBarRiempimento.setMaximum(100);
 		progressBarRiempimento.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		progressBarRiempimento.setStringPainted(true);
 		progressBarRiempimento.setBounds(240, 365, 150, 20);
@@ -608,9 +610,6 @@ public class homePageOp extends JFrame {
 				txtNumMedio.setText(Integer.toString(c.getStat(c.getCorso(id)).getNumMedioStud()));
 				txtMinStud.setText(Integer.toString(c.getStat(c.getCorso(id)).getMinStud()));
 				txtMaxStud.setText(Integer.toString(c.getStat(c.getCorso(id)).getMaxStud()));
-				
-				progressBarRiempimento.setMinimum(0);
-				progressBarRiempimento.setMaximum(100);
 				progressBarRiempimento.setValue((c.getStat(c.getCorso(id)).getRiempimentoMedio()));
 			}
 		});
