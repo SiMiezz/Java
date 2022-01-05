@@ -1,8 +1,10 @@
 import java.util.*;
+import java.sql.Date;
 
 public class CorsoFormazione {
 	private String nome,descrizione;
 	private int presenzeMin,maxPartecipanti,idCorso;
+	private Date data;
 	private Operatore op = new Operatore();
 	private ArrayList <Lezione> lezioni = new ArrayList<Lezione>();
 	
@@ -29,6 +31,12 @@ public class CorsoFormazione {
 	}
 	public void setMaxPartecipanti(int maxPartecipanti) {
 		this.maxPartecipanti = maxPartecipanti;
+	}
+	public Date getData() {
+		return data;
+	}
+	public void setData(Date data) {
+		this.data = data;
 	}
 	public Operatore getOp() {
 		return op;

@@ -88,8 +88,9 @@ public class LezioneDAO {
 		corso.setIdCorso(rs.getInt(10));
 		corso.setNome(rs.getString(11));
 		corso.setDescrizione(rs.getString(12));
-		corso.setPresenzeMin(rs.getInt(13));
-		corso.setMaxPartecipanti(rs.getInt(14));
+		corso.setData(rs.getDate(13));
+		corso.setPresenzeMin(rs.getInt(14));
+		corso.setMaxPartecipanti(rs.getInt(15));
 		
 		lezione.setCorso(corso);
 		

@@ -81,6 +81,10 @@ public class Controller {
 		return corsodao.getCorsiPKey(key,op);
 	}
 	
+	public ArrayList<CorsoFormazione> getCorsiData(Date data,Operatore op){
+		return corsodao.getCorsiData(data,op);
+	}
+	
 	public ArrayList<CorsoFormazione> getCorsiNoTermina(Operatore op){
 		return corsodao.getCorsiNoTermina(op);
 	}
@@ -121,16 +125,16 @@ public class Controller {
 		return supdao.getStudSupera(corso);
 	}
 	
-	public boolean inserisciCorso(String nome, String descrizione, int presenzeMin, int maxPartecipanti, Operatore op) {
-		return corsodao.aggiungiCorso(nome, descrizione, presenzeMin, maxPartecipanti, op);
+	public boolean inserisciCorso(String nome, String descrizione, Date data, int presenzeMin, int maxPartecipanti, Operatore op) {
+		return corsodao.aggiungiCorso(nome, descrizione, data, presenzeMin, maxPartecipanti, op);
 	}
 	
 	public boolean iscriviti(Studente stud,CorsoFormazione corso) {
 		return iscdao.aggiungiIscrizione(stud,corso);
 	}
 	
-	public boolean partecipa(Studente stud,CorsoFormazione corso) {
-		return pardao.aggiungiPartecipa(stud,corso);
+	public boolean partecipa(Studente stud,int id) {
+		return pardao.aggiungiPartecipa(stud,id);
 	}
 	
 	public boolean aggiungiAree(String tipo,String descrizione,CorsoFormazione corso,Operatore op) {
@@ -252,7 +256,19 @@ public class Controller {
 	
 	public String insertKey() {
 		String key = JOptionPane.showInputDialog(hpo, "Inserisci la parola chiave", "QUESTION", JOptionPane.QUESTION_MESSAGE);
-		
 		return key;
+	}
+	
+	public static Date tryParse(String text) {
+		try {
+			return Date.valueOf(text);
+		} catch (IllegalArgumentException e) {
+			return null;
+		}
+	}
+	
+	public Date insertData() {
+		Date data = tryParse(JOptionPane.showInputDialog(hpo, "Inserisci una data (yyyy-mm-dd)", "QUESTION", JOptionPane.QUESTION_MESSAGE));
+		return data;
 	}
 }

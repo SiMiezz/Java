@@ -325,7 +325,7 @@ public class homePageStud extends JFrame {
 				if(txtPartecipa.getSelectedText() != null) {
 					int id = Integer.valueOf(txtPartecipa.getSelectedText());
 					
-					if(c.partecipa(stud, c.getCorso(id))) {
+					if(c.partecipa(stud, id)) {
 						c.confirmInsertPresenza();
 					}
 					else {
