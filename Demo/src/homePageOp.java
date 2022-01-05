@@ -313,6 +313,7 @@ public class homePageOp extends JFrame {
 		panelCorsi.add(scrollPaneCorsi);
 		
 		tableCorsi = new JTable();
+		tableCorsi.setRowSelectionAllowed(false);
 		tableCorsi.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
 		modelCorsi = new DefaultTableModel();
 		Object[] columnCorsi = {"ID", "Nome", "Descrizione", "Data", "PresenzeMin", "maxPartecipanti"};
@@ -448,7 +449,7 @@ public class homePageOp extends JFrame {
 		JLabel lblModPartecipanti = new JLabel("Partecipanti max");
 		lblModPartecipanti.setHorizontalAlignment(SwingConstants.CENTER);
 		lblModPartecipanti.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblModPartecipanti.setBounds(69, 371, 130, 14);
+		lblModPartecipanti.setBounds(69, 367, 130, 18);
 		panelModifica.add(lblModPartecipanti);
 		
 		JLabel lblModId = new JLabel("IDCorso");
@@ -585,7 +586,7 @@ public class homePageOp extends JFrame {
 		JLabel lblRiempimento = new JLabel("Riempimento medio");
 		lblRiempimento.setHorizontalAlignment(SwingConstants.CENTER);
 		lblRiempimento.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblRiempimento.setBounds(55, 364, 175, 14);
+		lblRiempimento.setBounds(55, 364, 175, 18);
 		panelStatistiche.add(lblRiempimento);
 		
 		JScrollPane scrollPaneStatistiche = new JScrollPane();
@@ -662,7 +663,7 @@ public class homePageOp extends JFrame {
 		JLabel lblTipoAree = new JLabel("Tipo");
 		lblTipoAree.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTipoAree.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblTipoAree.setBounds(83, 292, 100, 14);
+		lblTipoAree.setBounds(83, 290, 100, 18);
 		panelNewAreeTematiche.add(lblTipoAree);
 		
 		JLabel lblDescAree = new JLabel("Descrizione");
