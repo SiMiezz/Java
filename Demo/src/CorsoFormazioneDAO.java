@@ -92,7 +92,7 @@ public class CorsoFormazioneDAO {
 		}	
 	}
 	
-	public ArrayList<CorsoFormazione> getCorsiIscrizione(Studente stud){
+	public ArrayList<CorsoFormazione> getCorsiNoIscrizione(Studente stud){
 		ArrayList <CorsoFormazione> corsi = new ArrayList<CorsoFormazione>();
 		
 		try {

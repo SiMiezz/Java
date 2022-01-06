@@ -34,7 +34,7 @@ public class LezioneDAO {
 		}	
 	}
 	
-	public ArrayList<Lezione> getLezioniPartecipa(Studente stud){
+	public ArrayList<Lezione> getLezioniNoPartecipa(Studente stud){
 		ArrayList <Lezione> lezioni = new ArrayList<Lezione>();
 		
 		try {

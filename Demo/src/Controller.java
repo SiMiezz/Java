@@ -73,8 +73,8 @@ public class Controller {
 		return corsodao.getCorsiOperatore(op);
 	}
 	
-	public ArrayList<CorsoFormazione> getCorsiIscrizione(Studente stud){
-		return corsodao.getCorsiIscrizione(stud);
+	public ArrayList<CorsoFormazione> getCorsiNoIscrizione(Studente stud){
+		return corsodao.getCorsiNoIscrizione(stud);
 	}
 	
 	public ArrayList<CorsoFormazione> getCorsiPkey(String key,Operatore op){
@@ -101,8 +101,8 @@ public class Controller {
 		return lezdao.getLezioni(stud);
 	}
 	
-	public ArrayList<Lezione> getLezioniPartecipa(Studente stud){
-		return lezdao.getLezioniPartecipa(stud);
+	public ArrayList<Lezione> getLezioniNoPartecipa(Studente stud){
+		return lezdao.getLezioniNoPartecipa(stud);
 	}
 	
 	public CorsoFormazione getCorso(int id) {
