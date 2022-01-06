@@ -69,6 +69,8 @@ public class homePageOp extends JFrame {
 	DefaultTableModel modelNewAree;
 	private JTable tableStatistiche;
 	DefaultTableModel modelStatistiche;
+	private JTable tableTermina;
+	DefaultTableModel modelTermina;
 
 	private void switchPanel(JLayeredPane layeredPane, JPanel panelInserisci) {
 		layeredPane.removeAll();
@@ -107,13 +109,13 @@ public class homePageOp extends JFrame {
 		layeredPane.add(panelProfilo, "name_680381200185900");
 		panelProfilo.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("PROFILO OPERATORE");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setForeground(Color.RED);
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblNewLabel.setLabelFor(panelProfilo);
-		lblNewLabel.setBounds(10, 11, 544, 31);
-		panelProfilo.add(lblNewLabel);
+		JLabel lblProfilo = new JLabel("PROFILO OPERATORE");
+		lblProfilo.setHorizontalAlignment(SwingConstants.CENTER);
+		lblProfilo.setForeground(Color.RED);
+		lblProfilo.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblProfilo.setLabelFor(panelProfilo);
+		lblProfilo.setBounds(10, 11, 544, 31);
+		panelProfilo.add(lblProfilo);
 		
 		txtNome = new JTextField();
 		txtNome.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -261,7 +263,7 @@ public class homePageOp extends JFrame {
 		JLabel lblPartecipanti = new JLabel("Partecipanti Max");
 		lblPartecipanti.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPartecipanti.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblPartecipanti.setBounds(17, 217, 120, 14);
+		lblPartecipanti.setBounds(17, 217, 120, 18);
 		panelInserisci.add(lblPartecipanti);
 		
 		JButton btnInserimento = new JButton("INSERISCI");
@@ -706,7 +708,7 @@ public class homePageOp extends JFrame {
 		panelNewAreeTematiche.add(btnCreaAree);
 		
 		JScrollPane scrollPaneNewAree = new JScrollPane();
-		scrollPaneNewAree.setBounds(85, 61, 400, 185);
+		scrollPaneNewAree.setBounds(83, 61, 400, 185);
 		panelNewAreeTematiche.add(scrollPaneNewAree);
 		
 		tableNewAree = new JTable();
@@ -849,28 +851,32 @@ public class homePageOp extends JFrame {
 		lblTermina.setBounds(10, 11, 544, 14);
 		panelTermina.add(lblTermina);
 		
-		JLabel lblAlertTermina = new JLabel("Seleziona l'id del corso");
+		JLabel lblAlertTermina = new JLabel("Seleziona il corso");
 		lblAlertTermina.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAlertTermina.setForeground(Color.BLUE);
 		lblAlertTermina.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblAlertTermina.setBounds(142, 36, 285, 14);
+		lblAlertTermina.setBounds(10, 36, 544, 14);
 		panelTermina.add(lblAlertTermina);
 		
 		JScrollPane scrollPaneTermina = new JScrollPane();
-		scrollPaneTermina.setBounds(142, 61, 283, 168);
+		scrollPaneTermina.setBounds(83, 61, 400, 185);
 		panelTermina.add(scrollPaneTermina);
 		
-		JTextArea txtTermina = new JTextArea();
-		scrollPaneTermina.setViewportView(txtTermina);
-		txtTermina.setFont(new Font("Monospaced", Font.PLAIN, 16));
-		txtTermina.setEditable(false);
+		tableTermina = new JTable();
+		modelTermina = new DefaultTableModel();
+		Object[] columnTermina = {"ID", "Nome", "Descrizione"};
+		Object[] rowTermina = new Object[3];
+		tableTermina.setModel(modelTermina);
+		modelTermina.setColumnIdentifiers(columnTermina);
+		scrollPaneTermina.setViewportView(tableTermina);
 		
 		JButton btnTermina = new JButton("TERMINA");
 		btnTermina.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnTermina.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(tryParse(txtTermina.getSelectedText())!=null) {
-					int id = tryParse(txtTermina.getSelectedText());
+				if(tableTermina.getSelectedRow() != -1) {
+					int i = tableTermina.getSelectedRow();
+					int id = (int) tableTermina.getValueAt(i, 0);
 					
 					if(c.terminaCorso(c.getCorso(id),op)) {
 						c.confirmTermina();
@@ -882,9 +888,17 @@ public class homePageOp extends JFrame {
 				else {
 					c.alertSeleziona();
 				}
+				
+				modelTermina.setRowCount(0);
+                for (CorsoFormazione corso:c.getCorsiNoTermina(op)) {
+                	rowTermina[0] = corso.getIdCorso();
+                	rowTermina[1] = corso.getNome();
+                	rowTermina[2] = corso.getDescrizione();
+                	modelTermina.addRow(rowTermina);
+        		}
 			}
 		});
-		btnTermina.setBounds(327, 240, 100, 23);
+		btnTermina.setBounds(383, 257, 100, 23);
 		panelTermina.add(btnTermina);
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -982,9 +996,12 @@ public class homePageOp extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				switchPanel(layeredPane, panelTermina);
 				
-				txtTermina.setText(null);
+				modelTermina.setRowCount(0);
                 for (CorsoFormazione corso:c.getCorsiNoTermina(op)) {
-                	txtTermina.append(corso.getIdCorso() + " " + corso.getNome() + " " + corso.getDescrizione() + "\n");
+                	rowTermina[0] = corso.getIdCorso();
+                	rowTermina[1] = corso.getNome();
+                	rowTermina[2] = corso.getDescrizione();
+                	modelTermina.addRow(rowTermina);
         		}
 			}
 		});

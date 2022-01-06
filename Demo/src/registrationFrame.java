@@ -60,15 +60,15 @@ public class registrationFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel pwdLbl = new JLabel("Password");
-		pwdLbl.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		pwdLbl.setHorizontalAlignment(SwingConstants.CENTER);
-		pwdLbl.setBounds(105, 280, 120, 14);
-		contentPane.add(pwdLbl);
+		JLabel lblPwd = new JLabel("Password");
+		lblPwd.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblPwd.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPwd.setBounds(105, 280, 120, 14);
+		contentPane.add(lblPwd);
 		
 		pwdField = new JPasswordField();
 		pwdField.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		pwdLbl.setLabelFor(pwdField);
+		lblPwd.setLabelFor(pwdField);
 		pwdField.setBounds(235, 279, 150, 20);
 		contentPane.add(pwdField);
 		
@@ -91,19 +91,19 @@ public class registrationFrame extends JFrame {
 		contentPane.add(txtCognome);
 		txtCognome.setColumns(10);
 		
-		JLabel nomeLbl = new JLabel("Nome");
-		nomeLbl.setLabelFor(txtNome);
-		nomeLbl.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		nomeLbl.setHorizontalAlignment(SwingConstants.CENTER);
-		nomeLbl.setBounds(105, 124, 120, 14);
-		contentPane.add(nomeLbl);
+		JLabel lblNome = new JLabel("Nome");
+		lblNome.setLabelFor(txtNome);
+		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblNome.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNome.setBounds(105, 124, 120, 14);
+		contentPane.add(lblNome);
 		
-		JLabel cognomeLbl = new JLabel("Cognome");
-		cognomeLbl.setLabelFor(txtCognome);
-		cognomeLbl.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		cognomeLbl.setHorizontalAlignment(SwingConstants.CENTER);
-		cognomeLbl.setBounds(105, 153, 120, 18);
-		contentPane.add(cognomeLbl);
+		JLabel lblCognome = new JLabel("Cognome");
+		lblCognome.setLabelFor(txtCognome);
+		lblCognome.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblCognome.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCognome.setBounds(105, 153, 120, 18);
+		contentPane.add(lblCognome);
 		
 		txtID = new JTextField();
 		txtID.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -111,12 +111,12 @@ public class registrationFrame extends JFrame {
 		contentPane.add(txtID);
 		txtID.setColumns(10);
 		
-		JLabel idLbl = new JLabel("ID o Matricola");
-		idLbl.setLabelFor(txtID);
-		idLbl.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		idLbl.setHorizontalAlignment(SwingConstants.CENTER);
-		idLbl.setBounds(105, 249, 120, 14);
-		contentPane.add(idLbl);
+		JLabel lblId = new JLabel("ID o Matricola");
+		lblId.setLabelFor(txtID);
+		lblId.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblId.setHorizontalAlignment(SwingConstants.CENTER);
+		lblId.setBounds(105, 249, 120, 14);
+		contentPane.add(lblId);
 		
 		JButton btnRegistration = new JButton("REGISTRATI");
 		btnRegistration.setFont(new Font("Tahoma", Font.BOLD, 14));
