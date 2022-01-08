@@ -1,6 +1,8 @@
 import java.sql.Date;
 
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+
 import java.util.*;
 
 public class Controller {
@@ -223,10 +225,10 @@ public class Controller {
 	
 	public void alertSeleziona() {
 		if(hpo == null || !hpo.isShowing()) {
-			JOptionPane.showMessageDialog(hps, "Selezionare l'id del corso!", "WARNING", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(hps, "Selezionare il corso!", "WARNING", JOptionPane.WARNING_MESSAGE);
 		}
 		else if (hps == null || !hps.isShowing()){
-			JOptionPane.showMessageDialog(hpo, "Selezionare l'id del corso!", "WARNING", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(hpo, "Selezionare il corso!", "WARNING", JOptionPane.WARNING_MESSAGE);
 		}
 	}
 	
@@ -270,5 +272,9 @@ public class Controller {
 	public Date insertData() {
 		Date data = tryParse(JOptionPane.showInputDialog(hpo, "Inserisci una data (yyyy-mm-dd)", "QUESTION", JOptionPane.QUESTION_MESSAGE));
 		return data;
+	}
+	
+	public void aggiungiTabella(JScrollPane scroll) {
+		JOptionPane.showMessageDialog(hpo, scroll);
 	}
 }

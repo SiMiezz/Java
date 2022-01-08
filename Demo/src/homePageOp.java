@@ -22,6 +22,8 @@ import javax.swing.JScrollPane;
 import java.awt.Font;
 import javax.swing.JTextField;
 import java.awt.Color;
+import java.awt.Dimension;
+
 import javax.swing.JTextArea;
 
 import javax.swing.JSplitPane;
@@ -71,6 +73,8 @@ public class homePageOp extends JFrame {
 	DefaultTableModel modelStatistiche;
 	private JTable tableTermina;
 	DefaultTableModel modelTermina;
+	private JTable tableCorsiAree;
+	DefaultTableModel modelCorsiAree;
 
 	private void switchPanel(JLayeredPane layeredPane, JPanel panelInserisci) {
 		layeredPane.removeAll();
@@ -623,6 +627,39 @@ public class homePageOp extends JFrame {
 		modelStatistiche.setColumnIdentifiers(columnStatistiche);
 		scrollPaneStatistiche.setViewportView(tableStatistiche);
 		
+		JButton btnSuperamento = new JButton("STUDENTI IDONEI");
+		btnSuperamento.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(tableStatistiche.getSelectedRow() != -1) {
+					JTable table = new JTable();
+					DefaultTableModel model = new DefaultTableModel();
+					Object[] cols = {"Matricola", "Nome", "Cognome"};
+					Object[] row = new Object[3];
+					table.setModel(model);
+					model.setColumnIdentifiers(cols);
+					
+					model.setRowCount(0);
+	                for (Superamento sup:c.getStudSupera(c.getCorso((int) (modelStatistiche.getValueAt(tableStatistiche.getSelectedRow(), 0))))) {
+	                	row[0] = sup.getStud().getMatricola();
+	                	row[1] = sup.getStud().getNome();
+	                	row[2] = sup.getStud().getCognome();
+	                	model.addRow(row);
+	        		}
+	                
+	                JScrollPane scroll = new JScrollPane(table);
+	                scroll.setPreferredSize(new Dimension(275,125));
+					
+					c.aggiungiTabella(scroll);
+				}
+				else {
+					c.alertSeleziona();
+				}
+			}
+		});
+		btnSuperamento.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnSuperamento.setBounds(409, 392, 145, 23);
+		panelStatistiche.add(btnSuperamento);
+		
 		JPanel panelNewAreeTematiche = new JPanel();
 		panelNewAreeTematiche.setBackground(new Color(176, 224, 230));
 		layeredPane.add(panelNewAreeTematiche, "name_363800109925200");
@@ -727,43 +764,6 @@ public class homePageOp extends JFrame {
 		modelNewAree.setColumnIdentifiers(columnNewAree);
 		scrollPaneNewAree.setViewportView(tableNewAree);
 		
-		JPanel panelSuperamento = new JPanel();
-		panelSuperamento.setBackground(new Color(176, 224, 230));
-		layeredPane.add(panelSuperamento, "name_364302989866400");
-		panelSuperamento.setLayout(null);
-		
-		JLabel lblSuperamento = new JLabel("VISUALIZZA STUDENTI IDONEI");
-		lblSuperamento.setForeground(Color.RED);
-		lblSuperamento.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSuperamento.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblSuperamento.setBounds(10, 11, 544, 14);
-		panelSuperamento.add(lblSuperamento);
-		
-		JLabel lblAlertSuperamento = new JLabel("Seleziona l'id del corso");
-		lblAlertSuperamento.setHorizontalAlignment(SwingConstants.CENTER);
-		lblAlertSuperamento.setForeground(Color.BLUE);
-		lblAlertSuperamento.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblAlertSuperamento.setBounds(141, 36, 285, 14);
-		panelSuperamento.add(lblAlertSuperamento);
-		
-		JScrollPane scrollPaneCorsiSuperamento = new JScrollPane();
-		scrollPaneCorsiSuperamento.setBounds(141, 61, 285, 165);
-		panelSuperamento.add(scrollPaneCorsiSuperamento);
-		
-		JTextArea txtCorsiSuperamento = new JTextArea();
-		scrollPaneCorsiSuperamento.setViewportView(txtCorsiSuperamento);
-		txtCorsiSuperamento.setFont(new Font("Monospaced", Font.PLAIN, 16));
-		txtCorsiSuperamento.setEditable(false);
-		
-		JScrollPane scrollPaneStudSuperamento = new JScrollPane();
-		scrollPaneStudSuperamento.setBounds(141, 271, 285, 165);
-		panelSuperamento.add(scrollPaneStudSuperamento);
-		
-		JTextArea txtStudSuperamento = new JTextArea();
-		scrollPaneStudSuperamento.setViewportView(txtStudSuperamento);
-		txtStudSuperamento.setFont(new Font("Monospaced", Font.PLAIN, 16));
-		txtStudSuperamento.setEditable(false);
-		
 		JPanel panelAreeTematiche = new JPanel();
 		panelAreeTematiche.setBackground(new Color(176, 224, 230));
 		layeredPane.add(panelAreeTematiche, "name_364509658303200");
@@ -776,68 +776,56 @@ public class homePageOp extends JFrame {
 		lblAreeTematiche.setBounds(10, 11, 544, 14);
 		panelAreeTematiche.add(lblAreeTematiche);
 		
-		JLabel lblAlertAree = new JLabel("Seleziona l'id del corso");
+		JLabel lblAlertAree = new JLabel("Seleziona il corso");
 		lblAlertAree.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAlertAree.setForeground(Color.BLUE);
 		lblAlertAree.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblAlertAree.setBounds(144, 36, 285, 14);
+		lblAlertAree.setBounds(10, 36, 544, 14);
 		panelAreeTematiche.add(lblAlertAree);
 		
-		JScrollPane scrollPaneAreeTema = new JScrollPane();
-		scrollPaneAreeTema.setBounds(144, 61, 285, 165);
-		panelAreeTematiche.add(scrollPaneAreeTema);
-		
-		JTextArea txtCorsiAree = new JTextArea();
-		scrollPaneAreeTema.setViewportView(txtCorsiAree);
-		txtCorsiAree.setFont(new Font("Monospaced", Font.PLAIN, 16));
-		txtCorsiAree.setEditable(false);
-		
-		JScrollPane scrollPaneCorsiAree = new JScrollPane();
-		scrollPaneCorsiAree.setBounds(144, 268, 285, 165);
-		panelAreeTematiche.add(scrollPaneCorsiAree);
-		
-		JTextArea txtAreeTematiche = new JTextArea();
-		scrollPaneCorsiAree.setViewportView(txtAreeTematiche);
-		txtAreeTematiche.setFont(new Font("Monospaced", Font.PLAIN, 16));
-		txtAreeTematiche.setEditable(false);
-		
-		JButton btnSelezionaSuperamento = new JButton("SELEZIONA");
-		btnSelezionaSuperamento.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(tryParse(txtCorsiSuperamento.getSelectedText())!=null) {
-					int id = tryParse(txtCorsiSuperamento.getSelectedText());
-					
-	                txtStudSuperamento.setText(null);
-	                for (Superamento sup:c.getStudSupera(c.getCorso(id))) {
-	                	txtStudSuperamento.append(sup.getStud().getMatricola() + " " + sup.getStud().getNome() + " " + sup.getStud().getCognome() + "\n");
-	        		}
-				}
-				else {
-					c.alertSeleziona();
-				}
-			}
-		});
-		btnSelezionaSuperamento.setBounds(326, 237, 100, 23);
-		panelSuperamento.add(btnSelezionaSuperamento);
-		
-		JButton btnSelezionaAree = new JButton("SELEZIONA");
+		JButton btnSelezionaAree = new JButton("AREE");
+		btnSelezionaAree.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnSelezionaAree.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(tryParse(txtCorsiAree.getSelectedText())!=null) {
-					int id = tryParse(txtCorsiAree.getSelectedText());
+				if(tableCorsiAree.getSelectedRow() != -1) {
+					JTable table = new JTable();
+					DefaultTableModel model = new DefaultTableModel();
+					Object[] cols = {"Tipo", "Descrizione"};
+					Object[] row = new Object[2];
+					table.setModel(model);
+					model.setColumnIdentifiers(cols);
 					
-	                txtAreeTematiche.setText(null);
-	                for (AreeTematiche aree:c.getAreeCorso(c.getCorso(id),op)) {
-	                	txtAreeTematiche.append(aree.getTipo() + " " + aree.getDescrizione() + "\n");
+					model.setRowCount(0);
+	                for (AreeTematiche area:c.getAreeCorso(c.getCorso((int) (modelCorsiAree.getValueAt(tableCorsiAree.getSelectedRow(), 0))),op)) {
+	                	row[0] = area.getTipo();
+	                	row[1] = area.getDescrizione();
+	                	model.addRow(row);
 	        		}
+	                
+	                JScrollPane scroll = new JScrollPane(table);
+	                scroll.setPreferredSize(new Dimension(275,125));
+					
+					c.aggiungiTabella(scroll);
 				}
 				else {
 					c.alertSeleziona();
 				}
 			}
 		});
-		btnSelezionaAree.setBounds(329, 237, 100, 23);
+		btnSelezionaAree.setBounds(383, 257, 100, 23);
 		panelAreeTematiche.add(btnSelezionaAree);
+		
+		JScrollPane scrollPaneCorsiAree = new JScrollPane();
+		scrollPaneCorsiAree.setBounds(83, 61, 400, 185);
+		panelAreeTematiche.add(scrollPaneCorsiAree);
+		
+		tableCorsiAree = new JTable();
+		modelCorsiAree = new DefaultTableModel();
+		Object[] columnCorsiAree = {"ID", "Nome", "Descrizione"};
+		Object[] rowCorsiAree = new Object[3];
+		tableCorsiAree.setModel(modelCorsiAree);
+		modelCorsiAree.setColumnIdentifiers(columnCorsiAree);
+		scrollPaneCorsiAree.setViewportView(tableCorsiAree);
 		
 		JPanel panelTermina = new JPanel();
 		panelTermina.setBackground(new Color(176, 224, 230));
@@ -1030,20 +1018,6 @@ public class homePageOp extends JFrame {
 		});
 		mnStatistiche.add(mntmVisualizzaStat);
 		
-		JMenuItem mntmStudIdonei = new JMenuItem("Studenti Idonei");
-		mntmStudIdonei.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		mntmStudIdonei.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				switchPanel(layeredPane, panelSuperamento);
-				
-				txtCorsiSuperamento.setText(null);
-                for (CorsoFormazione corso:c.getCorsiTermina(op)) {
-                	txtCorsiSuperamento.append(corso.getIdCorso() + " " + corso.getNome() + " " + corso.getDescrizione() + "\n");
-        		}
-			}
-		});
-		mnStatistiche.add(mntmStudIdonei);
-		
 		JMenu mnAreeTematiche = new JMenu("AREE TEMATICHE");
 		mnAreeTematiche.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		menuBar.add(mnAreeTematiche);
@@ -1073,9 +1047,12 @@ public class homePageOp extends JFrame {
 				switchPanel(layeredPane, panelAreeTematiche);
 				
 				op.setCorsi(c.getCorsiOperatore(op));
-                txtCorsiAree.setText(null);
-                for (CorsoFormazione corso:c.getCorsiOperatore(op)) {
-                	txtCorsiAree.append(corso.getIdCorso() + " " + corso.getNome() + " " + corso.getDescrizione() + "\n");
+				modelCorsiAree.setRowCount(0);
+                for (CorsoFormazione corso:op.getCorsi()) {
+                	rowCorsiAree[0] = corso.getIdCorso();
+                	rowCorsiAree[1] = corso.getNome();
+                	rowCorsiAree[2] = corso.getDescrizione();
+                	modelCorsiAree.addRow(rowCorsiAree);
         		}
 			}
 		});
