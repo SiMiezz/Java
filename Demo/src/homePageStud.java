@@ -52,7 +52,7 @@ public class homePageStud extends JFrame {
 
 	public homePageStud(Controller c, String matricola, String pwd) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 600, 525);
+		setBounds(100, 100, 650, 550);
 		
 		TheController=c;
 		
@@ -63,7 +63,7 @@ public class homePageStud extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLayeredPane layeredPane = new JLayeredPane();
-		layeredPane.setBounds(10, 11, 564, 442);
+		layeredPane.setBounds(10, 11, 614, 463);
 		contentPane.add(layeredPane);
 		layeredPane.setLayout(new CardLayout(0, 0));
 		
@@ -76,7 +76,7 @@ public class homePageStud extends JFrame {
 		lblProfilo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblProfilo.setForeground(Color.RED);
 		lblProfilo.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblProfilo.setBounds(0, 11, 554, 31);
+		lblProfilo.setBounds(10, 11, 594, 31);
 		panelProfilo.add(lblProfilo);
 		
 		txtNome = new JTextField();
@@ -178,18 +178,18 @@ public class homePageStud extends JFrame {
 		lblCorsi.setForeground(Color.RED);
 		lblCorsi.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCorsi.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblCorsi.setBounds(10, 11, 544, 14);
+		lblCorsi.setBounds(10, 11, 594, 14);
 		panelCorsi.add(lblCorsi);
 		
 		JScrollPane scrollPaneCorsi = new JScrollPane();
-		scrollPaneCorsi.setBounds(10, 36, 544, 270);
+		scrollPaneCorsi.setBounds(10, 36, 594, 270);
 		panelCorsi.add(scrollPaneCorsi);
 		
 		tableCorsi = new JTable();
 		tableCorsi.setRowSelectionAllowed(false);
 		tableCorsi.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
 		modelCorsi= new DefaultTableModel();
-		Object[] columnCorsi= {"ID", "Nome", "Descrizione", "Presenze min", "Partecipanti max"};
+		Object[] columnCorsi= {"ID", "Nome", "Descrizione", "PresenzeMin", "maxPartecipanti"};
 		Object [] rowCorsi= new Object[5];
 		tableCorsi.setModel(modelCorsi);
 		modelCorsi.setColumnIdentifiers(columnCorsi);
@@ -204,11 +204,11 @@ public class homePageStud extends JFrame {
 		lblIscrizioni.setForeground(Color.RED);
 		lblIscrizioni.setHorizontalAlignment(SwingConstants.CENTER);
 		lblIscrizioni.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblIscrizioni.setBounds(10, 11, 544, 14);
+		lblIscrizioni.setBounds(10, 11, 594, 14);
 		panelIscrizioni.add(lblIscrizioni);
 		
 		JScrollPane scrollPaneIscrizioni = new JScrollPane();
-		scrollPaneIscrizioni.setBounds(10, 36, 544, 270);
+		scrollPaneIscrizioni.setBounds(82, 36, 450, 220);
 		panelIscrizioni.add(scrollPaneIscrizioni);
 		
 		tableIscrizioni = new JTable();
@@ -230,18 +230,18 @@ public class homePageStud extends JFrame {
 		lblNewIscrizione.setForeground(Color.RED);
 		lblNewIscrizione.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewIscrizione.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblNewIscrizione.setBounds(10, 11, 544, 14);
+		lblNewIscrizione.setBounds(10, 11, 594, 14);
 		panelNewIscrizione.add(lblNewIscrizione);
 		
 		JLabel lblAlertIscrizione = new JLabel("Seleziona il corso");
 		lblAlertIscrizione.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAlertIscrizione.setForeground(Color.BLUE);
 		lblAlertIscrizione.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblAlertIscrizione.setBounds(10, 36, 544, 14);
+		lblAlertIscrizione.setBounds(10, 36, 594, 14);
 		panelNewIscrizione.add(lblAlertIscrizione);
 		
 		JScrollPane scrollPaneNewIscrizione = new JScrollPane();
-		scrollPaneNewIscrizione.setBounds(83, 61, 400, 185);
+		scrollPaneNewIscrizione.setBounds(108, 61, 400, 185);
 		
 		panelNewIscrizione.add(scrollPaneNewIscrizione);
 		
@@ -282,7 +282,7 @@ public class homePageStud extends JFrame {
 				}
 			}
 		});
-		btnIscriviti.setBounds(379, 257, 100, 23);
+		btnIscriviti.setBounds(408, 257, 100, 23);
 		panelNewIscrizione.add(btnIscriviti);
 		
 		JPanel panelLezioni = new JPanel();
@@ -294,19 +294,19 @@ public class homePageStud extends JFrame {
 		lblLezioni.setForeground(Color.RED);
 		lblLezioni.setHorizontalAlignment(SwingConstants.CENTER);
 		lblLezioni.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblLezioni.setBounds(10, 11, 544, 14);
+		lblLezioni.setBounds(10, 11, 594, 14);
 		panelLezioni.add(lblLezioni);
 		
 		JScrollPane scrollPaneLezioni = new JScrollPane();
-		scrollPaneLezioni.setBounds(10, 36, 544, 270);
+		scrollPaneLezioni.setBounds(10, 36, 594, 270);
 		panelLezioni.add(scrollPaneLezioni);
 		
 		tableLezioni = new JTable();
 		tableLezioni.setRowSelectionAllowed(false);
 		tableLezioni.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
 		modelLezioni = new DefaultTableModel();
-		Object[] columnLezioni= {"ID", "Titolo", "Data inizio", "Orario inizio", "Nome corso"};
-		Object [] rowLezioni= new Object[5];
+		Object[] columnLezioni= {"ID", "Titolo", "Durata", "Data inizio", "Orario inizio", "Nome corso"};
+		Object [] rowLezioni= new Object[6];
 		tableLezioni.setModel(modelLezioni);
 		modelLezioni.setColumnIdentifiers(columnLezioni);
 		scrollPaneLezioni.setViewportView(tableLezioni);
@@ -320,25 +320,25 @@ public class homePageStud extends JFrame {
 		lblPartecipaLezioni.setForeground(Color.RED);
 		lblPartecipaLezioni.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPartecipaLezioni.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblPartecipaLezioni.setBounds(10, 11, 544, 14);
+		lblPartecipaLezioni.setBounds(10, 11, 594, 14);
 		panelPartecipa.add(lblPartecipaLezioni);
 		
 		JLabel lblAlertPartecipa = new JLabel("Seleziona la lezione");
 		lblAlertPartecipa.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAlertPartecipa.setForeground(Color.BLUE);
 		lblAlertPartecipa.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblAlertPartecipa.setBounds(10, 36, 544, 14);
+		lblAlertPartecipa.setBounds(10, 36, 594, 14);
 		panelPartecipa.add(lblAlertPartecipa);
 		
 		JScrollPane scrollPanePartecipa = new JScrollPane();
-		scrollPanePartecipa.setBounds(83, 61, 400, 185);
+		scrollPanePartecipa.setBounds(82, 61, 450, 185);
 		panelPartecipa.add(scrollPanePartecipa);
 		
 		tablePartecipa = new JTable();
 		tablePartecipa.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
 		modelPartecipa = new DefaultTableModel();
-		Object[] columnPartecipa = {"ID", "Titolo", "Data inizio", "Orario inizio"};
-		Object [] rowPartecipa = new Object[4];
+		Object[] columnPartecipa = {"ID", "Titolo", "Data inizio", "Orario inizio", "Nome corso"};
+		Object [] rowPartecipa = new Object[5];
 		tablePartecipa.setModel(modelPartecipa);
 		modelPartecipa.setColumnIdentifiers(columnPartecipa);
 		scrollPanePartecipa.setViewportView(tablePartecipa);
@@ -372,7 +372,7 @@ public class homePageStud extends JFrame {
 				}
 			}
 		});
-		btnPartecipa.setBounds(373, 257, 110, 23);
+		btnPartecipa.setBounds(422, 257, 110, 23);
 		panelPartecipa.add(btnPartecipa);
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -487,9 +487,10 @@ public class homePageStud extends JFrame {
 				for(Lezione lezione:c.getLezioni(stud)) {
 					rowLezioni[0]= lezione.getIdlezione();
 					rowLezioni[1]= lezione.getTitolo();
-					rowLezioni[2]= lezione.getDatainizio();
-					rowLezioni[3]= lezione.getOrarioinizio();
-					rowLezioni[4]= lezione.getCorso().getNome();
+					rowLezioni[2]= lezione.getDurata();
+					rowLezioni[3]= lezione.getDatainizio();
+					rowLezioni[4]= lezione.getOrarioinizio();
+					rowLezioni[5]= lezione.getCorso().getNome();
 					modelLezioni.addRow(rowLezioni);
 				}
 			}
@@ -508,6 +509,7 @@ public class homePageStud extends JFrame {
 					rowPartecipa[1]= lezione.getTitolo();
 					rowPartecipa[2]= lezione.getDatainizio();
 					rowPartecipa[3]= lezione.getOrarioinizio();
+					rowPartecipa[4]= lezione.getCorso().getNome();
 					modelPartecipa.addRow(rowPartecipa);
 				}
 			}

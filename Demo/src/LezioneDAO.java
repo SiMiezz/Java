@@ -41,7 +41,7 @@ public class LezioneDAO {
 			Connection conn = DataBaseConnection.getInstance().getConnection();
 			Statement st= conn.createStatement();
 			String query = "SELECT * "
-					+ "FROM lezione AS lez JOIN iscritto AS isc ON lez.idcorso = isc.idcorso "
+					+ "FROM (lezione AS lez JOIN iscritto AS isc ON lez.idcorso = isc.idcorso) JOIN corsoformazione AS csf ON csf.idcorso = lez.idcorso "
 					+ "WHERE isc.matricola = ? AND lez.idlezione NOT IN "
 					+ "(SELECT lez.idlezione "
 					+ "FROM (lezione AS lez JOIN iscritto AS isc ON lez.idcorso = isc.idcorso) JOIN partecipa AS par ON par.idlezione = lez.idlezione AND par.matricola = isc.matricola "
@@ -59,7 +59,7 @@ public class LezioneDAO {
 			ResultSet rs = statement.executeQuery();
 			
 			while(rs.next()) {
-				Lezione lezione = extractLezione(rs);
+				Lezione lezione = extractLezioneCorso(rs);
 				lezioni.add(lezione);
 			}
 			

@@ -274,7 +274,7 @@ public class Controller {
 		return data;
 	}
 	
-	public void aggiungiTabella(JScrollPane scroll) {
-		JOptionPane.showMessageDialog(hpo, scroll);
+	public void aggiungiTabella(JScrollPane scroll, String titolo) {
+		JOptionPane.showMessageDialog(hpo, scroll, titolo, JOptionPane.INFORMATION_MESSAGE);
 	}
 }
