@@ -11,12 +11,12 @@ import javax.swing.JMenuBar;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Color;
+
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.sql.Date;
@@ -236,7 +236,7 @@ public class homePageStud extends JFrame {
 		JLabel lblAlertIscrizione = new JLabel("Seleziona il corso");
 		lblAlertIscrizione.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAlertIscrizione.setForeground(Color.BLUE);
-		lblAlertIscrizione.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblAlertIscrizione.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblAlertIscrizione.setBounds(10, 36, 594, 14);
 		panelNewIscrizione.add(lblAlertIscrizione);
 		
@@ -263,10 +263,10 @@ public class homePageStud extends JFrame {
 					int id = (int) modelNewIscrizione.getValueAt(i, 0);
 					
 					if(c.iscriviti(stud,c.getCorso(id))) {
-						c.confirmInsertIscrizione();
+						c.confirmInsert();
 					}
 					else {
-						c.alertInsertIscrizione();
+						c.alertInsert();
 					}
 				}
 				else {
@@ -326,7 +326,7 @@ public class homePageStud extends JFrame {
 		JLabel lblAlertPartecipa = new JLabel("Seleziona la lezione");
 		lblAlertPartecipa.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAlertPartecipa.setForeground(Color.BLUE);
-		lblAlertPartecipa.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblAlertPartecipa.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblAlertPartecipa.setBounds(10, 36, 594, 14);
 		panelPartecipa.add(lblAlertPartecipa);
 		
@@ -352,10 +352,10 @@ public class homePageStud extends JFrame {
 					int id = (int) modelPartecipa.getValueAt(i, 0);
 					
 					if(c.partecipa(stud, id)) {
-						c.confirmInsertPresenza();
+						c.confirmInsert();
 					}
 					else {
-						c.alertInsertPresenza();
+						c.alertInsert();
 					}
 				}
 				else {
@@ -368,6 +368,7 @@ public class homePageStud extends JFrame {
 					rowPartecipa[1]= lezione.getTitolo();
 					rowPartecipa[2]= lezione.getDatainizio();
 					rowPartecipa[3]= lezione.getOrarioinizio();
+					rowPartecipa[4]= lezione.getCorso().getNome();
 					modelPartecipa.addRow(rowPartecipa);
 				}
 			}

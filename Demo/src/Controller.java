@@ -199,61 +199,39 @@ public class Controller {
 		}
 	}
 	
-	public void confirmInsertCorso() {
-		JOptionPane.showMessageDialog(hpo, "Corso aggiunto correttamente", "INFO", JOptionPane.INFORMATION_MESSAGE);
+	public void confirmInsert() {
+		if(hpo == null || !hpo.isShowing()) {
+			JOptionPane.showMessageDialog(hps, "Inserimento effettuato correttamente", "INFO", JOptionPane.INFORMATION_MESSAGE);
+		}
+		else if (hps == null || !hps.isShowing()){
+			JOptionPane.showMessageDialog(hpo, "Inserimento effettuato correttamente", "INFO", JOptionPane.INFORMATION_MESSAGE);
+		}
 	}
 	
-	public void alertInsertCorso() {
-		JOptionPane.showMessageDialog(hpo, "Errore nell'inserimento del corso", "ERROR", JOptionPane.ERROR_MESSAGE);
+	public void alertInsert() {
+		if(hpo == null || !hpo.isShowing()) {
+			JOptionPane.showMessageDialog(hps, "Inserimento non effettuato", "ERROR", JOptionPane.ERROR_MESSAGE);
+		}
+		else if (hps == null || !hps.isShowing()){
+			JOptionPane.showMessageDialog(hpo, "Inserimento non effettuato", "ERROR", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 	
-	public void confirmInsertIscrizione() {
-		JOptionPane.showMessageDialog(hps, "Iscrizione avvenuta correttamente", "INFO", JOptionPane.INFORMATION_MESSAGE);
+	public void confirmOperazione() {
+		JOptionPane.showMessageDialog(hpo, "Operazione effettuata correttamente", "INFO", JOptionPane.INFORMATION_MESSAGE);
 	}
 	
-	public void alertInsertIscrizione() {
-		JOptionPane.showMessageDialog(hps, "Errore nell'iscrizione", "ERROR", JOptionPane.ERROR_MESSAGE);
-	}
-	
-	public void confirmUpdate() {
-		JOptionPane.showMessageDialog(hpo, "Corso aggiornato correttamente", "INFO", JOptionPane.INFORMATION_MESSAGE);
-	}
-	
-	public void alertUpdate() {
-		JOptionPane.showMessageDialog(hpo, "Errore nell'aggiornamento del corso", "ERROR", JOptionPane.ERROR_MESSAGE);
+	public void alertOperazione() {
+		JOptionPane.showMessageDialog(hpo, "Operazione non effettuata", "ERROR", JOptionPane.ERROR_MESSAGE);
 	}
 	
 	public void alertSeleziona() {
 		if(hpo == null || !hpo.isShowing()) {
-			JOptionPane.showMessageDialog(hps, "Selezionare il corso!", "WARNING", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(hps, "Selezionare una riga!", "WARNING", JOptionPane.WARNING_MESSAGE);
 		}
 		else if (hps == null || !hps.isShowing()){
-			JOptionPane.showMessageDialog(hpo, "Selezionare il corso!", "WARNING", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(hpo, "Selezionare una riga!", "WARNING", JOptionPane.WARNING_MESSAGE);
 		}
-	}
-	
-	public void confirmInsertAree() {
-		JOptionPane.showMessageDialog(hpo, "Area Tematica aggiunta correttamente", "INFO", JOptionPane.INFORMATION_MESSAGE);
-	}
-	
-	public void alertInsertAree() {
-		JOptionPane.showMessageDialog(hpo, "Errore nell'iserimento dell'Area", "ERROR", JOptionPane.ERROR_MESSAGE);
-	}
-	
-	public void confirmInsertPresenza() {
-		JOptionPane.showMessageDialog(hps, "Presenza effettuata", "INFO", JOptionPane.INFORMATION_MESSAGE);
-	}
-	
-	public void alertInsertPresenza() {
-		JOptionPane.showMessageDialog(hps, "Presenza non effettuata", "ERROR", JOptionPane.ERROR_MESSAGE);
-	}
-	
-	public void confirmTermina() {
-		JOptionPane.showMessageDialog(hpo, "Corso Terminato", "INFO", JOptionPane.INFORMATION_MESSAGE);
-	}
-	
-	public void alertTermina() {
-		JOptionPane.showMessageDialog(hpo, "Corso non terminato", "ERROR", JOptionPane.ERROR_MESSAGE);
 	}
 	
 	public String insertKey() {

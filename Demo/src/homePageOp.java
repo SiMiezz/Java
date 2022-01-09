@@ -12,7 +12,6 @@ import javax.swing.SwingConstants;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 
 import java.awt.event.ActionListener;
 import java.sql.Date;
@@ -24,10 +23,6 @@ import javax.swing.JTextField;
 import java.awt.Color;
 import java.awt.Dimension;
 
-import javax.swing.JTextArea;
-
-import javax.swing.JSplitPane;
-
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JTable;
 import java.awt.event.MouseAdapter;
@@ -36,7 +31,6 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
-import javax.swing.JSlider;
 import javax.swing.JProgressBar;
 
 public class homePageOp extends JFrame {
@@ -282,14 +276,14 @@ public class homePageOp extends JFrame {
 					Date datacreazione=new Date(millis);
 					
 					if(c.inserisciCorso(nome,descrizione,datacreazione,presenze,partecipanti,op)){
-						c.confirmInsertCorso();
+						c.confirmInsert();
 					}
 					else {
-						c.alertInsertCorso();
+						c.alertInsert();
 					}
 				}
 				else {
-					c.alertInsertCorso();
+					c.alertInsert();
 				}
 				
 				txtInsertNome.setText(null);
@@ -299,7 +293,7 @@ public class homePageOp extends JFrame {
 			}
 		});
 		btnInserimento.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnInserimento.setBounds(289, 247, 100, 23);
+		btnInserimento.setBounds(330, 247, 100, 23);
 		panelInserisci.add(btnInserimento);
 		
 		JPanel panelCorsi = new JPanel();
@@ -399,7 +393,7 @@ public class homePageOp extends JFrame {
 		JLabel lblAlertModifica = new JLabel("Seleziona il corso");
 		lblAlertModifica.setForeground(Color.BLUE);
 		lblAlertModifica.setHorizontalAlignment(SwingConstants.CENTER);
-		lblAlertModifica.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblAlertModifica.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblAlertModifica.setBounds(10, 36, 594, 14);
 		panelModifica.add(lblAlertModifica);
 		
@@ -465,7 +459,7 @@ public class homePageOp extends JFrame {
 		panelModifica.add(lblModId);
 		
 		JScrollPane scrollPaneModifica = new JScrollPane();
-		scrollPaneModifica.setBounds(33, 61, 544, 185);
+		scrollPaneModifica.setBounds(34, 61, 544, 185);
 		panelModifica.add(scrollPaneModifica);
 		
 		tableModifica = new JTable();
@@ -500,14 +494,14 @@ public class homePageOp extends JFrame {
 					int id = Integer.valueOf(txtModificaID.getText());
 					
 					if(c.aggiornaCorso(nome, descrizione, presenze, partecipanti, id)) {
-						c.confirmUpdate();
+						c.confirmOperazione();
 					}
 					else {
-						c.alertUpdate();
+						c.alertOperazione();
 					}
 				}
 				else {
-					c.alertUpdate();
+					c.alertOperazione();
 				}
 				
 				op.setCorsi(c.getCorsiOperatore(op));
@@ -528,7 +522,7 @@ public class homePageOp extends JFrame {
 				txtModificaID.setText(null);
 			}
 		});
-		btnAggiorna.setBounds(477, 397, 100, 23);
+		btnAggiorna.setBounds(450, 428, 100, 23);
 		panelModifica.add(btnAggiorna);
 		
 		JPanel panelStatistiche = new JPanel();
@@ -546,7 +540,7 @@ public class homePageOp extends JFrame {
 		JLabel lblAlertStatistiche = new JLabel("Seleziona il corso");
 		lblAlertStatistiche.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAlertStatistiche.setForeground(Color.BLUE);
-		lblAlertStatistiche.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblAlertStatistiche.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblAlertStatistiche.setBounds(10, 36, 594, 14);
 		panelStatistiche.add(lblAlertStatistiche);
 		
@@ -596,7 +590,7 @@ public class homePageOp extends JFrame {
 		panelStatistiche.add(lblRiempimento);
 		
 		JScrollPane scrollPaneStatistiche = new JScrollPane();
-		scrollPaneStatistiche.setBounds(35, 61, 544, 185);
+		scrollPaneStatistiche.setBounds(34, 61, 544, 185);
 		panelStatistiche.add(scrollPaneStatistiche);
 		
 		JProgressBar progressBarRiempimento = new JProgressBar();
@@ -675,7 +669,7 @@ public class homePageOp extends JFrame {
 		JLabel lblAlertNewAree = new JLabel("Seleziona il corso");
 		lblAlertNewAree.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAlertNewAree.setForeground(Color.BLUE);
-		lblAlertNewAree.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblAlertNewAree.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblAlertNewAree.setBounds(10, 36, 594, 14);
 		panelNewAreeTematiche.add(lblAlertNewAree);
 		
@@ -726,14 +720,14 @@ public class homePageOp extends JFrame {
 					int id = Integer.valueOf(txtIdAree.getText());
 					
 					if(c.aggiungiAree(tipo,descrizione,c.getCorso(id),op)) {
-						c.confirmInsertAree();
+						c.confirmInsert();
 					}
 					else {
-						c.alertInsertAree();
+						c.alertInsert();
 					}
 				}
 				else {
-					c.alertInsertAree();
+					c.alertInsert();
 				}
 				
 				txtTipoAree.setText(null);
@@ -741,7 +735,7 @@ public class homePageOp extends JFrame {
 				txtIdAree.setText(null);
 			}
 		});
-		btnCreaAree.setBounds(408, 351, 100, 23);
+		btnCreaAree.setBounds(408, 382, 100, 23);
 		panelNewAreeTematiche.add(btnCreaAree);
 		
 		JScrollPane scrollPaneNewAree = new JScrollPane();
@@ -779,7 +773,7 @@ public class homePageOp extends JFrame {
 		JLabel lblAlertAree = new JLabel("Seleziona il corso");
 		lblAlertAree.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAlertAree.setForeground(Color.BLUE);
-		lblAlertAree.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblAlertAree.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblAlertAree.setBounds(10, 36, 594, 14);
 		panelAreeTematiche.add(lblAlertAree);
 		
@@ -842,7 +836,7 @@ public class homePageOp extends JFrame {
 		JLabel lblAlertTermina = new JLabel("Seleziona il corso");
 		lblAlertTermina.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAlertTermina.setForeground(Color.BLUE);
-		lblAlertTermina.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblAlertTermina.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblAlertTermina.setBounds(10, 36, 594, 14);
 		panelTermina.add(lblAlertTermina);
 		
@@ -867,10 +861,10 @@ public class homePageOp extends JFrame {
 					int id = (int) tableTermina.getValueAt(i, 0);
 					
 					if(c.terminaCorso(c.getCorso(id),op)) {
-						c.confirmTermina();
+						c.confirmOperazione();
 					}
 					else {
-						c.alertTermina();
+						c.alertOperazione();
 					}
 				}
 				else {

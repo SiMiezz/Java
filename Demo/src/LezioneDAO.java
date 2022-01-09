@@ -19,7 +19,7 @@ public class LezioneDAO {
 			ResultSet rs = statement.executeQuery();
 			
 			while(rs.next()) {
-				Lezione lezione = extractLezioneCorso(rs);
+				Lezione lezione = extractLezione(rs);
 				lezioni.add(lezione);
 			}
 			
@@ -59,7 +59,7 @@ public class LezioneDAO {
 			ResultSet rs = statement.executeQuery();
 			
 			while(rs.next()) {
-				Lezione lezione = extractLezioneCorso(rs);
+				Lezione lezione = extractLezione(rs);
 				lezioni.add(lezione);
 			}
 			
@@ -74,7 +74,7 @@ public class LezioneDAO {
 		}	
 	}
 	
-	public Lezione extractLezioneCorso(ResultSet rs) throws SQLException{
+	public Lezione extractLezione(ResultSet rs) throws SQLException{
 		Lezione lezione = new Lezione();
 		
 		lezione.setIdlezione(rs.getInt(1));
@@ -93,19 +93,6 @@ public class LezioneDAO {
 		corso.setMaxPartecipanti(rs.getInt(15));
 		
 		lezione.setCorso(corso);
-		
-		return lezione;
-	}
-	
-	public Lezione extractLezione(ResultSet rs) throws SQLException{
-		Lezione lezione = new Lezione();
-		
-		lezione.setIdlezione(rs.getInt(1));
-		lezione.setTitolo(rs.getString(2));
-		lezione.setDescrizione(rs.getString(3));
-		lezione.setDurata(rs.getTime(4));
-		lezione.setDatainizio(rs.getDate(5));
-		lezione.setOrarioinizio(rs.getTime(6));
 		
 		return lezione;
 	}
