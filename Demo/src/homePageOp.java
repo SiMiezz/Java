@@ -313,7 +313,31 @@ public class homePageOp extends JFrame {
 		panelCorsi.add(scrollPaneCorsi);
 		
 		tableCorsi = new JTable();
-		tableCorsi.setRowSelectionAllowed(false);
+		tableCorsi.setToolTipText("visualizza iscrizioni corso");
+		tableCorsi.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JTable table = new JTable();
+				DefaultTableModel model = new DefaultTableModel();
+				Object[] cols = {"Matricola", "Nome", "Cognome"};
+				Object[] row = new Object[3];
+				table.setModel(model);
+				model.setColumnIdentifiers(cols);
+				
+				model.setRowCount(0);
+                for (Iscritto isc:c.getIscrizioniCorso(c.getCorso((int) (modelCorsi.getValueAt(tableCorsi.getSelectedRow(), 0))))) {
+                	row[0] = isc.getStud().getMatricola();
+                	row[1] = isc.getStud().getNome();
+                	row[2] = isc.getStud().getCognome();
+                	model.addRow(row);
+        		}
+                
+                JScrollPane scroll = new JScrollPane(table);
+                scroll.setPreferredSize(new Dimension(275,125));
+				
+				c.aggiungiTabella(scroll,"ISCRIZIONI CORSO");
+			}
+		});
 		tableCorsi.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
 		modelCorsi = new DefaultTableModel();
 		Object[] columnCorsi = {"ID", "Nome", "Descrizione", "Data", "PresenzeMin", "maxPartecipanti"};

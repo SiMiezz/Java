@@ -123,6 +123,10 @@ public class Controller {
 		return iscdao.getIscrizioni(stud);
 	}
 	
+	public ArrayList<Iscritto> getIscrizioniCorso(CorsoFormazione corso) {
+		return iscdao.getIscrizioniCorso(corso);
+	}
+	
 	public ArrayList<Superamento> getStudSupera(CorsoFormazione corso) {
 		return supdao.getStudSupera(corso);
 	}
@@ -235,7 +239,7 @@ public class Controller {
 	}
 	
 	public String insertKey() {
-		String key = JOptionPane.showInputDialog(hpo, "Inserisci la parola chiave", "QUESTION", JOptionPane.QUESTION_MESSAGE);
+		String key = JOptionPane.showInputDialog(hpo, "Inserisci una parola chiave", "QUESTION", JOptionPane.QUESTION_MESSAGE);
 		return key;
 	}
 	
