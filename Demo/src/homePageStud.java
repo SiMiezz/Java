@@ -187,7 +187,6 @@ public class homePageStud extends JFrame {
 		
 		tableCorsi = new JTable();
 		tableCorsi.setRowSelectionAllowed(false);
-		tableCorsi.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
 		modelCorsi= new DefaultTableModel();
 		Object[] columnCorsi= {"ID", "Nome", "Descrizione", "PresenzeMin", "maxPartecipanti"};
 		Object [] rowCorsi= new Object[5];
@@ -213,7 +212,6 @@ public class homePageStud extends JFrame {
 		
 		tableIscrizioni = new JTable();
 		tableIscrizioni.setRowSelectionAllowed(false);
-		tableIscrizioni.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
 		modelIscrizioni = new DefaultTableModel();
 		Object[] columnIscrizioni= {"ID", "Nome", "Descrizione"};
 		Object [] rowIscrizioni= new Object[3];
@@ -246,7 +244,6 @@ public class homePageStud extends JFrame {
 		panelNewIscrizione.add(scrollPaneNewIscrizione);
 		
 		tableNewIscrizione = new JTable();
-		tableNewIscrizione.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
 		modelNewIscrizione = new DefaultTableModel();
 		Object[] columnNewIscrizione = {"ID", "Nome", "Descrizione"};
 		Object [] rowNewIscrizione = new Object[3];
@@ -303,7 +300,6 @@ public class homePageStud extends JFrame {
 		
 		tableLezioni = new JTable();
 		tableLezioni.setRowSelectionAllowed(false);
-		tableLezioni.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
 		modelLezioni = new DefaultTableModel();
 		Object[] columnLezioni= {"ID", "Titolo", "Durata", "Data inizio", "Orario inizio", "Nome corso"};
 		Object [] rowLezioni= new Object[6];
@@ -335,7 +331,6 @@ public class homePageStud extends JFrame {
 		panelPartecipa.add(scrollPanePartecipa);
 		
 		tablePartecipa = new JTable();
-		tablePartecipa.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
 		modelPartecipa = new DefaultTableModel();
 		Object[] columnPartecipa = {"ID", "Titolo", "Data inizio", "Orario inizio", "Nome corso"};
 		Object [] rowPartecipa = new Object[5];

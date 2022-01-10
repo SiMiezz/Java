@@ -38,7 +38,7 @@ public class loginFrame extends JFrame {
 		
 		setTitle("LOGIN");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 550, 400);
+		setBounds(100, 100, 575, 425);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(173, 216, 230));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -47,7 +47,7 @@ public class loginFrame extends JFrame {
 		
 		txtID = new JTextField();
 		txtID.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		txtID.setBounds(192, 127, 150, 20);
+		txtID.setBounds(230, 140, 150, 20);
 		contentPane.add(txtID);
 		txtID.setColumns(10);
 		
@@ -55,13 +55,13 @@ public class loginFrame extends JFrame {
 		lblID.setLabelFor(txtID);
 		lblID.setHorizontalAlignment(SwingConstants.CENTER);
 		lblID.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblID.setBounds(62, 129, 120, 14);
+		lblID.setBounds(100, 142, 120, 14);
 		contentPane.add(lblID);
 		
 		JLabel lblPwd = new JLabel("Password");
 		lblPwd.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPwd.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblPwd.setBounds(62, 162, 120, 14);
+		lblPwd.setBounds(100, 175, 120, 14);
 		contentPane.add(lblPwd);
 		
 		JButton btnGo = new JButton("LOGIN");
@@ -82,13 +82,13 @@ public class loginFrame extends JFrame {
 				pwdField.setText(null);
 			}
 		});
-		btnGo.setBounds(374, 315, 150, 35);
+		btnGo.setBounds(399, 340, 150, 35);
 		contentPane.add(btnGo);
 		
 		pwdField = new JPasswordField();
 		pwdField.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblPwd.setLabelFor(pwdField);
-		pwdField.setBounds(192, 160, 150, 20);
+		pwdField.setBounds(230, 173, 150, 20);
 		contentPane.add(pwdField);
 		
 		BoxSceltaLogin = new JComboBox();
@@ -97,31 +97,32 @@ public class loginFrame extends JFrame {
 		BoxSceltaLogin.setModel(new DefaultComboBoxModel(new String[] {"Studente", "Operatore"}));
 		BoxSceltaLogin.setSelectedIndex(1);
 		BoxSceltaLogin.setToolTipText("");
-		BoxSceltaLogin.setBounds(240, 193, 100, 20);
+		BoxSceltaLogin.setBounds(278, 206, 100, 20);
 		contentPane.add(BoxSceltaLogin);
 		
 		JButton btnRegistrati = new JButton("REGISTRATI");
+		btnRegistrati.setForeground(Color.BLUE);
 		btnRegistrati.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnRegistrati.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				c.goRegistrazioneFrame();
 			}
 		});
-		btnRegistrati.setBounds(10, 321, 120, 25);
+		btnRegistrati.setBounds(10, 346, 120, 25);
 		contentPane.add(btnRegistrati);
 		
 		JLabel lblLoginTitle = new JLabel("LOGIN");
 		lblLoginTitle.setForeground(Color.RED);
 		lblLoginTitle.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lblLoginTitle.setHorizontalAlignment(SwingConstants.CENTER);
-		lblLoginTitle.setBounds(20, 11, 504, 25);
+		lblLoginTitle.setBounds(20, 11, 529, 25);
 		contentPane.add(lblLoginTitle);
 		
 		JLabel lblRegistrati = new JLabel("Non sei registrato?");
 		lblRegistrati.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblRegistrati.setForeground(Color.BLUE);
 		lblRegistrati.setHorizontalAlignment(SwingConstants.CENTER);
-		lblRegistrati.setBounds(10, 296, 120, 14);
+		lblRegistrati.setBounds(10, 321, 120, 14);
 		contentPane.add(lblRegistrati);
 	}
 }

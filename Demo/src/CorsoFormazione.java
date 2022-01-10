@@ -6,7 +6,6 @@ public class CorsoFormazione {
 	private int presenzeMin,maxPartecipanti,idCorso;
 	private Date data;
 	private Operatore op = new Operatore();
-	private ArrayList <Lezione> lezioni = new ArrayList<Lezione>();
 	
 	public String getNome() {
 		return nome;
@@ -49,11 +48,5 @@ public class CorsoFormazione {
 	}
 	public void setIdCorso(int idCorso) {
 		this.idCorso = idCorso;
-	}
-	public ArrayList<Lezione> getLezioni() {
-		return lezioni;
-	}
-	public void setLezioni(ArrayList<Lezione> lezioni) {
-		this.lezioni = lezioni;
 	}
 }

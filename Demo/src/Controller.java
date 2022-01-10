@@ -103,8 +103,20 @@ public class Controller {
 		return lezdao.getLezioni(stud);
 	}
 	
+	public Lezione getLezione(int id){
+		return lezdao.getLezione(id);
+	}
+	
 	public ArrayList<Lezione> getLezioniNoPartecipa(Studente stud){
 		return lezdao.getLezioniNoPartecipa(stud);
+	}
+	
+	public ArrayList<Lezione> getLezioniCorso(CorsoFormazione corso){
+		return lezdao.getLezioniCorso(corso);
+	}
+	
+	public ArrayList<Partecipa> getPartecipaLezione(Lezione lez){
+		return pardao.getPartecipaLezione(lez);
 	}
 	
 	public CorsoFormazione getCorso(int id) {

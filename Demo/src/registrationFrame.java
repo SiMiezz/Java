@@ -53,7 +53,7 @@ public class registrationFrame extends JFrame {
 		
 		setTitle("REGISTRAZIONE");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 600, 475);
+		setBounds(100, 100, 625, 500);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(173, 216, 230));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -63,31 +63,31 @@ public class registrationFrame extends JFrame {
 		JLabel lblPwd = new JLabel("Password");
 		lblPwd.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblPwd.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPwd.setBounds(105, 280, 120, 14);
+		lblPwd.setBounds(109, 289, 120, 14);
 		contentPane.add(lblPwd);
 		
 		pwdField = new JPasswordField();
 		pwdField.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblPwd.setLabelFor(pwdField);
-		pwdField.setBounds(235, 279, 150, 20);
+		pwdField.setBounds(239, 288, 150, 20);
 		contentPane.add(pwdField);
 		
 		boxSceltaRegistration = new JComboBox();
 		boxSceltaRegistration.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		boxSceltaRegistration.setModel(new DefaultComboBoxModel(new String[] {"Studente", "Operatore"}));
 		boxSceltaRegistration.setSelectedIndex(1);
-		boxSceltaRegistration.setBounds(285, 310, 100, 20);
+		boxSceltaRegistration.setBounds(289, 319, 100, 20);
 		contentPane.add(boxSceltaRegistration);
 		
 		txtNome = new JTextField();
 		txtNome.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		txtNome.setBounds(235, 123, 150, 20);
+		txtNome.setBounds(239, 132, 150, 20);
 		contentPane.add(txtNome);
 		txtNome.setColumns(10);
 		
 		txtCognome = new JTextField();
 		txtCognome.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		txtCognome.setBounds(235, 154, 150, 20);
+		txtCognome.setBounds(239, 163, 150, 20);
 		contentPane.add(txtCognome);
 		txtCognome.setColumns(10);
 		
@@ -95,19 +95,19 @@ public class registrationFrame extends JFrame {
 		lblNome.setLabelFor(txtNome);
 		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblNome.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNome.setBounds(105, 124, 120, 14);
+		lblNome.setBounds(109, 133, 120, 14);
 		contentPane.add(lblNome);
 		
 		JLabel lblCognome = new JLabel("Cognome");
 		lblCognome.setLabelFor(txtCognome);
 		lblCognome.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblCognome.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCognome.setBounds(105, 153, 120, 18);
+		lblCognome.setBounds(109, 162, 120, 18);
 		contentPane.add(lblCognome);
 		
 		txtID = new JTextField();
 		txtID.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		txtID.setBounds(235, 248, 150, 20);
+		txtID.setBounds(239, 257, 150, 20);
 		contentPane.add(txtID);
 		txtID.setColumns(10);
 		
@@ -115,7 +115,7 @@ public class registrationFrame extends JFrame {
 		lblId.setLabelFor(txtID);
 		lblId.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblId.setHorizontalAlignment(SwingConstants.CENTER);
-		lblId.setBounds(105, 249, 120, 14);
+		lblId.setBounds(109, 258, 120, 14);
 		contentPane.add(lblId);
 		
 		JButton btnRegistration = new JButton("REGISTRATI");
@@ -149,70 +149,71 @@ public class registrationFrame extends JFrame {
 				txtData.setText(null);
 			}
 		});
-		btnRegistration.setBounds(424, 390, 150, 35);
+		btnRegistration.setBounds(449, 415, 150, 35);
 		contentPane.add(btnRegistration);
 		
 		txtCF = new JTextField();
 		txtCF.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		txtCF.setBounds(235, 217, 150, 20);
+		txtCF.setBounds(239, 226, 150, 20);
 		contentPane.add(txtCF);
 		txtCF.setColumns(10);
 		
 		JLabel lblDataN = new JLabel("Data di nascita");
 		lblDataN.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDataN.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblDataN.setBounds(105, 187, 120, 14);
+		lblDataN.setBounds(109, 196, 120, 14);
 		contentPane.add(lblDataN);
 		
 		JLabel lblCF = new JLabel("Codice Fiscale");
 		lblCF.setLabelFor(txtCF);
 		lblCF.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCF.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblCF.setBounds(105, 218, 120, 14);
+		lblCF.setBounds(109, 227, 120, 14);
 		contentPane.add(lblCF);
 		
 		txtData = new JTextField();
 		txtData.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblDataN.setLabelFor(txtData);
-		txtData.setBounds(235, 186, 150, 20);
+		txtData.setBounds(239, 195, 150, 20);
 		contentPane.add(txtData);
 		txtData.setColumns(10);
 		
 		JLabel lblInserimentoData = new JLabel("(yyyy-mm-dd)");
 		lblInserimentoData.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblInserimentoData.setHorizontalAlignment(SwingConstants.CENTER);
-		lblInserimentoData.setBounds(395, 185, 110, 18);
+		lblInserimentoData.setBounds(399, 194, 110, 18);
 		contentPane.add(lblInserimentoData);
 		
 		JButton btnLogin = new JButton("LOGIN");
+		btnLogin.setForeground(Color.BLUE);
 		btnLogin.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				c.backLogin();
 			}
 		});
-		btnLogin.setBounds(10, 396, 100, 25);
+		btnLogin.setBounds(10, 421, 100, 25);
 		contentPane.add(btnLogin);
 		
 		JLabel lblRegistratiTiltle = new JLabel("REGISTRAZIONE");
 		lblRegistratiTiltle.setHorizontalAlignment(SwingConstants.CENTER);
 		lblRegistratiTiltle.setForeground(Color.RED);
 		lblRegistratiTiltle.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblRegistratiTiltle.setBounds(10, 11, 564, 28);
+		lblRegistratiTiltle.setBounds(10, 11, 589, 28);
 		contentPane.add(lblRegistratiTiltle);
 		
 		JLabel lblDati = new JLabel("Inserisci i seguenti dati:");
 		lblDati.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblDati.setForeground(Color.BLUE);
 		lblDati.setHorizontalAlignment(SwingConstants.CENTER);
-		lblDati.setBounds(144, 83, 241, 20);
+		lblDati.setBounds(148, 92, 241, 20);
 		contentPane.add(lblDati);
 		
 		JLabel lblBack = new JLabel("Effettua Login");
 		lblBack.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblBack.setForeground(Color.BLUE);
 		lblBack.setHorizontalAlignment(SwingConstants.CENTER);
-		lblBack.setBounds(10, 371, 100, 14);
+		lblBack.setBounds(10, 396, 100, 14);
 		contentPane.add(lblBack);
 		
 

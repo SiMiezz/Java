@@ -69,6 +69,8 @@ public class homePageOp extends JFrame {
 	DefaultTableModel modelTermina;
 	private JTable tableCorsiAree;
 	DefaultTableModel modelCorsiAree;
+	private JTable tableLezioni;
+	DefaultTableModel modelLezioni;
 
 	private void switchPanel(JLayeredPane layeredPane, JPanel panelInserisci) {
 		layeredPane.removeAll();
@@ -296,6 +298,92 @@ public class homePageOp extends JFrame {
 		btnInserimento.setBounds(330, 247, 100, 23);
 		panelInserisci.add(btnInserimento);
 		
+		JPanel panelLezioni = new JPanel();
+		panelLezioni.setBackground(new Color(176, 224, 230));
+		layeredPane.add(panelLezioni, "name_98411522070500");
+		panelLezioni.setLayout(null);
+		
+		JLabel lblLezioni = new JLabel("VISUALIZZA LEZIONI");
+		lblLezioni.setForeground(Color.RED);
+		lblLezioni.setHorizontalAlignment(SwingConstants.CENTER);
+		lblLezioni.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblLezioni.setBounds(10, 11, 594, 14);
+		panelLezioni.add(lblLezioni);
+		
+		JScrollPane scrollPaneLezioni = new JScrollPane();
+		scrollPaneLezioni.setBounds(10, 61, 594, 220);
+		panelLezioni.add(scrollPaneLezioni);
+		
+		tableLezioni = new JTable();
+		modelLezioni = new DefaultTableModel();
+		Object[] columnLezioni= {"ID", "Titolo", "Durata", "Data inizio", "Orario inizio"};
+		Object [] rowLezioni= new Object[5];
+		tableLezioni.setModel(modelLezioni);
+		modelLezioni.setColumnIdentifiers(columnLezioni);
+		scrollPaneLezioni.setViewportView(tableLezioni);
+		
+		JButton btnPresenze = new JButton("PRESENZE");
+		btnPresenze.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(tableLezioni.getSelectedRow() != -1) {
+					JTable table = new JTable();
+					DefaultTableModel model = new DefaultTableModel();
+					Object[] cols = {"Matricola", "Nome", "Cognome"};
+					Object[] row = new Object[3];
+					table.setModel(model);
+					model.setColumnIdentifiers(cols);
+					
+					
+					model.setRowCount(0);
+					for (Partecipa presenza:c.getPartecipaLezione(c.getLezione((int) (modelLezioni.getValueAt(tableLezioni.getSelectedRow(), 0))))) {
+	                	row[0] = presenza.getStud().getMatricola();
+	                	row[1] = presenza.getStud().getNome();
+	                	row[2] = presenza.getStud().getCognome();
+	                	model.addRow(row);
+	        		}
+	                
+	                JScrollPane scroll = new JScrollPane(table);
+	                scroll.setPreferredSize(new Dimension(275,125));
+					
+					c.aggiungiTabella(scroll,"PRESENZE STUDENTI");
+				}
+				else {
+					c.alertSeleziona();
+				}
+			}
+		});
+		btnPresenze.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnPresenze.setBounds(155, 292, 115, 23);
+		panelLezioni.add(btnPresenze);
+		
+		JButton btnIscrizioni = new JButton("ISCRIZIONI");
+		btnIscrizioni.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JTable table = new JTable();
+				DefaultTableModel model = new DefaultTableModel();
+				Object[] cols = {"Matricola", "Nome", "Cognome"};
+				Object[] row = new Object[3];
+				table.setModel(model);
+				model.setColumnIdentifiers(cols);
+				
+				model.setRowCount(0);
+				for (Iscritto isc:c.getIscrizioniCorso(c.getCorso((int) (modelCorsi.getValueAt(tableCorsi.getSelectedRow(), 0))))) {
+                	row[0] = isc.getStud().getMatricola();
+                	row[1] = isc.getStud().getNome();
+                	row[2] = isc.getStud().getCognome();
+                	model.addRow(row);
+        		}
+                
+                JScrollPane scroll = new JScrollPane(table);
+                scroll.setPreferredSize(new Dimension(275,125));
+				
+                c.aggiungiTabella(scroll,"ISCRIZIONI CORSO");
+			}
+		});
+		btnIscrizioni.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnIscrizioni.setBounds(350, 292, 115, 23);
+		panelLezioni.add(btnIscrizioni);
+		
 		JPanel panelCorsi = new JPanel();
 		panelCorsi.setBackground(new Color(176, 224, 230));
 		layeredPane.add(panelCorsi, "name_302338902470800");
@@ -313,32 +401,23 @@ public class homePageOp extends JFrame {
 		panelCorsi.add(scrollPaneCorsi);
 		
 		tableCorsi = new JTable();
-		tableCorsi.setToolTipText("visualizza iscrizioni corso");
+		tableCorsi.setToolTipText("visualizza lezioni corso");
 		tableCorsi.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				JTable table = new JTable();
-				DefaultTableModel model = new DefaultTableModel();
-				Object[] cols = {"Matricola", "Nome", "Cognome"};
-				Object[] row = new Object[3];
-				table.setModel(model);
-				model.setColumnIdentifiers(cols);
-				
-				model.setRowCount(0);
-                for (Iscritto isc:c.getIscrizioniCorso(c.getCorso((int) (modelCorsi.getValueAt(tableCorsi.getSelectedRow(), 0))))) {
-                	row[0] = isc.getStud().getMatricola();
-                	row[1] = isc.getStud().getNome();
-                	row[2] = isc.getStud().getCognome();
-                	model.addRow(row);
+				modelLezioni.setRowCount(0);
+                for (Lezione lez:c.getLezioniCorso(c.getCorso((int) (modelCorsi.getValueAt(tableCorsi.getSelectedRow(), 0))))) {
+                	rowLezioni[0] = lez.getIdlezione();
+                	rowLezioni[1] = lez.getTitolo();
+                	rowLezioni[2] = lez.getDurata();
+                	rowLezioni[3] = lez.getDatainizio();
+                	rowLezioni[4] = lez.getOrarioinizio();
+                	modelLezioni.addRow(rowLezioni);
         		}
-                
-                JScrollPane scroll = new JScrollPane(table);
-                scroll.setPreferredSize(new Dimension(275,125));
 				
-				c.aggiungiTabella(scroll,"ISCRIZIONI CORSO");
+				switchPanel(layeredPane,panelLezioni);
 			}
 		});
-		tableCorsi.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
 		modelCorsi = new DefaultTableModel();
 		Object[] columnCorsi = {"ID", "Nome", "Descrizione", "Data", "PresenzeMin", "maxPartecipanti"};
 		Object [] rowCorsi = new Object[6];
@@ -401,6 +480,24 @@ public class homePageOp extends JFrame {
 		comboBoxFiltro.setToolTipText("");
 		comboBoxFiltro.setBounds(10, 36, 150, 22);
 		panelCorsi.add(comboBoxFiltro);
+		
+		JButton btnIndietro = new JButton("INDIETRO");
+		btnIndietro.setForeground(Color.BLUE);
+		btnIndietro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				switchPanel(layeredPane,panelCorsi);
+			}
+		});
+		btnIndietro.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnIndietro.setBounds(10, 429, 100, 23);
+		panelLezioni.add(btnIndietro);
+		
+		JLabel lblAlertLezioni = new JLabel("Seleziona la lezione");
+		lblAlertLezioni.setForeground(Color.BLUE);
+		lblAlertLezioni.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAlertLezioni.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblAlertLezioni.setBounds(10, 36, 594, 14);
+		panelLezioni.add(lblAlertLezioni);
 		
 		JPanel panelModifica = new JPanel();
 		panelModifica.setBackground(new Color(176, 224, 230));
@@ -637,7 +734,6 @@ public class homePageOp extends JFrame {
 				progressBarRiempimento.setValue((c.getStat(c.getCorso(id)).getRiempimentoMedio()));
 			}
 		});
-		tableStatistiche.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
 		modelStatistiche = new DefaultTableModel();
 		Object[] columnStatistiche = {"ID", "Nome", "Descrizione", "PresenzeMin", "maxPartecipanti"};
 		Object [] rowStatistiche = new Object[5];
