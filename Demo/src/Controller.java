@@ -33,8 +33,8 @@ public class Controller {
 		lf.setVisible(true);
 	}
 	
-	public boolean checkUser(String id,String pwd){
-		if(lf.getBoxSceltaLogin().getSelectedItem().equals("Studente")) {
+	public boolean checkUser(String id,String pwd,String scelta){
+		if(scelta.equals("Studente")) {
 			if(stdao.checkStud(id,pwd)) {
 				hps = new homePageStud(this,id,pwd);
 				return true;
@@ -53,9 +53,9 @@ public class Controller {
 		}
 	}
 
-	public boolean registrazione(String nome, String cognome, String id, String password, String cf,Date data) 
+	public boolean registrazione(String nome, String cognome, String id, String password, String cf,Date data,String scelta) 
 	{
-		if(rf.getBoxSceltaRegistration().getSelectedItem().equals("Operatore")) {
+		if(scelta.equals("Operatore")) {
 			return opdao.registrazioneOP(nome, cognome, id, password, cf, data);
 		}
 		else {
@@ -188,8 +188,8 @@ public class Controller {
 		lf.setVisible(true);
 	}
 
-	public void confirmRegistration() {
-		JOptionPane.showMessageDialog(rf,"Registrazione avvenuta con successo come " +rf.getBoxSceltaRegistration().getSelectedItem(), "INFO", JOptionPane.INFORMATION_MESSAGE);
+	public void confirmRegistration(String scelta) {
+		JOptionPane.showMessageDialog(rf,"Registrazione avvenuta con successo come " + scelta, "INFO", JOptionPane.INFORMATION_MESSAGE);
 		rf.setVisible(false);
 		lf.setVisible(true);
 	}
@@ -202,10 +202,10 @@ public class Controller {
 		JOptionPane.showMessageDialog(lf,"Credenziali Errate o non inserite", "ERROR", JOptionPane.ERROR_MESSAGE);		
 	}
 	
-	public void confirmLogin() {
-		JOptionPane.showMessageDialog(lf,"Login effettuato come " + lf.getBoxSceltaLogin().getSelectedItem(), "INFO", JOptionPane.INFORMATION_MESSAGE);
+	public void confirmLogin(String scelta) {
+		JOptionPane.showMessageDialog(lf,"Login effettuato come " + scelta, "INFO", JOptionPane.INFORMATION_MESSAGE);
 		
-		if(lf.getBoxSceltaLogin().getSelectedItem().equals("Studente")) {
+		if(scelta.equals("Studente")) {
 			lf.setVisible(false);
 			hps.setVisible(true);
 		}

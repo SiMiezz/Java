@@ -31,14 +31,6 @@ public class registrationFrame extends JFrame {
 	private JTextField txtData;
 	Controller theController;
 	
-	public JComboBox getBoxSceltaRegistration() {
-		return boxSceltaRegistration;
-	}
-
-	public void setBoxSceltaRegistration(JComboBox boxSceltaRegistration) {
-		this.boxSceltaRegistration = boxSceltaRegistration;
-	}
-	
 	public static Date tryParse(String text) {
 		try {
 			return Date.valueOf(text);
@@ -129,9 +121,10 @@ public class registrationFrame extends JFrame {
 					String password = String.valueOf(pwdField.getPassword());
 					String cf = txtCF.getText();
 					Date data = tryParse(txtData.getText());
+					String scelta = (String) boxSceltaRegistration.getSelectedItem();
 					
-					if(c.registrazione(nome, cognome, id, password, cf, data)) {
-						c.confirmRegistration();
+					if(c.registrazione(nome, cognome, id, password, cf, data, scelta)) {
+						c.confirmRegistration(scelta);
 					}
 					else {
 						c.alertRegistration();

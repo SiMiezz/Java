@@ -22,16 +22,8 @@ public class loginFrame extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtID;
 	private JPasswordField pwdField;
-	private JComboBox BoxSceltaLogin;
+	private JComboBox boxSceltaLogin;
 	private Controller theController;
-	
-	public JComboBox getBoxSceltaLogin() {
-		return BoxSceltaLogin;
-	}
-
-	public void setBoxSceltaLogin(JComboBox boxSceltaLogin) {
-		BoxSceltaLogin = boxSceltaLogin;
-	}
 
 	public loginFrame(Controller c) {
 		theController=c;
@@ -70,9 +62,10 @@ public class loginFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String id = txtID.getText();
 				String pwd = String.valueOf(pwdField.getPassword());
+				String scelta =  (String) boxSceltaLogin.getSelectedItem();
 				
-				if(c.checkUser(id, pwd)) {
-					c.confirmLogin();
+				if(c.checkUser(id, pwd, scelta)) {
+					c.confirmLogin(scelta);
 				}
 				else {
 					c.alertLogin();
@@ -91,14 +84,14 @@ public class loginFrame extends JFrame {
 		pwdField.setBounds(230, 173, 150, 20);
 		contentPane.add(pwdField);
 		
-		BoxSceltaLogin = new JComboBox();
-		BoxSceltaLogin.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		BoxSceltaLogin.setBackground(Color.WHITE);
-		BoxSceltaLogin.setModel(new DefaultComboBoxModel(new String[] {"Studente", "Operatore"}));
-		BoxSceltaLogin.setSelectedIndex(1);
-		BoxSceltaLogin.setToolTipText("");
-		BoxSceltaLogin.setBounds(278, 206, 100, 20);
-		contentPane.add(BoxSceltaLogin);
+		boxSceltaLogin = new JComboBox();
+		boxSceltaLogin.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		boxSceltaLogin.setBackground(Color.WHITE);
+		boxSceltaLogin.setModel(new DefaultComboBoxModel(new String[] {"Studente", "Operatore"}));
+		boxSceltaLogin.setSelectedIndex(1);
+		boxSceltaLogin.setToolTipText("");
+		boxSceltaLogin.setBounds(278, 206, 100, 20);
+		contentPane.add(boxSceltaLogin);
 		
 		JButton btnRegistrati = new JButton("REGISTRATI");
 		btnRegistrati.setForeground(Color.BLUE);
