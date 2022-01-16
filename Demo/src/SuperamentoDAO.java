@@ -47,7 +47,7 @@ public class SuperamentoDAO {
 		stud.setCf(rs.getString(8));
 		stud.setPassword(rs.getString(9));
 		
-		sup.setStud(stud);
+		sup.setStudente(stud);
 		sup.setCorso(corso);
 		
 		return sup;

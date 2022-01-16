@@ -1,13 +1,13 @@
 
 public class Iscritto {
-	private Studente stud = new Studente();
+	private Studente studente = new Studente();
 	private CorsoFormazione corso = new CorsoFormazione();
 	
-	public Studente getStud() {
-		return stud;
+	public Studente getStudente() {
+		return studente;
 	}
-	public void setStud(Studente stud) {
-		this.stud = stud;
+	public void setStudente(Studente studente) {
+		this.studente = studente;
 	}
 	public CorsoFormazione getCorso() {
 		return corso;

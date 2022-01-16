@@ -94,7 +94,7 @@ public class PartecipaDAO {
 	public Partecipa extractPartecipa(ResultSet rs, Lezione lez) throws SQLException{
 		Partecipa presenza = new Partecipa();
 		
-		presenza.setLez(lez);
+		presenza.setLezione(lez);
 		
 		Studente stud = new Studente();
 		stud.setMatricola(rs.getString(3));
@@ -103,7 +103,7 @@ public class PartecipaDAO {
 		stud.setData(rs.getDate(6));
 		stud.setCf(rs.getString(7));
 		
-		presenza.setStud(stud);
+		presenza.setStudente(stud);
 		
 		return presenza;
 	}
@@ -111,7 +111,7 @@ public class PartecipaDAO {
 	public Partecipa extractPartecipaStud(ResultSet rs, Studente stud) throws SQLException{
 		Partecipa presenza = new Partecipa();
 		
-		presenza.setStud(stud);
+		presenza.setStudente(stud);
 		
 		Lezione lez = new Lezione();
 		lez.setIdlezione(rs.getInt(3));
@@ -121,7 +121,7 @@ public class PartecipaDAO {
 		lez.setDatainizio(rs.getDate(7));
 		lez.setOrarioinizio(rs.getTime(8));
 		
-		presenza.setLez(lez);
+		presenza.setLezione(lez);
 		
 		return presenza;
 	}

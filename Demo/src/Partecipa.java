@@ -1,18 +1,18 @@
 
 public class Partecipa {
-	private Studente stud = new Studente();
-	private Lezione lez = new Lezione();
+	private Studente studente = new Studente();
+	private Lezione lezione = new Lezione();
 	
-	public Studente getStud() {
-		return stud;
+	public Studente getStudente() {
+		return studente;
 	}
-	public void setStud(Studente stud) {
-		this.stud = stud;
+	public void setStudente(Studente studente) {
+		this.studente = studente;
 	}
-	public Lezione getLez() {
-		return lez;
+	public Lezione getLezione() {
+		return lezione;
 	}
-	public void setLez(Lezione lez) {
-		this.lez = lez;
+	public void setLezione(Lezione lezione) {
+		this.lezione = lezione;
 	}
 }

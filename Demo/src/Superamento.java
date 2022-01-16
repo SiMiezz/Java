@@ -1,7 +1,7 @@
 
 public class Superamento {
 	private boolean superato;
-	private Studente stud = new Studente();
+	private Studente studente = new Studente();
 	private CorsoFormazione corso = new CorsoFormazione();
 	
 	public boolean isSuperato() {
@@ -10,11 +10,11 @@ public class Superamento {
 	public void setSuperato(boolean superato) {
 		this.superato = superato;
 	}
-	public Studente getStud() {
-		return stud;
+	public Studente getStudente() {
+		return studente;
 	}
-	public void setStud(Studente stud) {
-		this.stud = stud;
+	public void setStudente(Studente studente) {
+		this.studente = studente;
 	}
 	public CorsoFormazione getCorso() {
 		return corso;

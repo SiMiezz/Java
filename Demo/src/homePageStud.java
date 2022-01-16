@@ -548,11 +548,11 @@ public class homePageStud extends JFrame {
 				stud.setPresenze(c.getPartecipaStud(stud));
 				modelPresenze.setRowCount(0);
 				for(Partecipa partecipa:stud.getPresenze()) {
-					rowPresenze[0]= partecipa.getLez().getIdlezione();
-					rowPresenze[1]= partecipa.getLez().getTitolo();
-					rowPresenze[2]= partecipa.getLez().getDescrizione();
-					rowPresenze[3]= partecipa.getLez().getDatainizio();
-					rowPresenze[4]= partecipa.getLez().getOrarioinizio();
+					rowPresenze[0]= partecipa.getLezione().getIdlezione();
+					rowPresenze[1]= partecipa.getLezione().getTitolo();
+					rowPresenze[2]= partecipa.getLezione().getDescrizione();
+					rowPresenze[3]= partecipa.getLezione().getDatainizio();
+					rowPresenze[4]= partecipa.getLezione().getOrarioinizio();
 					modelPresenze.addRow(rowPresenze);
 				}
 			}

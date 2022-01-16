@@ -94,7 +94,7 @@ public class IscrittoDAO {
 	public Iscritto extractIscrizione(ResultSet rs,Studente stud) throws SQLException{
 		Iscritto iscrizione = new Iscritto();
 		
-		iscrizione.setStud(stud);
+		iscrizione.setStudente(stud);
 		
 		CorsoFormazione corso = new CorsoFormazione();
 		corso.setIdCorso(rs.getInt(3));
@@ -119,7 +119,7 @@ public class IscrittoDAO {
 		stud.setData(rs.getDate(6));
 		stud.setCf(rs.getString(7));
 		
-		iscrizione.setStud(stud);
+		iscrizione.setStudente(stud);
 		iscrizione.setCorso(corso);
 		
 		return iscrizione;

@@ -336,9 +336,9 @@ public class homePageOp extends JFrame {
 					
 					model.setRowCount(0);
 					for (Partecipa presenza:c.getPartecipaLezione(c.getLezione((int) (modelLezioni.getValueAt(tableLezioni.getSelectedRow(), 0))))) {
-	                	row[0] = presenza.getStud().getMatricola();
-	                	row[1] = presenza.getStud().getNome();
-	                	row[2] = presenza.getStud().getCognome();
+	                	row[0] = presenza.getStudente().getMatricola();
+	                	row[1] = presenza.getStudente().getNome();
+	                	row[2] = presenza.getStudente().getCognome();
 	                	model.addRow(row);
 	        		}
 	                
@@ -368,9 +368,9 @@ public class homePageOp extends JFrame {
 				
 				model.setRowCount(0);
 				for (Iscritto isc:c.getIscrizioniCorso(c.getCorso((int) (modelCorsi.getValueAt(tableCorsi.getSelectedRow(), 0))))) {
-                	row[0] = isc.getStud().getMatricola();
-                	row[1] = isc.getStud().getNome();
-                	row[2] = isc.getStud().getCognome();
+                	row[0] = isc.getStudente().getMatricola();
+                	row[1] = isc.getStudente().getNome();
+                	row[2] = isc.getStudente().getCognome();
                 	model.addRow(row);
         		}
                 
@@ -754,9 +754,9 @@ public class homePageOp extends JFrame {
 					
 					model.setRowCount(0);
 	                for (Superamento sup:c.getStudSupera(c.getCorso((int) (modelStatistiche.getValueAt(tableStatistiche.getSelectedRow(), 0))))) {
-	                	row[0] = sup.getStud().getMatricola();
-	                	row[1] = sup.getStud().getNome();
-	                	row[2] = sup.getStud().getCognome();
+	                	row[0] = sup.getStudente().getMatricola();
+	                	row[1] = sup.getStudente().getNome();
+	                	row[2] = sup.getStudente().getCognome();
 	                	model.addRow(row);
 	        		}
 	                
