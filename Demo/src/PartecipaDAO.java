@@ -67,7 +67,7 @@ public class PartecipaDAO {
 			Connection conn = DataBaseConnection.getInstance().getConnection();
 			Statement st= conn.createStatement();
 			String query = "SELECT * "
-					+ "FROM (partecipa AS par JOIN lezione AS lez ON par.idlezione = lez.idlezione) JOIN corsoformazione AS csf ON lez.idcorso = csf.idcorso "
+					+ "FROM partecipa AS par JOIN lezione AS lez ON par.idlezione = lez.idlezione "
 					+ "WHERE par.matricola = ?";
 			
 			PreparedStatement statement = conn.prepareStatement(query);
@@ -120,16 +120,6 @@ public class PartecipaDAO {
 		lez.setDurata(rs.getTime(6));
 		lez.setDatainizio(rs.getDate(7));
 		lez.setOrarioinizio(rs.getTime(8));
-		
-		CorsoFormazione corso = new CorsoFormazione();
-		corso.setIdCorso(rs.getInt(10));
-		corso.setNome(rs.getString(11));
-		corso.setDescrizione(rs.getString(12));
-		corso.setData(rs.getDate(13));
-		corso.setPresenzeMin(rs.getInt(14));
-		corso.setMaxPartecipanti(rs.getInt(15));
-		
-		lez.setCorso(corso);
 		
 		presenza.setLez(lez);
 		

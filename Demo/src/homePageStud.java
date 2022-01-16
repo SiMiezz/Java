@@ -387,13 +387,13 @@ public class homePageStud extends JFrame {
 		panelPresenze.add(lblPresenze);
 		
 		JScrollPane scrollPanePresenze = new JScrollPane();
-		scrollPanePresenze.setBounds(82, 36, 450, 220);
+		scrollPanePresenze.setBounds(34, 36, 544, 240);
 		panelPresenze.add(scrollPanePresenze);
 		
 		tablePresenze = new JTable();
 		tablePresenze.setRowSelectionAllowed(false);
 		modelPresenze = new DefaultTableModel();
-		Object[] columnPresenze = {"ID", "Titolo", "Data inizio", "Orario inizio", "Nome corso"};
+		Object[] columnPresenze = {"ID", "Titolo", "Descrizione", "Data inizio", "Orario inizio"};
 		Object [] rowPresenze = new Object[5];
 		tablePresenze.setModel(modelPresenze);
 		modelPresenze.setColumnIdentifiers(columnPresenze);
@@ -550,9 +550,9 @@ public class homePageStud extends JFrame {
 				for(Partecipa partecipa:stud.getPresenze()) {
 					rowPresenze[0]= partecipa.getLez().getIdlezione();
 					rowPresenze[1]= partecipa.getLez().getTitolo();
-					rowPresenze[2]= partecipa.getLez().getDatainizio();
-					rowPresenze[3]= partecipa.getLez().getOrarioinizio();
-					rowPresenze[4]= partecipa.getLez().getCorso().getNome();
+					rowPresenze[2]= partecipa.getLez().getDescrizione();
+					rowPresenze[3]= partecipa.getLez().getDatainizio();
+					rowPresenze[4]= partecipa.getLez().getOrarioinizio();
 					modelPresenze.addRow(rowPresenze);
 				}
 			}
