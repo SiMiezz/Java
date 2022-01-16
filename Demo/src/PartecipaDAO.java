@@ -60,6 +60,37 @@ public class PartecipaDAO {
 		}	
 	}
 	
+	public ArrayList<Partecipa> getPartecipaStud(Studente stud){
+		ArrayList <Partecipa> presenze = new ArrayList<Partecipa>();
+		
+		try {
+			Connection conn = DataBaseConnection.getInstance().getConnection();
+			Statement st= conn.createStatement();
+			String query = "SELECT * "
+					+ "FROM (partecipa AS par JOIN lezione AS lez ON par.idlezione = lez.idlezione) JOIN corsoformazione AS csf ON lez.idcorso = csf.idcorso "
+					+ "WHERE par.matricola = ?";
+			
+			PreparedStatement statement = conn.prepareStatement(query);
+			statement.setString(1, stud.getMatricola());
+			
+			ResultSet rs = statement.executeQuery();
+			
+			while(rs.next()) {
+				Partecipa presenza = extractPartecipaStud(rs,stud);
+				presenze.add(presenza);
+			}
+			
+			rs.close();
+			st.close();
+			conn.close();
+			
+			return presenze;
+		}
+		catch(SQLException e) {
+			return null;
+		}	
+	}
+	
 	public Partecipa extractPartecipa(ResultSet rs, Lezione lez) throws SQLException{
 		Partecipa presenza = new Partecipa();
 		
@@ -73,6 +104,34 @@ public class PartecipaDAO {
 		stud.setCf(rs.getString(7));
 		
 		presenza.setStud(stud);
+		
+		return presenza;
+	}
+	
+	public Partecipa extractPartecipaStud(ResultSet rs, Studente stud) throws SQLException{
+		Partecipa presenza = new Partecipa();
+		
+		presenza.setStud(stud);
+		
+		Lezione lez = new Lezione();
+		lez.setIdlezione(rs.getInt(3));
+		lez.setTitolo(rs.getString(4));
+		lez.setDescrizione(rs.getString(5));
+		lez.setDurata(rs.getTime(6));
+		lez.setDatainizio(rs.getDate(7));
+		lez.setOrarioinizio(rs.getTime(8));
+		
+		CorsoFormazione corso = new CorsoFormazione();
+		corso.setIdCorso(rs.getInt(10));
+		corso.setNome(rs.getString(11));
+		corso.setDescrizione(rs.getString(12));
+		corso.setData(rs.getDate(13));
+		corso.setPresenzeMin(rs.getInt(14));
+		corso.setMaxPartecipanti(rs.getInt(15));
+		
+		lez.setCorso(corso);
+		
+		presenza.setLez(lez);
 		
 		return presenza;
 	}

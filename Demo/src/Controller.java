@@ -119,6 +119,10 @@ public class Controller {
 		return pardao.getPartecipaLezione(lez);
 	}
 	
+	public ArrayList<Partecipa> getPartecipaStud(Studente stud){
+		return pardao.getPartecipaStud(stud);
+	}
+	
 	public CorsoFormazione getCorso(int id) {
 		return corsodao.getCorso(id);
 	}

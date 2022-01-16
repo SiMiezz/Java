@@ -22,6 +22,8 @@ import java.awt.event.ActionListener;
 import java.sql.Date;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class homePageStud extends JFrame {
 
@@ -42,6 +44,8 @@ public class homePageStud extends JFrame {
 	DefaultTableModel modelNewIscrizione;
 	private JTable tablePartecipa;
 	DefaultTableModel modelPartecipa;
+	private JTable tablePresenze;
+	DefaultTableModel modelPresenze;
 	
 	private void switchPanel(JLayeredPane layeredPane, JPanel panelInserisci) {
 		layeredPane.removeAll();
@@ -128,6 +132,7 @@ public class homePageStud extends JFrame {
 		stud.setData(c.getStud(matricola).getData());
 		stud.setCf(c.getStud(matricola).getCf());
 		stud.setIscrizioni(c.getIscrizioni(stud));
+		stud.setPresenze(c.getPartecipaStud(stud));
 		
 		txtNome.setText(stud.getNome());
 		txtCognome.setText(stud.getCognome());
@@ -199,7 +204,7 @@ public class homePageStud extends JFrame {
 		layeredPane.add(panelIscrizioni, "name_367500255637100");
 		panelIscrizioni.setLayout(null);
 		
-		JLabel lblIscrizioni = new JLabel("VISUALIZZA ISCRIZIONI");
+		JLabel lblIscrizioni = new JLabel("REGISTRO ISCRIZIONI");
 		lblIscrizioni.setForeground(Color.RED);
 		lblIscrizioni.setHorizontalAlignment(SwingConstants.CENTER);
 		lblIscrizioni.setFont(new Font("Tahoma", Font.BOLD, 16));
@@ -371,6 +376,31 @@ public class homePageStud extends JFrame {
 		btnPartecipa.setBounds(422, 257, 110, 23);
 		panelPartecipa.add(btnPartecipa);
 		
+		JPanel panelPresenze = new JPanel();
+		panelPresenze.setBackground(new Color(176, 224, 230));
+		layeredPane.add(panelPresenze, "name_266771460211400");
+		panelPresenze.setLayout(null);
+		
+		JLabel lblPresenze = new JLabel("REGISTRO PRESENZE");
+		lblPresenze.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPresenze.setForeground(Color.RED);
+		lblPresenze.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblPresenze.setBounds(10, 11, 594, 14);
+		panelPresenze.add(lblPresenze);
+		
+		JScrollPane scrollPanePresenze = new JScrollPane();
+		scrollPanePresenze.setBounds(82, 36, 450, 220);
+		panelPresenze.add(scrollPanePresenze);
+		
+		tablePresenze = new JTable();
+		tablePresenze.setRowSelectionAllowed(false);
+		modelPresenze = new DefaultTableModel();
+		Object[] columnPresenze = {"ID", "Titolo", "Data inizio", "Orario inizio", "Nome corso"};
+		Object [] rowPresenze = new Object[5];
+		tablePresenze.setModel(modelPresenze);
+		modelPresenze.setColumnIdentifiers(columnPresenze);
+		scrollPanePresenze.setViewportView(tablePresenze);
+		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		setJMenuBar(menuBar);
@@ -433,9 +463,9 @@ public class homePageStud extends JFrame {
 		mnIscrizioni.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		menuBar.add(mnIscrizioni);
 		
-		JMenuItem mntmVisualizzaIscrizioni = new JMenuItem("Visualizza Iscrizioni");
-		mntmVisualizzaIscrizioni.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		mntmVisualizzaIscrizioni.addActionListener(new ActionListener() {
+		JMenuItem mntmRegistroIscrizioni = new JMenuItem("Registro Iscrizioni");
+		mntmRegistroIscrizioni.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		mntmRegistroIscrizioni.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				switchPanel(layeredPane, panelIscrizioni);
 				
@@ -450,7 +480,7 @@ public class homePageStud extends JFrame {
 				}
 			}
 		});
-		mnIscrizioni.add(mntmVisualizzaIscrizioni);
+		mnIscrizioni.add(mntmRegistroIscrizioni);
 		
 		JMenuItem mntmAggiungiIscrizioni = new JMenuItem("Effettua Iscrizione");
 		mntmAggiungiIscrizioni.setFont(new Font("Segoe UI", Font.PLAIN, 14));
@@ -511,5 +541,25 @@ public class homePageStud extends JFrame {
 			}
 		});
 		mnLezioni.add(mntmPartecipaLezioni);
+		
+		JMenuItem mntmPresenze = new JMenuItem("Registro Presenze");
+		mntmPresenze.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				switchPanel(layeredPane, panelPresenze);
+				
+				stud.setPresenze(c.getPartecipaStud(stud));
+				modelPresenze.setRowCount(0);
+				for(Partecipa partecipa:stud.getPresenze()) {
+					rowPresenze[0]= partecipa.getLez().getIdlezione();
+					rowPresenze[1]= partecipa.getLez().getTitolo();
+					rowPresenze[2]= partecipa.getLez().getDatainizio();
+					rowPresenze[3]= partecipa.getLez().getOrarioinizio();
+					rowPresenze[4]= partecipa.getLez().getCorso().getNome();
+					modelPresenze.addRow(rowPresenze);
+				}
+			}
+		});
+		mntmPresenze.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		mnLezioni.add(mntmPresenze);
 	}
 }

@@ -5,7 +5,7 @@ public class Studente {
 	private String nome,cognome,cf,matricola,password;
 	private Date data;
 	private ArrayList <Iscritto> iscrizioni = new ArrayList<Iscritto>();
-	private ArrayList <Partecipa> partecipazione = new ArrayList<Partecipa>();
+	private ArrayList <Partecipa> presenze = new ArrayList<Partecipa>();
 	
 	public String getNome() {
 		return nome;
@@ -49,10 +49,10 @@ public class Studente {
 	public void setIscrizioni(ArrayList<Iscritto> iscrizioni) {
 		this.iscrizioni = iscrizioni;
 	}
-	public ArrayList<Partecipa> getPartecipazione() {
-		return partecipazione;
+	public ArrayList<Partecipa> getPresenze() {
+		return presenze;
 	}
-	public void setPartecipazione(ArrayList<Partecipa> partecipazione) {
-		this.partecipazione = partecipazione;
+	public void setPresenze(ArrayList<Partecipa> presenze) {
+		this.presenze = presenze;
 	}
 }
