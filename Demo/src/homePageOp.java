@@ -298,11 +298,11 @@ public class homePageOp extends JFrame {
 		btnInserimento.setBounds(330, 247, 100, 23);
 		panelInserisci.add(btnInserimento);
 		
-		JLabel lblPercentuale = new JLabel("%");
-		lblPercentuale.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPercentuale.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblPercentuale.setBounds(330, 186, 30, 18);
-		panelInserisci.add(lblPercentuale);
+		JLabel lblInsertPercentuale = new JLabel("%");
+		lblInsertPercentuale.setHorizontalAlignment(SwingConstants.CENTER);
+		lblInsertPercentuale.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblInsertPercentuale.setBounds(330, 186, 30, 18);
+		panelInserisci.add(lblInsertPercentuale);
 		
 		JPanel panelLezioni = new JPanel();
 		panelLezioni.setBackground(new Color(176, 224, 230));
@@ -652,11 +652,11 @@ public class homePageOp extends JFrame {
 		btnAggiorna.setBounds(450, 428, 100, 23);
 		panelModifica.add(btnAggiorna);
 		
-		JLabel lblPercentuale_1 = new JLabel("%");
-		lblPercentuale_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPercentuale_1.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblPercentuale_1.setBounds(404, 340, 30, 18);
-		panelModifica.add(lblPercentuale_1);
+		JLabel lblModPercentuale = new JLabel("%");
+		lblModPercentuale.setHorizontalAlignment(SwingConstants.CENTER);
+		lblModPercentuale.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblModPercentuale.setBounds(404, 340, 30, 18);
+		panelModifica.add(lblModPercentuale);
 		
 		JPanel panelStatistiche = new JPanel();
 		panelStatistiche.setBackground(new Color(176, 224, 230));
