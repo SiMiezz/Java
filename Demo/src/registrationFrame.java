@@ -55,20 +55,20 @@ public class registrationFrame extends JFrame {
 		JLabel lblPwd = new JLabel("Password");
 		lblPwd.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblPwd.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPwd.setBounds(109, 289, 120, 14);
+		lblPwd.setBounds(109, 314, 120, 14);
 		contentPane.add(lblPwd);
 		
 		pwdField = new JPasswordField();
 		pwdField.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblPwd.setLabelFor(pwdField);
-		pwdField.setBounds(239, 288, 150, 20);
+		pwdField.setBounds(239, 313, 150, 20);
 		contentPane.add(pwdField);
 		
 		boxSceltaRegistration = new JComboBox();
 		boxSceltaRegistration.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		boxSceltaRegistration.setModel(new DefaultComboBoxModel(new String[] {"Studente", "Operatore"}));
 		boxSceltaRegistration.setSelectedIndex(1);
-		boxSceltaRegistration.setBounds(289, 319, 100, 20);
+		boxSceltaRegistration.setBounds(289, 344, 100, 20);
 		contentPane.add(boxSceltaRegistration);
 		
 		txtNome = new JTextField();
@@ -99,7 +99,7 @@ public class registrationFrame extends JFrame {
 		
 		txtID = new JTextField();
 		txtID.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		txtID.setBounds(239, 257, 150, 20);
+		txtID.setBounds(239, 282, 150, 20);
 		contentPane.add(txtID);
 		txtID.setColumns(10);
 		
@@ -107,7 +107,7 @@ public class registrationFrame extends JFrame {
 		lblId.setLabelFor(txtID);
 		lblId.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblId.setHorizontalAlignment(SwingConstants.CENTER);
-		lblId.setBounds(109, 258, 120, 14);
+		lblId.setBounds(109, 283, 120, 14);
 		contentPane.add(lblId);
 		
 		JButton btnRegistration = new JButton("REGISTRATI");
@@ -147,34 +147,34 @@ public class registrationFrame extends JFrame {
 		
 		txtCF = new JTextField();
 		txtCF.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		txtCF.setBounds(239, 226, 150, 20);
+		txtCF.setBounds(239, 251, 150, 20);
 		contentPane.add(txtCF);
 		txtCF.setColumns(10);
 		
 		JLabel lblDataN = new JLabel("Data di nascita");
 		lblDataN.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDataN.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblDataN.setBounds(109, 196, 120, 14);
+		lblDataN.setBounds(109, 223, 120, 14);
 		contentPane.add(lblDataN);
 		
 		JLabel lblCF = new JLabel("Codice Fiscale");
 		lblCF.setLabelFor(txtCF);
 		lblCF.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCF.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblCF.setBounds(109, 227, 120, 14);
+		lblCF.setBounds(109, 252, 120, 14);
 		contentPane.add(lblCF);
 		
 		txtData = new JTextField();
 		txtData.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblDataN.setLabelFor(txtData);
-		txtData.setBounds(239, 195, 150, 20);
+		txtData.setBounds(239, 220, 150, 20);
 		contentPane.add(txtData);
 		txtData.setColumns(10);
 		
-		JLabel lblInserimentoData = new JLabel("(yyyy-mm-dd)");
+		JLabel lblInserimentoData = new JLabel("[yyyy-mm-dd]");
 		lblInserimentoData.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblInserimentoData.setHorizontalAlignment(SwingConstants.CENTER);
-		lblInserimentoData.setBounds(399, 194, 110, 18);
+		lblInserimentoData.setBounds(239, 191, 150, 18);
 		contentPane.add(lblInserimentoData);
 		
 		JButton btnLogin = new JButton("LOGIN");

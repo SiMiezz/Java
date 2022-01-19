@@ -32,13 +32,17 @@ import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 import javax.swing.JProgressBar;
+import javax.swing.JSlider;
+import javax.swing.event.AncestorListener;
+import javax.swing.event.AncestorEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
 
 public class homePageOp extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtInsertNome;
 	private JTextField txtInsertDesc;
-	private JTextField txtInsertPresenze;
 	private JTextField txtInsertPartecipanti;
 	private JTextField txtNome;
 	private JTextField txtCognome;
@@ -221,58 +225,73 @@ public class homePageOp extends JFrame {
 		txtInsertNome = new JTextField();
 		txtInsertNome.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtInsertNome.setColumns(10);
-		txtInsertNome.setBounds(147, 123, 175, 20);
+		txtInsertNome.setBounds(160, 123, 175, 20);
 		panelInserisci.add(txtInsertNome);
 		
 		txtInsertDesc = new JTextField();
 		txtInsertDesc.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtInsertDesc.setColumns(10);
-		txtInsertDesc.setBounds(147, 154, 175, 20);
+		txtInsertDesc.setBounds(160, 154, 175, 20);
 		panelInserisci.add(txtInsertDesc);
-		
-		txtInsertPresenze = new JTextField();
-		txtInsertPresenze.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		txtInsertPresenze.setColumns(10);
-		txtInsertPresenze.setBounds(147, 185, 175, 20);
-		panelInserisci.add(txtInsertPresenze);
 		
 		txtInsertPartecipanti = new JTextField();
 		txtInsertPartecipanti.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtInsertPartecipanti.setColumns(10);
-		txtInsertPartecipanti.setBounds(147, 216, 175, 20);
+		txtInsertPartecipanti.setBounds(160, 226, 175, 20);
 		panelInserisci.add(txtInsertPartecipanti);
 		
 		JLabel lblNomeCorso = new JLabel("Nome");
 		lblNomeCorso.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNomeCorso.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNomeCorso.setBounds(17, 124, 120, 14);
+		lblNomeCorso.setBounds(20, 126, 130, 14);
 		panelInserisci.add(lblNomeCorso);
 		
 		JLabel lblDescrizione = new JLabel("Descrizione");
 		lblDescrizione.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDescrizione.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblDescrizione.setBounds(17, 155, 120, 14);
+		lblDescrizione.setBounds(20, 157, 130, 14);
 		panelInserisci.add(lblDescrizione);
 		
-		JLabel lblPresenze = new JLabel("Presenze Minime");
+		JLabel lblPresenze = new JLabel("Presenze Minime[%]");
 		lblPresenze.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPresenze.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblPresenze.setBounds(17, 186, 120, 14);
+		lblPresenze.setBounds(20, 192, 130, 18);
 		panelInserisci.add(lblPresenze);
 		
 		JLabel lblPartecipanti = new JLabel("Partecipanti Max");
 		lblPartecipanti.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPartecipanti.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblPartecipanti.setBounds(17, 217, 120, 18);
+		lblPartecipanti.setBounds(20, 227, 130, 18);
 		panelInserisci.add(lblPartecipanti);
+		
+		JLabel lblInsertPercentuale = new JLabel("");
+		lblInsertPercentuale.setHorizontalAlignment(SwingConstants.CENTER);
+		lblInsertPercentuale.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblInsertPercentuale.setBounds(343, 192, 40, 14);
+		panelInserisci.add(lblInsertPercentuale);
+		
+		JSlider sliderInsertPresenze = new JSlider();
+		sliderInsertPresenze.setSnapToTicks(true);
+		sliderInsertPresenze.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				lblInsertPercentuale.setText(Integer.toString(sliderInsertPresenze.getValue()) + "%");
+			}
+		});
+		sliderInsertPresenze.setValue(0);
+		sliderInsertPresenze.setPaintTicks(true);
+		sliderInsertPresenze.setMinorTickSpacing(5);
+		sliderInsertPresenze.setMajorTickSpacing(25);
+		sliderInsertPresenze.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		sliderInsertPresenze.setBounds(160, 185, 175, 30);
+		panelInserisci.add(sliderInsertPresenze);
 		
 		JButton btnInserimento = new JButton("INSERISCI");
 		btnInserimento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(!txtInsertNome.getText().isBlank() && tryParse(txtInsertPresenze.getText())!=null && tryParse(txtInsertPartecipanti.getText())!=null) {
+				if(!txtInsertNome.getText().isBlank() && sliderInsertPresenze.getValue()!=0 && tryParse(txtInsertPartecipanti.getText())!=null) {
 					String nome = txtInsertNome.getText();
 					String descrizione = txtInsertDesc.getText();
-					int presenze = tryParse(txtInsertPresenze.getText());
+					int presenze = sliderInsertPresenze.getValue();
 					int partecipanti = tryParse(txtInsertPartecipanti.getText());
 					long millis=System.currentTimeMillis();
 					Date datacreazione=new Date(millis);
@@ -290,19 +309,13 @@ public class homePageOp extends JFrame {
 				
 				txtInsertNome.setText(null);
 				txtInsertDesc.setText(null);
-				txtInsertPresenze.setText(null);
+				sliderInsertPresenze.setValue(0);
 				txtInsertPartecipanti.setText(null);
 			}
 		});
 		btnInserimento.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnInserimento.setBounds(330, 247, 100, 23);
+		btnInserimento.setBounds(343, 257, 100, 23);
 		panelInserisci.add(btnInserimento);
-		
-		JLabel lblInsertPercentuale = new JLabel("%");
-		lblInsertPercentuale.setHorizontalAlignment(SwingConstants.CENTER);
-		lblInsertPercentuale.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblInsertPercentuale.setBounds(330, 186, 30, 18);
-		panelInserisci.add(lblInsertPercentuale);
 		
 		JPanel panelLezioni = new JPanel();
 		panelLezioni.setBackground(new Color(176, 224, 230));
@@ -425,7 +438,7 @@ public class homePageOp extends JFrame {
 			}
 		});
 		modelCorsi = new DefaultTableModel();
-		Object[] columnCorsi = {"ID", "Nome", "Descrizione", "Data", "PresenzeMin", "maxPartecipanti"};
+		Object[] columnCorsi = {"ID", "Nome", "Descrizione", "Data", "PresenzeMin[%]", "maxPartecipanti"};
 		Object [] rowCorsi = new Object[6];
 		tableCorsi.setModel(modelCorsi);
 		modelCorsi.setColumnIdentifiers(columnCorsi);
@@ -536,22 +549,16 @@ public class homePageOp extends JFrame {
 		panelModifica.add(txtModificaDesc);
 		txtModificaDesc.setColumns(10);
 		
-		txtModificaPresenze = new JTextField();
-		txtModificaPresenze.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		txtModificaPresenze.setBounds(219, 335, 175, 20);
-		panelModifica.add(txtModificaPresenze);
-		txtModificaPresenze.setColumns(10);
-		
 		txtModificaPartecipanti = new JTextField();
 		txtModificaPartecipanti.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		txtModificaPartecipanti.setBounds(219, 366, 175, 20);
+		txtModificaPartecipanti.setBounds(219, 376, 175, 20);
 		panelModifica.add(txtModificaPartecipanti);
 		txtModificaPartecipanti.setColumns(10);
 		
 		txtModificaID = new JTextField();
 		txtModificaID.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtModificaID.setEditable(false);
-		txtModificaID.setBounds(219, 397, 175, 20);
+		txtModificaID.setBounds(219, 407, 175, 20);
 		panelModifica.add(txtModificaID);
 		txtModificaID.setColumns(10);
 		
@@ -567,23 +574,44 @@ public class homePageOp extends JFrame {
 		txtModDesc.setBounds(79, 307, 130, 14);
 		panelModifica.add(txtModDesc);
 		
-		JLabel lblModPresenze = new JLabel("Presenze minime");
+		JLabel lblModPresenze = new JLabel("Presenze minime[%]");
 		lblModPresenze.setHorizontalAlignment(SwingConstants.CENTER);
 		lblModPresenze.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblModPresenze.setBounds(79, 338, 130, 14);
+		lblModPresenze.setBounds(79, 340, 130, 18);
 		panelModifica.add(lblModPresenze);
 		
 		JLabel lblModPartecipanti = new JLabel("Partecipanti max");
 		lblModPartecipanti.setHorizontalAlignment(SwingConstants.CENTER);
 		lblModPartecipanti.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblModPartecipanti.setBounds(79, 367, 130, 18);
+		lblModPartecipanti.setBounds(79, 377, 130, 18);
 		panelModifica.add(lblModPartecipanti);
 		
 		JLabel lblModId = new JLabel("IDCorso");
 		lblModId.setHorizontalAlignment(SwingConstants.CENTER);
 		lblModId.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblModId.setBounds(79, 400, 130, 14);
+		lblModId.setBounds(79, 410, 130, 14);
 		panelModifica.add(lblModId);
+		
+		JLabel lblModPercentuale = new JLabel("");
+		lblModPercentuale.setHorizontalAlignment(SwingConstants.CENTER);
+		lblModPercentuale.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblModPercentuale.setBounds(404, 340, 40, 14);
+		panelModifica.add(lblModPercentuale);
+		
+		JSlider sliderModificaPresenze = new JSlider();
+		sliderModificaPresenze.setSnapToTicks(true);
+		sliderModificaPresenze.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				lblModPercentuale.setText(Integer.toString(sliderModificaPresenze.getValue()) + "%");
+			}
+		});
+		sliderModificaPresenze.setPaintTicks(true);
+		sliderModificaPresenze.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		sliderModificaPresenze.setMinorTickSpacing(5);
+		sliderModificaPresenze.setMajorTickSpacing(25);
+		sliderModificaPresenze.setValue(0);
+		sliderModificaPresenze.setBounds(219, 335, 175, 30);
+		panelModifica.add(sliderModificaPresenze);
 		
 		JScrollPane scrollPaneModifica = new JScrollPane();
 		scrollPaneModifica.setBounds(34, 61, 544, 185);
@@ -598,12 +626,12 @@ public class homePageOp extends JFrame {
 				txtModificaID.setText(modelModifica.getValueAt(i, 0).toString());
 				txtModificaNome.setText(modelModifica.getValueAt(i, 1).toString());
 				txtModificaDesc.setText(modelModifica.getValueAt(i, 2).toString());
-				txtModificaPresenze.setText(modelModifica.getValueAt(i, 3).toString());
 				txtModificaPartecipanti.setText(modelModifica.getValueAt(i, 4).toString());
+				sliderModificaPresenze.setValue((int)modelModifica.getValueAt(i, 3));
 			}
 		});
 		modelModifica = new DefaultTableModel();
-		Object[] columnModifica = {"ID", "Nome", "Descrizione", "PresenzeMin", "maxPartecipanti"};
+		Object[] columnModifica = {"ID", "Nome", "Descrizione", "PresenzeMin[%]", "maxPartecipanti"};
 		Object[] rowModifica = new Object[5];
 		tableModifica.setModel(modelModifica);
 		modelModifica.setColumnIdentifiers(columnModifica);
@@ -613,10 +641,10 @@ public class homePageOp extends JFrame {
 		btnAggiorna.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnAggiorna.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(!txtModificaNome.getText().isBlank() && tryParse(txtModificaPresenze.getText())!=null && tryParse(txtModificaPartecipanti.getText())!=null && !txtModificaID.getText().isBlank()) {
+				if(!txtModificaNome.getText().isBlank() && sliderModificaPresenze.getValue()!=0 && tryParse(txtModificaPartecipanti.getText())!=null && !txtModificaID.getText().isBlank()) {
 					String nome = txtModificaNome.getText();
 					String descrizione = txtModificaDesc.getText();
-					int presenze = tryParse(txtModificaPresenze.getText());
+					int presenze = sliderModificaPresenze.getValue();
 					int partecipanti = tryParse(txtModificaPartecipanti.getText());
 					int id = Integer.valueOf(txtModificaID.getText());
 					
@@ -644,19 +672,13 @@ public class homePageOp extends JFrame {
 				
 				txtModificaNome.setText(null);
 				txtModificaDesc.setText(null);
-				txtModificaPresenze.setText(null);
+				sliderModificaPresenze.setValue(0);
 				txtModificaPartecipanti.setText(null);
 				txtModificaID.setText(null);
 			}
 		});
 		btnAggiorna.setBounds(450, 428, 100, 23);
 		panelModifica.add(btnAggiorna);
-		
-		JLabel lblModPercentuale = new JLabel("%");
-		lblModPercentuale.setHorizontalAlignment(SwingConstants.CENTER);
-		lblModPercentuale.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblModPercentuale.setBounds(404, 340, 30, 18);
-		panelModifica.add(lblModPercentuale);
 		
 		JPanel panelStatistiche = new JPanel();
 		panelStatistiche.setBackground(new Color(176, 224, 230));
@@ -747,7 +769,7 @@ public class homePageOp extends JFrame {
 			}
 		});
 		modelStatistiche = new DefaultTableModel();
-		Object[] columnStatistiche = {"ID", "Nome", "Descrizione", "PresenzeMin", "maxPartecipanti"};
+		Object[] columnStatistiche = {"ID", "Nome", "Descrizione", "PresenzeMin[%]", "maxPartecipanti"};
 		Object [] rowStatistiche = new Object[5];
 		tableStatistiche.setModel(modelStatistiche);
 		modelStatistiche.setColumnIdentifiers(columnStatistiche);

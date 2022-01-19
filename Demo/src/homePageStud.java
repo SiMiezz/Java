@@ -191,7 +191,7 @@ public class homePageStud extends JFrame {
 		tableCorsi = new JTable();
 		tableCorsi.setRowSelectionAllowed(false);
 		modelCorsi= new DefaultTableModel();
-		Object[] columnCorsi= {"ID", "Nome", "Descrizione", "PresenzeMin", "maxPartecipanti"};
+		Object[] columnCorsi= {"ID", "Nome", "Descrizione", "PresenzeMin[%]", "maxPartecipanti"};
 		Object [] rowCorsi= new Object[5];
 		tableCorsi.setModel(modelCorsi);
 		modelCorsi.setColumnIdentifiers(columnCorsi);
