@@ -278,7 +278,12 @@ public class homePageOp extends JFrame {
 		sliderInsertPresenze.setSnapToTicks(true);
 		sliderInsertPresenze.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
-				lblInsertPercentuale.setText(Integer.toString(sliderInsertPresenze.getValue()) + "%");
+				if(sliderInsertPresenze.isEnabled()) {
+					lblInsertPercentuale.setText(Integer.toString(sliderInsertPresenze.getValue()) + "%");
+				}
+				else {
+					lblInsertPercentuale.setText("");
+				}
 			}
 		});
 		sliderInsertPresenze.setValue(0);
@@ -292,7 +297,7 @@ public class homePageOp extends JFrame {
 		JButton btnInserimento = new JButton("INSERISCI");
 		btnInserimento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(!txtInsertNome.getText().isBlank() && sliderInsertPresenze.getValue()!=0 && tryParse(txtInsertPartecipanti.getText())!=null) {
+				if(!txtInsertNome.getText().isBlank() && sliderInsertPresenze.isEnabled() && tryParse(txtInsertPartecipanti.getText())!=null) {
 					String nome = txtInsertNome.getText();
 					String descrizione = txtInsertDesc.getText();
 					int presenze = sliderInsertPresenze.getValue();
@@ -313,6 +318,7 @@ public class homePageOp extends JFrame {
 				
 				txtInsertNome.setText(null);
 				txtInsertDesc.setText(null);
+				sliderInsertPresenze.setEnabled(false);
 				sliderInsertPresenze.setValue(0);
 				txtInsertPartecipanti.setText(null);
 			}
@@ -607,7 +613,12 @@ public class homePageOp extends JFrame {
 		sliderModificaPresenze.setSnapToTicks(true);
 		sliderModificaPresenze.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
-				lblModPercentuale.setText(Integer.toString(sliderModificaPresenze.getValue()) + "%");
+				if(sliderModificaPresenze.isEnabled()) {
+					lblModPercentuale.setText(Integer.toString(sliderModificaPresenze.getValue()) + "%");
+				}
+				else {
+					lblModPercentuale.setText("");
+				}
 			}
 		});
 		sliderModificaPresenze.setPaintTicks(true);
@@ -648,7 +659,7 @@ public class homePageOp extends JFrame {
 		btnAggiorna.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnAggiorna.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(!txtModificaNome.getText().isBlank() && sliderModificaPresenze.getValue()!=0 && tryParse(txtModificaPartecipanti.getText())!=null && !txtModificaID.getText().isBlank()) {
+				if(!txtModificaNome.getText().isBlank() && sliderModificaPresenze.isEnabled() && tryParse(txtModificaPartecipanti.getText())!=null && !txtModificaID.getText().isBlank()) {
 					String nome = txtModificaNome.getText();
 					String descrizione = txtModificaDesc.getText();
 					int presenze = sliderModificaPresenze.getValue();
@@ -679,6 +690,7 @@ public class homePageOp extends JFrame {
 				
 				txtModificaNome.setText(null);
 				txtModificaDesc.setText(null);
+				sliderModificaPresenze.setEnabled(false);
 				sliderModificaPresenze.setValue(0);
 				txtModificaPartecipanti.setText(null);
 				txtModificaID.setText(null);

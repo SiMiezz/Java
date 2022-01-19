@@ -6,7 +6,7 @@ public class CorsoFormazioneDAO {
 	
 	public boolean aggiungiCorso(String nome, String descrizione, Date data, int presenzeMin, int maxPartecipanti, Operatore op){
 		try {
-			if(nome !=null && presenzeMin!=0 && maxPartecipanti !=0 && op!=null) {
+			if(nome !=null && (presenzeMin>=0 && presenzeMin<=100) && maxPartecipanti !=0 && op!=null) {
 				Connection conn = DataBaseConnection.getInstance().getConnection();
 				Statement st= conn.createStatement();
 				String query ="INSERT INTO corsoformazione (nome,descrizione,datacreazione,presenzemin,maxpartecipanti,id) VALUES(?,?,?,?,?,?)";
@@ -36,7 +36,7 @@ public class CorsoFormazioneDAO {
 	
 	public boolean aggiornaCorso(String nome, String descrizione, int presenzeMin, int maxPartecipanti, int id){
 		try {
-			if(nome !=null && presenzeMin!=0 && maxPartecipanti !=0) {
+			if(nome !=null && (presenzeMin>=0 && presenzeMin<=100) && maxPartecipanti !=0) {
 				Connection conn = DataBaseConnection.getInstance().getConnection();
 				Statement st= conn.createStatement();
 				String query ="UPDATE corsoformazione SET nome = ?, descrizione = ?, presenzemin = ?, maxpartecipanti = ? WHERE idcorso = ?";
