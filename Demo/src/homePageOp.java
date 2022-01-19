@@ -23,7 +23,6 @@ import javax.swing.JTextField;
 import java.awt.Color;
 import java.awt.Dimension;
 
-import javax.swing.ScrollPaneConstants;
 import javax.swing.JTable;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -33,8 +32,6 @@ import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 import javax.swing.JProgressBar;
 import javax.swing.JSlider;
-import javax.swing.event.AncestorListener;
-import javax.swing.event.AncestorEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 
@@ -271,6 +268,13 @@ public class homePageOp extends JFrame {
 		panelInserisci.add(lblInsertPercentuale);
 		
 		JSlider sliderInsertPresenze = new JSlider();
+		sliderInsertPresenze.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				sliderInsertPresenze.setEnabled(true);
+			}
+		});
+		sliderInsertPresenze.setEnabled(false);
 		sliderInsertPresenze.setSnapToTicks(true);
 		sliderInsertPresenze.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
@@ -599,6 +603,7 @@ public class homePageOp extends JFrame {
 		panelModifica.add(lblModPercentuale);
 		
 		JSlider sliderModificaPresenze = new JSlider();
+		sliderModificaPresenze.setEnabled(false);
 		sliderModificaPresenze.setSnapToTicks(true);
 		sliderModificaPresenze.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
@@ -627,6 +632,8 @@ public class homePageOp extends JFrame {
 				txtModificaNome.setText(modelModifica.getValueAt(i, 1).toString());
 				txtModificaDesc.setText(modelModifica.getValueAt(i, 2).toString());
 				txtModificaPartecipanti.setText(modelModifica.getValueAt(i, 4).toString());
+				
+				sliderModificaPresenze.setEnabled(true);
 				sliderModificaPresenze.setValue((int)modelModifica.getValueAt(i, 3));
 			}
 		});
